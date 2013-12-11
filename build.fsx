@@ -9,49 +9,19 @@ open Fake.AssemblyInfoFile
 open Fake.ReleaseNotesHelper
 open System
 
-// --------------------------------------------------------------------------------------
-// START TODO: Provide project-specific details below
-// --------------------------------------------------------------------------------------
-
-// Information about the project are used
-//  - for version and project name in generated AssemblyInfo file
-//  - by the generated NuGet package 
-//  - to run tests and to publish documentation on GitHub gh-pages
-//  - for documentation, you also need to edit info in "docs/tools/generate.fsx"
-
-// The name of the project 
-// (used by attributes in AssemblyInfo, name of a NuGet package and directory in 'src')
 let project = "FSharpx.ManagementProviders"
 
-// Short summary of the project
-// (used as description in AssemblyInfo and as a short summary for NuGet package)
-let summary = "A short summary of your project."
+let summary = "Various type providers for management of the machine."
+let description = """Various type providers for management of the machine."""
+let authors = ["Steffen Forkmann"; "Daniel Mohl"; "Tomas Petricek"; "Ryan Riley"; "Mauricio Scheffer"; "Phil Trelford" ]
+let tags = "F# fsharp typeproviders"
 
-// Longer description of the project
-// (used as a description for NuGet package; line breaks are automatically cleaned up)
-let description = """
-  A lengthy description of your project. 
-  This can have multiple lines and will be cleaned up. """
-// List of author names (for NuGet package)
-let authors = [ "Your Name" ]
-// Tags for your project (for NuGet package)
-let tags = "F# fsharp tags which describe your project"
+let solutionFile  = "FSharpx.ManagementProviders"
 
-// File system information 
-// (<solutionFile>.sln is built during the building process)
-let solutionFile  = "FSharp.ProjectScaffold"
-// Pattern specifying assemblies to be tested using NUnit
-let testAssemblies = ["tests/*/bin/*/FSharpx.ManagementProviders*Tests*.dll"]
+let testAssemblies = "tests/**/bin/Release/*.Tests*.dll"
+let gitHome = "https://github.com/forki"
 
-// Git configuration (used for publishing documentation in gh-pages branch)
-// The profile where the project is posted 
-let gitHome = "https://github.com/pblasucci"
-// The name of the project on GitHub
-let gitName = "FSharp.ProjectScaffold"
-
-// --------------------------------------------------------------------------------------
-// END TODO: The rest of the file includes standard build steps 
-// --------------------------------------------------------------------------------------
+let gitName = "FSharpx.ManagementProviders"
 
 // Read additional information from the release notes document
 Environment.CurrentDirectory <- __SOURCE_DIRECTORY__
@@ -88,10 +58,11 @@ Target "CleanDocs" (fun _ ->
 // Build library & test project
 
 Target "Build" (fun _ ->
-    { BaseDirectory = __SOURCE_DIRECTORY__
-      Includes = [ solutionFile +       ".sln"
-                   solutionFile + ".Tests.sln" ]
-      Excludes = [] } 
+    !! (solutionFile + ".sln")
+    |> MSBuildRelease "" "Rebuild"
+    |> ignore
+
+    !! (solutionFile + ".Tests.sln")
     |> MSBuildRelease "" "Rebuild"
     |> ignore
 )
@@ -100,16 +71,11 @@ Target "Build" (fun _ ->
 // Run the unit tests using test runner & kill test runner when complete
 
 Target "RunTests" (fun _ ->
-    let nunitVersion = GetPackageVersion "packages" "NUnit.Runners"
-    let nunitPath = sprintf "packages/NUnit.Runners.%s/Tools" nunitVersion
     ActivateFinalTarget "CloseTestRunner"
 
-    { BaseDirectory = __SOURCE_DIRECTORY__
-      Includes = testAssemblies
-      Excludes = [] } 
+    !! testAssemblies
     |> NUnit (fun p ->
         { p with
-            ToolPath = nunitPath
             DisableShadowCopy = true
             TimeOut = TimeSpan.FromMinutes 20.
             OutputFile = "TestResults.xml" })
