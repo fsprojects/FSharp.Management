@@ -13,8 +13,8 @@ Documentation
   <div class="span1"></div>
   <div class="span6">
     <div class="well well-small" id="nuget">
-      The F# ProjectTemplate library can be <a href="https://nuget.org/packages/FSharp.ProjectTemplate">installed from NuGet</a>:
-      <pre>PM> Install-Package FSharp.ProjectTemplate</pre>
+      The F# ProjectTemplate library can be <a href="https://nuget.org/packages/FSharpx.ManagementProviders">installed from NuGet</a>:
+      <pre>PM> Install-Package FSharpx.ManagementProviders</pre>
     </div>
   </div>
   <div class="span1"></div>
@@ -28,8 +28,8 @@ Example
 This example demonstrates using a function defined in this sample library.
 
 *)
-#r "FSharp.ProjectTemplate.dll"
-open FSharp.ProjectTemplate
+#r "FSharpx.ManagementProviders.dll"
+open FSharpx.ManagementProviders
 
 printfn "hello = %i" <| Library.hello 0
 

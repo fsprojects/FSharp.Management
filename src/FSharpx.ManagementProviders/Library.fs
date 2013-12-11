@@ -1,4 +1,4 @@
-﻿namespace FSharp.ProjectTemplate
+namespace FSharpx.ManagementProviders
 
 // Documentation for my library
 //

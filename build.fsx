@@ -21,7 +21,7 @@ open System
 
 // The name of the project 
 // (used by attributes in AssemblyInfo, name of a NuGet package and directory in 'src')
-let project = "FSharp.ProjectTemplate"
+let project = "FSharpx.ManagementProviders"
 
 // Short summary of the project
 // (used as description in AssemblyInfo and as a short summary for NuGet package)
@@ -41,7 +41,7 @@ let tags = "F# fsharp tags which describe your project"
 // (<solutionFile>.sln is built during the building process)
 let solutionFile  = "FSharp.ProjectScaffold"
 // Pattern specifying assemblies to be tested using NUnit
-let testAssemblies = ["tests/*/bin/*/FSharp.ProjectTemplate*Tests*.dll"]
+let testAssemblies = ["tests/*/bin/*/FSharpx.ManagementProviders*Tests*.dll"]
 
 // Git configuration (used for publishing documentation in gh-pages branch)
 // The profile where the project is posted 

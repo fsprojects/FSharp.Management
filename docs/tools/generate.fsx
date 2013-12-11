@@ -1,10 +1,10 @@
-﻿// --------------------------------------------------------------------------------------
+// --------------------------------------------------------------------------------------
 // Builds the documentation from `.fsx` and `.md` files in the 'docs/content' directory
 // (the generated documentation is stored in the 'docs/output' directory)
 // --------------------------------------------------------------------------------------
 
 // Binaries that have XML documentation (in a corresponding generated XML file)
-let referenceBinaries = [ "FSharp.ProjectTemplate.dll" ]
+let referenceBinaries = [ "FSharpx.ManagementProviders.dll" ]
 // Web site location for the generated documentation
 let website = "/FSharp.ProjectScaffold"
 

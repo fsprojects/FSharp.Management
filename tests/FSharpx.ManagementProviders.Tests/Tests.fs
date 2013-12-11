@@ -1,6 +1,6 @@
-﻿module FSharp.ProjectScaffold.Tests
+module FSharp.ProjectScaffold.Tests
 
-open FSharp.ProjectTemplate
+open FSharpx.ManagementProviders
 open NUnit.Framework
 
 [<Test>]
