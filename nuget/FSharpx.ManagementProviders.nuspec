@@ -5,9 +5,8 @@
     <version>@build.number@</version>
     <authors>@authors@</authors>
     <owners>@authors@</owners>
-    <licenseUrl>http://github.com/pblasucci/FSharp.ProjectScaffold/blob/master/LICENSE.txt</licenseUrl>
-    <projectUrl>http://pblasucci.github.com/FSharp.ProjectScaffold</projectUrl>
-    <iconUrl>https://raw.github.com/fsharp/FSharp.ProjectScaffold/master/nuget/logo.png</iconUrl>
+    <licenseUrl>http://github.com/forki/FSharpx.ManagementProviders/blob/master/LICENSE.txt</licenseUrl>
+    <projectUrl>http://forki.github.com/FSharpx.ManagementProviders</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <summary>@summary@</summary>
     <description>@description@</description>
@@ -16,7 +15,4 @@
     <tags>@tags@</tags>
     <dependencies />
   </metadata>
-  <files>
-    <file src="FSharpx.ManagementProviders.dll" target="lib/net40" />
-  </files>
 </package>
