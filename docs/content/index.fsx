@@ -38,7 +38,6 @@ Users.AllUsers.Path
 // [fsi:val it : string = "C:\Users\All Users"]
 
 (**
-Some more info
 
 Samples & documentation
 -----------------------
