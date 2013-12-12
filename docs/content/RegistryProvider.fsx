@@ -18,3 +18,9 @@ Registry.HKEY_CURRENT_USER.Path
 
 Registry.HKEY_LOCAL_MACHINE.SOFTWARE.Microsoft.Path
 // [fsi:val it : string = "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft"]
+
+(**
+
+![alt text](img/RegistryProvider.png "Intellisense for the registry")
+
+*)

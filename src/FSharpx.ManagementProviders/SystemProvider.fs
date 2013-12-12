@@ -7,6 +7,7 @@ open System.Text.RegularExpressions
 open FSharpx.TypeProviders.Helper
 
 [<TypeProvider>]
+/// [omit]
 type public SystemProvider(cfg:TypeProviderConfig) as this =
     inherit TypeProviderForNamespaces()
 

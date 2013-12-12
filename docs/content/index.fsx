@@ -18,8 +18,6 @@ The FSharpx.ManagementProviders contain various type providers for the managemen
   <div class="span1"></div>
 </div>
 
-<img src="img/logo.png" alt="F# Project" style="float:right;width:150px;margin:10px" />
-
 Example
 -------
 
