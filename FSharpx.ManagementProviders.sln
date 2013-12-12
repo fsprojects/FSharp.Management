@@ -31,7 +31,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "content", "content", "{8E6D
 	ProjectSection(SolutionItems) = preProject
 		docs\content\FileSystemProvider.fsx = docs\content\FileSystemProvider.fsx
 		docs\content\index.fsx = docs\content\index.fsx
-		docs\content\RgistryProvider.fsx = docs\content\RgistryProvider.fsx
+		docs\content\RegistryProvider.fsx = docs\content\RegistryProvider.fsx
 	EndProjectSection
 EndProject
 Global

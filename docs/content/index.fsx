@@ -5,13 +5,13 @@
 FSharpx.ManagementProviders
 ===========================
 
-Documentation
+The FSharpx.ManagementProviders contain various type providers for the management of the machine.
 
 <div class="row">
   <div class="span1"></div>
   <div class="span6">
     <div class="well well-small" id="nuget">
-      The F# ProjectTemplate library can be <a href="https://nuget.org/packages/FSharpx.ManagementProviders">installed from NuGet</a>:
+      The library can be <a href="https://nuget.org/packages/FSharpx.ManagementProviders">installed from NuGet</a>:
       <pre>PM> Install-Package FSharpx.ManagementProviders</pre>
     </div>
   </div>
