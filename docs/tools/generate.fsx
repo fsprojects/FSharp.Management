@@ -10,7 +10,7 @@ let website = "/FSharpx.ManagementProviders"
 
 // Specify more information about your project
 let info =
-  [ "project-name", "FSharpx.ManagementProvider"
+  [ "project-name", "FSharpx.ManagementProviders"
     "project-author", "Steffen Forkmann"
     "project-summary", "Various type providers for management of the machine."
     "project-github", "http://github.com/forki/FSharpx.ManagementProviders"
