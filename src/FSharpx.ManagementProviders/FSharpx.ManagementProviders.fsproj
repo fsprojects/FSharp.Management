@@ -51,6 +51,7 @@
     <Compile Include="ProvidedTypes.fs" />
     <Compile Include="TypeProviders.Helper.fs" />
     <Compile Include="FileSystemProvider.fs" />
+    <Compile Include="RegistryProvider.fs" />
     <Compile Include="SystemProvider.fs" />
   </ItemGroup>
   <PropertyGroup>

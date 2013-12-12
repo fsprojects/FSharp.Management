@@ -61,7 +61,8 @@
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <ItemGroup>
     <Compile Include="FsUnit.fs" />
-    <Compile Include="FileSystem.Tests.fs" />
+    <Compile Include="FileSystemProvider.Tests.fs" />
+    <Compile Include="RegistryProvider.Tests.fs" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
