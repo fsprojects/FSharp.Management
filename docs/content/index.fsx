@@ -1,11 +1,9 @@
 (*** hide ***)
-// This block of code is omitted in the generated HTML documentation. Use 
-// it to define helpers that you do not want to show in the documentation.
 #I "../../bin"
 
 (**
-F# Project Scaffold
-===================
+FSharpx.ManagementProviders
+===========================
 
 Documentation
 
@@ -25,13 +23,19 @@ Documentation
 Example
 -------
 
-This example demonstrates using a function defined in this sample library.
+This example demonstrates the use of the FileSystem type provider:
 
 *)
+// reference the type provider dll
 #r "FSharpx.ManagementProviders.dll"
-open FSharpx.ManagementProviders
+open FSharpx
 
-printfn "hello = %i" <| Library.hello 0
+// Let the type provider do it's work
+type Users = FileSystem<"C:\\Users\\">
+
+// now you have typed access to your filesystem and you can browse it via Intellisense
+Users.AllUsers.Path 
+// [fsi:val it : string = "C:\Users\All Users"]
 
 (**
 Some more info
@@ -39,11 +43,7 @@ Some more info
 Samples & documentation
 -----------------------
 
-The library comes with comprehensible documentation. 
-It can include a tutorials automatically generated from `*.fsx` files in [the content folder][content]. 
-The API reference is automatically generated from Markdown comments in the library implementation.
-
- * [Tutorial](tutorial.html) contains a further explanation of this sample library.
+The library comes with comprehensible documentation.
 
  * [API Reference](reference/index.html) contains automatically generated documentation for all types, modules
    and functions in the library. This includes additional brief samples on using most of the
@@ -61,9 +61,9 @@ The library is available under Public Domain license, which allows modification 
 redistribution for both commercial and non-commercial purposes. For more information see the 
 [License file][license] in the GitHub repository. 
 
-  [content]: https://github.com/pblasucci/FSharp.ProjectScaffold/tree/master/docs/content
-  [gh]: https://github.com/pblasucci/FSharp.ProjectScaffold
-  [issues]: https://github.com/pblasucci/FSharp.ProjectScaffold/issues
-  [readme]: https://github.com/pblasucci/FSharp.ProjectScaffold/blob/master/README.md
-  [license]: https://github.com/pblasucci/FSharp.ProjectScaffold/blob/master/LICENSE.txt
+  [content]: https://github.com/forki/FSharpx.ManagementProviders/tree/master/docs/content
+  [gh]: https://github.com/forki/FSharpx.ManagementProviders
+  [issues]: https://github.com/forki/FSharpx.ManagementProviders/issues
+  [readme]: https://github.com/forki/FSharpx.ManagementProviders/blob/master/README.md
+  [license]: https://github.com/forki/FSharpx.ManagementProviders/blob/master/LICENSE.txt
 *)

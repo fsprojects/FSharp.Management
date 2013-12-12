@@ -6,15 +6,15 @@
 // Binaries that have XML documentation (in a corresponding generated XML file)
 let referenceBinaries = [ "FSharpx.ManagementProviders.dll" ]
 // Web site location for the generated documentation
-let website = "/FSharp.ProjectScaffold"
+let website = "/FSharpx.ManagementProviders"
 
 // Specify more information about your project
 let info =
-  [ "project-name", "FSharp.ProjectScaffold"
-    "project-author", "Your Name"
-    "project-summary", "A short summary of your project"
-    "project-github", "http://github.com/pblasucci/FSharp.ProjectScaffold"
-    "project-nuget", "http://nuget.com/packages/FSharp.ProjectScaffold" ]
+  [ "project-name", "FSharpx.ManagementProvider"
+    "project-author", "Steffen Forkmann"
+    "project-summary", "Various type providers for management of the machine."
+    "project-github", "http://github.com/forki/FSharpx.ManagementProviders"
+    "project-nuget", "http://nuget.com/packages/FSharpx.ManagementProviders" ]
 
 // --------------------------------------------------------------------------------------
 // For typical project, no changes are needed below

@@ -12,7 +12,7 @@ open System
 let project = "FSharpx.ManagementProviders"
 
 let summary = "Various type providers for management of the machine."
-let description = """Various type providers for management of the machine."""
+let description = "Various type providers for management of the machine."
 let authors = ["Steffen Forkmann"; "Daniel Mohl"; "Tomas Petricek"; "Ryan Riley"; "Mauricio Scheffer"; "Phil Trelford" ]
 let tags = "F# fsharp typeproviders"
 
