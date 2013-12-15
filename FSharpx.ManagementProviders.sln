@@ -31,8 +31,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "content", "content", "{8E6D
 	ProjectSection(SolutionItems) = preProject
 		docs\content\FileSystemProvider.fsx = docs\content\FileSystemProvider.fsx
 		docs\content\index.fsx = docs\content\index.fsx
+		docs\content\PowerShellProvider.fsx = docs\content\PowerShellProvider.fsx
 		docs\content\RegistryProvider.fsx = docs\content\RegistryProvider.fsx
 	EndProjectSection
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "FSharpx.ManagementProviders.PowerShell.ExternalRuntime", "src\FSharpx.ManagementProviders.PowerShell.ExternalRuntime\FSharpx.ManagementProviders.PowerShell.ExternalRuntime.fsproj", "{282940BD-C7BE-4F1A-BF91-19E591ED7BD7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -44,6 +47,10 @@ Global
 		{7E90D6CE-A10B-4858-A5BC-41DF7250CBCA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7E90D6CE-A10B-4858-A5BC-41DF7250CBCA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7E90D6CE-A10B-4858-A5BC-41DF7250CBCA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{282940BD-C7BE-4F1A-BF91-19E591ED7BD7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{282940BD-C7BE-4F1A-BF91-19E591ED7BD7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{282940BD-C7BE-4F1A-BF91-19E591ED7BD7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{282940BD-C7BE-4F1A-BF91-19E591ED7BD7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
