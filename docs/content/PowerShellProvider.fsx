@@ -1,5 +1,6 @@
 (*** hide ***)
 #I "../../bin"
+#I @"C:\Program Files (x86)\Reference Assemblies\Microsoft\WindowsPowerShell\3.0"
 
 (**
 The PowerShell type provider
@@ -14,7 +15,7 @@ This tutorial shows the use of the PowerShell type provider.
 *)
 
 // reference the type provider dll
-#r @"C:\Windows\Microsoft.NET\assembly\GAC_MSIL\System.Management.Automation\v4.0_3.0.0.0__31bf3856ad364e35\System.Management.Automation.dll"
+#r "System.Management.Automation.dll"
 #r "FSharpx.ManagementProviders.dll"
 open FSharpx
 
@@ -45,7 +46,7 @@ Also you can load non default SnapIns with cmdlets that you need, but you need t
 Use `PSSnapIns` as semicolon separated string to list of all SnapIns that need to be loaded in the beginning
 If some of your SnapIns require `64bit` runtime, please specify it directly.
 *)
-#r @"C:\Windows\Microsoft.NET\assembly\GAC_MSIL\System.Management.Automation\v4.0_3.0.0.0__31bf3856ad364e35\System.Management.Automation.dll"
+#r "System.Management.Automation.dll"
 #r "FSharpx.ManagementProviders.dll"
 #r "System.ServiceModel.dll"
 #r "Microsoft.Sharepoint.dll"
