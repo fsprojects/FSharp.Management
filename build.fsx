@@ -9,12 +9,12 @@ open Fake.AssemblyInfoFile
 open Fake.ReleaseNotesHelper
 open System
 
-let project = "FSharpx.ManagementProviders"
+let projects = [|"FSharpx.ManagementProviders"; "FSharpx.ManagementProviders.PowerShell.ExternalRuntime"|]
 
 let summary = "Various type providers for management of the machine."
 let description = "Various type providers for management of the machine."
-let authors = ["Steffen Forkmann"; "Daniel Mohl"; "Tomas Petricek"; "Ryan Riley"; "Mauricio Scheffer"; "Phil Trelford" ]
-let tags = "F# fsharp typeproviders"
+let authors = ["Steffen Forkmann"; "Sergey Tihon"; "Daniel Mohl"; "Tomas Petricek"; "Ryan Riley"; "Mauricio Scheffer"; "Phil Trelford" ]
+let tags = "F# fsharp typeproviders Management PowerShell"
 
 let solutionFile  = "FSharpx.ManagementProviders"
 
@@ -29,13 +29,14 @@ let release = parseReleaseNotes (IO.File.ReadAllLines "RELEASE_NOTES.md")
 
 // Generate assembly info files with the right version & up-to-date information
 Target "AssemblyInfo" (fun _ ->
-  let fileName = "src/" + project + "/AssemblyInfo.fs"
-  CreateFSharpAssemblyInfo fileName
-      [ Attribute.Title project
-        Attribute.Product project
-        Attribute.Description summary
-        Attribute.Version release.AssemblyVersion
-        Attribute.FileVersion release.AssemblyVersion ] 
+  for project in projects do
+    let fileName = "src/" + project + "/AssemblyInfo.fs"
+    CreateFSharpAssemblyInfo fileName
+        [ Attribute.Title project
+          Attribute.Product project
+          Attribute.Description summary
+          Attribute.Version release.AssemblyVersion
+          Attribute.FileVersion release.AssemblyVersion ] 
 )
 
 // --------------------------------------------------------------------------------------
@@ -90,6 +91,7 @@ Target "NuGet" (fun _ ->
     let description = description.Replace("\r", "")
                                  .Replace("\n", "")
                                  .Replace("  ", " ")
+    let project = projects.[0]
     NuGet (fun p -> 
         { p with   
             Authors = authors
