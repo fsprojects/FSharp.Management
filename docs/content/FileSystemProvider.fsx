@@ -18,3 +18,9 @@ type Users = FileSystem<"C:\\Users\\">
 // now you have typed access to your filesystem and you can browse it via Intellisense
 Users.AllUsers.Path 
 // [fsi:val it : string = "C:\Users\All Users"]
+
+(**
+
+![alt text](img/FileSystemProvider.png "Intellisense for the file system")
+
+*)
