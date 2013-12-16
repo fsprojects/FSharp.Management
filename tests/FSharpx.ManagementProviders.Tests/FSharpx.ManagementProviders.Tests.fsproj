@@ -9,7 +9,7 @@
     <OutputType>Library</OutputType>
     <RootNamespace>FSharpx.ManagementProviders.Tests</RootNamespace>
     <AssemblyName>FSharpx.ManagementProviders.Tests</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <TargetFSharpCoreVersion>4.3.0.0</TargetFSharpCoreVersion>
     <Name>FSharpx.ManagementProviders.Tests</Name>
     <TargetFrameworkProfile />
@@ -63,6 +63,7 @@
     <Compile Include="FsUnit.fs" />
     <Compile Include="FileSystemProvider.Tests.fs" />
     <Compile Include="RegistryProvider.Tests.fs" />
+    <Compile Include="PowerShellProvider.Tests.fs" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -82,6 +83,9 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Management.Automation">
+      <HintPath>C:\Windows\Microsoft.NET\assembly\GAC_MSIL\System.Management.Automation\v4.0_3.0.0.0__31bf3856ad364e35\System.Management.Automation.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
