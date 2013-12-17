@@ -38,18 +38,3 @@ PS.``Get-Process``(name=[|"devenv"|])
 ![alt text](img/PowerShellProvider.png "Intellisense for the PowerShell")
 
 *)
-
-(**
-#### "SharePoint 2013 Management" Sample ####
-
-Also you can load non default SnapIns with cmdlets that you need, but you need to specify it directly.
-Use `PSSnapIns` as semicolon separated string to list of all SnapIns that need to be loaded in the beginning
-If some of your SnapIns require `64bit` runtime, please specify it directly.
-*)
-#r "System.Management.Automation.dll"
-#r "FSharp.Management.dll"
-#r "System.ServiceModel.dll"
-#r "Microsoft.Sharepoint.dll"
-open FSharpx
-
-type PS64 = PowerShellProvider<PSSnapIns="Microsoft.SharePoint.PowerShell", Is64BitRequired=true >
