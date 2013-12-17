@@ -5,7 +5,7 @@
 The WMI type provider
 =====================
 
-This tutorial shows the use of the WMI type provider.
+This tutorial shows the use of the [Windows Management Instrumentation (WMI)](http://msdn.microsoft.com/en-us/library/aa394582(v=vs.85).aspx) type provider.
 *)
 
 // reference the type provider dll
