@@ -25,14 +25,12 @@ type PS = PowerShellProvider< PSSnapIns="", Is64BitRequired=false >
 
 // now you have typed access to your PowerShell and you can browse it via Intellisense
 PS.``Get-Process``(name=[|"devenv"|])
-// [fsi:val it :
-//  Choice<List<System.Diagnostics.Process>,
-//         List<System.Diagnostics.FileVersionInfo>,
-//         List<System.Diagnostics.ProcessModule>,
-//         List<System.Management.Automation.PSObject>> =
-//  Choice1Of4
-//    [System.Diagnostics.Process (devenv)
-//       {...}]]
+// [fsi:val it :]
+// [fsi:  Choice<List<System.Diagnostics.Process>,]
+// [fsi:         List<System.Diagnostics.FileVersionInfo>,]
+// [fsi:         List<System.Diagnostics.ProcessModule>,]
+// [fsi:         List<System.Management.Automation.PSObject>> =]
+// [fsi:  Choice1Of4 [System.Diagnostics.Process (devenv)]]
 
 (**
 
