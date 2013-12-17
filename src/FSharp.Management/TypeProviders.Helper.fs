@@ -1,5 +1,5 @@
 ﻿/// Starting to implement some helpers on top of ProvidedTypes API
-module internal FSharp.Management.TypeProviders.Helper
+module internal FSharp.Management.Helper
 open System
 open System.IO
 open Samples.FSharp.ProvidedTypes

@@ -9,7 +9,10 @@ open Fake.AssemblyInfoFile
 open Fake.ReleaseNotesHelper
 open System
 
-let projects = [|"FSharp.Management"; "FSharp.Management.PowerShell.ExternalRuntime"|]
+let projects = [|"FSharp.Management"
+                 "FSharp.Management.PowerShell.ExternalRuntime"
+                 "FSharp.Management.WMI"
+                 "FSharp.Management.WMI.DesignTime"|]
 
 let summary = "Various type providers for management of the machine."
 let description = "Various type providers for management of the machine."

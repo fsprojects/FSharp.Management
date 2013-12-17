@@ -10,7 +10,7 @@ This tutorial shows the use of the registry type provider.
 
 // reference the type provider dll
 #r "FSharp.Management.dll"
-open FSharpx
+open FSharp.Management
 
 // use the registry type provider to get typed access to your registry and browse it via Intellisense
 Registry.HKEY_CURRENT_USER.Path 

@@ -9,6 +9,7 @@ The FSharp.Management project contains various type providers for the management
 
 * [FileSystem](FileSystemProvider.html)
 * [Registry](RegistryProvider.html)
+* [WMI](WMIProvider.html)
 * [PowerShell](PowerShellProvider.html)
 
 <div class="row">
@@ -16,7 +17,7 @@ The FSharp.Management project contains various type providers for the management
   <div class="span6">
     <div class="well well-small" id="nuget">
       The library can be <a href="https://nuget.org/packages/FSharp.Management">installed from NuGet</a>:
-      <pre>PM> Install-Package FSharp.Management</pre>
+      <pre>PM> Install-Package FSharp.Management -prerelease</pre>
     </div>
   </div>
   <div class="span1"></div>
@@ -30,7 +31,7 @@ This example demonstrates the use of the FileSystem type provider:
 *)
 // reference the type provider dll
 #r "FSharp.Management.dll"
-open FSharpx
+open FSharp.Management
 
 // Let the type provider do it's work
 type Users = FileSystem<"C:\\Users\\">

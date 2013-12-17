@@ -1,4 +1,4 @@
-﻿module FSharp.Management.TypeProviders.Tests.PowerShellProvider
+﻿module FSharp.Management.Tests.PowerShellProvider
 
 open FSharp.Management
 open NUnit.Framework

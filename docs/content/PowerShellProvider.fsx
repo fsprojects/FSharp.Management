@@ -20,7 +20,7 @@ This tutorial shows the use of the PowerShell type provider.
 
 open FSharp.Management
 
-// Let the type provider to inference signatures of available cmdlets
+// Let the type provider infer the signatures of available cmdlets
 type PS = PowerShellProvider< PSSnapIns="", Is64BitRequired=false >
 
 // now you have typed access to your filesystem and you can browse it via Intellisense

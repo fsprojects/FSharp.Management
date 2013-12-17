@@ -2,3 +2,4 @@
 * Initial release of FileSystemProvider
 * Initial release of RegistryProvider
 * Initial release of PowershellProvider
+* Initial release of WMI provider

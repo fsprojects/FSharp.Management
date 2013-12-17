@@ -10,7 +10,7 @@ This tutorial shows the use of the file system type provider.
 
 // reference the type provider dll
 #r "FSharp.Management.dll"
-open FSharpx
+open FSharp.Management
 
 // Let the type provider do it's work
 type Users = FileSystem<"C:\\Users\\">

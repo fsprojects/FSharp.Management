@@ -1,8 +1,8 @@
 /// originally from https://gist.github.com/1241061
-module internal FSharp.Management.TypeProviders.FilesTypeProvider
+module internal FSharp.Management.FilesTypeProvider
 
 open Samples.FSharp.ProvidedTypes
-open FSharp.Management.TypeProviders.Helper
+open FSharp.Management.Helper
 open System.IO
 
 

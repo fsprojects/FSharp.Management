@@ -1,4 +1,4 @@
-module FSharp.Management.TypeProviders.Tests.FileSystemProviderTests
+module FSharp.Management.Tests.FileSystemProviderTests
 
 open FSharp.Management
 open NUnit.Framework

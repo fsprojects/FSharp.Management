@@ -1,10 +1,10 @@
-﻿module FSharp.Management.TypeProviders.NamespaceProvider
+﻿module FSharp.Management.NamespaceProvider
 
 open System.Reflection
 open Microsoft.FSharp.Core.CompilerServices
 open Samples.FSharp.ProvidedTypes
 open System.Text.RegularExpressions
-open FSharp.Management.TypeProviders.Helper
+open FSharp.Management.Helper
 
 [<TypeProvider>]
 /// [omit]
@@ -16,5 +16,5 @@ type public SystemProvider(cfg:TypeProviderConfig) as this =
         [FilesTypeProvider.createTypedFileSystem()
          RegistryProvider.createTypedRegistry()])
 
-[<TypeProviderAssembly>]
+[<assembly:TypeProviderAssembly()>]
 do ()

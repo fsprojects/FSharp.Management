@@ -1,4 +1,4 @@
-namespace FSharp.Management.TypeProviders.PowerShellProvider
+namespace FSharp.Management.PowerShellProvider
 
 module Inference =
     open System
@@ -366,7 +366,7 @@ module Provider =
     open Microsoft.FSharp.Core.CompilerServices
     open System.Management.Automation
     open System.Management.Automation.Runspaces
-    open FSharp.Management.TypeProviders.Helper
+    open FSharp.Management.Helper
 
     [<TypeProvider>]
     type public PowerShellProvider(cfg:TypeProviderConfig) as this =
