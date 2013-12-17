@@ -14,7 +14,7 @@ let info =
     "project-author", "Steffen Forkmann"
     "project-summary", "Various type providers for management of the machine."
     "project-github", "http://github.com/forki/FSharp.Management"
-    "project-nuget", "http://nuget.com/packages/FSharp.Management" ]
+    "project-nuget", "https://www.nuget.org/packages/FSharp.Management" ]
 
 // --------------------------------------------------------------------------------------
 // For typical project, no changes are needed below
