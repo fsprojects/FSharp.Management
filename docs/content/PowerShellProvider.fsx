@@ -36,4 +36,39 @@ PS.``Get-Process``(name=[|"devenv"|])
 
 ![alt text](img/PowerShellProvider.png "Intellisense for the PowerShell")
 
+Working with Snapins
+--------------------
 *)
+
+// get all registered PowerShell Snapins
+PS.``Get-PSSnapin``(registered=true)
+// [fsi:val it :]
+// [fsi:  Choice<List<System.Management.Automation.PSSnapInInfo>,]
+// [fsi:         List<System.Management.Automation.PSObject>> =]
+// [fsi:  Choice1Of2]
+// [fsi:    [MSDeploySnapin]
+// [fsi:       {ApplicationBase = "C:\Program Files\IIS\Microsoft Web Deploy V3\";]
+// [fsi:        AssemblyName = "Microsoft.Web.Deployment.PowerShell, Version=9.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35";]
+// [fsi:        Description = "This is a PowerShell snap-in that contains cmdlets for managing Microsoft Web Deployment infrastructure.";]
+// [fsi:        Formats = seq [];]
+// [fsi:        IsDefault = false;]
+// [fsi:        LogPipelineExecutionDetails = false;]
+// [fsi:        ModuleName = "Microsoft.Web.Deployment.PowerShell.dll";]
+// [fsi:        Name = "MSDeploySnapin";]
+// [fsi:        PSVersion = 2.0;]
+// [fsi:        Types = seq [];]
+// [fsi:        Vendor = "Microsoft";]
+// [fsi:        Version = 9.0.0.0;};]
+// [fsi:     WDeploySnapin3.0]
+// [fsi:       {ApplicationBase = "C:\Program Files\IIS\Microsoft Web Deploy V3\";]
+// [fsi:        AssemblyName = "Microsoft.Web.Deployment.PowerShell, Version=9.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35";]
+// [fsi:        Description = "This is a PowerShell snap-in that contains cmdlets for managing Microsoft Web Deployment infrastructure.";]
+// [fsi:        Formats = seq [];]
+// [fsi:        IsDefault = false;]
+// [fsi:        LogPipelineExecutionDetails = false;]
+// [fsi:        ModuleName = "Microsoft.Web.Deployment.PowerShell.dll";]
+// [fsi:        Name = "WDeploySnapin3.0";]
+// [fsi:        PSVersion = 2.0;]
+// [fsi:        Types = seq [];]
+// [fsi:        Vendor = "Microsoft";]
+// [fsi:        Version = 9.0.0.0;}]]
