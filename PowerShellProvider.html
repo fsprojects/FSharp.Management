@@ -85,6 +85,78 @@
 </tr>
 </table><p><img src="img/PowerShellProvider.png" alt="alt text" title="Intellisense for the PowerShell" /></p>
 
+<h2>Working with Snapins</h2>
+<table class="pre"><tr><td class="lines"><pre class="fssnip">
+<span class="l"> 1: </span>
+<span class="l"> 2: </span>
+<span class="l"> 3: </span>
+<span class="l"> 4: </span>
+<span class="l"> 5: </span>
+<span class="l"> 6: </span>
+<span class="l"> 7: </span>
+<span class="l"> 8: </span>
+<span class="l"> 9: </span>
+<span class="l">10: </span>
+<span class="l">11: </span>
+<span class="l">12: </span>
+<span class="l">13: </span>
+<span class="l">14: </span>
+<span class="l">15: </span>
+<span class="l">16: </span>
+<span class="l">17: </span>
+<span class="l">18: </span>
+<span class="l">19: </span>
+<span class="l">20: </span>
+<span class="l">21: </span>
+<span class="l">22: </span>
+<span class="l">23: </span>
+<span class="l">24: </span>
+<span class="l">25: </span>
+<span class="l">26: </span>
+<span class="l">27: </span>
+<span class="l">28: </span>
+<span class="l">29: </span>
+<span class="l">30: </span>
+<span class="l">31: </span>
+<span class="l">32: </span>
+</pre>
+</td>
+<td class="snippet"><pre class="fssnip">
+<span class="c">// get all registered PowerShell Snapins</span>
+<span onmouseout="hideTip(event, 'fs3', 6)" onmouseover="showTip(event, 'fs3', 6)" class="i">PS</span><span class="o">.</span><span class="i">``Get-PSSnapin``</span>(<span class="i">registered</span><span class="o">=</span><span class="k">true</span>)
+<span class="fsi">val it :</span>
+<span class="fsi">  Choice&lt;List&lt;System.Management.Automation.PSSnapInInfo&gt;,</span>
+<span class="fsi">         List&lt;System.Management.Automation.PSObject&gt;&gt; =</span>
+<span class="fsi">  Choice1Of2</span>
+<span class="fsi">    [MSDeploySnapin</span>
+<span class="fsi">       {ApplicationBase = &quot;C:\Program Files\IIS\Microsoft Web Deploy V3\&quot;;</span>
+<span class="fsi">        AssemblyName = &quot;Microsoft.Web.Deployment.PowerShell, Version=9.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35&quot;;</span>
+<span class="fsi">        Description = &quot;This is a PowerShell snap-in that contains cmdlets for managing Microsoft Web Deployment infrastructure.&quot;;</span>
+<span class="fsi">        Formats = seq [];</span>
+<span class="fsi">        IsDefault = false;</span>
+<span class="fsi">        LogPipelineExecutionDetails = false;</span>
+<span class="fsi">        ModuleName = &quot;Microsoft.Web.Deployment.PowerShell.dll&quot;;</span>
+<span class="fsi">        Name = &quot;MSDeploySnapin&quot;;</span>
+<span class="fsi">        PSVersion = 2.0;</span>
+<span class="fsi">        Types = seq [];</span>
+<span class="fsi">        Vendor = &quot;Microsoft&quot;;</span>
+<span class="fsi">        Version = 9.0.0.0;};</span>
+<span class="fsi">     WDeploySnapin3.0</span>
+<span class="fsi">       {ApplicationBase = &quot;C:\Program Files\IIS\Microsoft Web Deploy V3\&quot;;</span>
+<span class="fsi">        AssemblyName = &quot;Microsoft.Web.Deployment.PowerShell, Version=9.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35&quot;;</span>
+<span class="fsi">        Description = &quot;This is a PowerShell snap-in that contains cmdlets for managing Microsoft Web Deployment infrastructure.&quot;;</span>
+<span class="fsi">        Formats = seq [];</span>
+<span class="fsi">        IsDefault = false;</span>
+<span class="fsi">        LogPipelineExecutionDetails = false;</span>
+<span class="fsi">        ModuleName = &quot;Microsoft.Web.Deployment.PowerShell.dll&quot;;</span>
+<span class="fsi">        Name = &quot;WDeploySnapin3.0&quot;;</span>
+<span class="fsi">        PSVersion = 2.0;</span>
+<span class="fsi">        Types = seq [];</span>
+<span class="fsi">        Vendor = &quot;Microsoft&quot;;</span>
+<span class="fsi">        Version = 9.0.0.0;}]</span></pre>
+</td>
+</tr>
+</table>
 <div class="tip" id="fs1">namespace FSharp</div>
 <div class="tip" id="fs2">namespace FSharp.Management</div>
 <div class="tip" id="fs3">type PS = PowerShellProvider&lt;...&gt;<br /><br />Full name: PowerShellProvider.PS</div>
