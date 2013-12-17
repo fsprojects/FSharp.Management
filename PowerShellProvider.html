@@ -61,8 +61,6 @@
 <span class="l">15: </span>
 <span class="l">16: </span>
 <span class="l">17: </span>
-<span class="l">18: </span>
-<span class="l">19: </span>
 </pre>
 </td>
 <td class="snippet"><pre class="fssnip">
@@ -77,14 +75,12 @@
 
 <span class="c">// now you have typed access to your PowerShell and you can browse it via Intellisense</span>
 <span onmouseout="hideTip(event, 'fs3', 5)" onmouseover="showTip(event, 'fs3', 5)" class="i">PS</span><span class="o">.</span><span class="i">``Get-Process``</span>(<span class="i">name</span><span class="o">=</span>[|<span class="s">&quot;</span><span class="s">devenv</span><span class="s">&quot;</span>|])
-<span class="c">// [fsi:val it :</span>
-<span class="c">//  Choice&lt;List&lt;System.Diagnostics.Process&gt;,</span>
-<span class="c">//         List&lt;System.Diagnostics.FileVersionInfo&gt;,</span>
-<span class="c">//         List&lt;System.Diagnostics.ProcessModule&gt;,</span>
-<span class="c">//         List&lt;System.Management.Automation.PSObject&gt;&gt; =</span>
-<span class="c">//  Choice1Of4</span>
-<span class="c">//    [System.Diagnostics.Process (devenv)</span>
-<span class="c">//       {...}]]</span></pre>
+<span class="fsi">val it :</span>
+<span class="fsi">  Choice&lt;List&lt;System.Diagnostics.Process&gt;,</span>
+<span class="fsi">         List&lt;System.Diagnostics.FileVersionInfo&gt;,</span>
+<span class="fsi">         List&lt;System.Diagnostics.ProcessModule&gt;,</span>
+<span class="fsi">         List&lt;System.Management.Automation.PSObject&gt;&gt; =</span>
+<span class="fsi">  Choice1Of4 [System.Diagnostics.Process (devenv)]</span></pre>
 </td>
 </tr>
 </table><p><img src="img/PowerShellProvider.png" alt="alt text" title="Intellisense for the PowerShell" /></p>
