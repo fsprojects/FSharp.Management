@@ -23,7 +23,7 @@ open FSharp.Management
 // Let the type provider infer the signatures of available cmdlets
 type PS = PowerShellProvider< PSSnapIns="", Is64BitRequired=false >
 
-// now you have typed access to your filesystem and you can browse it via Intellisense
+// now you have typed access to your PowerShell and you can browse it via Intellisense
 PS.``Get-Process``(name=[|"devenv"|])
 // [fsi:val it :
 //  Choice<List<System.Diagnostics.Process>,
