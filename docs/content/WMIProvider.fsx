@@ -18,17 +18,23 @@ open FSharp.Management
 type Local = WmiProvider<"localhost">
 let data = Local.GetDataContext()
 
+(**
+
+![alt text](img/WMIProvider.png "Intellisense for WMI")
+
+*)
+
 // Add a handler to watch WMI queries getting executed (optional)
 data.QueryExecuted.Add(printfn "Query executed: %s")
 
 // list all local drives
-[for b in data.Win32_DiskDrive -> b.Name, b.Description]
+[for d in data.Win32_DiskDrive -> d.Name, d.Description]
 // [fsi:Query executed: select * from Win32_DiskDrive]
 // [fsi:val it : (string * string) list =]
 // [fsi:  [("\\.\PHYSICALDRIVE0", "Laufwerk"); ("\\.\PHYSICALDRIVE1", "Laufwerk")]
 
 // Access some WMI data from the data connection
-[for dd in data.CIM_DiskDrive -> 
-    [for c in dd.Capabilities -> c.Is_SMART_Notification]]
+[for d in data.CIM_DiskDrive -> 
+    [for c in d.Capabilities -> c.Is_SMART_Notification]]
 // [fsi:Query executed: select * from CIM_DiskDrive]
 // [fsi:val it : bool list list = [[false; false]; [false; false]]]
