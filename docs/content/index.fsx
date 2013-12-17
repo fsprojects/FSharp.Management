@@ -7,6 +7,10 @@ FSharpx.ManagementProviders
 
 The FSharpx.ManagementProviders contain various type providers for the management of the machine.
 
+* [FileSystem](FileSystemProvider.html)
+* [Registry](RegistryProvider.html)
+* [PowerShell](PowerShellProvider.html)
+
 <div class="row">
   <div class="span1"></div>
   <div class="span6">
