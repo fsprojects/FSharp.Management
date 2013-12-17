@@ -52,26 +52,19 @@
 <td class="snippet"><pre class="fssnip">
 <span class="c">// reference the type provider dll</span>
 <span class="prep">#r</span> <span class="s">&quot;</span><span class="s">FSharp</span><span class="s">.</span><span class="s">Management</span><span class="s">.</span><span class="s">dll</span><span class="s">&quot;</span>
-<span class="k">open</span> <span onmouseout="hideTip(event, 'fs1', 1)" onmouseover="showTip(event, 'fs1', 1)" class="i">FSharpx</span>
+<span class="k">open</span> <span class="i">FSharpx</span>
 
 <span class="c">// use the registry type provider to get typed access to your registry and browse it via Intellisense</span>
-<span onmouseout="hideTip(event, 'fs2', 2)" onmouseover="showTip(event, 'fs2', 2)" class="i">Registry</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs3', 3)" onmouseover="showTip(event, 'fs3', 3)" class="i">HKEY_CURRENT_USER</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs4', 4)" onmouseover="showTip(event, 'fs4', 4)" class="i">Path</span> 
+<span class="i">Registry</span><span class="o">.</span><span class="i">HKEY_CURRENT_USER</span><span class="o">.</span><span class="i">Path</span> 
 <span class="fsi">val it : string = &quot;HKEY_CURRENT_USER&quot;</span>
 
-<span onmouseout="hideTip(event, 'fs2', 5)" onmouseover="showTip(event, 'fs2', 5)" class="i">Registry</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs5', 6)" onmouseover="showTip(event, 'fs5', 6)" class="i">HKEY_LOCAL_MACHINE</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs6', 7)" onmouseover="showTip(event, 'fs6', 7)" class="i">SOFTWARE</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs7', 8)" onmouseover="showTip(event, 'fs7', 8)" class="i">Microsoft</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs8', 9)" onmouseover="showTip(event, 'fs8', 9)" class="i">Path</span>
+<span class="i">Registry</span><span class="o">.</span><span class="i">HKEY_LOCAL_MACHINE</span><span class="o">.</span><span class="i">SOFTWARE</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs1', 1)" onmouseover="showTip(event, 'fs1', 1)" class="i">Microsoft</span><span class="o">.</span><span class="i">Path</span>
 <span class="fsi">val it : string = &quot;HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft&quot;</span></pre>
 </td>
 </tr>
 </table><p><img src="img/RegistryProvider.png" alt="alt text" title="Intellisense for the registry" /></p>
 
-<div class="tip" id="fs1">namespace FSharpx</div>
-<div class="tip" id="fs2">type Registry =<br />&#160;&#160;nested type HKEY_CLASSES_ROOT<br />&#160;&#160;nested type HKEY_CURRENT_CONFIG<br />&#160;&#160;nested type HKEY_CURRENT_USER<br />&#160;&#160;nested type HKEY_LOCAL_MACHINE<br />&#160;&#160;nested type HKEY_PERFORMANCE_DATA<br />&#160;&#160;nested type HKEY_USERS<br /><br />Full name: FSharpx.Registry</div>
-<div class="tip" id="fs3">type HKEY_CURRENT_USER =<br />&#160;&#160;static val Path : string<br />&#160;&#160;nested type AppEvents<br />&#160;&#160;nested type Console<br />&#160;&#160;nested type ControlPanel<br />&#160;&#160;nested type DirectShow<br />&#160;&#160;nested type Dummy<br />&#160;&#160;nested type EUDC<br />&#160;&#160;nested type Environment<br />&#160;&#160;nested type Identities<br />&#160;&#160;nested type KeyboardLayout<br />&#160;&#160;...<br /><br />Full name: FSharpx.Registry.HKEY_CURRENT_USER<br /><em><br /><br />A strongly typed interface to &#39;HKEY_CURRENT_USER&#39;</em></div>
-<div class="tip" id="fs4">field Registry.HKEY_CURRENT_USER.Path = &quot;HKEY_CURRENT_USER&quot;</div>
-<div class="tip" id="fs5">type HKEY_LOCAL_MACHINE =<br />&#160;&#160;static val Path : string<br />&#160;&#160;nested type COMPONENTS<br />&#160;&#160;nested type HARDWARE<br />&#160;&#160;nested type SAM<br />&#160;&#160;nested type SOFTWARE<br />&#160;&#160;nested type SYSTEM<br /><br />Full name: FSharpx.Registry.HKEY_LOCAL_MACHINE<br /><em><br /><br />A strongly typed interface to &#39;HKEY_LOCAL_MACHINE&#39;</em></div>
-<div class="tip" id="fs6">type SOFTWARE =<br />&#160;&#160;static val Path : string<br />&#160;&#160;nested type ATI<br />&#160;&#160;nested type Adobe<br />&#160;&#160;nested type Affinix<br />&#160;&#160;nested type Amazon<br />&#160;&#160;nested type AndroidSdkTools<br />&#160;&#160;nested type Anki<br />&#160;&#160;nested type AppleComputerInc<br />&#160;&#160;nested type AppleInc<br />&#160;&#160;nested type AtResearchLabs<br />&#160;&#160;...<br /><br />Full name: FSharpx.Registry.HKEY_LOCAL_MACHINE.SOFTWARE<br /><em><br /><br />A strongly typed interface to &#39;HKEY_LOCAL_MACHINE\SOFTWARE&#39;</em></div>
-<div class="tip" id="fs7">type Microsoft =<br />&#160;&#160;static val Path : string<br />&#160;&#160;nested type ASP.NET<br />&#160;&#160;nested type ASP.NET MVC 2<br />&#160;&#160;nested type ASP.NET MVC 3<br />&#160;&#160;nested type ASP.NET MVC 4<br />&#160;&#160;nested type ActiveSetup<br />&#160;&#160;nested type AdS<br />&#160;&#160;nested type AdvancedInfSetup<br />&#160;&#160;nested type AppEnv<br />&#160;&#160;nested type AspNetWebPages<br />&#160;&#160;...<br /><br />Full name: FSharpx.Registry.HKEY_LOCAL_MACHINE.SOFTWARE.Microsoft<br /><em><br /><br />A strongly typed interface to &#39;HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft&#39;</em></div>
-<div class="tip" id="fs8">field Registry.HKEY_LOCAL_MACHINE.SOFTWARE.Microsoft.Path = &quot;HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft&quot;</div>
+<div class="tip" id="fs1">namespace Microsoft</div>
 
         </div>
         <div class="span3">

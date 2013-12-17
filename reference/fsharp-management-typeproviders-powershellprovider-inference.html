@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>HostedRuntime - FSharp.Management</title>
+    <title>Inference - FSharp.Management</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="Steffen Forkmann">
@@ -35,7 +35,7 @@
 
 
 
-<h1>HostedRuntime</h1>
+<h1>Inference</h1>
 <div class="xmldoc">
 </div>
 
@@ -50,16 +50,15 @@
     <tbody>
         <tr>
           <td class="type-name">
-            <a href="fsharpx-typeproviders-powershellprovider-hostedruntime-ipsruntime.html">IPSRuntime</a>
+            <a href="fsharp-management-typeproviders-powershellprovider-inference-collectionconverter-1.html">CollectionConverter</a>
           </td>
           <td class="xmldoc"></td>
         </tr>
         <tr>
           <td class="type-name">
-            <a href="fsharpx-typeproviders-powershellprovider-hostedruntime-psruntimehosted.html">PSRuntimeHosted</a>
+            <a href="fsharp-management-typeproviders-powershellprovider-inference-pscommandlet.html">PSCommandLet</a>
           </td>
-          <td class="xmldoc"><p>PowerShell runtime built-in current process</p>
-</td>
+          <td class="xmldoc"></td>
         </tr>
     </tbody>
   </table>
@@ -68,6 +67,86 @@
 
 
 
+  <h3>Functions and values</h3>
+  <table class="table table-bordered member-list">
+    <thead>
+      <tr><td>Function or value</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '4', 4)" onmouseover="showTip(event, '4', 4)">
+            buildResultType possibleTypes
+          </code>
+          <div class="tip" id="4">
+            <strong>Signature:</strong>possibleTypes:&#39;?4955 [] -&gt; Type<br />
+                          <strong>Type parameters:</strong> '?4955          </div>
+        </td>
+        <td class="xmldoc"></td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5', 5)" onmouseover="showTip(event, '5', 5)">
+            createPSCommandLet cmdlet
+          </code>
+          <div class="tip" id="5">
+            <strong>Signature:</strong>cmdlet:CmdletConfigurationEntry -&gt; PSCommandLet<br />
+                      </div>
+        </td>
+        <td class="xmldoc"></td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '6', 6)" onmouseover="showTip(event, '6', 6)">
+            getOutputTypes cmdlet
+          </code>
+          <div class="tip" id="6">
+            <strong>Signature:</strong>cmdlet:CmdletConfigurationEntry -&gt; Type []<br />
+                      </div>
+        </td>
+        <td class="xmldoc"></td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '7', 7)" onmouseover="showTip(event, '7', 7)">
+            getParameterProperties cmdlet
+          </code>
+          <div class="tip" id="7">
+            <strong>Signature:</strong>cmdlet:CmdletConfigurationEntry -&gt; (string * Type) []<br />
+                      </div>
+        </td>
+        <td class="xmldoc"></td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '8', 8)" onmouseover="showTip(event, '8', 8)">
+            getTypeOfObjects types collection
+          </code>
+          <div class="tip" id="8">
+            <strong>Signature:</strong>types:Type [] -&gt; collection:seq&lt;PSObject&gt; -&gt; Type<br />
+                      </div>
+        </td>
+        <td class="xmldoc"></td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '9', 9)" onmouseover="showTip(event, '9', 9)">
+            toCamelCase s
+          </code>
+          <div class="tip" id="9">
+            <strong>Signature:</strong>s:string -&gt; string<br />
+                      </div>
+        </td>
+        <td class="xmldoc"></td>
+      </tr>
+    </tbody>
+  </table>
 
         </div>
         <div class="span3">

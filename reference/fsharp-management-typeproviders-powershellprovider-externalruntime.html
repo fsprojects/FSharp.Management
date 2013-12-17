@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Inference - FSharp.Management</title>
+    <title>ExternalRuntime - FSharp.Management</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="Steffen Forkmann">
@@ -35,7 +35,7 @@
 
 
 
-<h1>Inference</h1>
+<h1>ExternalRuntime</h1>
 <div class="xmldoc">
 </div>
 
@@ -50,13 +50,32 @@
     <tbody>
         <tr>
           <td class="type-name">
-            <a href="fsharpx-typeproviders-powershellprovider-inference-collectionconverter-1.html">CollectionConverter</a>
+            <a href="fsharp-management-typeproviders-powershellprovider-externalruntime-ipsruntimeservice.html">IPSRuntimeService</a>
           </td>
           <td class="xmldoc"></td>
         </tr>
         <tr>
           <td class="type-name">
-            <a href="fsharpx-typeproviders-powershellprovider-inference-pscommandlet.html">PSCommandLet</a>
+            <a href="fsharp-management-typeproviders-powershellprovider-externalruntime-pscmdletinfodto.html">PSCmdLetInfoDTO</a>
+          </td>
+          <td class="xmldoc"></td>
+        </tr>
+        <tr>
+          <td class="type-name">
+            <a href="fsharp-management-typeproviders-powershellprovider-externalruntime-psruntimeexternal.html">PSRuntimeExternal</a>
+          </td>
+          <td class="xmldoc"><p>PowerShell runtime executed in external 64bit process</p>
+</td>
+        </tr>
+        <tr>
+          <td class="type-name">
+            <a href="fsharp-management-typeproviders-powershellprovider-externalruntime-psruntimeservice.html">PSRuntimeService</a>
+          </td>
+          <td class="xmldoc"></td>
+        </tr>
+        <tr>
+          <td class="type-name">
+            <a href="fsharp-management-typeproviders-powershellprovider-externalruntime-psruntimeserviceclient.html">PSRuntimeServiceClient</a>
           </td>
           <td class="xmldoc"></td>
         </tr>
@@ -76,23 +95,11 @@
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '4', 4)" onmouseover="showTip(event, '4', 4)">
-            buildResultType possibleTypes
+          <code onmouseout="hideTip(event, '1', 1)" onmouseover="showTip(event, '1', 1)">
+            ExternalPowerShellHost 
           </code>
-          <div class="tip" id="4">
-            <strong>Signature:</strong>possibleTypes:&#39;?4955 [] -&gt; Type<br />
-                          <strong>Type parameters:</strong> '?4955          </div>
-        </td>
-        <td class="xmldoc"></td>
-      </tr>
-      <tr>
-        <td class="member-name">
-
-          <code onmouseout="hideTip(event, '5', 5)" onmouseover="showTip(event, '5', 5)">
-            createPSCommandLet cmdlet
-          </code>
-          <div class="tip" id="5">
-            <strong>Signature:</strong>cmdlet:CmdletConfigurationEntry -&gt; PSCommandLet<br />
+          <div class="tip" id="1">
+            <strong>Signature:</strong>string<br />
                       </div>
         </td>
         <td class="xmldoc"></td>
@@ -100,11 +107,11 @@
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '6', 6)" onmouseover="showTip(event, '6', 6)">
-            getOutputTypes cmdlet
+          <code onmouseout="hideTip(event, '2', 2)" onmouseover="showTip(event, '2', 2)">
+            ExternalPowerShellServiceName 
           </code>
-          <div class="tip" id="6">
-            <strong>Signature:</strong>cmdlet:CmdletConfigurationEntry -&gt; Type []<br />
+          <div class="tip" id="2">
+            <strong>Signature:</strong>string<br />
                       </div>
         </td>
         <td class="xmldoc"></td>
@@ -112,35 +119,11 @@
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '7', 7)" onmouseover="showTip(event, '7', 7)">
-            getParameterProperties cmdlet
+          <code onmouseout="hideTip(event, '3', 3)" onmouseover="showTip(event, '3', 3)">
+            getNetNamedPipeBinding ()
           </code>
-          <div class="tip" id="7">
-            <strong>Signature:</strong>cmdlet:CmdletConfigurationEntry -&gt; (string * Type) []<br />
-                      </div>
-        </td>
-        <td class="xmldoc"></td>
-      </tr>
-      <tr>
-        <td class="member-name">
-
-          <code onmouseout="hideTip(event, '8', 8)" onmouseover="showTip(event, '8', 8)">
-            getTypeOfObjects types collection
-          </code>
-          <div class="tip" id="8">
-            <strong>Signature:</strong>types:Type [] -&gt; collection:seq&lt;PSObject&gt; -&gt; Type<br />
-                      </div>
-        </td>
-        <td class="xmldoc"></td>
-      </tr>
-      <tr>
-        <td class="member-name">
-
-          <code onmouseout="hideTip(event, '9', 9)" onmouseover="showTip(event, '9', 9)">
-            toCamelCase s
-          </code>
-          <div class="tip" id="9">
-            <strong>Signature:</strong>s:string -&gt; string<br />
+          <div class="tip" id="3">
+            <strong>Signature:</strong>unit -&gt; NetNamedPipeBinding<br />
                       </div>
         </td>
         <td class="xmldoc"></td>

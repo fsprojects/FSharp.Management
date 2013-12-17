@@ -62,19 +62,21 @@
 <span class="l">16: </span>
 <span class="l">17: </span>
 <span class="l">18: </span>
+<span class="l">19: </span>
 </pre>
 </td>
 <td class="snippet"><pre class="fssnip">
 <span class="c">// reference the type provider dll</span>
 <span class="prep">#r</span> <span class="s">&quot;</span><span class="s">System</span><span class="s">.</span><span class="s">Management</span><span class="s">.</span><span class="s">Automation</span><span class="s">.</span><span class="s">dll</span><span class="s">&quot;</span>
 <span class="prep">#r</span> <span class="s">&quot;</span><span class="s">FSharp</span><span class="s">.</span><span class="s">Management</span><span class="s">.</span><span class="s">dll</span><span class="s">&quot;</span>
-<span class="k">open</span> <span onmouseout="hideTip(event, 'fs1', 1)" onmouseover="showTip(event, 'fs1', 1)" class="i">FSharpx</span>
+
+<span class="k">open</span> <span onmouseout="hideTip(event, 'fs1', 1)" onmouseover="showTip(event, 'fs1', 1)" class="i">FSharp</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs2', 2)" onmouseover="showTip(event, 'fs2', 2)" class="i">Management</span>
 
 <span class="c">// Let the type provider to inference signatures of available cmdlets</span>
-<span class="k">type</span> <span onmouseout="hideTip(event, 'fs2', 2)" onmouseover="showTip(event, 'fs2', 2)" class="i">PS</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs3', 3)" onmouseover="showTip(event, 'fs3', 3)" class="i">PowerShellProvider</span><span class="o">&lt;</span> <span class="i">PSSnapIns</span><span class="o">=</span><span class="s">&quot;</span><span class="s">&quot;</span>, <span class="i">Is64BitRequired</span><span class="o">=</span><span class="k">false</span> <span class="o">&gt;</span>
+<span class="k">type</span> <span onmouseout="hideTip(event, 'fs3', 3)" onmouseover="showTip(event, 'fs3', 3)" class="i">PS</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs4', 4)" onmouseover="showTip(event, 'fs4', 4)" class="i">PowerShellProvider</span><span class="o">&lt;</span> <span class="i">PSSnapIns</span><span class="o">=</span><span class="s">&quot;</span><span class="s">&quot;</span>, <span class="i">Is64BitRequired</span><span class="o">=</span><span class="k">false</span> <span class="o">&gt;</span>
 
 <span class="c">// now you have typed access to your filesystem and you can browse it via Intellisense</span>
-<span onmouseout="hideTip(event, 'fs2', 4)" onmouseover="showTip(event, 'fs2', 4)" class="i">PS</span><span class="o">.</span><span class="i">``Get-Process``</span>(<span class="i">name</span><span class="o">=</span>[|<span class="s">&quot;</span><span class="s">devenv</span><span class="s">&quot;</span>|])
+<span onmouseout="hideTip(event, 'fs3', 5)" onmouseover="showTip(event, 'fs3', 5)" class="i">PS</span><span class="o">.</span><span class="i">``Get-Process``</span>(<span class="i">name</span><span class="o">=</span>[|<span class="s">&quot;</span><span class="s">devenv</span><span class="s">&quot;</span>|])
 <span class="c">// [fsi:val it :</span>
 <span class="c">//  Choice&lt;List&lt;System.Diagnostics.Process&gt;,</span>
 <span class="c">//         List&lt;System.Diagnostics.FileVersionInfo&gt;,</span>
@@ -86,36 +88,11 @@
 </td>
 </tr>
 </table><p><img src="img/PowerShellProvider.png" alt="alt text" title="Intellisense for the PowerShell" /></p>
-<h4>"SharePoint 2013 Management" Sample</h4>
 
-<p>Also you can load non default SnapIns with cmdlets that you need, but you need to specify it directly.
-Use <code>PSSnapIns</code> as semicolon separated string to list of all SnapIns that need to be loaded in the beginning
-If some of your SnapIns require <code>64bit</code> runtime, please specify it directly.</p>
-<table class="pre"><tr><td class="lines"><pre class="fssnip">
-<span class="l">1: </span>
-<span class="l">2: </span>
-<span class="l">3: </span>
-<span class="l">4: </span>
-<span class="l">5: </span>
-<span class="l">6: </span>
-<span class="l">7: </span>
-</pre>
-</td>
-<td class="snippet"><pre class="fssnip">
-<span class="prep">#r</span> <span class="s">&quot;</span><span class="s">System</span><span class="s">.</span><span class="s">Management</span><span class="s">.</span><span class="s">Automation</span><span class="s">.</span><span class="s">dll</span><span class="s">&quot;</span>
-<span class="prep">#r</span> <span class="s">&quot;</span><span class="s">FSharp</span><span class="s">.</span><span class="s">Management</span><span class="s">.</span><span class="s">dll</span><span class="s">&quot;</span>
-<span class="prep">#r</span> <span class="s">&quot;</span><span class="s">System</span><span class="s">.</span><span class="s">ServiceModel</span><span class="s">.</span><span class="s">dll</span><span class="s">&quot;</span>
-<span class="prep">#r</span> <span class="s">&quot;</span><span class="s">Microsoft</span><span class="s">.</span><span class="s">Sharepoint</span><span class="s">.</span><span class="s">dll</span><span class="s">&quot;</span>
-<span class="k">open</span> <span onmouseout="hideTip(event, 'fs1', 5)" onmouseover="showTip(event, 'fs1', 5)" class="i">FSharpx</span>
-
-<span class="k">type</span> <span onmouseout="hideTip(event, 'fs4', 6)" onmouseover="showTip(event, 'fs4', 6)" class="i">PS64</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs3', 7)" onmouseover="showTip(event, 'fs3', 7)" class="i">PowerShellProvider</span><span class="o">&lt;</span><span class="i">PSSnapIns</span><span class="o">=</span><span class="s">&quot;</span><span class="s">Microsoft</span><span class="s">.</span><span class="s">SharePoint</span><span class="s">.</span><span class="s">PowerShell</span><span class="s">&quot;</span>, <span class="i">Is64BitRequired</span><span class="o">=</span><span class="k">true</span> <span class="o">&gt;</span></pre>
-</td>
-</tr>
-</table>
-<div class="tip" id="fs1">namespace FSharpx</div>
-<div class="tip" id="fs2">type PS = PowerShellProvider&lt;...&gt;<br /><br />Full name: PowerShellProvider.PS</div>
-<div class="tip" id="fs3">type PowerShellProvider<br /><br />Full name: FSharpx.PowerShellProvider<br /><em><br /><br />&lt;summary&gt;Typed representation of a PowerShell runspace&lt;/summary&gt;<br />&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&lt;param name=&#39;PSSnapIns&#39;&gt;List of PSSnapIn that will be added at the start separated by semicolon.&lt;/param&gt;<br />&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&lt;param name=&#39;Is64BitRequired&#39;&gt;Mark that 64bit runtime should be used for PowerShell&lt;/param&gt;</em></div>
-<div class="tip" id="fs4">type PS64 = PowerShellProvider&lt;...&gt;<br /><br />Full name: PowerShellProvider.PS64</div>
+<div class="tip" id="fs1">namespace FSharp</div>
+<div class="tip" id="fs2">namespace FSharp.Management</div>
+<div class="tip" id="fs3">type PS = PowerShellProvider&lt;...&gt;<br /><br />Full name: PowerShellProvider.PS</div>
+<div class="tip" id="fs4">type PowerShellProvider<br /><br />Full name: FSharp.Management.PowerShellProvider<br /><em><br /><br />&lt;summary&gt;Typed representation of a PowerShell runspace&lt;/summary&gt;<br />&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&lt;param name=&#39;PSSnapIns&#39;&gt;List of PSSnapIn that will be added at the start separated by semicolon.&lt;/param&gt;<br />&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&lt;param name=&#39;Is64BitRequired&#39;&gt;Mark that 64bit runtime should be used for PowerShell&lt;/param&gt;</em></div>
 
         </div>
         <div class="span3">
