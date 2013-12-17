@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>PSRuntimeServiceClient - FSharp.Management</title>
+    <title>IPSRuntimeService - FSharp.Management</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="Steffen Forkmann">
@@ -35,23 +35,37 @@
 
 
 
-<h1>PSRuntimeServiceClient</h1>
+<h1>IPSRuntimeService</h1>
 <div class="xmldoc">
 </div>
-  <h3>Constructors</h3>
+  <h3>Instance members</h3>
   <table class="table table-bordered member-list">
     <thead>
-      <tr><td>Constructor</td><td>Description</td></tr>
+      <tr><td>Instance member</td><td>Description</td></tr>
     </thead>
     <tbody>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '12', 12)" onmouseover="showTip(event, '12', 12)">
-            new PSRuntimeServiceClient
+          <code onmouseout="hideTip(event, '40', 40)" onmouseover="showTip(event, '40', 40)">
+            iPSRuntimeService.GetAllCmdlets()
           </code>
-          <div class="tip" id="12">
-            <strong>Signature:</strong>(serviceUrl:string * snapIns:string []) -&gt; PSRuntimeServiceClient<br />
+          <div class="tip" id="40">
+            <strong>Signature:</strong>unit -&gt; PSCmdLetInfoDTO []<br />
+              <strong>Modifiers:</strong> abstract<br />
+                      </div>
+        </td>
+        <td class="xmldoc"></td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '41', 41)" onmouseover="showTip(event, '41', 41)">
+            iPSRuntimeService.GetXmlDoc(commandName)
+          </code>
+          <div class="tip" id="41">
+            <strong>Signature:</strong>commandName:string -&gt; string<br />
+              <strong>Modifiers:</strong> abstract<br />
                       </div>
         </td>
         <td class="xmldoc"></td>

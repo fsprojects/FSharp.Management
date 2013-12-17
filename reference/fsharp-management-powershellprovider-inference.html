@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>PSCmdLetInfoDTO - FSharp.Management</title>
+    <title>Inference - FSharp.Management</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="Steffen Forkmann">
@@ -35,43 +35,64 @@
 
 
 
-<h1>PSCmdLetInfoDTO</h1>
+<h1>Inference</h1>
 <div class="xmldoc">
 </div>
-  <h3>Constructors</h3>
-  <table class="table table-bordered member-list">
+
+<!-- TODO: Refactor me - copy & paste from 'namespaces.cshtml' -->
+
+  <h2>Nested types and modules</h2>
+
+  <table class="table table-bordered type-list">
     <thead>
-      <tr><td>Constructor</td><td>Description</td></tr>
+      <tr><td>Type</td><td>Description</td></tr>
     </thead>
     <tbody>
-      <tr>
-        <td class="member-name">
-
-          <code onmouseout="hideTip(event, '14', 14)" onmouseover="showTip(event, '14', 14)">
-            new PSCmdLetInfoDTO
-          </code>
-          <div class="tip" id="14">
-            <strong>Signature:</strong>unit -&gt; PSCmdLetInfoDTO<br />
-                      </div>
-        </td>
-        <td class="xmldoc"></td>
-      </tr>
+        <tr>
+          <td class="type-name">
+            <a href="fsharp-management-powershellprovider-inference-collectionconverter-1.html">CollectionConverter</a>
+          </td>
+          <td class="xmldoc"></td>
+        </tr>
+        <tr>
+          <td class="type-name">
+            <a href="fsharp-management-powershellprovider-inference-pscommandlet.html">PSCommandLet</a>
+          </td>
+          <td class="xmldoc"></td>
+        </tr>
     </tbody>
   </table>
-  <h3>Instance members</h3>
+
+<!-- END TODO -->
+
+
+
+  <h3>Functions and values</h3>
   <table class="table table-bordered member-list">
     <thead>
-      <tr><td>Instance member</td><td>Description</td></tr>
+      <tr><td>Function or value</td><td>Description</td></tr>
     </thead>
     <tbody>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '17', 17)" onmouseover="showTip(event, '17', 17)">
-            pSCmdLetInfoDTO.ParametersNames
+          <code onmouseout="hideTip(event, '1', 1)" onmouseover="showTip(event, '1', 1)">
+            buildResultType possibleTypes
           </code>
-          <div class="tip" id="17">
-            <strong>Signature:</strong>string []<br />
+          <div class="tip" id="1">
+            <strong>Signature:</strong>possibleTypes:&#39;?4958 [] -&gt; Type<br />
+                          <strong>Type parameters:</strong> '?4958          </div>
+        </td>
+        <td class="xmldoc"></td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '2', 2)" onmouseover="showTip(event, '2', 2)">
+            createPSCommandLet cmdlet
+          </code>
+          <div class="tip" id="2">
+            <strong>Signature:</strong>cmdlet:CmdletConfigurationEntry -&gt; PSCommandLet<br />
                       </div>
         </td>
         <td class="xmldoc"></td>
@@ -79,11 +100,11 @@
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '18', 18)" onmouseover="showTip(event, '18', 18)">
-            pSCmdLetInfoDTO.ParametersNames()
+          <code onmouseout="hideTip(event, '3', 3)" onmouseover="showTip(event, '3', 3)">
+            getOutputTypes cmdlet
           </code>
-          <div class="tip" id="18">
-            <strong>Signature:</strong>unit -&gt; string []<br />
+          <div class="tip" id="3">
+            <strong>Signature:</strong>cmdlet:CmdletConfigurationEntry -&gt; Type []<br />
                       </div>
         </td>
         <td class="xmldoc"></td>
@@ -91,11 +112,11 @@
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '19', 19)" onmouseover="showTip(event, '19', 19)">
-            pSCmdLetInfoDTO.ParametersTypes
+          <code onmouseout="hideTip(event, '4', 4)" onmouseover="showTip(event, '4', 4)">
+            getParameterProperties cmdlet
           </code>
-          <div class="tip" id="19">
-            <strong>Signature:</strong>string []<br />
+          <div class="tip" id="4">
+            <strong>Signature:</strong>cmdlet:CmdletConfigurationEntry -&gt; (string * Type) []<br />
                       </div>
         </td>
         <td class="xmldoc"></td>
@@ -103,11 +124,11 @@
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '20', 20)" onmouseover="showTip(event, '20', 20)">
-            pSCmdLetInfoDTO.ParametersTypes()
+          <code onmouseout="hideTip(event, '5', 5)" onmouseover="showTip(event, '5', 5)">
+            getTypeOfObjects types collection
           </code>
-          <div class="tip" id="20">
-            <strong>Signature:</strong>unit -&gt; string []<br />
+          <div class="tip" id="5">
+            <strong>Signature:</strong>types:Type [] -&gt; collection:seq&lt;PSObject&gt; -&gt; Type<br />
                       </div>
         </td>
         <td class="xmldoc"></td>
@@ -115,47 +136,11 @@
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '21', 21)" onmouseover="showTip(event, '21', 21)">
-            pSCmdLetInfoDTO.RawName
+          <code onmouseout="hideTip(event, '6', 6)" onmouseover="showTip(event, '6', 6)">
+            toCamelCase s
           </code>
-          <div class="tip" id="21">
-            <strong>Signature:</strong>string<br />
-                      </div>
-        </td>
-        <td class="xmldoc"></td>
-      </tr>
-      <tr>
-        <td class="member-name">
-
-          <code onmouseout="hideTip(event, '22', 22)" onmouseover="showTip(event, '22', 22)">
-            pSCmdLetInfoDTO.RawName()
-          </code>
-          <div class="tip" id="22">
-            <strong>Signature:</strong>unit -&gt; string<br />
-                      </div>
-        </td>
-        <td class="xmldoc"></td>
-      </tr>
-      <tr>
-        <td class="member-name">
-
-          <code onmouseout="hideTip(event, '23', 23)" onmouseover="showTip(event, '23', 23)">
-            pSCmdLetInfoDTO.ResultObjectTypes
-          </code>
-          <div class="tip" id="23">
-            <strong>Signature:</strong>string []<br />
-                      </div>
-        </td>
-        <td class="xmldoc"></td>
-      </tr>
-      <tr>
-        <td class="member-name">
-
-          <code onmouseout="hideTip(event, '24', 24)" onmouseover="showTip(event, '24', 24)">
-            pSCmdLetInfoDTO.ResultObjectTypes()
-          </code>
-          <div class="tip" id="24">
-            <strong>Signature:</strong>unit -&gt; string []<br />
+          <div class="tip" id="6">
+            <strong>Signature:</strong>s:string -&gt; string<br />
                       </div>
         </td>
         <td class="xmldoc"></td>

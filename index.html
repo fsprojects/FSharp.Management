@@ -40,6 +40,7 @@
 <ul>
 <li><a href="FileSystemProvider.html">FileSystem</a></li>
 <li><a href="RegistryProvider.html">Registry</a></li>
+<li><a href="WMIProvider.html">WMI</a></li>
 <li><a href="PowerShellProvider.html">PowerShell</a></li>
 </ul>
 
@@ -73,13 +74,13 @@
 <td class="snippet"><pre class="fssnip">
 <span class="c">// reference the type provider dll</span>
 <span class="prep">#r</span> <span class="s">&quot;</span><span class="s">FSharp</span><span class="s">.</span><span class="s">Management</span><span class="s">.</span><span class="s">dll</span><span class="s">&quot;</span>
-<span class="k">open</span> <span class="i">FSharpx</span>
+<span class="k">open</span> <span onmouseout="hideTip(event, 'fs1', 1)" onmouseover="showTip(event, 'fs1', 1)" class="i">FSharp</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs2', 2)" onmouseover="showTip(event, 'fs2', 2)" class="i">Management</span>
 
 <span class="c">// Let the type provider do it&#39;s work</span>
-<span class="k">type</span> <span onmouseout="hideTip(event, 'fs1', 1)" onmouseover="showTip(event, 'fs1', 1)" class="i">Users</span> <span class="o">=</span> <span class="i">FileSystem</span><span class="o">&lt;</span><span class="s">&quot;</span><span class="s">C</span><span class="s">:</span><span class="s">\\</span><span class="s">Users</span><span class="s">\\</span><span class="s">&quot;</span><span class="o">&gt;</span>
+<span class="k">type</span> <span onmouseout="hideTip(event, 'fs3', 3)" onmouseover="showTip(event, 'fs3', 3)" class="i">Users</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs4', 4)" onmouseover="showTip(event, 'fs4', 4)" class="i">FileSystem</span><span class="o">&lt;</span><span class="s">&quot;</span><span class="s">C</span><span class="s">:</span><span class="s">\\</span><span class="s">Users</span><span class="s">\\</span><span class="s">&quot;</span><span class="o">&gt;</span>
 
 <span class="c">// now you have typed access to your filesystem and you can browse it via Intellisense</span>
-<span onmouseout="hideTip(event, 'fs1', 2)" onmouseover="showTip(event, 'fs1', 2)" class="i">Users</span><span class="o">.</span><span class="i">AllUsers</span><span class="o">.</span><span class="i">Path</span> 
+<span onmouseout="hideTip(event, 'fs3', 5)" onmouseover="showTip(event, 'fs3', 5)" class="i">Users</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs5', 6)" onmouseover="showTip(event, 'fs5', 6)" class="i">AllUsers</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs6', 7)" onmouseover="showTip(event, 'fs6', 7)" class="i">Path</span> 
 <span class="fsi">val it : string = &quot;C:\Users\All Users&quot;</span></pre>
 </td>
 </tr>
@@ -94,7 +95,12 @@ also want to read <a href="https://github.com/forki/FSharp.Management/blob/maste
 redistribution for both commercial and non-commercial purposes. For more information see the 
 <a href="https://github.com/forki/FSharp.Management/blob/master/LICENSE.txt">License file</a> in the GitHub repository.</p>
 
-<div class="tip" id="fs1">type Users = obj<br /><br />Full name: Index.Users</div>
+<div class="tip" id="fs1">namespace FSharp</div>
+<div class="tip" id="fs2">namespace FSharp.Management</div>
+<div class="tip" id="fs3">type Users = FileSystem&lt;...&gt;<br /><br />Full name: Index.Users</div>
+<div class="tip" id="fs4">type FileSystem<br /><br />Full name: FSharp.Management.FileSystem</div>
+<div class="tip" id="fs5">type AllUsers =<br />&#160;&#160;static val Path : string<br />&#160;&#160;nested type 81cfd8deC55442b6B54a9d797b876316WatchDataManger<br />&#160;&#160;nested type ATI<br />&#160;&#160;nested type Adobe<br />&#160;&#160;nested type Anwendungsdaten<br />&#160;&#160;nested type Apple<br />&#160;&#160;nested type AppleComputer<br />&#160;&#160;nested type ApplicationData<br />&#160;&#160;nested type Applications<br />&#160;&#160;nested type AstroburnLite<br />&#160;&#160;...<br /><br />Full name: FSharp.Management.FileSystem,path=&quot;C:\\Users\\&quot;.AllUsers<br /><em><br /><br />A strongly typed interface to &#39;C:\Users\All Users&#39;</em></div>
+<div class="tip" id="fs6">field FileSystem,path=&quot;C:\\Users\\&quot;.AllUsers.Path = &quot;C:\Users\All Users&quot;</div>
 
         </div>
         <div class="span3">
