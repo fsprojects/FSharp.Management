@@ -1,6 +1,6 @@
-module FSharpx.TypeProviders.Tests.FileSystemProviderTests
+module FSharp.Management.TypeProviders.Tests.FileSystemProviderTests
 
-open FSharpx
+open FSharp.Management
 open NUnit.Framework
 open FsUnit
 

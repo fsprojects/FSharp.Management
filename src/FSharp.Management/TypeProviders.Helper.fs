@@ -1,5 +1,5 @@
 ﻿/// Starting to implement some helpers on top of ProvidedTypes API
-module internal FSharpx.TypeProviders.Helper
+module internal FSharp.Management.TypeProviders.Helper
 open System
 open System.IO
 open Samples.FSharp.ProvidedTypes
@@ -82,7 +82,7 @@ let watchForChanges (ownerType:TypeProviderForNamespaces) (fileName:string) =
 
 // Get the assembly and namespace used to house the provided types
 let thisAssembly = System.Reflection.Assembly.GetExecutingAssembly()
-let rootNamespace = "FSharpx"
+let rootNamespace = "FSharp.Management"
 let missingValue = "@@@missingValue###"
 
 open System.Collections.Generic

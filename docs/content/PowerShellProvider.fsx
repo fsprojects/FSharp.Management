@@ -17,7 +17,8 @@ This tutorial shows the use of the PowerShell type provider.
 // reference the type provider dll
 #r "System.Management.Automation.dll"
 #r "FSharp.Management.dll"
-open FSharpx
+
+open FSharp.Management
 
 // Let the type provider to inference signatures of available cmdlets
 type PS = PowerShellProvider< PSSnapIns="", Is64BitRequired=false >

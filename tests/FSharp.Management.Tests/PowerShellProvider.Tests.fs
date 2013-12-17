@@ -1,6 +1,6 @@
-﻿module FSharpx.TypeProviders.Tests.PowerShellProvider
+﻿module FSharp.Management.TypeProviders.Tests.PowerShellProvider
 
-open FSharpx
+open FSharp.Management
 open NUnit.Framework
 open FsUnit
 

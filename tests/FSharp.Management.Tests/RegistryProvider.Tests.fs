@@ -1,6 +1,6 @@
-﻿module FSharpx.TypeProviders.Tests.RegistryProviderTests
+﻿module FSharp.Management.TypeProviders.Tests.RegistryProviderTests
 
-open FSharpx
+open FSharp.Management
 open NUnit.Framework
 open FsUnit
 

@@ -1,7 +1,7 @@
-﻿module internal FSharpx.TypeProviders.RegistryProvider
+﻿module internal FSharp.Management.TypeProviders.RegistryProvider
 
 open Samples.FSharp.ProvidedTypes
-open FSharpx.TypeProviders.Helper
+open FSharp.Management.TypeProviders.Helper
 open Microsoft.Win32
 
 let getAccessibleSubkeys (registryKey:RegistryKey) =

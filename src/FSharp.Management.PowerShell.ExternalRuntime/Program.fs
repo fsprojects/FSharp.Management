@@ -1,4 +1,4 @@
-﻿open FSharpx.TypeProviders.PowerShellProvider.ExternalRuntime
+﻿open FSharp.Management.TypeProviders.PowerShellProvider.ExternalRuntime
 
 open System
 open System.ServiceModel
