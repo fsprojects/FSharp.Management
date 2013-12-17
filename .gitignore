@@ -170,3 +170,4 @@ temp/
 # Test results produced by build
 TestResults.xml
 release.cmd
+nuget/

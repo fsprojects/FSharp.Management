@@ -22,6 +22,7 @@ let testAssemblies = "tests/**/bin/Release/*.Tests*.dll"
 let gitHome = "https://github.com/forki"
 let gitName = "FSharp.Management"
 let cloneUrl = "git@github.com:forki/FSharp.Management.git"
+let nugetDir = "./nuget/"
 
 // Read additional information from the release notes document
 Environment.CurrentDirectory <- __SOURCE_DIRECTORY__
@@ -45,7 +46,7 @@ Target "AssemblyInfo" (fun _ ->
 Target "RestorePackages" RestorePackages
 
 Target "Clean" (fun _ ->
-    CleanDirs ["bin"; "temp"]
+    CleanDirs ["bin"; "temp"; nugetDir]
 )
 
 Target "CleanDocs" (fun _ ->
@@ -92,6 +93,16 @@ Target "NuGet" (fun _ ->
                                  .Replace("\n", "")
                                  .Replace("  ", " ")
     let project = projects.[0]
+
+    let nugetDocsDir = nugetDir @@ "docs"
+    let nugetlibDir = nugetDir @@ "lib/net40"
+
+    CleanDir nugetDocsDir
+    CleanDir nugetlibDir
+        
+    CopyDir nugetlibDir "bin" (fun file -> file.Contains "FSharp.Core." |> not)
+    CopyDir nugetDocsDir "./docs/output" allFiles
+    
     NuGet (fun p -> 
         { p with   
             Authors = authors
@@ -101,11 +112,11 @@ Target "NuGet" (fun _ ->
             Version = release.NugetVersion
             ReleaseNotes = release.Notes |> toLines
             Tags = tags
-            OutputPath = "bin"
+            OutputPath = nugetDir
             AccessKey = getBuildParamOrDefault "nugetkey" ""
             Publish = hasBuildParam "nugetkey"
             Dependencies = [] })
-        ("nuget/" + project + ".nuspec")
+        (project + ".nuspec")
 )
 
 // --------------------------------------------------------------------------------------
