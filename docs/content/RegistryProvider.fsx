@@ -9,7 +9,7 @@ This tutorial shows the use of the registry type provider.
 *)
 
 // reference the type provider dll
-#r "FSharpx.ManagementProviders.dll"
+#r "FSharp.Management.dll"
 open FSharpx
 
 // use the registry type provider to get typed access to your registry and browse it via Intellisense

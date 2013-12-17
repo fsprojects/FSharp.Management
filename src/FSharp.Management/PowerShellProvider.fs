@@ -1,4 +1,4 @@
-﻿namespace FSharpx.TypeProviders.PowerShellProvider
+namespace FSharpx.TypeProviders.PowerShellProvider
 
 module Inference =
     open System
@@ -288,7 +288,7 @@ module ExternalRuntime =
 
             let fullPath = System.Reflection.Assembly.GetAssembly(typeof<PSRuntimeExternal>).Location
             let directory = Path.GetDirectoryName( fullPath )
-            let externalRuntime = Path.Combine(directory, "FSharpx.ManagementProviders.PowerShell.ExternalRuntime.exe") // TODO: update it
+            let externalRuntime = Path.Combine(directory, "FSharp.Management.PowerShell.ExternalRuntime.exe") // TODO: update it
 
             pr.StartInfo.FileName  <- externalRuntime
             pr.StartInfo.Arguments <- String.Join(" ", snapIns)

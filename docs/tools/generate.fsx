@@ -4,17 +4,17 @@
 // --------------------------------------------------------------------------------------
 
 // Binaries that have XML documentation (in a corresponding generated XML file)
-let referenceBinaries = [ "FSharpx.ManagementProviders.dll" ]
+let referenceBinaries = [ "FSharp.Management.dll" ]
 // Web site location for the generated documentation
-let website = "/FSharpx.ManagementProviders"
+let website = "/FSharp.Management"
 
 // Specify more information about your project
 let info =
-  [ "project-name", "FSharpx.ManagementProviders"
+  [ "project-name", "FSharp.Management"
     "project-author", "Steffen Forkmann"
     "project-summary", "Various type providers for management of the machine."
-    "project-github", "http://github.com/forki/FSharpx.ManagementProviders"
-    "project-nuget", "http://nuget.com/packages/FSharpx.ManagementProviders" ]
+    "project-github", "http://github.com/forki/FSharp.Management"
+    "project-nuget", "http://nuget.com/packages/FSharp.Management" ]
 
 // --------------------------------------------------------------------------------------
 // For typical project, no changes are needed below

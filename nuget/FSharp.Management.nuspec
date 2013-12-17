@@ -5,8 +5,8 @@
     <version>@build.number@</version>
     <authors>@authors@</authors>
     <owners>@authors@</owners>
-    <licenseUrl>http://github.com/forki/FSharpx.ManagementProviders/blob/master/LICENSE.txt</licenseUrl>
-    <projectUrl>http://forki.github.com/FSharpx.ManagementProviders</projectUrl>
+    <licenseUrl>http://github.com/forki/FSharp.Management/blob/master/LICENSE.txt</licenseUrl>
+    <projectUrl>http://forki.github.com/FSharp.Management</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <summary>@summary@</summary>
     <description>@description@</description>

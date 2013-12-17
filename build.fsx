@@ -9,19 +9,19 @@ open Fake.AssemblyInfoFile
 open Fake.ReleaseNotesHelper
 open System
 
-let projects = [|"FSharpx.ManagementProviders"; "FSharpx.ManagementProviders.PowerShell.ExternalRuntime"|]
+let projects = [|"FSharp.Management"; "FSharp.Management.PowerShell.ExternalRuntime"|]
 
 let summary = "Various type providers for management of the machine."
 let description = "Various type providers for management of the machine."
 let authors = ["Steffen Forkmann"; "Sergey Tihon"; "Daniel Mohl"; "Tomas Petricek"; "Ryan Riley"; "Mauricio Scheffer"; "Phil Trelford" ]
 let tags = "F# fsharp typeproviders Management PowerShell"
 
-let solutionFile  = "FSharpx.ManagementProviders"
+let solutionFile  = "FSharp.Management"
 
 let testAssemblies = "tests/**/bin/Release/*.Tests*.dll"
 let gitHome = "https://github.com/forki"
-let gitName = "FSharpx.ManagementProviders"
-let cloneUrl = "git@github.com:forki/FSharpx.ManagementProviders.git"
+let gitName = "FSharp.Management"
+let cloneUrl = "git@github.com:forki/FSharp.Management.git"
 
 // Read additional information from the release notes document
 Environment.CurrentDirectory <- __SOURCE_DIRECTORY__

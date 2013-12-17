@@ -2,10 +2,10 @@
 #I "../../bin"
 
 (**
-FSharpx.ManagementProviders
+FSharp.Management
 ===========================
 
-The FSharpx.ManagementProviders contain various type providers for the management of the machine.
+The FSharp.Management project contains various type providers for the management of the machine.
 
 * [FileSystem](FileSystemProvider.html)
 * [Registry](RegistryProvider.html)
@@ -15,8 +15,8 @@ The FSharpx.ManagementProviders contain various type providers for the managemen
   <div class="span1"></div>
   <div class="span6">
     <div class="well well-small" id="nuget">
-      The library can be <a href="https://nuget.org/packages/FSharpx.ManagementProviders">installed from NuGet</a>:
-      <pre>PM> Install-Package FSharpx.ManagementProviders</pre>
+      The library can be <a href="https://nuget.org/packages/FSharp.Management">installed from NuGet</a>:
+      <pre>PM> Install-Package FSharp.Management</pre>
     </div>
   </div>
   <div class="span1"></div>
@@ -29,7 +29,7 @@ This example demonstrates the use of the FileSystem type provider:
 
 *)
 // reference the type provider dll
-#r "FSharpx.ManagementProviders.dll"
+#r "FSharp.Management.dll"
 open FSharpx
 
 // Let the type provider do it's work
@@ -62,9 +62,9 @@ The library is available under Public Domain license, which allows modification 
 redistribution for both commercial and non-commercial purposes. For more information see the 
 [License file][license] in the GitHub repository. 
 
-  [content]: https://github.com/forki/FSharpx.ManagementProviders/tree/master/docs/content
-  [gh]: https://github.com/forki/FSharpx.ManagementProviders
-  [issues]: https://github.com/forki/FSharpx.ManagementProviders/issues
-  [readme]: https://github.com/forki/FSharpx.ManagementProviders/blob/master/README.md
-  [license]: https://github.com/forki/FSharpx.ManagementProviders/blob/master/LICENSE.txt
+  [content]: https://github.com/forki/FSharp.Management/tree/master/docs/content
+  [gh]: https://github.com/forki/FSharp.Management
+  [issues]: https://github.com/forki/FSharp.Management/issues
+  [readme]: https://github.com/forki/FSharp.Management/blob/master/README.md
+  [license]: https://github.com/forki/FSharp.Management/blob/master/LICENSE.txt
 *)

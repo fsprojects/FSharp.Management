@@ -1,13 +1,13 @@
-FSharpx.ManagementProviders
+FSharp.Management
 ===========================
 
-The FSharpx.ManagementProviders contain various type providers for the management of the machine.
+The FSharp.Management project contains various type providers for the management of the machine.
 
-* [FileSystem](http://forki.github.io/FSharpx.ManagementProviders/FileSystemProvider.html)
-* [Registry](http://forki.github.io/FSharpx.ManagementProviders/RegistryProvider.html)
-* [PowerShell](http://forki.github.io/FSharpx.ManagementProviders/PowerShellProvider.html)
+* [FileSystem](http://forki.github.io/FSharp.Management/FileSystemProvider.html)
+* [Registry](http://forki.github.io/FSharp.Management/RegistryProvider.html)
+* [PowerShell](http://forki.github.io/FSharp.Management/PowerShellProvider.html)
 
-<a href="http://forki.github.io/FSharpx.ManagementProviders" target="_blank">Documentation available here.</a>
+<a href="http://forki.github.io/FSharp.Management" target="_blank">Documentation available here.</a>
 
 ## Building
 

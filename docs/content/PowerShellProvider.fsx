@@ -16,7 +16,7 @@ This tutorial shows the use of the PowerShell type provider.
 
 // reference the type provider dll
 #r "System.Management.Automation.dll"
-#r "FSharpx.ManagementProviders.dll"
+#r "FSharp.Management.dll"
 open FSharpx
 
 // Let the type provider to inference signatures of available cmdlets
@@ -47,7 +47,7 @@ Use `PSSnapIns` as semicolon separated string to list of all SnapIns that need t
 If some of your SnapIns require `64bit` runtime, please specify it directly.
 *)
 #r "System.Management.Automation.dll"
-#r "FSharpx.ManagementProviders.dll"
+#r "FSharp.Management.dll"
 #r "System.ServiceModel.dll"
 #r "Microsoft.Sharepoint.dll"
 open FSharpx
