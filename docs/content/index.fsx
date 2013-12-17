@@ -41,15 +41,6 @@ Users.AllUsers.Path
 
 (**
 
-Samples & documentation
------------------------
-
-The library comes with comprehensible documentation.
-
- * [API Reference](reference/index.html) contains automatically generated documentation for all types, modules
-   and functions in the library. This includes additional brief samples on using most of the
-   functions.
- 
 Contributing and copyright
 --------------------------
 
