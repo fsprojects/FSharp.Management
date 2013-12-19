@@ -18,4 +18,8 @@ let ``Can access the default users path``() =
 // Access relative path
 RelativePath.Bin.Path |> ignore
 
+// access a file
 RelativePath.``WMI.Tests.fs`` |> ignore
+
+// access parent
+RelativePath.Parent.Path |> ignore

@@ -1,3 +1,7 @@
+#### 0.0.4-alpha - 19.12.2013 
+* Relative path type provider allows to go up
+* Using latest provided types API from Sample pack
+
 #### 0.0.3-alpha - 19.12.2013 
 * First version of the relative path type provider
 
