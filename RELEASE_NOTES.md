@@ -1,3 +1,6 @@
+#### 0.0.6-alpha - 19.12.2013
+* Relative path type provider returns relative paths
+
 #### 0.0.5-alpha - 19.12.2013
 * Unified FileSystem type provider and relative path type provider
 * Made the FileSystem type provider robust against access problems
