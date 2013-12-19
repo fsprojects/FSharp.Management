@@ -14,7 +14,7 @@ type public SystemProvider(cfg:TypeProviderConfig) as this =
     do this.AddNamespace(
         rootNamespace, 
         [FilesTypeProvider.createTypedFileSystem()
-         RelativeFilesTypeProvider.createRelativePathSystem(cfg.ResolutionFolder)
+         FilesTypeProvider.createRelativePathSystem(cfg.ResolutionFolder)
          RegistryProvider.createTypedRegistry()])
 
 [<assembly:TypeProviderAssembly()>]
