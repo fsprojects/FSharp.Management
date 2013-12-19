@@ -23,4 +23,13 @@ Users.AllUsers.Path
 
 ![alt text](img/FileSystemProvider.png "Intellisense for the file system")
 
+Relative paths
+--------------
+
+For web frameworks it's interesting to reference resources like images.
+With the help of the FileSystemProvider we can reference relative paths via intellisense and get compile time safety.
+
 *)
+
+RelativePath.Img.``PowerShellProvider.png``
+// [fsi:val it : string = "C:\Code\FSharp.Management\docs\content\img\PowerShellProvider.png"]

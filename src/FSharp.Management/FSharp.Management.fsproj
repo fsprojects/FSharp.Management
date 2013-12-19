@@ -58,6 +58,7 @@
     <Compile Include="ProvidedTypes.fs" />
     <Compile Include="TypeProviders.Helper.fs" />
     <Compile Include="FileSystemProvider.fs" />
+    <Compile Include="RelativeFileSystemProvider.fs" />
     <Compile Include="RegistryProvider.fs" />
     <Compile Include="PowerShellProvider.fs" />
     <Compile Include="SystemProvider.fs" />
