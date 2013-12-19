@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>The WMI type provider
+</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Various type providers for management of the machine.">
+    <meta name="author" content="Steffen Forkmann">
+
+    <script src="http://code.jquery.com/jquery-1.8.0.js"></script>
+    <script src="http://code.jquery.com/ui/1.8.23/jquery-ui.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js"></script>
+    <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css" rel="stylesheet">
+
+    <link type="text/css" rel="stylesheet" href="/FSharp.Management/content/style.css" />
+    <script type="text/javascript" src="/FSharp.Management/content/tips.js"></script>
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="container">
+      <div class="masthead">
+        <ul class="nav nav-pills pull-right">
+          <li><a href="http://fsharp.org">fsharp.org</a></li>
+          <li><a href="http://github.com/forki/FSharp.Management">github page</a></li>
+        </ul>
+        <h3 class="muted"><a href="/FSharp.Management/index.html">FSharp.Management</a></h3>
+      </div>
+      <hr />
+      <div class="row">
+        <div class="span9" id="main">
+          
+<h1>The WMI type provider</h1>
+
+<p>This tutorial shows the use of the <a href="http://msdn.microsoft.com/en-us/library/aa394582(v=vs.85).aspx">Windows Management Instrumentation (WMI)</a> type provider.</p>
+<table class="pre"><tr><td class="lines"><pre class="fssnip">
+<span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+<span class="l">4: </span>
+<span class="l">5: </span>
+<span class="l">6: </span>
+<span class="l">7: </span>
+<span class="l">8: </span>
+<span class="l">9: </span>
+</pre>
+</td>
+<td class="snippet"><pre class="fssnip">
+<span class="c">// reference the type provider dll</span>
+<span class="prep">#r</span> <span class="s">&quot;</span><span class="s">System</span><span class="s">.</span><span class="s">Management</span><span class="s">.</span><span class="s">dll</span><span class="s">&quot;</span>
+<span class="prep">#r</span> <span class="s">&quot;</span><span class="s">FSharp</span><span class="s">.</span><span class="s">Management</span><span class="s">.</span><span class="s">WMI</span><span class="s">.</span><span class="s">dll</span><span class="s">&quot;</span>
+
+<span class="k">open</span> <span onmouseout="hideTip(event, 'fs1', 1)" onmouseover="showTip(event, 'fs1', 1)" class="i">FSharp</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs2', 2)" onmouseover="showTip(event, 'fs2', 2)" class="i">Management</span>
+
+<span class="c">// Let the type provider infer the local machine</span>
+<span class="k">type</span> <span onmouseout="hideTip(event, 'fs3', 3)" onmouseover="showTip(event, 'fs3', 3)" class="i">Local</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs4', 4)" onmouseover="showTip(event, 'fs4', 4)" class="i">WmiProvider</span><span class="o">&lt;</span><span class="s">&quot;</span><span class="s">localhost</span><span class="s">&quot;</span><span class="o">&gt;</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs5', 5)" onmouseover="showTip(event, 'fs5', 5)" class="i">data</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs3', 6)" onmouseover="showTip(event, 'fs3', 6)" class="i">Local</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs6', 7)" onmouseover="showTip(event, 'fs6', 7)" class="i">GetDataContext</span>()</pre>
+</td>
+</tr>
+</table><p><img src="img/WMIProvider.png" alt="alt text" title="Intellisense for WMI" /></p>
+<table class="pre"><tr><td class="lines"><pre class="fssnip">
+<span class="l"> 1: </span>
+<span class="l"> 2: </span>
+<span class="l"> 3: </span>
+<span class="l"> 4: </span>
+<span class="l"> 5: </span>
+<span class="l"> 6: </span>
+<span class="l"> 7: </span>
+<span class="l"> 8: </span>
+<span class="l"> 9: </span>
+<span class="l">10: </span>
+<span class="l">11: </span>
+<span class="l">12: </span>
+<span class="l">13: </span>
+<span class="l">14: </span>
+</pre>
+</td>
+<td class="snippet"><pre class="fssnip">
+<span class="c">// Add a handler to watch WMI queries getting executed (optional)</span>
+<span onmouseout="hideTip(event, 'fs5', 8)" onmouseover="showTip(event, 'fs5', 8)" class="i">data</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs7', 9)" onmouseover="showTip(event, 'fs7', 9)" class="i">QueryExecuted</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs8', 10)" onmouseover="showTip(event, 'fs8', 10)" class="i">Add</span>(<span onmouseout="hideTip(event, 'fs9', 11)" onmouseover="showTip(event, 'fs9', 11)" class="i">printfn</span> <span class="s">&quot;</span><span class="s">Query</span><span class="s"> </span><span class="s">executed</span><span class="s">:</span><span class="s"> </span><span class="s">%</span><span class="s">s</span><span class="s">&quot;</span>)
+
+<span class="c">// list all local drives</span>
+[<span class="k">for</span> <span onmouseout="hideTip(event, 'fs10', 12)" onmouseover="showTip(event, 'fs10', 12)" class="i">d</span> <span class="k">in</span> <span onmouseout="hideTip(event, 'fs5', 13)" onmouseover="showTip(event, 'fs5', 13)" class="i">data</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs11', 14)" onmouseover="showTip(event, 'fs11', 14)" class="i">Win32_DiskDrive</span> <span class="k">-&gt;</span> <span onmouseout="hideTip(event, 'fs10', 15)" onmouseover="showTip(event, 'fs10', 15)" class="i">d</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs12', 16)" onmouseover="showTip(event, 'fs12', 16)" class="i">Name</span>, <span onmouseout="hideTip(event, 'fs10', 17)" onmouseover="showTip(event, 'fs10', 17)" class="i">d</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs13', 18)" onmouseover="showTip(event, 'fs13', 18)" class="i">Description</span>]
+<span class="fsi">Query executed: select * from Win32_DiskDrive</span>
+<span class="fsi">val it : (string * string) list =</span>
+<span class="fsi">  [(&quot;\\.\PHYSICALDRIVE0&quot;, &quot;Laufwerk&quot;); (&quot;\\.\PHYSICALDRIVE1&quot;, &quot;Laufwerk&quot;)</span>
+
+<span class="c">// Access some WMI data from the data connection</span>
+[<span class="k">for</span> <span onmouseout="hideTip(event, 'fs14', 19)" onmouseover="showTip(event, 'fs14', 19)" class="i">d</span> <span class="k">in</span> <span onmouseout="hideTip(event, 'fs5', 20)" onmouseover="showTip(event, 'fs5', 20)" class="i">data</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs15', 21)" onmouseover="showTip(event, 'fs15', 21)" class="i">CIM_DiskDrive</span> <span class="k">-&gt;</span> 
+    [<span class="k">for</span> <span onmouseout="hideTip(event, 'fs16', 22)" onmouseover="showTip(event, 'fs16', 22)" class="i">c</span> <span class="k">in</span> <span onmouseout="hideTip(event, 'fs14', 23)" onmouseover="showTip(event, 'fs14', 23)" class="i">d</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs17', 24)" onmouseover="showTip(event, 'fs17', 24)" class="i">Capabilities</span> <span class="k">-&gt;</span> <span onmouseout="hideTip(event, 'fs16', 25)" onmouseover="showTip(event, 'fs16', 25)" class="i">c</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs18', 26)" onmouseover="showTip(event, 'fs18', 26)" class="i">Is_SMART_Notification</span>]]
+<span class="fsi">Query executed: select * from CIM_DiskDrive</span>
+<span class="fsi">val it : bool list list = [[false; false]; [false; false]]</span></pre>
+</td>
+</tr>
+</table>
+<div class="tip" id="fs1">namespace FSharp</div>
+<div class="tip" id="fs2">namespace FSharp.Management</div>
+<div class="tip" id="fs3">type Local = WmiProvider&lt;...&gt;<br /><br />Full name: WMIProvider.Local</div>
+<div class="tip" id="fs4">type WmiProvider<br /><br />Full name: FSharp.Management.WmiProvider<br /><em><br /><br />&lt;summary&gt;Accesses management information using the schema of the indicated machine. Use &#39;localhost&#39; for the local machine.&lt;/summary&gt;<br />&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&lt;param name=&#39;MachineName&#39;&gt;The name of the remote machine to connect to. Use &#39;localhost&#39; for the local machine.&lt;/param&gt;<br />&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&lt;param name=&#39;Namespace&#39;&gt;The root WMI namespace (e.g. root\cimv2)&lt;/param&gt;<br />&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&lt;param name=&#39;Locale&#39;&gt;The used language for WMI (default is &#39;MS_409&#39; which is en-US)&lt;/param&gt;</em></div>
+<div class="tip" id="fs5">val data : WmiProvider&lt;...&gt;<br /><br />Full name: WMIProvider.data</div>
+<div class="tip" id="fs6">WmiProvider&lt;...&gt;.GetDataContext() : WmiProvider&lt;...&gt;<br />WmiProvider&lt;...&gt;.GetDataContext(machineName: string) : WmiProvider&lt;...&gt;</div>
+<div class="tip" id="fs7">event Runtime.DataContext.QueryExecuted: IEvent&lt;Handler&lt;string&gt;,string&gt;</div>
+<div class="tip" id="fs8">member System.IObservable.Add : callback:(&#39;T -&gt; unit) -&gt; unit</div>
+<div class="tip" id="fs9">val printfn : format:Printf.TextWriterFormat&lt;&#39;T&gt; -&gt; &#39;T<br /><br />Full name: Microsoft.FSharp.Core.ExtraTopLevelOperators.printfn</div>
+<div class="tip" id="fs10">val d : WmiProvider&lt;...&gt;.ServiceTypes.Win32_DiskDrive</div>
+<div class="tip" id="fs11">property WmiProvider&lt;...&gt;.Win32_DiskDrive: WmiProvider&lt;...&gt;.ServiceTypes.Win32_DiskDriveCollection<br /><em><br /><br />The Win32_DiskDrive class represents a physical disk drive as seen by a computer running the Win32 operating system. Any interface to a Win32 physical disk drive is a descendent (or member) of this class. The features of the disk drive seen through this object correspond to the logical and management characteristics of the drive. In some cases, this may not reflect the actual physical characteristics of the device. Any object based on another logical device would not be a member of this class.<br />Example: IDE Fixed Disk.</em></div>
+<div class="tip" id="fs12">property WmiProvider&lt;...&gt;.ServiceTypes.CIM_ManagedSystemElement.Name: string<br /><em><br /><br />The Name property defines the label by which the object is known. When subclassed, the Name property can be overridden to be a Key property.</em></div>
+<div class="tip" id="fs13">property WmiProvider&lt;...&gt;.ServiceTypes.CIM_ManagedSystemElement.Description: string<br /><em><br /><br />The Description property provides a textual description of the object. </em></div>
+<div class="tip" id="fs14">val d : WmiProvider&lt;...&gt;.ServiceTypes.CIM_DiskDrive</div>
+<div class="tip" id="fs15">property WmiProvider&lt;...&gt;.CIM_DiskDrive: WmiProvider&lt;...&gt;.ServiceTypes.CIM_DiskDriveCollection<br /><em><br /><br />The CIM_DiskDrive class represents a physical disk drive as seen by the operating system. The features of the drive seen through this object correspond to the logical and management characteristics of the drive and, in some cases may not reflect the actual physical characteristics of the device. Any interface to a physical drive is a member of this class. Any object based on another logical device would not be a member of this class.<br />Example: IDE Fixed Disk.</em></div>
+<div class="tip" id="fs16">val c : WmiProvider&lt;...&gt;.ServiceTypes.CIM_MediaAccessDevice.CapabilitiesValues</div>
+<div class="tip" id="fs17">property WmiProvider&lt;...&gt;.ServiceTypes.CIM_MediaAccessDevice.Capabilities: WmiProvider&lt;...&gt;.ServiceTypes.CIM_MediaAccessDevice.CapabilitiesValues []<br /><em><br /><br />Capabilities of the media access device.  For example, the device may support &quot;Random Access&quot;, removable media and &quot;Automatic Cleaning&quot;.  In this case, the values 3, 7 and 9 would be written to the array. <br />Several of the enumerated values require some explanation: 1) Value 11, Supports Dual Sided Media, distinguishes a Device that can access both sides of dual sided Media, from a Device that reads only a single side and requires the Media to be flipped; and, 2) Value 12, Predismount Eject Not Required, indicates that Media does not have to be explicitly ejected from the Device before being accessed by a PickerElement.</em></div>
+<div class="tip" id="fs18">property WmiProvider&lt;...&gt;.ServiceTypes.CIM_MediaAccessDevice.CapabilitiesValues.Is_SMART_Notification: bool<br /><em><br /><br />Check if the property &#39;Capabilities&#39; of class &#39;CIM_MediaAccessDevice&#39; is value &#39;SMART Notification&#39;, of underlying value &#39;10&#39;</em></div>
+
+        </div>
+        <div class="span3">
+          <ul class="nav nav-list" id="menu">
+            <li class="nav-header">FSharp.Management</li>
+            <li><a href="/FSharp.Management/index.html">Home page</a></li>
+            <li class="divider"></li>
+            <li><a href="https://www.nuget.org/packages/FSharp.Management">Get Library via NuGet</a></li>
+            <li><a href="http://github.com/forki/FSharp.Management">Source Code on GitHub</a></li>
+            <li><a href="http://github.com/forki/FSharp.Management/blob/master/LICENSE.txt">License</a></li>
+            <li><a href="http://github.com/forki/FSharp.Management/blob/master/RELEASE_NOTES.md">Release Notes</a></li>
+            
+            <li class="nav-header">Getting started</li>
+              <li><a href="/FSharp.Management/FileSystemProvider.html">FileSystemProvider</a></li>
+              <li><a href="/FSharp.Management/RegistryProvider.html">RegistryProvider</a></li>
+              <li><a href="/FSharp.Management/WMIProvider.html">WMIProvider</a></li>
+              <li><a href="/FSharp.Management/PowerShellProvider.html">PowerShellProvider</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <a href="http://github.com/forki/FSharp.Management"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub"></a>
+  </body>
+  </html>
