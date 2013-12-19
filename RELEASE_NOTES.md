@@ -1,3 +1,6 @@
+#### 0.0.3-alpha - 19.12.2013 
+* First version of the relative path type provider
+
 #### 0.0.2-alpha - 17.12.2013 
 * Include FSharp.Management.PowerShell.ExternalRuntime
 

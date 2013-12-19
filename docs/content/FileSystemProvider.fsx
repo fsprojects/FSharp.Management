@@ -29,7 +29,10 @@ Relative paths
 For web frameworks it's interesting to reference resources like images.
 With the help of the FileSystemProvider we can reference relative paths via intellisense and get compile time safety.
 
+![alt text](img/RelativeFileSystemProvider.png "Intellisense for the current subfolders")
+
 *)
+
 
 RelativePath.Img.``PowerShellProvider.png``
 // [fsi:val it : string = "C:\Code\FSharp.Management\docs\content\img\PowerShellProvider.png"]

@@ -58,6 +58,7 @@ let layoutRoots =
 
 // Copy static files and CSS + JS from F# Formatting
 let copyFiles () =
+  ensureDirectory (output @@ "img")
   CopyRecursive images (output @@ "img") true |> Log "Copying file: "
   ensureDirectory (output @@ "content")
   CopyRecursive (formatting @@ "content") (output @@ "content") true 
