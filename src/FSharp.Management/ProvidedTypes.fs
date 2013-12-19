@@ -1301,13 +1301,9 @@ type AssemblyGenerator(assemblyFileName) =
 #endif
     let typeMap = Dictionary<ProvidedTypeDefinition,TypeBuilder>(HashIdentity.Reference)
     let typeMapExtra = Dictionary<string,TypeBuilder>(HashIdentity.Structural)
-    let uniqueLambdaTypeName = 
-        let counter = ref 0
-        fun () -> 
-            let n = !counter 
-            incr counter 
-            sprintf "Lambda%d" n
-
+    let uniqueLambdaTypeName() = 
+        // lambda name should be unique across all types that all type provider might contribute in result assembly
+        sprintf "Lambda%O" (Guid.NewGuid()) 
     member __.Assembly = assembly :> Assembly
     /// Emit the given provided type definitions into an assembly and adjust 'Assembly' property of all type definitions to return that
     /// assembly.
@@ -1491,7 +1487,7 @@ type AssemblyGenerator(assemblyFileName) =
                 [ for ctorArg in implictCtorArgs -> 
                       tb.DefineField(ctorArg.Name, convType ctorArg.ParameterType, FieldAttributes.Private) ]
             
-            let rec emitLambda(callSiteIlg : ILGenerator, v : Quotations.Var, body : Quotations.Expr, freeVars : seq<Quotations.Var>, locals : Dictionary<_, LocalBuilder>) =
+            let rec emitLambda(callSiteIlg : ILGenerator, v : Quotations.Var, body : Quotations.Expr, freeVars : seq<Quotations.Var>, locals : Dictionary<_, LocalBuilder>, parameters) =
                 let lambda = assemblyMainModule.DefineType(uniqueLambdaTypeName(), TypeAttributes.Class)
                 let baseType = typedefof<FSharpFunc<_, _>>.MakeGenericType(v.Type, body.Type)
                 lambda.SetParent(baseType)
@@ -1526,7 +1522,12 @@ type AssemblyGenerator(assemblyFileName) =
                 callSiteIlg.Emit(OpCodes.Newobj, ctor)
                 for (v, f) in fields do
                     callSiteIlg.Emit(OpCodes.Dup)
-                    callSiteIlg.Emit(OpCodes.Ldloc, locals.[v])
+                    match locals.TryGetValue v with
+                    | true, loc -> 
+                        callSiteIlg.Emit(OpCodes.Ldloc, loc)
+                    | false, _ -> 
+                        let index = parameters |> Array.findIndex ((=) v)
+                        callSiteIlg.Emit(OpCodes.Ldarg, index)
                     callSiteIlg.Emit(OpCodes.Stfld, f)
 
             and emitExpr (ilg: ILGenerator, locals:Dictionary<Quotations.Var,LocalBuilder>, parameterVars) expectedState expr = 
@@ -1893,7 +1894,7 @@ type AssemblyGenerator(assemblyFileName) =
                         | false, _ -> 
                             failwith "unknown parameter/field in assignment. Only assignments to locals are currently supported by TypeProviderEmit"
                     | Quotations.Patterns.Lambda(v, body) ->
-                        emitLambda(ilg, v, body, expr.GetFreeVars(), locals)
+                        emitLambda(ilg, v, body, expr.GetFreeVars(), locals, parameterVars)
                         popIfEmptyExpected expectedState
                     | n -> 
                         failwith (sprintf "unknown expression '%A' in generated method" n)
@@ -2131,21 +2132,40 @@ type TypeProviderForNamespaces(namespacesAndTypes : list<(string * list<Provided
         [<CLIEvent>]
         override this.Invalidate = invalidateE.Publish
         override this.GetNamespaces() = Array.copy providedNamespaces.Value
-        member __.GetInvokerExpression(methodBase, parameters) = 
-            match methodBase with
-            | :? ProvidedMethod as m when (match methodBase.DeclaringType with :? ProvidedTypeDefinition as pt -> pt.IsErased | _ -> true) ->
-                m.GetInvokeCodeInternal false parameters
-            | :? ProvidedConstructor as m when (match methodBase.DeclaringType with :? ProvidedTypeDefinition as pt -> pt.IsErased | _ -> true) -> 
-                m.GetInvokeCodeInternal false parameters
-            // Otherwise, assume this is a generative assembly and just emit a call to the constructor or method
-            | :?  ConstructorInfo as cinfo ->  
-                Quotations.Expr.NewObject(cinfo, Array.toList parameters) 
-            | :? System.Reflection.MethodInfo as minfo ->  
-                if minfo.IsStatic then 
-                    Quotations.Expr.Call(minfo, Array.toList parameters) 
-                else
-                    Quotations.Expr.Call(parameters.[0], minfo, Array.toList parameters.[1..])
-            | _ -> failwith ("TypeProviderForNamespaces.GetInvokerExpression: not a ProvidedMethod/ProvidedConstructor/ConstructorInfo/MethodInfo, name=" + methodBase.Name + " class=" + methodBase.GetType().FullName)
+        member __.GetInvokerExpression(methodBase, parameters) =
+            let rec getInvokerExpression (methodBase : MethodBase) parameters =
+                match methodBase with
+                | :? ProvidedMethod as m when (match methodBase.DeclaringType with :? ProvidedTypeDefinition as pt -> pt.IsErased | _ -> true) ->
+                    m.GetInvokeCodeInternal false parameters
+                    |> expand
+                | :? ProvidedConstructor as m when (match methodBase.DeclaringType with :? ProvidedTypeDefinition as pt -> pt.IsErased | _ -> true) -> 
+                    m.GetInvokeCodeInternal false parameters
+                    |> expand
+                // Otherwise, assume this is a generative assembly and just emit a call to the constructor or method
+                | :?  ConstructorInfo as cinfo ->  
+                    Quotations.Expr.NewObject(cinfo, Array.toList parameters) 
+                | :? System.Reflection.MethodInfo as minfo ->  
+                    if minfo.IsStatic then 
+                        Quotations.Expr.Call(minfo, Array.toList parameters) 
+                    else
+                        Quotations.Expr.Call(parameters.[0], minfo, Array.toList parameters.[1..])
+                | _ -> failwith ("TypeProviderForNamespaces.GetInvokerExpression: not a ProvidedMethod/ProvidedConstructor/ConstructorInfo/MethodInfo, name=" + methodBase.Name + " class=" + methodBase.GetType().FullName)
+            and expand expr = 
+                match expr with
+                | Quotations.Patterns.NewObject(ctor, args) -> getInvokerExpression ctor [| for arg in args -> expand arg|]
+                | Quotations.Patterns.Call(inst, mi, args) ->
+                    let args = 
+                        [|
+                            match inst with
+                            | Some inst -> yield expand inst
+                            | _ -> ()
+                            yield! List.map expand args
+                        |]
+                    getInvokerExpression mi args
+                | Quotations.ExprShape.ShapeVar v -> Quotations.Expr.Var v
+                | Quotations.ExprShape.ShapeLambda(v, body) -> Quotations.Expr.Lambda(v, expand body)
+                | Quotations.ExprShape.ShapeCombination(shape, args) -> Quotations.ExprShape.RebuildShapeCombination(shape, List.map expand args)
+            getInvokerExpression methodBase parameters
 #if FX_NO_CUSTOMATTRIBUTEDATA
 
         member __.GetMemberCustomAttributesData(methodBase) = 
