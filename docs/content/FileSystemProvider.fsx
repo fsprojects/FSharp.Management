@@ -39,4 +39,4 @@ open FSharp.Management
 
 // browse the project
 RelativePath.Parent.Files.Img.``PowerShellProvider.png``
-// [fsi:val it : string = "D:\Dropbox\Code\FSharp.Management\docs\files\img\PowerShellProvider.png"]
+// [fsi:val it : string = "../docs/files/PowerShellProvider.png"]

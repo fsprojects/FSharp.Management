@@ -21,8 +21,7 @@ let (|Upper|_|) = satisfies Char.IsUpper
 let (|Lower|_|) = satisfies Char.IsLower
 
 /// Turns a string into a nice PascalCase identifier
-let niceName = 
-    let set = System.Collections.Generic.HashSet()
+let niceName (set:System.Collections.Generic.HashSet<_>) =     
     fun (s: string) ->
         if s = s.ToUpper() then s else
         // Starting to parse a new segment 
@@ -80,7 +79,11 @@ let findConfigFile resolutionFolder configFileName =
 let erasedType<'T> assemblyName rootNamespace typeName = 
     ProvidedTypeDefinition(assemblyName, rootNamespace, typeName, Some(typeof<'T>))
 
-let runtimeType<'T> typeName = ProvidedTypeDefinition(niceName typeName, Some typeof<'T>)
+let generalTypeSet = System.Collections.Generic.HashSet()
+
+let runtimeType<'T> typeName = ProvidedTypeDefinition(niceName generalTypeSet typeName, Some typeof<'T>)
+
+let nestedType<'T> typeSet typeName = ProvidedTypeDefinition(niceName typeSet typeName, Some typeof<'T>)
 
 let seqType ty = typedefof<seq<_>>.MakeGenericType[| ty |]
 let listType ty = typedefof<list<_>>.MakeGenericType[| ty |]

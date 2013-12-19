@@ -23,3 +23,5 @@ RelativePath.``WMI.Tests.fs`` |> ignore
 
 // access parent
 RelativePath.Parent.Path |> ignore
+
+RelativePath.Parent.Parent.Path |> ignore
