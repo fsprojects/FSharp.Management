@@ -10,6 +10,7 @@ open Fake.ReleaseNotesHelper
 open System
 
 let projects = [|"FSharp.Management"
+                 "FSharp.Management.PowerShell"
                  "FSharp.Management.PowerShell.ExternalRuntime"
                  "FSharp.Management.WMI"
                  "FSharp.Management.WMI.DesignTime"|]

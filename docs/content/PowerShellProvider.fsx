@@ -16,7 +16,7 @@ This tutorial shows the use of the PowerShell type provider.
 
 // reference the type provider dll
 #r "System.Management.Automation.dll"
-#r "FSharp.Management.dll"
+#r "FSharp.Management.PowerShell.dll"
 
 open FSharp.Management
 
@@ -40,7 +40,7 @@ PS.``Get-EventLog``(logName="Application", entryType=[|"Error"|], newest=2)
 // [fsi:        Index = 3861;]
 // [fsi:        InstanceId = 3221226495L;]
 // [fsi:        MachineName = "xxxxxxxxx";]
-// [fsi:        Message = "The description for Event ID '-1073740801' in Source 'Perflib' cannot be found.  The local computer may not have the necessary registry information or message DLL files to display the message, or you may not have permission to access them.  The following information is part of the event:'rdyboost', '4'";]
+// [fsi:        Message = "The description for Event ID '-1073740801' in Source 'Perflib' cannot be found...";]
 // [fsi:        ReplacementStrings = [|"rdyboost"; "4"|];]
 // [fsi:        Site = null;]
 // [fsi:        Source = "Perflib";]
