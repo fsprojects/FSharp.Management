@@ -35,7 +35,9 @@
           
 <h1>The FileSystem type provider</h1>
 
-<p>This tutorial shows the use of the file system type provider.</p>
+<p>This tutorial shows the use of the file system type provider. 
+It allows to browse your file system via Intellisense and provides compile time checks for directories and files.
+The FileSystem type provider invalidates itself whenever any child dirs/files changed in any way.</p>
 <table class="pre"><tr><td class="lines"><pre class="fssnip">
 <span class="l"> 1: </span>
 <span class="l"> 2: </span>
@@ -57,7 +59,7 @@
 <span class="c">// Let the type provider do it&#39;s work</span>
 <span class="k">type</span> <span onmouseout="hideTip(event, 'fs3', 3)" onmouseover="showTip(event, 'fs3', 3)" class="i">Users</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs4', 4)" onmouseover="showTip(event, 'fs4', 4)" class="i">FileSystem</span><span class="o">&lt;</span><span class="s">&quot;</span><span class="s">C</span><span class="s">:</span><span class="s">\\</span><span class="s">Users</span><span class="s">\\</span><span class="s">&quot;</span><span class="o">&gt;</span>
 
-<span class="c">// now you have typed access to your filesystem and you can browse it via Intellisense</span>
+<span class="c">// now you have typed access to your filesystem</span>
 <span onmouseout="hideTip(event, 'fs3', 5)" onmouseover="showTip(event, 'fs3', 5)" class="i">Users</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs5', 6)" onmouseover="showTip(event, 'fs5', 6)" class="i">AllUsers</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs6', 7)" onmouseover="showTip(event, 'fs6', 7)" class="i">Path</span> 
 <span class="fsi">val it : string = &quot;C:\Users\All Users&quot;</span></pre>
 </td>
