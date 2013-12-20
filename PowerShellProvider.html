@@ -100,7 +100,7 @@
 <td class="snippet"><pre class="fssnip">
 <span class="c">// reference the type provider dll</span>
 <span class="prep">#r</span> <span class="s">&quot;</span><span class="s">System</span><span class="s">.</span><span class="s">Management</span><span class="s">.</span><span class="s">Automation</span><span class="s">.</span><span class="s">dll</span><span class="s">&quot;</span>
-<span class="prep">#r</span> <span class="s">&quot;</span><span class="s">FSharp</span><span class="s">.</span><span class="s">Management</span><span class="s">.</span><span class="s">dll</span><span class="s">&quot;</span>
+<span class="prep">#r</span> <span class="s">&quot;</span><span class="s">FSharp</span><span class="s">.</span><span class="s">Management</span><span class="s">.</span><span class="s">PowerShell</span><span class="s">.</span><span class="s">dll</span><span class="s">&quot;</span>
 
 <span class="k">open</span> <span onmouseout="hideTip(event, 'fs1', 1)" onmouseover="showTip(event, 'fs1', 1)" class="i">FSharp</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs2', 2)" onmouseover="showTip(event, 'fs2', 2)" class="i">Management</span>
 
@@ -124,7 +124,7 @@
 <span class="fsi">        Index = 3861;</span>
 <span class="fsi">        InstanceId = 3221226495L;</span>
 <span class="fsi">        MachineName = &quot;xxxxxxxxx&quot;;</span>
-<span class="fsi">        Message = &quot;The description for Event ID &#39;-1073740801&#39; in Source &#39;Perflib&#39; cannot be found.  The local computer may not have the necessary registry information or message DLL files to display the message, or you may not have permission to access them.  The following information is part of the event:&#39;rdyboost&#39;, &#39;4&#39;&quot;;</span>
+<span class="fsi">        Message = &quot;The description for Event ID &#39;-1073740801&#39; in Source &#39;Perflib&#39; cannot be found...&quot;;</span>
 <span class="fsi">        ReplacementStrings = [|&quot;rdyboost&quot;; &quot;4&quot;|];</span>
 <span class="fsi">        Site = null;</span>
 <span class="fsi">        Source = &quot;Perflib&quot;;</span>
@@ -289,7 +289,7 @@
 <div class="tip" id="fs1">namespace FSharp</div>
 <div class="tip" id="fs2">namespace FSharp.Management</div>
 <div class="tip" id="fs3">type PS = PowerShellProvider&lt;...&gt;<br /><br />Full name: PowerShellProvider.PS</div>
-<div class="tip" id="fs4">Multiple items<br />namespace FSharp.Management.PowerShellProvider<br /><br />--------------------<br />type PowerShellProvider<br /><br />Full name: FSharp.Management.PowerShellProvider<br /><em><br /><br />&lt;summary&gt;Typed representation of a PowerShell runspace&lt;/summary&gt;<br />&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&lt;param name=&#39;PSSnapIns&#39;&gt;List of PSSnapIn that will be added at the start separated by semicolon.&lt;/param&gt;<br />&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&lt;param name=&#39;Is64BitRequired&#39;&gt;Mark that 64bit runtime should be used for PowerShell&lt;/param&gt;</em></div>
+<div class="tip" id="fs4">Multiple items<br />namespace FSharp.Management.PowerShellProvider<br /><br />--------------------<br />type PowerShellProvider<br /><br />Full name: FSharp.Management.PowerShellProvider<br /><em><br /><br />&lt;summary&gt;Typed representation of a PowerShell runspace&lt;/summary&gt;<br />&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&lt;param name=&#39;PSSnapIns&#39;&gt;List of PSSnapIn that will be added at the start separated by semicolon.&lt;/param&gt;<br />&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&lt;param name=&#39;Is64BitRequired&#39;&gt;Mark that 64bit runtime should be used for PowerShell&lt;/param&gt;</em></div>
 <div class="tip" id="fs5">val service : System.ServiceProcess.ServiceController<br /><br />Full name: PowerShellProvider.service</div>
 <div class="tip" id="fs6">union case Choice.Choice1Of2: &#39;T1 -&gt; Choice&lt;&#39;T1,&#39;T2&gt;</div>
 <div class="tip" id="fs7">val services : List&lt;System.ServiceProcess.ServiceController&gt;</div>
