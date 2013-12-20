@@ -14,9 +14,7 @@ type public SystemProvider(cfg:TypeProviderConfig) as this =
     let disposingEvent = Event<_>()
     let ctx = 
         { Disposing = disposingEvent.Publish
-          OnChanged = 
-            (fun _ -> 
-                this.Invalidate()) }
+          OnChanged = this.Invalidate }
     
     do this.AddNamespace(
         rootNamespace, 
