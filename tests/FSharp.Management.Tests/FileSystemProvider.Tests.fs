@@ -16,6 +16,10 @@ let ``Can access the default users path``() =
 
 [<Test>] 
 let ``Can access a relative path``() = 
+    RelativePath.Path |> should equal ""
+
+[<Test>] 
+let ``Can access a relative subfolder``() = 
     RelativePath.Bin.Path |> should equal "bin/"
 
 [<Test>] 

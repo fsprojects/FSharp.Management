@@ -29,7 +29,7 @@ let rec annotateDirectoryNode (ownerType: ProvidedTypeDefinition) (dir: Director
 
     let path = 
         match relative with
-        | Some sourcePath -> sourcePath + dir.Name + "/"
+        | Some sourcePath -> sourcePath
         | None -> dir.FullName
 
     let pathField = ProvidedLiteralField("Path",typeof<string>,path)
@@ -54,7 +54,7 @@ let rec annotateDirectoryNode (ownerType: ProvidedTypeDefinition) (dir: Director
             try
                 let path =
                     match relative with
-                    | Some sourcePath -> Some(sourcePath + dir.Name + "/")
+                    | Some sourcePath -> Some(sourcePath + subDir.Name + "/")
                     | None -> None
                 ownerType.AddMemberDelayed (createDirectoryNode typeSet subDir subDir.Name false path)
             with

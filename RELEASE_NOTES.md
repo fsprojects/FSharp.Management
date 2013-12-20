@@ -1,3 +1,6 @@
+#### 0.0.8-alpha - 20.12.2013
+* Fixed bug in relative path type provider
+
 #### 0.0.7-alpha - 20.12.2013
 * FileSystem type provider invalidates itself whenever any child dirs/files changed in any way
 
