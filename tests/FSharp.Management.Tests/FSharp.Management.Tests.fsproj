@@ -74,6 +74,9 @@
     <Reference Include="FSharp.Management.WMI">
       <HintPath>..\..\bin\FSharp.Management.WMI.dll</HintPath>
     </Reference>
+    <Reference Include="FSharp.Management.WMI.DesignTime">
+      <HintPath>..\..\bin\FSharp.Management.WMI.DesignTime.dll</HintPath>
+    </Reference>
     <Reference Include="FsUnit.NUnit">
       <HintPath>..\..\packages\FsUnit.1.2.1.0\Lib\Net40\FsUnit.NUnit.dll</HintPath>
       <Private>True</Private>
