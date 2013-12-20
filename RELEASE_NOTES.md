@@ -1,3 +1,6 @@
+#### 0.0.9-alpha - 20.12.2013
+* Delay for invalidation of the relative path type provider
+
 #### 0.0.8-alpha - 20.12.2013
 * Fixed bug in relative path type provider
 
