@@ -4,6 +4,10 @@ open System
 open System.IO
 open Samples.FSharp.ProvidedTypes
 
+type Context = 
+    { Disposing: IEvent<unit>
+      OnChanged: unit -> unit }
+
 // Active patterns & operators for parsing strings
 let (@?) (s:string) i = if i >= s.Length then None else Some s.[i]
 
