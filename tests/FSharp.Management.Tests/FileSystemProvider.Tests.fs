@@ -14,14 +14,18 @@ let ``Can create type for users path``() =
 let ``Can access the default users path``() = 
     Users.Default.Path |> should equal @"C:\Users\Default"
 
+[<Test>] 
+let ``Can access a relative path``() = 
+    RelativePath.Bin.Path |> should equal "bin/"
 
-// Access relative path
-RelativePath.Bin.Path |> ignore
+[<Test>] 
+let ``Can access a relative file``() =
+    RelativePath.``WMI.Tests.fs`` |> should equal "WMI.Tests.fs"
 
-// access a file
-RelativePath.``WMI.Tests.fs`` |> ignore
+[<Test>] 
+let ``Can access a parent dir``() =
+    RelativePath.Parent.Path |> should equal "../"
 
-// access parent
-RelativePath.Parent.Path |> ignore
-
-RelativePath.Parent.Parent.Path |> ignore
+[<Test>] 
+let ``Can access a parent's parent dir``() =
+    RelativePath.Parent.Parent.Path |> should equal "../../"
