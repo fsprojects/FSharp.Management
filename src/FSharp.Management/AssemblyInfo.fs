@@ -4,9 +4,9 @@ open System.Reflection
 [<assembly: AssemblyTitleAttribute("FSharp.Management")>]
 [<assembly: AssemblyProductAttribute("FSharp.Management")>]
 [<assembly: AssemblyDescriptionAttribute("Various type providers for management of the machine.")>]
-[<assembly: AssemblyVersionAttribute("0.0.10")>]
-[<assembly: AssemblyFileVersionAttribute("0.0.10")>]
+[<assembly: AssemblyVersionAttribute("0.0.11")>]
+[<assembly: AssemblyFileVersionAttribute("0.0.11")>]
 do ()
 
 module internal AssemblyVersionInformation =
-    let [<Literal>] Version = "0.0.10"
+    let [<Literal>] Version = "0.0.11"
