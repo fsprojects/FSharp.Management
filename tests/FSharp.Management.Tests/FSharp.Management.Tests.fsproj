@@ -72,7 +72,7 @@
       <HintPath>..\..\bin\FSharp.Management.dll</HintPath>
     </Reference>
     <Reference Include="FSharp.Management.PowerShell">
-      <HintPath>D:\Personal\GitHub\FSharp.Management\bin\FSharp.Management.PowerShell.dll</HintPath>
+      <HintPath>..\..\bin\FSharp.Management.PowerShell.dll</HintPath>
     </Reference>
     <Reference Include="FSharp.Management.WMI">
       <HintPath>..\..\bin\FSharp.Management.WMI.dll</HintPath>
