@@ -1,3 +1,6 @@
+#### 0.0.10-alpha - 20.12.2013
+* Caching of the WMI provider
+
 #### 0.0.9-alpha - 20.12.2013
 * Delay for invalidation of the relative path type provider
 

@@ -4,9 +4,9 @@ open System.Reflection
 [<assembly: AssemblyTitleAttribute("FSharp.Management.PowerShell.ExternalRuntime")>]
 [<assembly: AssemblyProductAttribute("FSharp.Management.PowerShell.ExternalRuntime")>]
 [<assembly: AssemblyDescriptionAttribute("Various type providers for management of the machine.")>]
-[<assembly: AssemblyVersionAttribute("0.0.9")>]
-[<assembly: AssemblyFileVersionAttribute("0.0.9")>]
+[<assembly: AssemblyVersionAttribute("0.0.10")>]
+[<assembly: AssemblyFileVersionAttribute("0.0.10")>]
 do ()
 
 module internal AssemblyVersionInformation =
-    let [<Literal>] Version = "0.0.9"
+    let [<Literal>] Version = "0.0.10"
