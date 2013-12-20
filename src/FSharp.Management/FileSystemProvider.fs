@@ -68,6 +68,7 @@ and createDirectoryNode typeSet (dir: DirectoryInfo) propertyName =
     annotateDirectoryNode (nestedType<obj> typeSet propertyName) dir propertyName
 
 let watch dir ctx =
+    let lastChanged = ref None
     let watcher = 
         new FileSystemWatcher(
                 Path.GetFullPath dir, IncludeSubdirectories = true,
@@ -76,7 +77,10 @@ let watch dir ctx =
                                 NotifyFilters.Size ||| 
                                 NotifyFilters.DirectoryName |||
                                 NotifyFilters.FileName))
-    let onChanged = (fun _ -> ctx.OnChanged())
+    let onChanged = (fun _ -> 
+        match !lastChanged with
+        | Some time when DateTime.Now - time <= TimeSpan.FromSeconds 1. -> ()
+        | _ -> lastChanged := Some DateTime.Now; ctx.OnChanged())
     watcher.Changed.Add onChanged
     watcher.Deleted.Add onChanged
     watcher.Renamed.Add onChanged
