@@ -5,7 +5,9 @@
 The FileSystem type provider
 ============================
 
-This tutorial shows the use of the file system type provider.
+This tutorial shows the use of the file system type provider. 
+It allows to browse your file system via Intellisense and provides compile time checks for directories and files.
+The FileSystem type provider invalidates itself whenever any child dirs/files changed in any way.
 *)
 
 // reference the type provider dll
@@ -15,7 +17,7 @@ open FSharp.Management
 // Let the type provider do it's work
 type Users = FileSystem<"C:\\Users\\">
 
-// now you have typed access to your filesystem and you can browse it via Intellisense
+// now you have typed access to your filesystem
 Users.AllUsers.Path 
 // [fsi:val it : string = "C:\Users\All Users"]
 
