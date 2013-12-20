@@ -48,14 +48,16 @@
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '33', 33)" onmouseover="showTip(event, '33', 33)">
-            new ProvidedAssembly
+          <code onmouseout="hideTip(event, '36', 36)" onmouseover="showTip(event, '36', 36)">
+            new(assemblyFileName)
           </code>
-          <div class="tip" id="33">
+          <div class="tip" id="36">
             <strong>Signature:</strong>assemblyFileName:string -&gt; ProvidedAssembly<br />
                       </div>
         </td>
-        <td class="xmldoc"></td>
+        <td class="xmldoc">
+        
+        </td>
       </tr>
     </tbody>
   </table>
@@ -68,32 +70,36 @@
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '39', 39)" onmouseover="showTip(event, '39', 39)">
-            providedAssembly.AddNestedTypes(...)
+          <code onmouseout="hideTip(event, '37', 37)" onmouseover="showTip(event, '37', 37)">
+            AddNestedTypes(...)
           </code>
-          <div class="tip" id="39">
+          <div class="tip" id="37">
             <strong>Signature:</strong>(types:ProvidedTypeDefinition list * enclosingGeneratedTypeNames:string list) -&gt; unit<br />
                       </div>
         </td>
-        <td class="xmldoc"></td>
+        <td class="xmldoc">
+        
+        </td>
       </tr>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '40', 40)" onmouseover="showTip(event, '40', 40)">
-            providedAssembly.AddTypes(types)
+          <code onmouseout="hideTip(event, '38', 38)" onmouseover="showTip(event, '38', 38)">
+            AddTypes(types)
           </code>
-          <div class="tip" id="40">
+          <div class="tip" id="38">
             <strong>Signature:</strong>(types:ProvidedTypeDefinition list) -&gt; unit<br />
                       </div>
         </td>
-        <td class="xmldoc"><p>Emit the given provided type definitions as part of the assembly 
+        <td class="xmldoc">
+        <p>Emit the given provided type definitions as part of the assembly 
 and adjust the 'Assembly' property of all provided type definitions to return that
 assembly.</p>
 
 <p>The assembly is only emitted when the Assembly property on the root type is accessed for the first time.
 The host F# compiler does this when processing a generative type declaration for the type.</p>
-</td>
+
+        </td>
       </tr>
     </tbody>
   </table>
@@ -106,15 +112,17 @@ The host F# compiler does this when processing a generative type declaration for
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '41', 41)" onmouseover="showTip(event, '41', 41)">
-            ProvidedAssembly.RegisterGenerated(...)
+          <code onmouseout="hideTip(event, '43', 43)" onmouseover="showTip(event, '43', 43)">
+            RegisterGenerated(fileName)
           </code>
-          <div class="tip" id="41">
+          <div class="tip" id="43">
             <strong>Signature:</strong>fileName:string -&gt; Assembly<br />
                       </div>
         </td>
-        <td class="xmldoc"><p>Register that a given file is a provided generated assembly</p>
-</td>
+        <td class="xmldoc">
+        <p>Register that a given file is a provided generated assembly</p>
+
+        </td>
       </tr>
     </tbody>
   </table>

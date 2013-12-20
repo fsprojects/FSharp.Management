@@ -38,6 +38,7 @@
 <p>This tutorial shows the use of the file system type provider. 
 It allows to browse your file system via Intellisense and provides compile time checks for directories and files.
 The FileSystem type provider invalidates itself whenever any child dirs/files changed in any way.</p>
+
 <table class="pre"><tr><td class="lines"><pre class="fssnip">
 <span class="l"> 1: </span>
 <span class="l"> 2: </span>
@@ -64,7 +65,9 @@ The FileSystem type provider invalidates itself whenever any child dirs/files ch
 <span class="fsi">val it : string = &quot;C:\Users\All Users&quot;</span></pre>
 </td>
 </tr>
-</table><p><img src="img/FileSystemProvider.png" alt="alt text" title="Intellisense for the file system" /></p>
+</table>
+
+<p><img src="img/FileSystemProvider.png" alt="alt text" title="Intellisense for the file system" /></p>
 
 <h2>Relative paths</h2>
 
@@ -72,6 +75,7 @@ The FileSystem type provider invalidates itself whenever any child dirs/files ch
 With the help of the FileSystemProvider we can browse the project via Intellisense and get compile time safety for relative paths.</p>
 
 <p><img src="img/RelativeFileSystemProvider.png" alt="alt text" title="Intellisense for the current subfolders" /></p>
+
 <table class="pre"><tr><td class="lines"><pre class="fssnip">
 <span class="l">1: </span>
 <span class="l">2: </span>
@@ -93,6 +97,7 @@ With the help of the FileSystemProvider we can browse the project via Intellisen
 </td>
 </tr>
 </table>
+
 <div class="tip" id="fs1">namespace FSharp</div>
 <div class="tip" id="fs2">namespace FSharp.Management</div>
 <div class="tip" id="fs3">type Users = FileSystem&lt;...&gt;<br /><br />Full name: FileSystemProvider.Users</div>
