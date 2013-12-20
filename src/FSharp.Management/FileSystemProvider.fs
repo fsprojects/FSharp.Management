@@ -81,7 +81,7 @@ let watch dir ctx =
         match !lastChanged with
         | Some time when DateTime.Now - time <= TimeSpan.FromSeconds 1. -> ()
         | _ -> lastChanged := Some DateTime.Now; ctx.OnChanged())
-    watcher.Changed.Add onChanged
+    
     watcher.Deleted.Add onChanged
     watcher.Renamed.Add onChanged
     watcher.Created.Add onChanged
