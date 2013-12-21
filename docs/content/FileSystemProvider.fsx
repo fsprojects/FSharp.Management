@@ -18,7 +18,7 @@ open FSharp.Management
 type Users = FileSystem<"C:\\Users\\">
 
 // now you have typed access to your filesystem
-Users.AllUsers.Path 
+Users.``All Users``.Path 
 // [fsi:val it : string = "C:\Users\All Users"]
 
 (**
@@ -40,5 +40,5 @@ With the help of the FileSystemProvider we can browse the project via Intellisen
 open FSharp.Management
 
 // browse the project
-RelativePath.Parent.Files.Img.``PowerShellProvider.png``
+RelativePath.Parent.files.img.``PowerShellProvider.png``
 // [fsi:val it : string = "../docs/files/PowerShellProvider.png"]

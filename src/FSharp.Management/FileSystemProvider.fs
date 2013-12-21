@@ -35,6 +35,9 @@ let GetRelativePath fromPath toPath =
     let path = Uri.UnescapeDataString(relative.ToString())
     path.Replace(Path.AltDirectorySeparatorChar, Path.DirectorySeparatorChar)
     
+let nestedTypeWithoutNiceName<'T> typeName = 
+    ProvidedTypeDefinition(typeName, Some typeof<'T>)
+
 let createFileProperties (dir:DirectoryInfo,dirNodeType:ProvidedTypeDefinition,relative) =
     try
         for file in dir.EnumerateFiles() do
@@ -90,7 +93,7 @@ let rec annotateDirectoryNode (ownerType: ProvidedTypeDefinition) (dir: Director
     ownerType 
 
 and createDirectoryNode typeSet (dir: DirectoryInfo) propertyName relative =
-    annotateDirectoryNode (nestedType<obj> typeSet propertyName) dir propertyName relative
+    annotateDirectoryNode (nestedTypeWithoutNiceName<obj> propertyName) dir propertyName relative
 
 let watch dir ctx =
     let lastChanged = ref None

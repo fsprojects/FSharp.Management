@@ -25,7 +25,7 @@ let ``Can access the default users path via relative path``() =
 
 [<Test>]
 let ``Can access the bin folder within the project``() =
-    RelativePath.Bin.Path |> should equal @"bin\"
+    RelativePath.bin.Path |> should equal @"bin\"
 
 [<Test>]
 let ``Can access a relative path``() = 
