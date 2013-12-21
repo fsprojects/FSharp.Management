@@ -18,8 +18,8 @@ open FSharp.Management
 type Users = FileSystem<"C:\\Users\\">
 
 // now you have typed access to your filesystem
-Users.``All Users``.Path 
-// [fsi:val it : string = "C:\Users\All Users"]
+Users.``All Users``.Path
+// [fsi:val it : string = "C:\Users\All Users\"]
 
 (**
 
@@ -41,4 +41,4 @@ open FSharp.Management
 
 // browse the project
 RelativePath.Parent.files.img.``PowerShellProvider.png``
-// [fsi:val it : string = "../docs/files/PowerShellProvider.png"]
+// [fsi:val it : string = "..\files\img\PowerShellProvider.png"
