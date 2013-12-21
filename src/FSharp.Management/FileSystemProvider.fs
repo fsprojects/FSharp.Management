@@ -6,30 +6,35 @@ open FSharp.Management.Helper
 open System
 open System.IO
 
-// This is used to create proper relative paths.  Unfortunately, there is no managed API for it
-let FILE_ATTRIBUTE_DIRECTORY = 0x10
-let FILE_ATTRIBUTE_NORMAL = 0x80
-let MAX_PATH_LENGTH = 260
-[<System.Runtime.InteropServices.DllImport("shlwapi.dll", SetLastError = true)>]
-extern int PathRelativePathTo(System.Text.StringBuilder pszPath, string pszFrom, int dwAttrFrom, string pszTo, int dwAttrTo)
+type PathType =
+    | Directory
+    | File
 
-// Determine whether a token is a file or directory
-let GetPathAttribute path =
-    if Directory.Exists(path) then FILE_ATTRIBUTE_DIRECTORY
-    else if File.Exists(path) then FILE_ATTRIBUTE_NORMAL
-    else failwith "Could not find specified file or path"
+let getPathType path =
+    if Directory.Exists(path) then Directory
+    else if File.Exists(path) then File
+    else failwith (sprintf "Path [%s] does not exist" path)
 
+let fixDirectoryPath path =
+    if path = "" then
+        "."
+    else if path.EndsWith(Path.AltDirectorySeparatorChar.ToString()) || path.EndsWith(Path.DirectorySeparatorChar.ToString()) then path
+    else path + Path.DirectorySeparatorChar.ToString()
+
+let fixPath path =
+    let t = getPathType path
+    match t with
+    | File -> path
+    | Directory -> fixDirectoryPath path
 
 let GetRelativePath fromPath toPath =
-    let fromAttr = GetPathAttribute fromPath
-    let toAttr = GetPathAttribute toPath
+    let fromUri = Uri(fixPath fromPath)
+    let toUri = Uri(fixPath toPath)
 
-    let path = System.Text.StringBuilder(MAX_PATH_LENGTH)
-    let test = PathRelativePathTo(path, fromPath, fromAttr, toPath,toAttr)
-    if test = 0 then raise(System.ArgumentException(sprintf "Paths [%s] and [%s] must have a root path" fromPath toPath))
-    path.ToString()
+    let relative = fromUri.MakeRelativeUri toUri
+    let path = Uri.UnescapeDataString(relative.ToString())
+    path.Replace(Path.AltDirectorySeparatorChar, Path.DirectorySeparatorChar)
     
-
 let createFileProperties (dir:DirectoryInfo,dirNodeType:ProvidedTypeDefinition,relative) =
     try
         for file in dir.EnumerateFiles() do
@@ -53,8 +58,8 @@ let rec annotateDirectoryNode (ownerType: ProvidedTypeDefinition) (dir: Director
 
     let path = 
         match relative with
-        | Some sourcePath -> GetRelativePath sourcePath dir.FullName
-        | None -> dir.FullName
+        | Some sourcePath -> fixDirectoryPath <| GetRelativePath sourcePath dir.FullName
+        | None -> fixDirectoryPath dir.FullName
 
     let pathField = ProvidedLiteralField("Path",typeof<string>,path)
     pathField.AddXmlDoc(sprintf "Path to '%s'" path)
@@ -67,9 +72,9 @@ let rec annotateDirectoryNode (ownerType: ProvidedTypeDefinition) (dir: Director
         try
             let path =
                 match relative with
-                | Some sourcePath -> Some(sourcePath + "../")
+                | Some sourcePath -> Some((fixDirectoryPath sourcePath) + "..\\")
                 | None -> None
-            ownerType.AddMember (createDirectoryNode typeSet dir.Parent "Parent" withParent path ())
+            ownerType.AddMember (createDirectoryNode typeSet dir.Parent "Parent" withParent relative ())
         with
         | exn -> ()
 
