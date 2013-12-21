@@ -5,7 +5,6 @@ open NUnit.Framework
 open FsUnit
 
 type Users = FileSystem<"C:\\Users\\">
-
 type RelativeUsers = FileSystem<"C:\\Users", "C:\\Users">
 
 [<Test>] 
@@ -15,6 +14,10 @@ let ``Can create type for users path``() =
 [<Test>] 
 let ``Can access the default users path``() = 
     Users.Default.Path |> should equal @"C:\Users\Default"
+
+[<Test>]
+let ``Can access the users path via relative path``() =
+    RelativeUsers.Path |> should equal "."
 
 [<Test>]
 let ``Can access the default users path via relative path``() =
