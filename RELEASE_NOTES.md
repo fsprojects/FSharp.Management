@@ -1,3 +1,6 @@
+#### 0.0.12-alpha - 21.12.2013
+* Allows specification of a "root" folder in FileSystem type provider
+
 #### 0.0.11-alpha - 20.12.2013
 * Separate project for the powershell provider
 
