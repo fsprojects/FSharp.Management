@@ -57,9 +57,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\FSharp.Management\FSharp.Management.fsproj">
-      <Name>FSharp.Management</Name>
-      <Project>{7e90d6ce-a10b-4858-a5bc-41df7250cbca}</Project>
+    <ProjectReference Include="..\FSharp.Management.PowerShell\FSharp.Management.PowerShell.fsproj">
+      <Name>FSharp.Management.PowerShell</Name>
+      <Project>{04ee2403-5410-4ca5-ae4f-99015f1ab105}</Project>
       <Private>True</Private>
     </ProjectReference>
   </ItemGroup>

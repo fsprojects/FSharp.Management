@@ -10,7 +10,7 @@ type RelativeUsers = FileSystem<"C:\\Users", "C:\\Users">
 
 [<Test>] 
 let ``Can create type for users path``() = 
-    Users.Path |> should equal @"C:\Users\"
+    Users.Path |> should equal @"C:\Users\"    
 
 [<Test>] 
 let ``Can access the default users path``() = 
@@ -24,13 +24,22 @@ let ``Can access the default users path via relative path``() =
 let ``Can access the bin folder within the project``() =
     RelativePath.Bin.Path |> should equal @".\bin"
 
-// Access relative path
-RelativePath.Bin.Path |> ignore
+[<Test>]
+let ``Can access a relative path``() = 
+    RelativePath.Path |> should equal @"."
 
-// access a file
-RelativePath.``WMI.Tests.fs`` |> ignore
+[<Test>] 
+let ``Can access a relative subfolder``() = 
+    RelativePath.Bin.Path |> should equal @".\bin"
 
-// access parent
-RelativePath.Parent.Path |> ignore
+[<Test>] 
+let ``Can access a relative file``() =
+    RelativePath.``WMI.Tests.fs`` |> should equal @".\WMI.Tests.fs"
 
-RelativePath.Parent.Parent.Path |> ignore
+[<Test>] 
+let ``Can access a parent dir``() =
+    RelativePath.Parent.Path |> should equal @".."
+
+[<Test>] 
+let ``Can access a parent's parent dir``() =
+    RelativePath.Parent.Parent.Path |> should equal @"..\.."

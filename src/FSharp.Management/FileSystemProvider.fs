@@ -3,6 +3,7 @@ module internal FSharp.Management.FilesTypeProvider
 
 open Samples.FSharp.ProvidedTypes
 open FSharp.Management.Helper
+open System
 open System.IO
 
 // This is used to create proper relative paths.  Unfortunately, there is no managed API for it
@@ -46,7 +47,7 @@ let createFileProperties (dir:DirectoryInfo,dirNodeType:ProvidedTypeDefinition,r
     with
     | exn -> ()
 
-let rec annotateDirectoryNode (ownerType:ProvidedTypeDefinition,dir:DirectoryInfo,propertyName,withParent,relative) =
+let rec annotateDirectoryNode (ownerType: ProvidedTypeDefinition) (dir: DirectoryInfo) propertyName withParent relative () =
     ownerType.HideObjectMethods <- true
     ownerType.AddXmlDoc(sprintf "A strongly typed interface to '%s'" dir.FullName)
 
@@ -68,14 +69,14 @@ let rec annotateDirectoryNode (ownerType:ProvidedTypeDefinition,dir:DirectoryInf
                 match relative with
                 | Some sourcePath -> Some(sourcePath + "../")
                 | None -> None
-            ownerType.AddMember (createDirectoryNode(typeSet,dir.Parent,"Parent",withParent,path) ())
+            ownerType.AddMember (createDirectoryNode typeSet dir.Parent "Parent" withParent path ())
         with
         | exn -> ()
 
     try
         for subDir in dir.EnumerateDirectories() do
             try
-                ownerType.AddMemberDelayed (createDirectoryNode(typeSet,subDir,subDir.Name,false,relative))
+                ownerType.AddMemberDelayed (createDirectoryNode typeSet subDir subDir.Name false relative)
             with
             | exn -> ()
     with
@@ -83,14 +84,40 @@ let rec annotateDirectoryNode (ownerType:ProvidedTypeDefinition,dir:DirectoryInf
 
     ownerType 
 
-and createDirectoryNode (typeSet,dir:DirectoryInfo,propertyName,withParent,relative) () =
-    annotateDirectoryNode (nestedType<obj> typeSet propertyName,dir,propertyName,withParent,relative)
+and createDirectoryNode typeSet (dir: DirectoryInfo) propertyName relative =
+    annotateDirectoryNode (nestedType<obj> typeSet propertyName) dir propertyName relative
 
-let createRelativePathSystem(resolutionFolder: string) =
+let watch dir ctx =
+    let lastChanged = ref None
+    let watcher = 
+        new FileSystemWatcher(
+                Path.GetFullPath dir, IncludeSubdirectories = true,
+                NotifyFilter = (NotifyFilters.CreationTime ||| 
+                                NotifyFilters.LastWrite ||| 
+                                NotifyFilters.Size ||| 
+                                NotifyFilters.DirectoryName |||
+                                NotifyFilters.FileName))
+    let onChanged = (fun _ -> 
+        match !lastChanged with
+        | Some time when DateTime.Now - time <= TimeSpan.FromSeconds 1. -> ()
+        | _ -> lastChanged := Some DateTime.Now; ctx.OnChanged())
+    
+    watcher.Deleted.Add onChanged
+    watcher.Renamed.Add onChanged
+    watcher.Created.Add onChanged
+    watcher.Error.Add onChanged
+    watcher.EnableRaisingEvents <- true
+    ctx.Disposing.Add watcher.Dispose
+
+let createRootType typeName (dir: DirectoryInfo) withParent relative ctx =
+    watch dir.FullName ctx
+    annotateDirectoryNode (erasedType<obj> thisAssembly rootNamespace typeName) dir dir.FullName withParent relative ()
+    
+let createRelativePathSystem (resolutionFolder: string) ctx =
     let dir = new DirectoryInfo(resolutionFolder)
-    annotateDirectoryNode (erasedType<obj> thisAssembly rootNamespace "RelativePath",dir,dir.FullName,true,Some resolutionFolder)
+    createRootType "RelativePath" dir true (Some resolutionFolder) ctx
 
-let createTypedFileSystem() =  
+let createTypedFileSystem ctx =  
     let typedFileSystem = erasedType<obj> thisAssembly rootNamespace "FileSystem"
 
     typedFileSystem.DefineStaticParameters(
@@ -103,7 +130,7 @@ let createTypedFileSystem() =
                     match relativePath with
                     | "" -> None
                     | _ -> Some relativePath
-                annotateDirectoryNode (erasedType<obj> thisAssembly rootNamespace typeName,dir,dir.FullName,false,relative)
+                createRootType typeName dir false relative ctx
             | _ -> failwith "Wrong static parameters to type provider"))
             
     typedFileSystem

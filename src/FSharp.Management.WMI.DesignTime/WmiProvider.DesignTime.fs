@@ -6,6 +6,7 @@
 namespace FSharp.Management.DesignTime
 
 open System
+open System.Collections.Generic
 open System.Linq.Expressions
 open System.Management 
 open System.Reflection
@@ -111,6 +112,16 @@ module internal CimTypeHelpers =
             else ty, id
         | ty -> 
             cimToNetType ty, id
+
+module private Cache =
+    let instance = Dictionary()
+    let internal memoize f x =
+        match instance.TryGetValue x with
+        | true, x -> x
+        | _ -> 
+            let res = f x
+            instance.[x] <- res
+            res
 
 [<TypeProvider>]
 type public WmiExtender(config : TypeProviderConfig) as this = 
@@ -424,7 +435,8 @@ type public WmiExtender(config : TypeProviderConfig) as this =
                                     ProvidedStaticParameter("Namespace", typeof<string>, @"root\cimv2") 
                                     ProvidedStaticParameter("Locale", typeof<string>, "MS_409") ], (fun typeName staticArgs -> 
                match staticArgs with 
-               | [| :? string as machineName; :? string as nmSpace; :? string as locale |] -> machineType (locale, typeName, machineName, nmSpace)
+               | [| :? string as machineName; :? string as nmSpace; :? string as locale |] -> 
+                    (Cache.memoize machineType) (locale, typeName, machineName, nmSpace)
                | _ -> failwith (sprintf "unexpected shape for static arguments: %A" staticArgs)))
         let helpText = 
            """<summary>Accesses management information using the schema of the indicated machine. Use 'localhost' for the local machine.</summary>
