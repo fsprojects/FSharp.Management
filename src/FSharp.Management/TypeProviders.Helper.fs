@@ -86,8 +86,7 @@ let erasedType<'T> assemblyName rootNamespace typeName =
 let generalTypeSet = System.Collections.Generic.HashSet()
 
 let runtimeType<'T> typeName = ProvidedTypeDefinition(niceName generalTypeSet typeName, Some typeof<'T>)
-
-let nestedType<'T> typeSet typeName = ProvidedTypeDefinition(niceName typeSet typeName, Some typeof<'T>)
+let nestedType<'T> typeSet typeName = ProvidedTypeDefinition(typeName, Some typeof<'T>)
 
 let seqType ty = typedefof<seq<_>>.MakeGenericType[| ty |]
 let listType ty = typedefof<list<_>>.MakeGenericType[| ty |]

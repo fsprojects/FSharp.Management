@@ -6,13 +6,42 @@ open FSharp.Management.Helper
 open System
 open System.IO
 
+type PathType =
+    | Directory
+    | File
+
+let getPathType path =
+    if Directory.Exists(path) then Directory
+    else if File.Exists(path) then File
+    else failwith (sprintf "Path [%s] does not exist" path)
+
+let fixDirectoryPath path =
+    if path = "" then
+        "."
+    else if path.EndsWith(Path.AltDirectorySeparatorChar.ToString()) || path.EndsWith(Path.DirectorySeparatorChar.ToString()) then path
+    else path + Path.DirectorySeparatorChar.ToString()
+
+let fixPath path =
+    let t = getPathType path
+    match t with
+    | File -> path
+    | Directory -> fixDirectoryPath path
+
+let GetRelativePath fromPath toPath =
+    let fromUri = Uri(fixPath fromPath)
+    let toUri = Uri(fixPath toPath)
+
+    let relative = fromUri.MakeRelativeUri toUri
+    let path = Uri.UnescapeDataString(relative.ToString())
+    path.Replace(Path.AltDirectorySeparatorChar, Path.DirectorySeparatorChar)
+    
 let createFileProperties (dir:DirectoryInfo,dirNodeType:ProvidedTypeDefinition,relative) =
     try
         for file in dir.EnumerateFiles() do
             try
                 let path = 
                     match relative with
-                    | Some sourcePath -> sourcePath + file.Name
+                    | Some sourcePath -> GetRelativePath sourcePath file.FullName
                     | None -> file.FullName
                 
                 let pathField = ProvidedLiteralField(file.Name,typeof<string>,path)
@@ -29,8 +58,8 @@ let rec annotateDirectoryNode (ownerType: ProvidedTypeDefinition) (dir: Director
 
     let path = 
         match relative with
-        | Some sourcePath -> sourcePath
-        | None -> dir.FullName
+        | Some sourcePath -> fixDirectoryPath <| GetRelativePath sourcePath dir.FullName
+        | None -> fixDirectoryPath dir.FullName
 
     let pathField = ProvidedLiteralField("Path",typeof<string>,path)
     pathField.AddXmlDoc(sprintf "Path to '%s'" path)
@@ -43,20 +72,16 @@ let rec annotateDirectoryNode (ownerType: ProvidedTypeDefinition) (dir: Director
         try
             let path =
                 match relative with
-                | Some sourcePath -> Some(sourcePath + "../")
+                | Some sourcePath -> Some((fixDirectoryPath sourcePath) + "..\\")
                 | None -> None
-            ownerType.AddMember (createDirectoryNode typeSet dir.Parent "Parent" withParent path ())
+            ownerType.AddMember (createDirectoryNode typeSet dir.Parent "Parent" withParent relative ())
         with
         | exn -> ()
 
     try
         for subDir in dir.EnumerateDirectories() do
             try
-                let path =
-                    match relative with
-                    | Some sourcePath -> Some(sourcePath + subDir.Name + "/")
-                    | None -> None
-                ownerType.AddMemberDelayed (createDirectoryNode typeSet subDir subDir.Name false path)
+                ownerType.AddMemberDelayed (createDirectoryNode typeSet subDir subDir.Name false relative)
             with
             | exn -> ()
     with
@@ -64,8 +89,8 @@ let rec annotateDirectoryNode (ownerType: ProvidedTypeDefinition) (dir: Director
 
     ownerType 
 
-and createDirectoryNode typeSet (dir: DirectoryInfo) propertyName =
-    annotateDirectoryNode (nestedType<obj> typeSet propertyName) dir propertyName
+and createDirectoryNode typeSet (dir: DirectoryInfo) propertyName relative =
+    annotateDirectoryNode (nestedType<obj> typeSet propertyName) dir propertyName relative
 
 let watch dir ctx =
     let lastChanged = ref None
@@ -93,20 +118,24 @@ let createRootType typeName (dir: DirectoryInfo) withParent relative ctx =
     watch dir.FullName ctx
     annotateDirectoryNode (erasedType<obj> thisAssembly rootNamespace typeName) dir dir.FullName withParent relative ()
     
-let createRelativePathSystem (resolutionFolder: string) =
+let createRelativePathSystem (resolutionFolder: string) ctx =
     let dir = new DirectoryInfo(resolutionFolder)
-    createRootType "RelativePath" dir true (Some "")
+    createRootType "RelativePath" dir true (Some resolutionFolder) ctx
 
 let createTypedFileSystem ctx =  
     let typedFileSystem = erasedType<obj> thisAssembly rootNamespace "FileSystem"
 
     typedFileSystem.DefineStaticParameters(
-        parameters = [ProvidedStaticParameter("path", typeof<string>)], 
+        parameters = [ ProvidedStaticParameter("path", typeof<string>); ProvidedStaticParameter("relativeTo", typeof<string>, "")], 
         instantiationFunction = (fun typeName parameterValues ->
-            match parameterValues with 
-            | [| :? string as path |] ->
+            match parameterValues with
+            | [| :? string as path; :? string as relativePath |] -> 
                 let dir = new DirectoryInfo(path)
-                createRootType typeName dir false None ctx))
-
+                let relative = 
+                    match relativePath with
+                    | "" -> None
+                    | _ -> Some relativePath
+                createRootType typeName dir false relative ctx
+            | _ -> failwith "Wrong static parameters to type provider"))
+            
     typedFileSystem
-
