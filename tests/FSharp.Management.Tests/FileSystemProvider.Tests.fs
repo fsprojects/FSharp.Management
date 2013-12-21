@@ -33,7 +33,7 @@ let ``Can access a relative path``() =
 
 [<Test>] 
 let ``Can access a relative subfolder``() = 
-    RelativePath.Bin.Path |> should equal @"bin\"
+    RelativePath.bin.Path |> should equal @"bin\"
 
 [<Test>] 
 let ``Can access a relative file``() =
