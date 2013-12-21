@@ -6,6 +6,9 @@ open FSharp.Management.Helper
 open System
 open System.IO
 
+let nestedTypeWithoutNiceName<'T> typeName = 
+    ProvidedTypeDefinition(typeName, Some typeof<'T>)
+
 let createFileProperties (dir:DirectoryInfo,dirNodeType:ProvidedTypeDefinition,relative) =
     try
         for file in dir.EnumerateFiles() do
@@ -65,7 +68,7 @@ let rec annotateDirectoryNode (ownerType: ProvidedTypeDefinition) (dir: Director
     ownerType 
 
 and createDirectoryNode typeSet (dir: DirectoryInfo) propertyName =
-    annotateDirectoryNode (nestedType<obj> typeSet propertyName) dir propertyName
+    annotateDirectoryNode (nestedTypeWithoutNiceName<obj> propertyName) dir propertyName
 
 let watch dir ctx =
     let lastChanged = ref None
