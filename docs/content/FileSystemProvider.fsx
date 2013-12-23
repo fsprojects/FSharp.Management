@@ -15,15 +15,29 @@ The FileSystem type provider invalidates itself whenever any child dirs/files ch
 open FSharp.Management
 
 // Let the type provider do it's work
-type Users = FileSystem<"C:\\Users\\">
+type Users = FileSystem<"C:\\Users">
 
 // now you have typed access to your filesystem
-Users.``All Users``.Path
 // [fsi:val it : string = "C:\Users\All Users\"]
+Users.``All Users``.Path
 
 (**
 
 ![alt text](img/FileSystemProvider.png "Intellisense for the file system")
+
+The FileSystem type provider also allows a second, optional parameter to be specified which provides a relative 
+root path for the returned paths.  The above example could be written without referencing the drive in the
+resulting paths via:
+*)
+
+// Let the type provider do it's work
+type UsersWithoutDrive = FileSystem<"C:\\Users", "C:">
+
+// now you have typed access to your filesystem
+UsersWithoutDrive.``All Users``.Path
+// [fsi:val it : string = "Users\All Users\"]
+
+(**
 
 Relative paths
 --------------
