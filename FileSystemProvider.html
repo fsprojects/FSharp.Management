@@ -58,7 +58,7 @@ The FileSystem type provider invalidates itself whenever any child dirs/files ch
 <span class="k">open</span> <span onmouseout="hideTip(event, 'fs1', 1)" onmouseover="showTip(event, 'fs1', 1)" class="i">FSharp</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs2', 2)" onmouseover="showTip(event, 'fs2', 2)" class="i">Management</span>
 
 <span class="c">// Let the type provider do it&#39;s work</span>
-<span class="k">type</span> <span onmouseout="hideTip(event, 'fs3', 3)" onmouseover="showTip(event, 'fs3', 3)" class="i">Users</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs4', 4)" onmouseover="showTip(event, 'fs4', 4)" class="i">FileSystem</span><span class="o">&lt;</span><span class="s">&quot;</span><span class="s">C</span><span class="s">:</span><span class="s">\\</span><span class="s">Users</span><span class="s">\\</span><span class="s">&quot;</span><span class="o">&gt;</span>
+<span class="k">type</span> <span onmouseout="hideTip(event, 'fs3', 3)" onmouseover="showTip(event, 'fs3', 3)" class="i">Users</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs4', 4)" onmouseover="showTip(event, 'fs4', 4)" class="i">FileSystem</span><span class="o">&lt;</span><span class="s">&quot;</span><span class="s">C</span><span class="s">:</span><span class="s">\\</span><span class="s">Users</span><span class="s">&quot;</span><span class="o">&gt;</span>
 
 <span class="c">// now you have typed access to your filesystem</span>
 <span onmouseout="hideTip(event, 'fs3', 5)" onmouseover="showTip(event, 'fs3', 5)" class="i">Users</span><span class="o">.</span><span class="i">``All Users``</span><span class="o">.</span><span class="i">Path</span>
@@ -68,6 +68,30 @@ The FileSystem type provider invalidates itself whenever any child dirs/files ch
 </table>
 
 <p><img src="img/FileSystemProvider.png" alt="alt text" title="Intellisense for the file system" /></p>
+
+<p>The FileSystem type provider also allows a second, optional parameter to be specified which provides a relative 
+root path for the returned paths.  The above example could be written without referencing the drive in the
+resulting paths via:</p>
+
+<table class="pre"><tr><td class="lines"><pre class="fssnip">
+<span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+<span class="l">4: </span>
+<span class="l">5: </span>
+<span class="l">6: </span>
+</pre>
+</td>
+<td class="snippet"><pre class="fssnip">
+<span class="c">// Let the type provider do it&#39;s work</span>
+<span class="k">type</span> <span onmouseout="hideTip(event, 'fs5', 6)" onmouseover="showTip(event, 'fs5', 6)" class="i">UsersWithoutDrive</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs4', 7)" onmouseover="showTip(event, 'fs4', 7)" class="i">FileSystem</span><span class="o">&lt;</span><span class="s">&quot;</span><span class="s">C</span><span class="s">:</span><span class="s">\\</span><span class="s">Users</span><span class="s">&quot;</span>, <span class="s">&quot;</span><span class="s">C</span><span class="s">:</span><span class="s">&quot;</span><span class="o">&gt;</span>
+
+<span class="c">// now you have typed access to your filesystem</span>
+<span onmouseout="hideTip(event, 'fs5', 8)" onmouseover="showTip(event, 'fs5', 8)" class="i">UsersWithoutDrive</span><span class="o">.</span><span class="i">``All Users``</span><span class="o">.</span><span class="i">Path</span>
+<span class="fsi">val it : string = &quot;Users\All Users\&quot;</span></pre>
+</td>
+</tr>
+</table>
 
 <h2>Relative paths</h2>
 
@@ -89,10 +113,10 @@ With the help of the FileSystemProvider we can browse the project via Intellisen
 <td class="snippet"><pre class="fssnip">
 <span class="c">// reference the type provider dll</span>
 <span class="prep">#r</span> <span class="s">&quot;</span><span class="s">FSharp</span><span class="s">.</span><span class="s">Management</span><span class="s">.</span><span class="s">dll</span><span class="s">&quot;</span>
-<span class="k">open</span> <span onmouseout="hideTip(event, 'fs1', 6)" onmouseover="showTip(event, 'fs1', 6)" class="i">FSharp</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs2', 7)" onmouseover="showTip(event, 'fs2', 7)" class="i">Management</span>
+<span class="k">open</span> <span onmouseout="hideTip(event, 'fs1', 9)" onmouseover="showTip(event, 'fs1', 9)" class="i">FSharp</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs2', 10)" onmouseover="showTip(event, 'fs2', 10)" class="i">Management</span>
 
 <span class="c">// browse the project</span>
-<span onmouseout="hideTip(event, 'fs5', 8)" onmouseover="showTip(event, 'fs5', 8)" class="i">RelativePath</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs6', 9)" onmouseover="showTip(event, 'fs6', 9)" class="i">Parent</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs7', 10)" onmouseover="showTip(event, 'fs7', 10)" class="i">files</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs8', 11)" onmouseover="showTip(event, 'fs8', 11)" class="i">img</span><span class="o">.</span><span class="i">``PowerShellProvider.png``</span>
+<span onmouseout="hideTip(event, 'fs6', 11)" onmouseover="showTip(event, 'fs6', 11)" class="i">RelativePath</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs7', 12)" onmouseover="showTip(event, 'fs7', 12)" class="i">Parent</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs8', 13)" onmouseover="showTip(event, 'fs8', 13)" class="i">files</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs9', 14)" onmouseover="showTip(event, 'fs9', 14)" class="i">img</span><span class="o">.</span><span class="i">``PowerShellProvider.png``</span>
 <span class="c">// [fsi:val it : string = &quot;..\files\img\PowerShellProvider.png&quot;</span></pre>
 </td>
 </tr>
@@ -102,10 +126,11 @@ With the help of the FileSystemProvider we can browse the project via Intellisen
 <div class="tip" id="fs2">namespace FSharp.Management</div>
 <div class="tip" id="fs3">type Users = FileSystem&lt;...&gt;<br /><br />Full name: FileSystemProvider.Users</div>
 <div class="tip" id="fs4">type FileSystem<br /><br />Full name: FSharp.Management.FileSystem</div>
-<div class="tip" id="fs5">type RelativePath =<br />&#160;&#160;static val ``FileSystemProvider.fsx`` : string<br />&#160;&#160;static val Path : string<br />&#160;&#160;static val ``PowerShellProvider.fsx`` : string<br />&#160;&#160;static val ``RegistryProvider.fsx`` : string<br />&#160;&#160;static val ``WMIProvider.fsx`` : string<br />&#160;&#160;static val ``index.fsx`` : string<br />&#160;&#160;nested type Parent<br /><br />Full name: FSharp.Management.RelativePath<br /><em><br /><br />A strongly typed interface to &#39;C:\Users\Steffen\Dropbox\Code\FSharp.Management\docs\content&#39;</em></div>
-<div class="tip" id="fs6">type Parent =<br />&#160;&#160;static val Path : string<br />&#160;&#160;nested type Parent<br />&#160;&#160;nested type content<br />&#160;&#160;nested type files<br />&#160;&#160;nested type output<br />&#160;&#160;nested type tools<br /><br />Full name: FSharp.Management.RelativePath.Parent<br /><em><br /><br />A strongly typed interface to &#39;C:\Users\Steffen\Dropbox\Code\FSharp.Management\docs&#39;</em></div>
-<div class="tip" id="fs7">type files =<br />&#160;&#160;static val Path : string<br />&#160;&#160;nested type img<br /><br />Full name: FSharp.Management.RelativePath.Parent.files<br /><em><br /><br />A strongly typed interface to &#39;C:\Users\Steffen\Dropbox\Code\FSharp.Management\docs\files&#39;</em></div>
-<div class="tip" id="fs8">type img =<br />&#160;&#160;static val ``FileSystemProvider.png`` : string<br />&#160;&#160;static val Path : string<br />&#160;&#160;static val ``PowerShellProvider.png`` : string<br />&#160;&#160;static val ``RegistryProvider.png`` : string<br />&#160;&#160;static val ``RelativeFileSystemProvider.png`` : string<br />&#160;&#160;static val ``WMIProvider.png`` : string<br /><br />Full name: FSharp.Management.RelativePath.Parent.files.img<br /><em><br /><br />A strongly typed interface to &#39;C:\Users\Steffen\Dropbox\Code\FSharp.Management\docs\files\img&#39;</em></div>
+<div class="tip" id="fs5">type UsersWithoutDrive = FileSystem&lt;...&gt;<br /><br />Full name: FileSystemProvider.UsersWithoutDrive</div>
+<div class="tip" id="fs6">type RelativePath =<br />&#160;&#160;static val ``FileSystemProvider.fsx`` : string<br />&#160;&#160;static val Path : string<br />&#160;&#160;static val ``PowerShellProvider.fsx`` : string<br />&#160;&#160;static val ``RegistryProvider.fsx`` : string<br />&#160;&#160;static val ``WMIProvider.fsx`` : string<br />&#160;&#160;static val ``index.fsx`` : string<br />&#160;&#160;nested type Parent<br /><br />Full name: FSharp.Management.RelativePath<br /><em><br /><br />A strongly typed interface to &#39;C:\Users\Steffen\Dropbox\Code\FSharp.Management\docs\content&#39;</em></div>
+<div class="tip" id="fs7">type Parent =<br />&#160;&#160;static val Path : string<br />&#160;&#160;nested type Parent<br />&#160;&#160;nested type content<br />&#160;&#160;nested type files<br />&#160;&#160;nested type output<br />&#160;&#160;nested type tools<br /><br />Full name: FSharp.Management.RelativePath.Parent<br /><em><br /><br />A strongly typed interface to &#39;C:\Users\Steffen\Dropbox\Code\FSharp.Management\docs&#39;</em></div>
+<div class="tip" id="fs8">type files =<br />&#160;&#160;static val Path : string<br />&#160;&#160;nested type img<br /><br />Full name: FSharp.Management.RelativePath.Parent.files<br /><em><br /><br />A strongly typed interface to &#39;C:\Users\Steffen\Dropbox\Code\FSharp.Management\docs\files&#39;</em></div>
+<div class="tip" id="fs9">type img =<br />&#160;&#160;static val ``FileSystemProvider.png`` : string<br />&#160;&#160;static val Path : string<br />&#160;&#160;static val ``PowerShellProvider.png`` : string<br />&#160;&#160;static val ``RegistryProvider.png`` : string<br />&#160;&#160;static val ``RelativeFileSystemProvider.png`` : string<br />&#160;&#160;static val ``WMIProvider.png`` : string<br /><br />Full name: FSharp.Management.RelativePath.Parent.files.img<br /><em><br /><br />A strongly typed interface to &#39;C:\Users\Steffen\Dropbox\Code\FSharp.Management\docs\files\img&#39;</em></div>
 
         </div>
         <div class="span3">
