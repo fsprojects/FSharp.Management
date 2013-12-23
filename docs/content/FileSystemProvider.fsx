@@ -18,8 +18,8 @@ open FSharp.Management
 type Users = FileSystem<"C:\\Users">
 
 // now you have typed access to your filesystem
-// [fsi:val it : string = "C:\Users\All Users\"]
 Users.``All Users``.Path
+// [fsi:val it : string = "C:\Users\All Users\"]
 
 (**
 
