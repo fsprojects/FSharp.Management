@@ -1,3 +1,6 @@
+#### 0.0.13-alpha - 24.12.2013
+* Parent property in FileSystem type provider is lazy
+
 #### 0.0.12-alpha - 21.12.2013
 * Allows specification of a "root" folder in FileSystem type provider
 
