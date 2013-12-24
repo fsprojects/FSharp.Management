@@ -31,7 +31,7 @@ resulting paths via:
 *)
 
 // Let the type provider do it's work
-type UsersWithoutDrive = FileSystem<"C:\\Users", "C:">
+type UsersWithoutDrive = FileSystem<"C:\\Users", relativeTo = "C:">
 
 // now you have typed access to your filesystem
 UsersWithoutDrive.``All Users``.Path
