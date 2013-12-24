@@ -70,11 +70,7 @@ let rec annotateDirectoryNode (ownerType: ProvidedTypeDefinition) (dir: Director
     
     if withParent && dir.Parent <> null then
         try
-            let path =
-                match relative with
-                | Some sourcePath -> Some((fixDirectoryPath sourcePath) + "..\\")
-                | None -> None
-            ownerType.AddMemberDelayed (createDirectoryNode typeSet dir.Parent "Parent" withParent relative)
+            ownerType.AddMemberDelayed (createDirectoryNode typeSet dir.Parent ".." withParent relative)
         with
         | exn -> ()
 
