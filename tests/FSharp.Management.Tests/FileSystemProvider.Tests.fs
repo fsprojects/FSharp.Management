@@ -52,8 +52,8 @@ let ``Can access a relative file``() =
 
 [<Test>] 
 let ``Can access a parent dir``() =
-    Relative.Parent.Path |> should equal @"..\"
+    Relative.``..``.Path |> should equal @"..\"
 
 [<Test>] 
 let ``Can access a parent's parent dir``() =
-    Relative.Parent.Parent.Path |> should equal @"..\..\"
+    Relative.``..``.``..``.Path |> should equal @"..\..\"

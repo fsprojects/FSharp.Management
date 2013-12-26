@@ -97,7 +97,7 @@ let rec annotateDirectoryNode (ownerType: ProvidedTypeDefinition) (dir: Director
                 match relative with
                 | Some sourcePath -> Some((fixDirectoryPath sourcePath) + "..\\")
                 | None -> None
-            ownerType.AddMemberDelayed (createDirectoryNode typeSet dir.Parent "Parent" withParent relative ctx)
+            ownerType.AddMemberDelayed (createDirectoryNode typeSet dir.Parent ".." withParent relative ctx)
         with
         | exn -> ()
 
