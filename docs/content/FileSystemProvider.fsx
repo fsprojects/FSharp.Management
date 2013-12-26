@@ -54,5 +54,5 @@ With the help of the FileSystemProvider we can browse the project via Intellisen
 open FSharp.Management
 
 // browse the project
-RelativePath.Parent.files.img.``PowerShellProvider.png``
+RelativePath.``..``.files.img.``PowerShellProvider.png``
 // [fsi:val it : string = "..\files\img\PowerShellProvider.png"
