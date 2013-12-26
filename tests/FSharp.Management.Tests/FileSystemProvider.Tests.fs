@@ -7,8 +7,8 @@ open FsUnit
 type Users = FileSystem<"C:\\Users">
 type RelativeUsers = FileSystem<"C:\\Users", "C:\\Users">
 
-type RelativePathL = RelativePath<"">
-type RelativePathB = RelativePath<"bin">
+type Relative = RelativePath<"">
+type RelativeToBin = RelativePath<"bin">
 
 [<Test>]
 let ``Can create type for users path``() = 
@@ -28,25 +28,32 @@ let ``Can access the default users path via relative path``() =
 
 [<Test>]
 let ``Can access the bin folder within the project``() =
-    RelativePath<"">.bin.Path |> should equal @"bin\"
+    Relative.bin.Path |> should equal @"bin\"
+
+[<Test>]
+let ``Can access the bin folder via \".\" in RelativePath provider``() =
+    RelativePath<".">.bin.Path |> should equal @"bin\"
 
 [<Test>]
 let ``Can access a relative path``() =
-    RelativePathL.Path |> should equal @"."
+    Relative.Path |> should equal @"."
 
 [<Test>] 
 let ``Can access a relative subfolder``() =
-    RelativePathL.bin.Path |> should equal @"bin\"
-    RelativePathB.Debug.Path |> should equal @"Debug\"
+    Relative.bin.Path |> should equal @"bin\"
+
+[<Test>]
+let ``Can access a relative subfolder relative to .\\bin``() =
+    RelativeToBin.Debug.Path |> should equal @"Debug\"
 
 [<Test>] 
 let ``Can access a relative file``() =
-    RelativePathL.``WMI.Tests.fs`` |> should equal @"WMI.Tests.fs"
+    Relative.``WMI.Tests.fs`` |> should equal @"WMI.Tests.fs"
 
 [<Test>] 
 let ``Can access a parent dir``() =
-    RelativePathL.Parent.Path |> should equal @"..\"
+    Relative.Parent.Path |> should equal @"..\"
 
 [<Test>] 
 let ``Can access a parent's parent dir``() =
-    RelativePathL.Parent.Parent.Path |> should equal @"..\..\"
+    Relative.Parent.Parent.Path |> should equal @"..\..\"

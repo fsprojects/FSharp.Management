@@ -124,12 +124,17 @@ let createRelativePathSystem (resolutionFolder: string) ctx =
     let relativeFileSystem = erasedType<obj> thisAssembly rootNamespace "RelativePath"
 
     relativeFileSystem.DefineStaticParameters(
-        parameters = [ ProvidedStaticParameter("relativeTo", typeof<string>, ".")], 
+        parameters = [ ProvidedStaticParameter("relativeTo", typeof<string>)], 
         instantiationFunction = (fun typeName parameterValues ->
             match parameterValues with
-            | [| :? string as relativePath |] -> 
-                let folder = Path.GetFullPath(Path.Combine(resolutionFolder, relativePath))
-                createRootType typeName (new DirectoryInfo(folder)) true (Some folder) ctx
+            | [| :? string as relativePath |] ->                 
+                let folder = 
+                    match relativePath with
+                    | "" | "." -> Path.GetFullPath(resolutionFolder)
+                    | _ -> Path.GetFullPath(Path.Combine(resolutionFolder, relativePath))
+                match Directory.Exists(folder) with
+                | false -> failwith (sprintf "Specified directory [%s] could not be found" folder)
+                | true -> createRootType typeName (new DirectoryInfo(folder)) true (Some folder) ctx
             | _ -> failwith "Wrong static parameters to type provider"))
             
     relativeFileSystem
@@ -147,7 +152,9 @@ let createTypedFileSystem ctx =
                     match relativePath with
                     | "" -> None
                     | _ -> Some relativePath
-                createRootType typeName dir false relative ctx
+                match Directory.Exists(path) with
+                | false -> failwith (sprintf "Specified directory [%s] could not be found" path)
+                | true -> createRootType typeName dir false relative ctx
             | _ -> failwith "Wrong static parameters to type provider"))
             
     typedFileSystem
