@@ -53,8 +53,9 @@
     <Compile Include="ProvidedTypes.fs" />
     <Compile Include="TypeProviders.Helper.fs" />
     <Compile Include="FileSystemProvider.fs" />
+    <Compile Include="CommonFolders.fs" />
     <Compile Include="RegistryProvider.fs" />
-    <Compile Include="SystemProvider.fs" />
+    <Compile Include="SystemTypeProviders.fs" />
   </ItemGroup>
   <PropertyGroup>
     <MinimumVisualStudioVersion Condition="'$(MinimumVisualStudioVersion)' == ''">11</MinimumVisualStudioVersion>
