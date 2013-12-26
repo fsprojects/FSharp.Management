@@ -45,17 +45,15 @@ let ``Windows system folder should contain kernel32.dll``() =
 
 // Application  Tests
 [<Test>]
-let ``FSharpManangement  path should contain tests\\FSharp.Manangement.Tests\\bin``() =     
+let ``FSharpManangement path should contain tests\\FSharp.Manangement.Tests\\bin``() =     
     let path = CommonFolders.GetApplication ApplicationPath.FSharpManagementLocation
     let tempFolder = System.IO.Path.GetTempPath()
     path |> should contain "tests\\FSharp.Management.Tests\\bin"
 
 [<Test>]
-let ``FSharpManangement shadow copied  path should contain FSharp.Manangement.Tests and Temp Folder``() =     
+let ``FSharpManangement shadow copied path should contain FSharp.Manangement.Tests``() =     
     let path = CommonFolders.GetApplication ApplicationPath.FSharpManagementShadowCopiedLocation
-    let tempFolder = System.IO.Path.GetTempPath()
     path |> should contain "FSharp.Management.Tests"
-    path |> should contain tempFolder
 
 // Unfortunatley, most test runners fail to load the entry point assembly properly.  This may be VS, or nunit, etc, but requires
 // special care to test properly
