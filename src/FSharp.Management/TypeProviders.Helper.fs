@@ -4,9 +4,25 @@ open System
 open System.IO
 open Samples.FSharp.ProvidedTypes
 
-type Context = 
-    { Disposing: IEvent<unit>
-      OnChanged: unit -> unit }
+type Context (onChanged : unit -> unit) = 
+    let disposingEvent = Event<_>()
+    let lastChanged = ref (DateTime.Now.AddSeconds -1.0)
+    let sync = obj()
+
+    let trigger() =
+        let shouldTrigger = lock sync (fun _ ->
+            match !lastChanged with
+            | time when DateTime.Now - time <= TimeSpan.FromSeconds 1. -> false
+            | _ -> 
+                lastChanged := DateTime.Now
+                true
+            )
+        if shouldTrigger then onChanged()
+
+    member this.Disposing: IEvent<unit> = disposingEvent.Publish
+    member this.Trigger = trigger
+    interface IDisposable with
+        member x.Dispose() = disposingEvent.Trigger()
 
 // Active patterns & operators for parsing strings
 let (@?) (s:string) i = if i >= s.Length then None else Some s.[i]

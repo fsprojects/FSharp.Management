@@ -35,6 +35,28 @@ let GetRelativePath fromPath toPath =
     let path = Uri.UnescapeDataString(relative.ToString())
     path.Replace(Path.AltDirectorySeparatorChar, Path.DirectorySeparatorChar)
 
+let watch dir (ctx : Context) =    
+    let watcher = 
+        new FileSystemWatcher(
+                Path.GetFullPath dir, IncludeSubdirectories = false,
+                NotifyFilter = (NotifyFilters.CreationTime ||| 
+                                NotifyFilters.LastWrite ||| 
+                                NotifyFilters.Size ||| 
+                                NotifyFilters.DirectoryName |||
+                                NotifyFilters.FileName))
+    let onChanged = (fun _ -> ctx.Trigger())
+    
+    try
+        watcher.Deleted.Add onChanged
+        watcher.Renamed.Add onChanged
+        watcher.Created.Add onChanged
+        watcher.Error.Add onChanged
+        watcher.EnableRaisingEvents <- true
+        ctx.Disposing.Add watcher.Dispose
+    with
+    | exn ->
+        watcher.Dispose()
+
 let createFileProperties (dir:DirectoryInfo,dirNodeType:ProvidedTypeDefinition,relative) =
     try
         for file in dir.EnumerateFiles() do
@@ -52,7 +74,8 @@ let createFileProperties (dir:DirectoryInfo,dirNodeType:ProvidedTypeDefinition,r
     with
     | exn -> ()
 
-let rec annotateDirectoryNode (ownerType: ProvidedTypeDefinition) (dir: DirectoryInfo) propertyName withParent relative () =
+let rec annotateDirectoryNode (ownerType: ProvidedTypeDefinition) (dir: DirectoryInfo) propertyName withParent relative ctx () =
+    watch dir.FullName ctx
     ownerType.HideObjectMethods <- true
     ownerType.AddXmlDoc(sprintf "A strongly typed interface to '%s'" dir.FullName)
 
@@ -74,14 +97,16 @@ let rec annotateDirectoryNode (ownerType: ProvidedTypeDefinition) (dir: Director
                 match relative with
                 | Some sourcePath -> Some((fixDirectoryPath sourcePath) + "..\\")
                 | None -> None
-            ownerType.AddMemberDelayed (createDirectoryNode typeSet dir.Parent ".." withParent relative)
+            ownerType.AddMemberDelayed (createDirectoryNode typeSet dir.Parent ".." withParent relative ctx)
         with
         | exn -> ()
 
     try
         for subDir in dir.EnumerateDirectories() do
             try
-                ownerType.AddMemberDelayed (createDirectoryNode typeSet subDir subDir.Name false relative)
+                let name = subDir.Name // Pull out name first to verify permissions
+                let fullName = subDir.FullName
+                ownerType.AddMemberDelayed (createDirectoryNode typeSet subDir name false relative ctx)
             with
             | exn -> ()
     with
@@ -89,38 +114,30 @@ let rec annotateDirectoryNode (ownerType: ProvidedTypeDefinition) (dir: Director
 
     ownerType 
 
-and createDirectoryNode typeSet (dir: DirectoryInfo) propertyName relative =
-    annotateDirectoryNode (ProvidedTypeDefinition(propertyName, Some typeof<obj>)) dir propertyName relative
-
-let watch dir ctx =
-    let lastChanged = ref None
-    let watcher = 
-        new FileSystemWatcher(
-                Path.GetFullPath dir, IncludeSubdirectories = true,
-                NotifyFilter = (NotifyFilters.CreationTime ||| 
-                                NotifyFilters.LastWrite ||| 
-                                NotifyFilters.Size ||| 
-                                NotifyFilters.DirectoryName |||
-                                NotifyFilters.FileName))
-    let onChanged = (fun _ -> 
-        match !lastChanged with
-        | Some time when DateTime.Now - time <= TimeSpan.FromSeconds 1. -> ()
-        | _ -> lastChanged := Some DateTime.Now; ctx.OnChanged())
-    
-    watcher.Deleted.Add onChanged
-    watcher.Renamed.Add onChanged
-    watcher.Created.Add onChanged
-    watcher.Error.Add onChanged
-    watcher.EnableRaisingEvents <- true
-    ctx.Disposing.Add watcher.Dispose
+and createDirectoryNode typeSet (dir: DirectoryInfo) propertyName withParent relative ctx =
+    annotateDirectoryNode (ProvidedTypeDefinition(propertyName, Some typeof<obj>)) dir propertyName withParent relative ctx
 
 let createRootType typeName (dir: DirectoryInfo) withParent relative ctx =
-    watch dir.FullName ctx
-    annotateDirectoryNode (erasedType<obj> thisAssembly rootNamespace typeName) dir dir.FullName withParent relative ()
+    annotateDirectoryNode (erasedType<obj> thisAssembly rootNamespace typeName) dir dir.FullName withParent relative ctx ()
     
 let createRelativePathSystem (resolutionFolder: string) ctx =
-    let dir = new DirectoryInfo(resolutionFolder)
-    createRootType "RelativePath" dir true (Some resolutionFolder) ctx
+    let relativeFileSystem = erasedType<obj> thisAssembly rootNamespace "RelativePath"
+
+    relativeFileSystem.DefineStaticParameters(
+        parameters = [ ProvidedStaticParameter("relativeTo", typeof<string>)], 
+        instantiationFunction = (fun typeName parameterValues ->
+            match parameterValues with
+            | [| :? string as relativePath |] ->                 
+                let folder = 
+                    match relativePath with
+                    | "" | "." -> Path.GetFullPath(resolutionFolder)
+                    | _ -> Path.GetFullPath(Path.Combine(resolutionFolder, relativePath))
+                match Directory.Exists(folder) with
+                | false -> failwith (sprintf "Specified directory [%s] could not be found" folder)
+                | true -> createRootType typeName (new DirectoryInfo(folder)) true (Some folder) ctx
+            | _ -> failwith "Wrong static parameters to type provider"))
+            
+    relativeFileSystem
 
 let createTypedFileSystem ctx =  
     let typedFileSystem = erasedType<obj> thisAssembly rootNamespace "FileSystem"
@@ -135,7 +152,9 @@ let createTypedFileSystem ctx =
                     match relativePath with
                     | "" -> None
                     | _ -> Some relativePath
-                createRootType typeName dir false relative ctx
+                match Directory.Exists(path) with
+                | false -> failwith (sprintf "Specified directory [%s] could not be found" path)
+                | true -> createRootType typeName dir false relative ctx
             | _ -> failwith "Wrong static parameters to type provider"))
             
     typedFileSystem

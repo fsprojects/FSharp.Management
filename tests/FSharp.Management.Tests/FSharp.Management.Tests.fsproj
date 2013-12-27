@@ -62,6 +62,7 @@
   <ItemGroup>
     <Compile Include="FsUnit.fs" />
     <Compile Include="FileSystemProvider.Tests.fs" />
+    <Compile Include="CommonFolders.Tests.fs" />
     <Compile Include="RegistryProvider.Tests.fs" />
     <Compile Include="PowerShellProvider.Tests.fs" />
     <Compile Include="WMI.Tests.fs" />
