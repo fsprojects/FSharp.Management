@@ -35,7 +35,7 @@ let GetRelativePath fromPath toPath =
     let path = Uri.UnescapeDataString(relative.ToString())
     path.Replace(Path.AltDirectorySeparatorChar, Path.DirectorySeparatorChar)
 
-let watch dir (ctx : Context) =    
+let watchDir dir (ctx : Context) =    
     let watcher = 
         new FileSystemWatcher(
                 Path.GetFullPath dir, IncludeSubdirectories = false,
@@ -74,8 +74,10 @@ let createFileProperties (dir:DirectoryInfo,dirNodeType:ProvidedTypeDefinition,r
     with
     | exn -> ()
 
-let rec annotateDirectoryNode (ownerType: ProvidedTypeDefinition) (dir: DirectoryInfo) propertyName withParent relative ctx () =
-    watch dir.FullName ctx
+let rec annotateDirectoryNode (ownerType: ProvidedTypeDefinition) (dir: DirectoryInfo) propertyName withParent relative watch ctx () =
+    if watch then
+        watchDir dir.FullName ctx
+
     ownerType.HideObjectMethods <- true
     ownerType.AddXmlDoc(sprintf "A strongly typed interface to '%s'" dir.FullName)
 
@@ -97,7 +99,7 @@ let rec annotateDirectoryNode (ownerType: ProvidedTypeDefinition) (dir: Director
                 match relative with
                 | Some sourcePath -> Some((fixDirectoryPath sourcePath) + "..\\")
                 | None -> None
-            ownerType.AddMemberDelayed (createDirectoryNode typeSet dir.Parent ".." withParent relative ctx)
+            ownerType.AddMemberDelayed (createDirectoryNode typeSet dir.Parent ".." withParent relative watch ctx)
         with
         | exn -> ()
 
@@ -106,7 +108,7 @@ let rec annotateDirectoryNode (ownerType: ProvidedTypeDefinition) (dir: Director
             try
                 let name = subDir.Name // Pull out name first to verify permissions
                 let fullName = subDir.FullName
-                ownerType.AddMemberDelayed (createDirectoryNode typeSet subDir name false relative ctx)
+                ownerType.AddMemberDelayed (createDirectoryNode typeSet subDir name false relative watch ctx)
             with
             | exn -> ()
     with
@@ -114,27 +116,29 @@ let rec annotateDirectoryNode (ownerType: ProvidedTypeDefinition) (dir: Director
 
     ownerType 
 
-and createDirectoryNode typeSet (dir: DirectoryInfo) propertyName withParent relative ctx =
-    annotateDirectoryNode (ProvidedTypeDefinition(propertyName, Some typeof<obj>)) dir propertyName withParent relative ctx
+and createDirectoryNode typeSet (dir: DirectoryInfo) propertyName withParent relative watch ctx =
+    annotateDirectoryNode (ProvidedTypeDefinition(propertyName, Some typeof<obj>)) dir propertyName withParent relative watch ctx
 
-let createRootType typeName (dir: DirectoryInfo) withParent relative ctx =
-    annotateDirectoryNode (erasedType<obj> thisAssembly rootNamespace typeName) dir dir.FullName withParent relative ctx ()
+let createRootType typeName (dir: DirectoryInfo) withParent relative watch ctx =
+    annotateDirectoryNode (erasedType<obj> thisAssembly rootNamespace typeName) dir dir.FullName withParent relative watch ctx ()
     
 let createRelativePathSystem (resolutionFolder: string) ctx =
     let relativeFileSystem = erasedType<obj> thisAssembly rootNamespace "RelativePath"
 
     relativeFileSystem.DefineStaticParameters(
-        parameters = [ ProvidedStaticParameter("relativeTo", typeof<string>)], 
+        parameters = 
+            [ ProvidedStaticParameter("relativeTo", typeof<string>)
+              ProvidedStaticParameter("watch", typeof<bool>, false) ], 
         instantiationFunction = (fun typeName parameterValues ->
             match parameterValues with
-            | [| :? string as relativePath |] ->                 
+            | [| :? string as relativePath; :? bool as watch |] ->                 
                 let folder = 
                     match relativePath with
                     | "" | "." -> Path.GetFullPath(resolutionFolder)
                     | _ -> Path.GetFullPath(Path.Combine(resolutionFolder, relativePath))
                 match Directory.Exists(folder) with
                 | false -> failwith (sprintf "Specified directory [%s] could not be found" folder)
-                | true -> createRootType typeName (new DirectoryInfo(folder)) true (Some folder) ctx
+                | true -> createRootType typeName (new DirectoryInfo(folder)) true (Some folder) watch ctx
             | _ -> failwith "Wrong static parameters to type provider"))
             
     relativeFileSystem
@@ -143,10 +147,13 @@ let createTypedFileSystem ctx =
     let typedFileSystem = erasedType<obj> thisAssembly rootNamespace "FileSystem"
 
     typedFileSystem.DefineStaticParameters(
-        parameters = [ ProvidedStaticParameter("path", typeof<string>); ProvidedStaticParameter("relativeTo", typeof<string>, "")], 
+        parameters = 
+            [ ProvidedStaticParameter("path", typeof<string>)
+              ProvidedStaticParameter("relativeTo", typeof<string>, "")
+              ProvidedStaticParameter("watch", typeof<bool>, false) ], 
         instantiationFunction = (fun typeName parameterValues ->
             match parameterValues with
-            | [| :? string as path; :? string as relativePath |] -> 
+            | [| :? string as path; :? string as relativePath; :? bool as watch |] -> 
                 let dir = new DirectoryInfo(path)
                 let relative = 
                     match relativePath with
@@ -154,7 +161,7 @@ let createTypedFileSystem ctx =
                     | _ -> Some relativePath
                 match Directory.Exists(path) with
                 | false -> failwith (sprintf "Specified directory [%s] could not be found" path)
-                | true -> createRootType typeName dir false relative ctx
+                | true -> createRootType typeName dir false relative watch ctx
             | _ -> failwith "Wrong static parameters to type provider"))
             
     typedFileSystem
