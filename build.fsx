@@ -17,7 +17,7 @@ let projects = [|"FSharp.Management"
 
 let summary = "Various type providers for management of the machine."
 let description = "Various type providers for management of the machine."
-let authors = ["Steffen Forkmann"; "Sergey Tihon"; "Daniel Mohl"; "Tomas Petricek"; "Ryan Riley"; "Mauricio Scheffer"; "Phil Trelford" ]
+let authors = ["Steffen Forkmann"; "Sergey Tihon"; "Daniel Mohl"; "Tomas Petricek"; "Ryan Riley"; "Mauricio Scheffer"; "Phil Trelford"; "Vasily Kirichenko"; "Reed Copsey, Jr."]
 let tags = "F# fsharp typeproviders Management PowerShell"
 
 let solutionFile  = "FSharp.Management"
