@@ -101,13 +101,16 @@ With the help of the FileSystemProvider we can browse the project via Intellisen
 <p><img src="img/RelativeFileSystemProvider.png" alt="alt text" title="Intellisense for the current subfolders" /></p>
 
 <table class="pre"><tr><td class="lines"><pre class="fssnip">
-<span class="l">1: </span>
-<span class="l">2: </span>
-<span class="l">3: </span>
-<span class="l">4: </span>
-<span class="l">5: </span>
-<span class="l">6: </span>
-<span class="l">7: </span>
+<span class="l"> 1: </span>
+<span class="l"> 2: </span>
+<span class="l"> 3: </span>
+<span class="l"> 4: </span>
+<span class="l"> 5: </span>
+<span class="l"> 6: </span>
+<span class="l"> 7: </span>
+<span class="l"> 8: </span>
+<span class="l"> 9: </span>
+<span class="l">10: </span>
 </pre>
 </td>
 <td class="snippet"><pre class="fssnip">
@@ -115,8 +118,11 @@ With the help of the FileSystemProvider we can browse the project via Intellisen
 <span class="prep">#r</span> <span class="s">&quot;</span><span class="s">FSharp</span><span class="s">.</span><span class="s">Management</span><span class="s">.</span><span class="s">dll</span><span class="s">&quot;</span>
 <span class="k">open</span> <span onmouseout="hideTip(event, 'fs1', 9)" onmouseover="showTip(event, 'fs1', 9)" class="i">FSharp</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs2', 10)" onmouseover="showTip(event, 'fs2', 10)" class="i">Management</span>
 
-<span class="c">// browse the project</span>
-<span onmouseout="hideTip(event, 'fs6', 11)" onmouseover="showTip(event, 'fs6', 11)" class="i">RelativePath</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs7', 12)" onmouseover="showTip(event, 'fs7', 12)" class="i">Parent</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs8', 13)" onmouseover="showTip(event, 'fs8', 13)" class="i">files</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs9', 14)" onmouseover="showTip(event, 'fs9', 14)" class="i">img</span><span class="o">.</span><span class="i">``PowerShellProvider.png``</span>
+<span class="c">// Create a type relative to the project&#39;s root path</span>
+<span class="k">type</span> <span onmouseout="hideTip(event, 'fs6', 11)" onmouseover="showTip(event, 'fs6', 11)" class="i">Relative</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs7', 12)" onmouseover="showTip(event, 'fs7', 12)" class="i">RelativePath</span><span class="o">&lt;</span><span class="s">&quot;</span><span class="s">.</span><span class="s">&quot;</span><span class="o">&gt;</span>
+
+<span class="c">// Browse the project</span>
+<span onmouseout="hideTip(event, 'fs6', 13)" onmouseover="showTip(event, 'fs6', 13)" class="i">Relative</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs8', 14)" onmouseover="showTip(event, 'fs8', 14)" class="i">``..``</span><span class="o">.</span><span class="i">files</span><span class="o">.</span><span class="i">img</span><span class="o">.</span><span class="i">``PowerShellProvider.png``</span>
 <span class="c">// [fsi:val it : string = &quot;..\files\img\PowerShellProvider.png&quot;</span></pre>
 </td>
 </tr>
@@ -127,10 +133,9 @@ With the help of the FileSystemProvider we can browse the project via Intellisen
 <div class="tip" id="fs3">type Users = FileSystem&lt;...&gt;<br /><br />Full name: FileSystemProvider.Users</div>
 <div class="tip" id="fs4">type FileSystem<br /><br />Full name: FSharp.Management.FileSystem</div>
 <div class="tip" id="fs5">type UsersWithoutDrive = FileSystem&lt;...&gt;<br /><br />Full name: FileSystemProvider.UsersWithoutDrive</div>
-<div class="tip" id="fs6">type RelativePath =<br />&#160;&#160;static val ``FileSystemProvider.fsx`` : string<br />&#160;&#160;static val Path : string<br />&#160;&#160;static val ``PowerShellProvider.fsx`` : string<br />&#160;&#160;static val ``RegistryProvider.fsx`` : string<br />&#160;&#160;static val ``WMIProvider.fsx`` : string<br />&#160;&#160;static val ``index.fsx`` : string<br />&#160;&#160;nested type Parent<br /><br />Full name: FSharp.Management.RelativePath<br /><em><br /><br />A strongly typed interface to &#39;C:\Users\Steffen\Dropbox\Code\FSharp.Management\docs\content&#39;</em></div>
-<div class="tip" id="fs7">type Parent =<br />&#160;&#160;static val Path : string<br />&#160;&#160;nested type Parent<br />&#160;&#160;nested type content<br />&#160;&#160;nested type files<br />&#160;&#160;nested type output<br />&#160;&#160;nested type tools<br /><br />Full name: FSharp.Management.RelativePath.Parent<br /><em><br /><br />A strongly typed interface to &#39;C:\Users\Steffen\Dropbox\Code\FSharp.Management\docs&#39;</em></div>
-<div class="tip" id="fs8">type files =<br />&#160;&#160;static val Path : string<br />&#160;&#160;nested type img<br /><br />Full name: FSharp.Management.RelativePath.Parent.files<br /><em><br /><br />A strongly typed interface to &#39;C:\Users\Steffen\Dropbox\Code\FSharp.Management\docs\files&#39;</em></div>
-<div class="tip" id="fs9">type img =<br />&#160;&#160;static val ``FileSystemProvider.png`` : string<br />&#160;&#160;static val Path : string<br />&#160;&#160;static val ``PowerShellProvider.png`` : string<br />&#160;&#160;static val ``RegistryProvider.png`` : string<br />&#160;&#160;static val ``RelativeFileSystemProvider.png`` : string<br />&#160;&#160;static val ``WMIProvider.png`` : string<br /><br />Full name: FSharp.Management.RelativePath.Parent.files.img<br /><em><br /><br />A strongly typed interface to &#39;C:\Users\Steffen\Dropbox\Code\FSharp.Management\docs\files\img&#39;</em></div>
+<div class="tip" id="fs6">type Relative = RelativePath&lt;...&gt;<br /><br />Full name: FileSystemProvider.Relative</div>
+<div class="tip" id="fs7">type RelativePath<br /><br />Full name: FSharp.Management.RelativePath</div>
+<div class="tip" id="fs8">val ( .. ) : start:&#39;T -&gt; finish:&#39;T -&gt; seq&lt;&#39;T&gt; (requires member ( + ) and member get_One and comparison)<br /><br />Full name: Microsoft.FSharp.Core.Operators.( .. )</div>
 
         </div>
         <div class="span3">

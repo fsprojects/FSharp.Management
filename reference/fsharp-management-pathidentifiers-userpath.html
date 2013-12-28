@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>ProvidedAssembly - FSharp.Management</title>
+    <title>UserPath - FSharp.Management</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="Steffen Forkmann">
@@ -35,46 +35,24 @@
 
 
 
-<h1>ProvidedAssembly</h1>
+<h1>UserPath</h1>
 <div class="xmldoc">
-<p>A provided generated assembly</p>
 </div>
-  <h3>Constructors</h3>
+  <h3>Record Fields</h3>
   <table class="table table-bordered member-list">
     <thead>
-      <tr><td>Constructor</td><td>Description</td></tr>
+      <tr><td>Record Field</td><td>Description</td></tr>
     </thead>
     <tbody>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '32', 32)" onmouseover="showTip(event, '32', 32)">
-            new(assemblyFileName)
+          <code onmouseout="hideTip(event, '16', 16)" onmouseover="showTip(event, '16', 16)">
+            Desktop
           </code>
-          <div class="tip" id="32">
-            <strong>Signature:</strong>assemblyFileName:string -&gt; ProvidedAssembly<br />
-                      </div>
-        </td>
-        <td class="xmldoc">
-        
-        </td>
-      </tr>
-    </tbody>
-  </table>
-  <h3>Instance members</h3>
-  <table class="table table-bordered member-list">
-    <thead>
-      <tr><td>Instance member</td><td>Description</td></tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td class="member-name">
-
-          <code onmouseout="hideTip(event, '39', 39)" onmouseover="showTip(event, '39', 39)">
-            AddNestedTypes(...)
-          </code>
-          <div class="tip" id="39">
-            <strong>Signature:</strong>(types:ProvidedTypeDefinition list * enclosingGeneratedTypeNames:string list) -&gt; unit<br />
+          <div class="tip" id="16">
+            <strong>Signature:</strong>UserPath<br />
+              <strong>Modifiers:</strong> static<br />
                       </div>
         </td>
         <td class="xmldoc">
@@ -84,44 +62,120 @@
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '40', 40)" onmouseover="showTip(event, '40', 40)">
-            AddTypes(types)
+          <code onmouseout="hideTip(event, '23', 23)" onmouseover="showTip(event, '23', 23)">
+            Documents
           </code>
-          <div class="tip" id="40">
-            <strong>Signature:</strong>(types:ProvidedTypeDefinition list) -&gt; unit<br />
+          <div class="tip" id="23">
+            <strong>Signature:</strong>UserPath<br />
+              <strong>Modifiers:</strong> static<br />
                       </div>
         </td>
         <td class="xmldoc">
-        <p>Emit the given provided type definitions as part of the assembly 
-and adjust the 'Assembly' property of all provided type definitions to return that
-assembly.</p>
-
-<p>The assembly is only emitted when the Assembly property on the root type is accessed for the first time.
-The host F# compiler does this when processing a generative type declaration for the type.</p>
-
+        
         </td>
       </tr>
-    </tbody>
-  </table>
-  <h3>Static members</h3>
-  <table class="table table-bordered member-list">
-    <thead>
-      <tr><td>Static member</td><td>Description</td></tr>
-    </thead>
-    <tbody>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '41', 41)" onmouseover="showTip(event, '41', 41)">
-            RegisterGenerated(fileName)
+          <code onmouseout="hideTip(event, '24', 24)" onmouseover="showTip(event, '24', 24)">
+            Favorites
           </code>
-          <div class="tip" id="41">
-            <strong>Signature:</strong>fileName:string -&gt; Assembly<br />
+          <div class="tip" id="24">
+            <strong>Signature:</strong>UserPath<br />
+              <strong>Modifiers:</strong> static<br />
                       </div>
         </td>
         <td class="xmldoc">
-        <p>Register that a given file is a provided generated assembly</p>
+        
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
 
+          <code onmouseout="hideTip(event, '25', 25)" onmouseover="showTip(event, '25', 25)">
+            LocalApplicationData
+          </code>
+          <div class="tip" id="25">
+            <strong>Signature:</strong>UserPath<br />
+              <strong>Modifiers:</strong> static<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+        
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '26', 26)" onmouseover="showTip(event, '26', 26)">
+            Pictures
+          </code>
+          <div class="tip" id="26">
+            <strong>Signature:</strong>UserPath<br />
+              <strong>Modifiers:</strong> static<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+        
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '27', 27)" onmouseover="showTip(event, '27', 27)">
+            RoamingApplicationData
+          </code>
+          <div class="tip" id="27">
+            <strong>Signature:</strong>UserPath<br />
+              <strong>Modifiers:</strong> static<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+        
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '28', 28)" onmouseover="showTip(event, '28', 28)">
+            Startup
+          </code>
+          <div class="tip" id="28">
+            <strong>Signature:</strong>UserPath<br />
+              <strong>Modifiers:</strong> static<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+        
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '29', 29)" onmouseover="showTip(event, '29', 29)">
+            value__
+          </code>
+          <div class="tip" id="29">
+            <strong>Signature:</strong>int<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+        
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '30', 30)" onmouseover="showTip(event, '30', 30)">
+            Videos
+          </code>
+          <div class="tip" id="30">
+            <strong>Signature:</strong>UserPath<br />
+              <strong>Modifiers:</strong> static<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+        
         </td>
       </tr>
     </tbody>
