@@ -1,3 +1,9 @@
+#### 0.1.0-alpha1 - 24.12.2013
+* Fixed FileSystem type provider invalidation
+* Splitted all type providers
+* Change "Parent" folder to ".." in relative type provider
+* Updated docs
+
 #### 0.0.13-alpha - 24.12.2013
 * Parent property in FileSystem type provider is lazy
 
