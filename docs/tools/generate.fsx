@@ -13,7 +13,7 @@ let info =
   [ "project-name", "FSharp.Management"
     "project-author", "Steffen Forkmann"
     "project-summary", "Various type providers for management of the machine."
-    "project-github", "http://github.com/forki/FSharp.Management"
+    "project-github", "http://github.com/fsprojects/FSharp.Management"
     "project-nuget", "https://www.nuget.org/packages/FSharp.Management" ]
 
 // --------------------------------------------------------------------------------------

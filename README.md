@@ -3,12 +3,12 @@ FSharp.Management
 
 The FSharp.Management project contains various type providers for the management of the machine.
 
-* [FileSystem](http://forki.github.io/FSharp.Management/FileSystemProvider.html)
-* [Registry](http://forki.github.io/FSharp.Management/RegistryProvider.html)
-* [WMI](http://forki.github.io/FSharp.Management/WMIProvider.html)
-* [PowerShell](http://forki.github.io/FSharp.Management/PowerShellProvider.html)
+* [FileSystem](http://fsprojects.github.io/FSharp.Management/FileSystemProvider.html)
+* [Registry](http://fsprojects.github.io/FSharp.Management/RegistryProvider.html)
+* [WMI](http://fsprojects.github.io/FSharp.Management/WMIProvider.html)
+* [PowerShell](http://fsprojects.github.io/FSharp.Management/PowerShellProvider.html)
 
-<a href="http://forki.github.io/FSharp.Management" target="_blank">Documentation available here.</a>
+<a href="http://fsprojects.github.io/FSharp.Management" target="_blank">Documentation available here.</a>
 
 ## Building
 
