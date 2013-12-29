@@ -23,9 +23,9 @@ let tags = "F# fsharp typeproviders Management PowerShell"
 let solutionFile  = "FSharp.Management"
 
 let testAssemblies = "tests/**/bin/Release/*.Tests*.dll"
-let gitHome = "https://github.com/forki"
+let gitHome = "https://github.com/fsprojects"
 let gitName = "FSharp.Management"
-let cloneUrl = "git@github.com:forki/FSharp.Management.git"
+let cloneUrl = "git@github.com:fsprojects/FSharp.Management.git"
 let nugetDir = "./nuget/"
 
 // Read additional information from the release notes document
