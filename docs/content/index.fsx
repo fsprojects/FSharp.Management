@@ -12,6 +12,10 @@ The FSharp.Management project contains various type providers for the management
 * [WMI](WMIProvider.html)
 * [PowerShell](PowerShellProvider.html)
 
+In addition, a set of utilities for dealing with common paths on the system at runtime are provided.
+
+* [CommonFolders](CommonFolders.html)
+
 <div class="row">
   <div class="span1"></div>
   <div class="span6">

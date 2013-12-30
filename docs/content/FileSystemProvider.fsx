@@ -39,11 +39,29 @@ UsersWithoutDrive.``All Users``.Path
 
 (**
 
+A third, optional "watch" parameter can be used to specify that the file system should be watched for changes,
+and the type provider invalidated if new files are added or removed.  This is false by default, which means
+adding new files will not show up immediately without invalidating the type provider by some external mechanism,
+such as restarting the IDE.
+*)
+
+// Create a type provider that automatically watches for new files or changes to folders
+type UsersWithChanges = FileSystem<"C:\\Users", watch = true>
+
+// Now you have typed access to your filesystem
+UsersWithChanges.``All Users``.Path
+
+// [fsi:val it : string = "C:\Users\All Users\"]
+
+(**
+
 Relative paths
 --------------
 
 For web frameworks it's interesting to reference resources like images.
 With the help of the FileSystemProvider we can browse the project via Intellisense and get compile time safety for relative paths.
+
+Note that the RelativePath type provider also supports the optional "watch" parameter, with false as the default.
 
 ![alt text](img/RelativeFileSystemProvider.png "Intellisense for the current subfolders")
 
@@ -54,7 +72,7 @@ With the help of the FileSystemProvider we can browse the project via Intellisen
 open FSharp.Management
 
 // Create a type relative to the project's root path
-type Relative = RelativePath<".">
+type Relative = RelativePath<".", watch = false>
 
 // Browse the project
 Relative.``..``.files.img.``PowerShellProvider.png``
