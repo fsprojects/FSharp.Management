@@ -40,17 +40,19 @@ let watchDir dir (ctx : Context) =
         new FileSystemWatcher(
                 Path.GetFullPath dir, IncludeSubdirectories = false,
                 NotifyFilter = (NotifyFilters.CreationTime ||| 
-                                NotifyFilters.LastWrite ||| 
                                 NotifyFilters.Size ||| 
                                 NotifyFilters.DirectoryName |||
                                 NotifyFilters.FileName))
-    let onChanged = (fun _ -> ctx.Trigger())
+    let onChanged = (fun (fsargs : FileSystemEventArgs) -> 
+        match fsargs.ChangeType with
+        | WatcherChangeTypes.Changed | WatcherChangeTypes.Created | WatcherChangeTypes.Deleted -> ctx.Trigger()
+        | _ -> ())
     
     try
         watcher.Deleted.Add onChanged
         watcher.Renamed.Add onChanged
         watcher.Created.Add onChanged
-        watcher.Error.Add onChanged
+        watcher.Error.Add (fun _ -> watcher.Dispose())
         watcher.EnableRaisingEvents <- true
         ctx.Disposing.Add watcher.Dispose
     with
