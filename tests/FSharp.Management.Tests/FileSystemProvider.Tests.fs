@@ -9,6 +9,7 @@ type RelativeUsers = FileSystem<"C:\\Users", "C:\\Users">
 
 type Relative = RelativePath<"">
 type RelativeToBin = RelativePath<"bin">
+type RelativeToBuild = RelativePath<"bin\\Debug">
 
 [<Test>]
 let ``Can create type for users path``() = 
@@ -57,3 +58,12 @@ let ``Can access a parent dir``() =
 [<Test>] 
 let ``Can access a parent's parent dir``() =
     Relative.``..``.``..``.Path |> should equal @"..\..\"
+
+[<Test>]
+let ``Can access solution files using RelativePath provider``() =
+    let fsDocPath = RelativeToBuild.``..``.``..``.``..``.``..``.docs.content.``FileSystemProvider.fsx``
+    let buildFolder = CommonFolders.GetApplication ApplicationPath.FSharpManagementLocation
+
+    let path = System.IO.Path.GetFullPath(System.IO.Path.Combine(buildFolder, fsDocPath))
+
+    System.IO.File.Exists(path) |> should equal true
