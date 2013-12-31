@@ -21,7 +21,7 @@ In addition, a set of utilities for dealing with common paths on the system at r
   <div class="span6">
     <div class="well well-small" id="nuget">
       The library can be <a href="https://nuget.org/packages/FSharp.Management">installed from NuGet</a>:
-      <pre>PM> Install-Package FSharp.Management -prerelease</pre>
+      <pre>PM> Install-Package FSharp.Management</pre>
     </div>
   </div>
   <div class="span1"></div>
