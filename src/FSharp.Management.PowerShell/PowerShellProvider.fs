@@ -6,7 +6,7 @@ open System.Reflection
 open System.IO
 open System.Diagnostics
 open System.Threading
-open Samples.FSharp.ProvidedTypes
+open ProviderImplementation.ProvidedTypes
 open Microsoft.FSharp.Core.CompilerServices
 open System.Management.Automation
 open System.Management.Automation.Runspaces
