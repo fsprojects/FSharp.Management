@@ -14,7 +14,3 @@ The FSharp.Management project contains various type providers for the management
 
 * Install PowerShell 3.0
 * Run build.cmd
-
-## Disclaimer
-
-This is an alpha build and as such may have problems yet undetected. This is not suitable for production use.  I am not responsible for any inadvertent damage and destruction caused by this software. 
