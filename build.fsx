@@ -25,7 +25,7 @@ let solutionFile  = "FSharp.Management"
 let testAssemblies = "tests/**/bin/Release/*.Tests*.dll"
 let gitHome = "https://github.com/fsprojects"
 let gitName = "FSharp.Management"
-let cloneUrl = "git@github.com:fsprojects/FSharp.Management.git"
+let cloneUrl = "https://github.com/fsprojects/FSharp.Management.git"
 let nugetDir = "./nuget/"
 
 // Read additional information from the release notes document
