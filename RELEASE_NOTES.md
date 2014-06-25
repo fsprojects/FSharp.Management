@@ -1,3 +1,6 @@
+#### 0.1.1 - 25.06.2014
+* Fix memory leak - https://github.com/fsprojects/FSharp.Management/pull/42
+
 #### 0.1.0 - 31.12.2013
 * Initial release of FileSystemProvider
 * Initial release of RegistryProvider
