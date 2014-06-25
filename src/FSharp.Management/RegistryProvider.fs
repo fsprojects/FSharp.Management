@@ -1,6 +1,6 @@
 ﻿module internal FSharp.Management.RegistryProvider
 
-open Samples.FSharp.ProvidedTypes
+open ProviderImplementation.ProvidedTypes
 open FSharp.Management.Helper
 open Microsoft.Win32
 

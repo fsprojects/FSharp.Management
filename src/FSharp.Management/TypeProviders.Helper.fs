@@ -2,7 +2,7 @@
 module internal FSharp.Management.Helper
 open System
 open System.IO
-open Samples.FSharp.ProvidedTypes
+open ProviderImplementation.ProvidedTypes
 
 type Context (onChanged : unit -> unit) = 
     let disposingEvent = Event<_>()
