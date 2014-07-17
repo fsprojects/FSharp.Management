@@ -9,6 +9,7 @@ type RelativeUsers = FileSystem<"C:\\Users", "C:\\Users">
 
 type Relative = RelativePath<"">
 type RelativeToBin = RelativePath<"bin">
+type RelativeToBuild = RelativePath<"bin\\Release">
 
 [<Test>]
 let ``Can create type for users path``() = 
@@ -42,9 +43,9 @@ let ``Can access a relative path``() =
 let ``Can access a relative subfolder``() =
     Relative.bin.Path |> should equal @"bin\"
 
-//[<Test>]
-//let ``Can access a relative subfolder relative to .\\bin``() =
-//    RelativeToBin.Debug.Path |> should equal @"Debug\"
+[<Test>]
+let ``Can access a relative subfolder relative to .\\bin``() =
+    RelativeToBin.Release.Path |> should equal @"Release\"
 
 [<Test>] 
 let ``Can access a relative file``() =
@@ -60,7 +61,7 @@ let ``Can access a parent's parent dir``() =
 
 [<Test>]
 let ``Can access solution files using RelativePath provider``() =
-    let fsDocPath = RelativeToBin.``..``.``..``.``..``.docs.content.``FileSystemProvider.fsx``
+    let fsDocPath = RelativeToBuild.``..``.``..``.``..``.``..``.docs.content.``FileSystemProvider.fsx``
     let buildFolder = CommonFolders.GetApplication ApplicationPath.FSharpManagementLocation
 
     let path = System.IO.Path.GetFullPath(System.IO.Path.Combine(buildFolder, fsDocPath))
