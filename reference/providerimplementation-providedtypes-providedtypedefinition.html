@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>ProvidedTypeDefinition - FSharp.Management</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="Steffen Forkmann">
+
+    <script src="http://code.jquery.com/jquery-1.8.0.js"></script>
+    <script src="http://code.jquery.com/ui/1.8.23/jquery-ui.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js"></script>
+    <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css" rel="stylesheet">
+
+    <link type="text/css" rel="stylesheet" href="/FSharp.Management/content/style.css" />
+    <script type="text/javascript" src="/FSharp.Management/content/tips.js"></script>
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="container">
+      <div class="masthead">
+        <ul class="nav nav-pills pull-right">
+          <li><a href="http://fsharp.org">fsharp.org</a></li>
+          <li><a href="http://github.com/fsprojects/FSharp.Management">github page</a></li>
+        </ul>
+        <h3 class="muted"><a href="/FSharp.Management/index.html">FSharp.Management</a></h3>
+      </div>
+      <hr />
+      <div class="row">
+        <div class="span9" id="main">
+          
+
+
+
+<h1>ProvidedTypeDefinition</h1>
+<div class="xmldoc">
+<p>Represents a provided type definition.</p>
+</div>
+  <h3>Constructors</h3>
+  <table class="table table-bordered member-list">
+    <thead>
+      <tr><td>Constructor</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '118', 118)" onmouseover="showTip(event, '118', 118)">
+            new(className, baseType)
+          </code>
+          <div class="tip" id="118">
+            <strong>Signature:</strong>(className:string * baseType:Type option) -&gt; ProvidedTypeDefinition<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+        <p>Create a new provided type definition, to be located as a nested type in some type definition.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '119', 119)" onmouseover="showTip(event, '119', 119)">
+            new(...)
+          </code>
+          <div class="tip" id="119">
+            <strong>Signature:</strong>(assembly:Assembly * namespaceName:string * className:string * baseType:Type option) -&gt; ProvidedTypeDefinition<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+        <p>Create a new provided type definition in a namespace.</p>
+
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <h3>Instance members</h3>
+  <table class="table table-bordered member-list">
+    <thead>
+      <tr><td>Instance member</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '122', 122)" onmouseover="showTip(event, '122', 122)">
+            AddAssemblyTypesAsNestedTypesDelayed(...)
+          </code>
+          <div class="tip" id="122">
+            <strong>Signature:</strong>(assemblyFunction:(unit -&gt; Assembly)) -&gt; unit<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+        <p>Add the types of the generated assembly as generative types, where types in namespaces get hierarchically positioned as nested types.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '123', 123)" onmouseover="showTip(event, '123', 123)">
+            AddCustomAttribute(arg1)
+          </code>
+          <div class="tip" id="123">
+            <strong>Signature:</strong>CustomAttributeData -&gt; unit<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+        <p>Add a custom attribute to the provided type definition.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '124', 124)" onmouseover="showTip(event, '124', 124)">
+            AddDefinitionLocation(...)
+          </code>
+          <div class="tip" id="124">
+            <strong>Signature:</strong>(line:int * column:int * filePath:string) -&gt; unit<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+        <p>Add definition location information to the provided type definition.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '125', 125)" onmouseover="showTip(event, '125', 125)">
+            AddInterfaceImplementation(...)
+          </code>
+          <div class="tip" id="125">
+            <strong>Signature:</strong>interfaceType:Type -&gt; unit<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+        <p>Add the given type as an implemented interface.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '126', 126)" onmouseover="showTip(event, '126', 126)">
+            AddInterfaceImplementationsDelayed(...)
+          </code>
+          <div class="tip" id="126">
+            <strong>Signature:</strong>(interfacesFunction:(unit -&gt; Type list)) -&gt; unit<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+        <p>Add the given function as a set of on-demand computed interfaces.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '127', 127)" onmouseover="showTip(event, '127', 127)">
+            AddMember(memberInfo)
+          </code>
+          <div class="tip" id="127">
+            <strong>Signature:</strong>memberInfo:MemberInfo -&gt; unit<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+        <p>Add a method, property, nested type or other member to a ProvidedTypeDefinition</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '128', 128)" onmouseover="showTip(event, '128', 128)">
+            AddMemberDelayed(memberFunction)
+          </code>
+          <div class="tip" id="128">
+            <strong>Signature:</strong>(memberFunction:(unit -&gt; &#39;?4909)) -&gt; unit<br />
+                          <strong>Type parameters:</strong> '?4909          </div>
+        </td>
+        <td class="xmldoc">
+        <p>Add a member to a ProvidedTypeDefinition, delaying computation of the members until required by the compilation context.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '129', 129)" onmouseover="showTip(event, '129', 129)">
+            AddMembers(memberInfos)
+          </code>
+          <div class="tip" id="129">
+            <strong>Signature:</strong>(memberInfos:&#39;?4907 list) -&gt; unit<br />
+                          <strong>Type parameters:</strong> '?4907          </div>
+        </td>
+        <td class="xmldoc">
+        <p>Add a set of members to a ProvidedTypeDefinition</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '130', 130)" onmouseover="showTip(event, '130', 130)">
+            AddMembersDelayed(arg1)
+          </code>
+          <div class="tip" id="130">
+            <strong>Signature:</strong>((unit -&gt; &#39;?4911 list)) -&gt; unit<br />
+                          <strong>Type parameters:</strong> '?4911          </div>
+        </td>
+        <td class="xmldoc">
+        <p>Add a set of members to a ProvidedTypeDefinition, delaying computation of the members until required by the compilation context.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '131', 131)" onmouseover="showTip(event, '131', 131)">
+            AddObsoleteAttribute(message, ?isError)
+          </code>
+          <div class="tip" id="131">
+            <strong>Signature:</strong>(message:string * ?isError:bool option) -&gt; unit<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+        <p>Add a 'System.Obsolete' attribute to this provided type definition</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '132', 132)" onmouseover="showTip(event, '132', 132)">
+            AddXmlDoc(xmlDoc)
+          </code>
+          <div class="tip" id="132">
+            <strong>Signature:</strong>xmlDoc:string -&gt; unit<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+        <p>Add XML documentation information to this provided constructor</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '133', 133)" onmouseover="showTip(event, '133', 133)">
+            AddXmlDocComputed(xmlDocFunction)
+          </code>
+          <div class="tip" id="133">
+            <strong>Signature:</strong>(xmlDocFunction:(unit -&gt; string)) -&gt; unit<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+        <p>Add XML documentation information to this provided constructor, where the computation of the documentation is delayed until necessary
+The documentation is re-computed  every time it is required.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '134', 134)" onmouseover="showTip(event, '134', 134)">
+            AddXmlDocDelayed(xmlDocFunction)
+          </code>
+          <div class="tip" id="134">
+            <strong>Signature:</strong>(xmlDocFunction:(unit -&gt; string)) -&gt; unit<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+        <p>Add XML documentation information to this provided constructor, where the computation of the documentation is delayed until necessary.
+The documentation is only computed once.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '135', 135)" onmouseover="showTip(event, '135', 135)">
+            DefineMethodOverride(...)
+          </code>
+          <div class="tip" id="135">
+            <strong>Signature:</strong>(methodInfoBody:ProvidedMethod * methodInfoDeclaration:MethodInfo) -&gt; unit<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+        <p>Specifies that the given method body implements the given method declaration.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '136', 136)" onmouseover="showTip(event, '136', 136)">
+            DefineStaticParameters(...)
+          </code>
+          <div class="tip" id="136">
+            <strong>Signature:</strong>(parameters:ProvidedStaticParameter list * instantiationFunction:(string -&gt; obj [] -&gt; ProvidedTypeDefinition)) -&gt; unit<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+        
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '137', 137)" onmouseover="showTip(event, '137', 137)">
+            HideObjectMethods()
+          </code>
+          <div class="tip" id="137">
+            <strong>Signature:</strong>unit -&gt; bool<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+        <p>Suppress System.Object entries in intellisense menus in instances of this provided type</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '138', 138)" onmouseover="showTip(event, '138', 138)">
+            IsErased
+          </code>
+          <div class="tip" id="138">
+            <strong>Signature:</strong>bool<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+        <p>Get or set a flag indicating if the ProvidedTypeDefinition is erased</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '139', 139)" onmouseover="showTip(event, '139', 139)">
+            IsErased()
+          </code>
+          <div class="tip" id="139">
+            <strong>Signature:</strong>unit -&gt; bool<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+        <p>Get or set a flag indicating if the ProvidedTypeDefinition is erased</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '140', 140)" onmouseover="showTip(event, '140', 140)">
+            MakeParametricType(name, args)
+          </code>
+          <div class="tip" id="140">
+            <strong>Signature:</strong>(name:string * args:obj []) -&gt; ProvidedTypeDefinition<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+        <p>FSharp.Data addition: this method is used by Debug.fs</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '141', 141)" onmouseover="showTip(event, '141', 141)">
+            ResetEnclosingType(enclosingType)
+          </code>
+          <div class="tip" id="141">
+            <strong>Signature:</strong>enclosingType:Type -&gt; unit<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+        <p>Reset the enclosing type (for generated nested types)</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '142', 142)" onmouseover="showTip(event, '142', 142)">
+            SetAttributes(arg1)
+          </code>
+          <div class="tip" id="142">
+            <strong>Signature:</strong>TypeAttributes -&gt; unit<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+        <p>Set the attributes on the provided type. This fully replaces the default TypeAttributes.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '143', 143)" onmouseover="showTip(event, '143', 143)">
+            SetBaseType(arg1)
+          </code>
+          <div class="tip" id="143">
+            <strong>Signature:</strong>Type -&gt; unit<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+        <p>Set the base type</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '144', 144)" onmouseover="showTip(event, '144', 144)">
+            SetBaseTypeDelayed(arg1)
+          </code>
+          <div class="tip" id="144">
+            <strong>Signature:</strong>(Lazy&lt;Type option&gt;) -&gt; unit<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+        <p>Set the base type to a lazily evaluated value</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '145', 145)" onmouseover="showTip(event, '145', 145)">
+            SuppressRelocation
+          </code>
+          <div class="tip" id="145">
+            <strong>Signature:</strong>bool<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+        <p>Get or set a flag indicating if the ProvidedTypeDefinition has type-relocation suppressed</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '146', 146)" onmouseover="showTip(event, '146', 146)">
+            SuppressRelocation()
+          </code>
+          <div class="tip" id="146">
+            <strong>Signature:</strong>unit -&gt; bool<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+        <p>Get or set a flag indicating if the ProvidedTypeDefinition has type-relocation suppressed</p>
+
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <h3>Static members</h3>
+  <table class="table table-bordered member-list">
+    <thead>
+      <tr><td>Static member</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '156', 156)" onmouseover="showTip(event, '156', 156)">
+            EraseType(t)
+          </code>
+          <div class="tip" id="156">
+            <strong>Signature:</strong>t:Type -&gt; Type<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+        <p>FSharp.Data addition: this method is used by Debug.fs and QuotationBuilder.fs
+Emulate the F# type provider type erasure mechanism to get the 
+actual (erased) type. We erase ProvidedTypes to their base type
+and we erase array of provided type to array of base type. In the
+case of generics all the generic type arguments are also recursively
+replaced with the erased-to types</p>
+
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+        </div>
+        <div class="span3">
+          <img src="/FSharp.Management/img/logo.png" alt="FSharp.Management" style="width:150px;margin:10px" />  
+          <ul class="nav nav-list" id="menu" style="margin-top: 20px;">
+            <li class="nav-header">FSharp.Management</li>
+            <li><a href="/FSharp.Management/index.html">Home page</a></li>
+            <li class="divider"></li>
+            <li><a href="https://www.nuget.org/packages/FSharp.Management">Get Library via NuGet</a></li>
+            <li><a href="http://github.com/fsprojects/FSharp.Management">Source Code on GitHub</a></li>
+            <li><a href="http://github.com/fsprojects/FSharp.Management/blob/master/LICENSE.txt">License</a></li>
+            <li><a href="http://github.com/fsprojects/FSharp.Management/blob/master/RELEASE_NOTES.md">Release Notes</a></li>
+            
+            <li class="nav-header">Getting started</li>
+              <li><a href="/FSharp.Management/FileSystemProvider.html">FileSystemProvider</a></li>
+              <li><a href="/FSharp.Management/RegistryProvider.html">RegistryProvider</a></li>
+              <li><a href="/FSharp.Management/WMIProvider.html">WMIProvider</a></li>
+              <li><a href="/FSharp.Management/PowerShellProvider.html">PowerShellProvider</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <a href="http://github.com/fsprojects/FSharp.Management"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub"></a>
+  </body>
+  </html>
