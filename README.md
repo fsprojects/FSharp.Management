@@ -14,3 +14,12 @@ The FSharp.Management project contains various type providers for the management
 
 * Install PowerShell 3.0
 * Run build.cmd
+
+## Maintainer(s)
+
+- [@forki](https://github.com/forki)
+- [@vasily-kirichenko](https://github.com/vasily-kirichenko)
+- [@sergey-tihon](https://github.com/sergey-tihon)
+- [@dtchepak](https://github.com/dtchepak)
+
+The default maintainer account for projects under "fsprojects" is [@fsgit](https://github.com/fsgit) - F# Community Project Incubation Space (repo management)
