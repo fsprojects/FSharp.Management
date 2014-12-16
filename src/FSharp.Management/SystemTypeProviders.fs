@@ -16,16 +16,18 @@ type public RegistrySystemProvider(_cfg : TypeProviderConfig) as this =
 type public FileSystemProvider(_cfg : TypeProviderConfig) as this = 
     inherit TypeProviderForNamespaces()
     let ctx = new Context(this.Invalidate)
-    do this.AddNamespace(rootNamespace, [ FilesTypeProvider.createTypedFileSystem ctx ])
-    do this.Disposing.Add (fun _ -> (ctx :> IDisposable).Dispose())
+    do
+        this.Disposing.Add(fun _ -> (ctx :> IDisposable).Dispose())
+        this.AddNamespace(rootNamespace, [FilesTypeProvider.createTypedFileSystem ctx])
 
 [<TypeProvider>]
 /// [omit]
 type public RelativeFileSystemProvider(cfg : TypeProviderConfig) as this = 
     inherit TypeProviderForNamespaces()
     let ctx = new Context(this.Invalidate)
-    do this.AddNamespace(rootNamespace, [ FilesTypeProvider.createRelativePathSystem cfg.ResolutionFolder ctx ])
-    do this.Disposing.Add (fun _ -> (ctx :> IDisposable).Dispose())
+        
+    do
+        this.Disposing.Add(fun _ -> (ctx :> IDisposable).Dispose())
+        this.AddNamespace(rootNamespace, [FilesTypeProvider.createRelativePathSystem cfg.ResolutionFolder ctx])
 
-[<assembly:TypeProviderAssembly>]
 do ()

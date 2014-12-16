@@ -11,6 +11,7 @@ open System.Management
 open System.Reflection
 open Microsoft.FSharp.Core.CompilerServices
 open ProviderImplementation.ProvidedTypes
+open ProviderImplementation.ProvidedTypes
 open Microsoft.FSharp.Quotations
 
 #nowarn "40"

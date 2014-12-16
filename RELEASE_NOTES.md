@@ -1,4 +1,17 @@
-#### 0.1.0-alpha1 - 24.12.2013
+#### 0.1.1 - 25.06.2014
+* Fix memory leak - https://github.com/fsprojects/FSharp.Management/pull/42
+
+#### 0.1.0 - 31.12.2013
+* Initial release of FileSystemProvider
+* Initial release of RegistryProvider
+* Initial release of PowershellProvider
+* Initial release of WMI provider
+
+#### 0.1.0-alpha2 - 28.12.2013
+* Moved to fsprojects - https://github.com/fsprojects/FSharp.Management
+* New optional parameter watch in the file system provider allows to configure the FileSystemWatcher
+
+#### 0.1.0-alpha1 - 27.12.2013
 * Fixed FileSystem type provider invalidation
 * Splitted all type providers
 * Change "Parent" folder to ".." in relative type provider

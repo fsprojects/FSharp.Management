@@ -12,12 +12,16 @@ The FSharp.Management project contains various type providers for the management
 * [WMI](WMIProvider.html)
 * [PowerShell](PowerShellProvider.html)
 
+In addition, a set of utilities for dealing with common paths on the system at runtime are provided.
+
+* [CommonFolders](CommonFolders.html)
+
 <div class="row">
   <div class="span1"></div>
   <div class="span6">
     <div class="well well-small" id="nuget">
       The library can be <a href="https://nuget.org/packages/FSharp.Management">installed from NuGet</a>:
-      <pre>PM> Install-Package FSharp.Management -prerelease</pre>
+      <pre>PM> Install-Package FSharp.Management</pre>
     </div>
   </div>
   <div class="span1"></div>
@@ -54,9 +58,9 @@ The library is available under Public Domain license, which allows modification 
 redistribution for both commercial and non-commercial purposes. For more information see the 
 [License file][license] in the GitHub repository. 
 
-  [content]: https://github.com/forki/FSharp.Management/tree/master/docs/content
-  [gh]: https://github.com/forki/FSharp.Management
-  [issues]: https://github.com/forki/FSharp.Management/issues
-  [readme]: https://github.com/forki/FSharp.Management/blob/master/README.md
-  [license]: https://github.com/forki/FSharp.Management/blob/master/LICENSE.txt
+  [content]: https://github.com/fsprojects/FSharp.Management/tree/master/docs/content
+  [gh]: https://github.com/fsprojects/FSharp.Management
+  [issues]: https://github.com/fsprojects/FSharp.Management/issues
+  [readme]: https://github.com/fsprojects/FSharp.Management/blob/master/README.md
+  [license]: https://github.com/fsprojects/FSharp.Management/blob/master/LICENSE.txt
 *)

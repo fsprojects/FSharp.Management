@@ -2,6 +2,7 @@
 
 open System.Reflection
 open ProviderImplementation.ProvidedTypes
+open ProviderImplementation.ProvidedTypes
 open Microsoft.FSharp.Core.CompilerServices
 open FSharp.Management.Helper
 
