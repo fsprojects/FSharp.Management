@@ -7,12 +7,10 @@ namespace FSharp.Management.DesignTime
 
 open System
 open System.Collections.Generic
-open System.Linq.Expressions
 open System.Management 
 open System.Reflection
 open Microsoft.FSharp.Core.CompilerServices
-open Microsoft.FSharp.Control
-open Samples.FSharp.ProvidedTypes
+open ProviderImplementation.ProvidedTypes
 open Microsoft.FSharp.Quotations
 
 #nowarn "40"
@@ -29,7 +27,6 @@ type internal RuntimeInfo (config : TypeProviderConfig) =
     member val GetManagementObjectFromReference = RuntimeAPI.GetMethod("GetManagementObjectFromReference")
     member val GetReferenceToManagementObject = RuntimeAPI.GetMethod("GetReferenceToManagementObject")
     member val TranslateDateTime = RuntimeAPI.GetMethod("TranslateDateTime")
-    member val ArrayContains = RuntimeAPI.GetMethod("ArrayContains")
     member val Set = RuntimeAPI.GetMethod("Set")
     member val IntrinsicEventMethod = RuntimeAPI.GetMethod("IntrinsicEventMethod")
     member val ExtrinsicEventMethod = RuntimeAPI.GetMethod("ExtrinsicEventMethod")
@@ -41,7 +38,7 @@ type internal RuntimeInfo (config : TypeProviderConfig) =
     member val WmiCollectionClass = runtimeAssembly.GetType("FSharp.Management.Runtime.WmiCollection`1")
     member val RequiresWithin = runtimeAssembly.GetType("FSharp.Management.Runtime.RequiresWithin")
     member val DoesntRequireWithin = runtimeAssembly.GetType("FSharp.Management.Runtime.DoesntRequireWithin")
-    member this.RuntimeAssembly = runtimeAssembly
+    member __.RuntimeAssembly = runtimeAssembly
 
 // we used to have the following logic:
 //    enums/in/out -> nonnull
