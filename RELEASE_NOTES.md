@@ -1,3 +1,7 @@
+#### 0.2.0 - 03.001.2015
+* Use latest type provider sources
+* Use paket
+
 #### 0.1.1 - 25.06.2014
 * Fix memory leak - https://github.com/fsprojects/FSharp.Management/pull/42
 
