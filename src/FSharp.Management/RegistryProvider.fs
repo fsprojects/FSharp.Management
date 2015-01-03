@@ -9,8 +9,7 @@ let getAccessibleSubkeys (registryKey:RegistryKey) =
         |> Seq.choose (fun name -> 
             try
                 Some (registryKey.OpenSubKey name,name)
-            with
-            | enx -> None) // TODO: Handle access violation     
+            with _ -> None) // TODO: Handle access violation     
 
 let getAccessibleValues (registryKey:RegistryKey) =
     registryKey.GetValueNames()
@@ -18,16 +17,15 @@ let getAccessibleValues (registryKey:RegistryKey) =
         |> Seq.choose (fun name ->
             try
                 Some (registryKey.GetValueKind name,name)
-            with
-            | enx -> None) // TODO: Handle access violation     
+            with _ -> None) // TODO: Handle access violation     
 
 let registryProperty<'a> key valueName = 
     ProvidedProperty(
         propertyName = valueName,
         propertyType = typeof<'a>,
         IsStatic = true,
-        GetterCode = (fun args -> <@@ Registry.GetValue(key,valueName,"") :?> 'a @@>),
-        SetterCode = (fun args -> <@@ Registry.SetValue(key,valueName,(%%args.[0] : 'a)) @@>))
+        GetterCode = (fun _ -> <@@ Registry.GetValue(key, valueName,"") :?> 'a @@>),
+        SetterCode = (fun args -> <@@ Registry.SetValue(key, valueName, (%%args.[0] : 'a)) @@>))
 
 let rec createRegistryNode (registryKey:RegistryKey,subkeyName) () =   
     let registryNodeType = runtimeType<obj> subkeyName

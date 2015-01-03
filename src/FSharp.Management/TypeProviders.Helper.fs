@@ -1,5 +1,6 @@
 ﻿/// Starting to implement some helpers on top of ProvidedTypes API
 module internal FSharp.Management.Helper
+
 open System
 open System.IO
 open ProviderImplementation.ProvidedTypes
@@ -19,10 +20,10 @@ type Context (onChanged : unit -> unit) =
             )
         if shouldTrigger then onChanged()
 
-    member this.Disposing: IEvent<unit> = disposingEvent.Publish
-    member this.Trigger = trigger
+    member __.Disposing: IEvent<unit> = disposingEvent.Publish
+    member __.Trigger = trigger
     interface IDisposable with
-        member x.Dispose() = disposingEvent.Trigger()
+        member __.Dispose() = disposingEvent.Trigger()
 
 // Active patterns & operators for parsing strings
 let (@?) (s:string) i = if i >= s.Length then None else Some s.[i]

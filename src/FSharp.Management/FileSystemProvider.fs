@@ -56,8 +56,7 @@ let watchDir dir (ctx : Context) =
         watcher.EnableRaisingEvents <- true
         ctx.Disposing.Add watcher.Dispose
     with
-    | exn ->
-        watcher.Dispose()
+    | _ -> watcher.Dispose()
 
 let createFileProperties (dir:DirectoryInfo,dirNodeType:ProvidedTypeDefinition,relative) =
     try
@@ -71,12 +70,10 @@ let createFileProperties (dir:DirectoryInfo,dirNodeType:ProvidedTypeDefinition,r
                 let pathField = ProvidedLiteralField(file.Name,typeof<string>,path)
                 pathField.AddXmlDoc(sprintf "Path to '%s'" path)
                 dirNodeType.AddMember pathField
-            with
-            | exn -> ()
-    with
-    | exn -> ()
+            with _ -> ()
+    with _ -> ()
 
-let rec annotateDirectoryNode (ownerType: ProvidedTypeDefinition) (dir: DirectoryInfo) propertyName withParent relative watch ctx () =
+let rec annotateDirectoryNode (ownerType: ProvidedTypeDefinition) (dir: DirectoryInfo) withParent relative watch ctx () =
     if watch then
         watchDir dir.FullName ctx
 
@@ -91,38 +88,27 @@ let rec annotateDirectoryNode (ownerType: ProvidedTypeDefinition) (dir: Director
     let pathField = ProvidedLiteralField("Path",typeof<string>,path)
     pathField.AddXmlDoc(sprintf "Path to '%s'" path)
     ownerType.AddMember pathField
-
     createFileProperties(dir,ownerType,relative)
-    let typeSet = System.Collections.Generic.HashSet()
     
     if withParent && dir.Parent <> null then
-        try
-            let path =
-                match relative with
-                | Some sourcePath -> Some((fixDirectoryPath sourcePath) + "..\\")
-                | None -> None
-            ownerType.AddMemberDelayed (createDirectoryNode typeSet dir.Parent ".." withParent relative watch ctx)
-        with
-        | exn -> ()
+        try ownerType.AddMemberDelayed (createDirectoryNode dir.Parent ".." withParent relative watch ctx)
+        with _ -> ()
 
     try
         for subDir in dir.EnumerateDirectories() do
             try
                 let name = subDir.Name // Pull out name first to verify permissions
-                let fullName = subDir.FullName
-                ownerType.AddMemberDelayed (createDirectoryNode typeSet subDir name false relative watch ctx)
-            with
-            | exn -> ()
-    with
-    | exn -> ()
+                ownerType.AddMemberDelayed (createDirectoryNode subDir name false relative watch ctx)
+            with _ -> ()
+    with _ -> ()
 
     ownerType 
 
-and createDirectoryNode typeSet (dir: DirectoryInfo) propertyName withParent relative watch ctx =
-    annotateDirectoryNode (ProvidedTypeDefinition(propertyName, Some typeof<obj>)) dir propertyName withParent relative watch ctx
+and createDirectoryNode (dir: DirectoryInfo) propertyName withParent relative watch ctx =
+    annotateDirectoryNode (ProvidedTypeDefinition(propertyName, Some typeof<obj>)) dir withParent relative watch ctx
 
 let createRootType typeName (dir: DirectoryInfo) withParent relative watch ctx =
-    annotateDirectoryNode (erasedType<obj> thisAssembly rootNamespace typeName) dir dir.FullName withParent relative watch ctx ()
+    annotateDirectoryNode (erasedType<obj> thisAssembly rootNamespace typeName) dir withParent relative watch ctx ()
     
 let createRelativePathSystem (resolutionFolder: string) ctx =
     let relativeFileSystem = erasedType<obj> thisAssembly rootNamespace "RelativePath"
