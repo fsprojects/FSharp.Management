@@ -1,5 +1,6 @@
 source https://nuget.org/api/v2
 
+nuget FAKE
 nuget FSharp.Formatting 2.2.11-beta
 nuget FsUnit 1.2.1.0
 nuget Microsoft.AspNet.Razor 2.0.30506.0
