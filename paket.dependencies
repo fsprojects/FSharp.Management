@@ -1,0 +1,9 @@
+source https://nuget.org/api/v2
+
+nuget FSharp.Formatting 2.2.11-beta
+nuget FsUnit 1.2.1.0
+nuget Microsoft.AspNet.Razor 2.0.30506.0
+nuget NUnit 2.6.3
+nuget NUnit.Runners 2.6.3
+nuget RazorEngine 3.3.0
+nuget NuGet.CommandLine
