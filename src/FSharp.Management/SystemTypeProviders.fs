@@ -31,3 +31,7 @@ type public RelativeFileSystemProvider(cfg : TypeProviderConfig) as this =
         this.AddNamespace(rootNamespace, [FilesTypeProvider.createRelativePathSystem cfg.ResolutionFolder ctx])
 
 do ()
+
+
+[<TypeProviderAssembly>]
+do()
