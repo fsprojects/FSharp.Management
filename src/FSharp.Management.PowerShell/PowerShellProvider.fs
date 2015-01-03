@@ -1,13 +1,19 @@
 ﻿namespace FSharp.Management.PowerShellProvider
 
+open System
+open System.Collections.Generic
 open System.Reflection
-open ProviderImplementation.ProvidedTypes
+open System.IO
+open System.Diagnostics
+open System.Threading
 open ProviderImplementation.ProvidedTypes
 open Microsoft.FSharp.Core.CompilerServices
+open System.Management.Automation
+open System.Management.Automation.Runspaces
 open FSharp.Management.Helper
 
 [<TypeProvider>]
-type public PowerShellProvider(_cfg: TypeProviderConfig) as this =
+type public PowerShellProvider(cfg:TypeProviderConfig) as this =
     inherit TypeProviderForNamespaces()
 
     // Get the assembly and namespace used to house the provided types

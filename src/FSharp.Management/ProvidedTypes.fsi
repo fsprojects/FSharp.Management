@@ -217,7 +217,6 @@ type ProvidedField =
 
 /// FSharp.Data addition: SymbolKind is used by AssemblyReplacer.fs
 /// Represents the type constructor in a provided symbol type.
-[<NoComparison>]
 type SymbolKind = 
     | SDArray 
     | Array of int 
@@ -316,9 +315,6 @@ type ProvidedTypeDefinition =
 
     /// Set the base type to a lazily evaluated value
     member SetBaseTypeDelayed      : Lazy<Type option> -> unit    
-
-    /// Set underlying type for generated enums
-    member SetEnumUnderlyingType : Type -> unit
 
     /// Add XML documentation information to this provided constructor, where the computation of the documentation is delayed until necessary.
     /// The documentation is only computed once.

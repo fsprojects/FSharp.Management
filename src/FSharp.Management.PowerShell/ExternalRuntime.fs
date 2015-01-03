@@ -32,7 +32,7 @@ type PSRuntimeService(snapIns:string[]) =
     let psRuntime = PSRuntimeHosted(snapIns) :> IPSRuntime
     let serializeType = (fun (t:Type) -> t.AssemblyQualifiedName)
     interface IPSRuntimeService with
-        member __.GetAllCmdlets() =
+        member this.GetAllCmdlets() =
             psRuntime.AllCmdlets()
             |> Array.map (fun cmdlet ->
                 let paramNames, paramTypes =
@@ -41,8 +41,10 @@ type PSRuntimeService(snapIns:string[]) =
                     RawName = cmdlet.RawName,
                     ResultObjectTypes = (cmdlet.ResultObjectTypes |> Array.map serializeType),
                     ParametersNames = paramNames,
-                    ParametersTypes = (paramTypes |> Array.map serializeType)))
-        member __.GetXmlDoc rawName =
+                    ParametersTypes = (paramTypes |> Array.map serializeType)
+                )
+                )
+        member this.GetXmlDoc rawName =
             psRuntime.GetXmlDoc(rawName)
 
 [<Literal>] 
@@ -62,7 +64,7 @@ let getNetNamedPipeBinding() =
     binding
 
 
-type PSRuntimeServiceClient(serviceUrl: string, _snapIns: string[]) =
+type PSRuntimeServiceClient(serviceUrl:string, snapIns:string[]) =
     inherit ClientBase<IPSRuntimeService>(
         new ServiceEndpoint(
             ContractDescription.GetContract(typeof<IPSRuntimeService>), 
@@ -76,7 +78,7 @@ type PSRuntimeServiceClient(serviceUrl: string, _snapIns: string[]) =
 
 
 /// PowerShell runtime executed in external 64bit process
-type PSRuntimeExternal(snapIns: string[]) =
+type PSRuntimeExternal(snapIns:string[]) =
     let psProcess, serviceUrl =
         let pr = new System.Diagnostics.Process()
         pr.StartInfo.UseShellExecute <- false
@@ -104,7 +106,7 @@ type PSRuntimeExternal(snapIns: string[]) =
             ty)
 
     interface IDisposable with
-        member __.Dispose() =
+        member this.Dispose() =
             try
                 client.Close()
             finally
@@ -112,7 +114,7 @@ type PSRuntimeExternal(snapIns: string[]) =
                 psProcess.WaitForExit()
 
     interface IPSRuntime with
-        member __.AllCmdlets() =
+        member this.AllCmdlets() =
             clientService.GetAllCmdlets()
             |> Array.map (fun dto ->
                 let resultObjectTypes = (dto.ResultObjectTypes |> Array.map unSerializeType)
@@ -123,6 +125,9 @@ type PSRuntimeExternal(snapIns: string[]) =
                     ResultObjectTypes = resultObjectTypes
                     ResultType = (resultObjectTypes |> TypeInference.buildResultType)
                     ParametersInfo = (Array.zip (dto.ParametersNames) (paramTypes))
-                })
-        member __.Execute(_rawName, _parameters: obj seq) = failwith "Not implemented"
-        member __.GetXmlDoc rawName = clientService.GetXmlDoc(rawName)
+                }
+            )
+        member this.Execute(rawName,parameters:obj seq) =
+            failwith "Not implemented"
+        member this.GetXmlDoc rawName =
+            clientService.GetXmlDoc(rawName)
