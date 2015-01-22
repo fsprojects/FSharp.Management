@@ -1,4 +1,7 @@
-FSharp.Management
+[![Issue Stats](http://issuestats.com/github/fsprojects/FSharp.Management/badge/issue)](http://issuestats.com/github/fsprojects/FSharp.Management)
+[![Issue Stats](http://issuestats.com/github/fsprojects/FSharp.Management/badge/pr)](http://issuestats.com/github/fsprojects/FSharp.Management)
+
+FSharp.Management [![NuGet Status](http://img.shields.io/nuget/v/FSharp.Management.svg?style=flat)](https://www.nuget.org/packages/FSharp.Management/)
 ===========================
 
 The FSharp.Management project contains various type providers for the management of the machine.
