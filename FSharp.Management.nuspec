@@ -13,7 +13,7 @@
     <releaseNotes>@releaseNotes@</releaseNotes>
     <copyright>Copyright 2014</copyright>
     <tags>@tags@</tags>
-    <iconUrl>https://raw2.github.com/fsprojects/FSharp.Management/master/docs/files/img/logo.png</iconUrl>
+    <iconUrl>https://raw.githubusercontent.com/fsprojects/FSharp.Management/master/docs/files/img/logo.png</iconUrl>
     <dependencies />
   </metadata>
 </package>
