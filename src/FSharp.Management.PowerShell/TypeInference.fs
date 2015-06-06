@@ -39,7 +39,11 @@ let private getOutputTypesFromSharePointCmdlets(cmdlet:CmdletConfigurationEntry)
         |> Seq.fold (fun state value -> state || value) false
     if (not <| isSPassembly) then None
     else
-        match baseTy.GenericTypeArguments with
+        let types = 
+            baseTy.GetGenericArguments()
+            |> Seq.filter (fun t -> not t.IsGenericParameter)
+            |> Seq.toArray
+        match types with
         | [|x|] -> Some([|x|])
         | _ -> None
 
