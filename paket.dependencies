@@ -5,3 +5,6 @@ nuget FSharp.Formatting
 nuget FsUnit
 nuget NUnit.Runners
 nuget NuGet.CommandLine
+
+github fsprojects/FSharp.TypeProviders.StarterPack src/ProvidedTypes.fsi
+github fsprojects/FSharp.TypeProviders.StarterPack src/ProvidedTypes.fs

@@ -1,4 +1,10 @@
-#### 0.2.0 - 03.001.2015
+#### 0.2.1  - 07.07.2015
+* Added support of loading modules in PowerShellProvider
+* Added ability to call Azure PowerShell cmdlets. https://github.com/fsprojects/FSharp.Management/issues/47
+* New type inference approach for PS TP and new tests
+* Added paket dependency to FSharp.TypeProviders.StarterPack
+
+#### 0.2.0 - 03.01.2015
 * Use latest type provider sources
 * Use paket
 

@@ -4,19 +4,21 @@ open System
 open System.ServiceModel
 
 [<EntryPoint>]
-let main argv = 
+let main argv =
     if Environment.Version.Major < 4
         then failwith ".NET runtime should be version 4+"
     if not <| Environment.Is64BitProcess
         then failwith "Process should be 64bit"
 
-    let snapIns = argv
-    let psRuntimeService = PSRuntimeService(snapIns)
+    let snapIns, _modules = argv |> Array.partition (fun x-> x.StartsWith("+") |> not)
+    let modules = _modules |> Array.map (fun x->x.TrimStart([|'+'|]))
+
+    let psRuntimeService = PSRuntimeService(snapIns, modules)
     let serviceHost = new ServiceHost(psRuntimeService, [|Uri(ExternalPowerShellHost)|])
     serviceHost.AddServiceEndpoint(
-        typeof<IPSRuntimeService>, 
-        getNetNamedPipeBinding(), 
-        ExternalPowerShellServiceName) 
+        typeof<IPSRuntimeService>,
+        getNetNamedPipeBinding(),
+        ExternalPowerShellServiceName)
       |> ignore
 
     serviceHost.Open()

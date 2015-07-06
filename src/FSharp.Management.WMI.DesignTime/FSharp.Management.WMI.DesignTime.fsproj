@@ -39,28 +39,6 @@
     <DocumentationFile>
     </DocumentationFile>
   </PropertyGroup>
-  <ItemGroup>
-    <Reference Include="mscorlib" />
-    <Reference Include="FSharp.Core, Version=$(TargetFSharpCoreVersion), Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Management" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="AssemblyInfo.fs" />
-    <Compile Include="..\FSharp.Management\ProvidedTypes.fsi">
-      <Link>ProvidedTypes.fsi</Link>
-    </Compile>
-    <Compile Include="..\FSharp.Management\ProvidedTypes.fs">
-      <Link>ProvidedTypes.fs</Link>
-    </Compile>
-    <Compile Include="..\FSharp.Management\TypeProviders.Helper.fs">
-      <Link>TypeProvider.Helper.fs</Link>
-    </Compile>
-    <Compile Include="WmiProvider.DesignTime.fs" />
-  </ItemGroup>
   <PropertyGroup>
     <MinimumVisualStudioVersion Condition="'$(MinimumVisualStudioVersion)' == ''">11</MinimumVisualStudioVersion>
   </PropertyGroup>
@@ -85,4 +63,29 @@
   </Target>
   -->
   <Import Project="..\..\.paket\paket.targets" />
+  <ItemGroup>
+    <Content Include="..\..\paket-files\fsprojects\FSharp.TypeProviders.StarterPack\src\ProvidedTypes.fsi">
+      <Paket>True</Paket>
+      <Link>paket-files/ProvidedTypes.fsi</Link>
+    </Content>
+    <Compile Include="..\..\paket-files\fsprojects\FSharp.TypeProviders.StarterPack\src\ProvidedTypes.fs">
+      <Paket>True</Paket>
+      <Link>paket-files/ProvidedTypes.fs</Link>
+    </Compile>
+    <Compile Include="AssemblyInfo.fs" />
+    <Compile Include="..\FSharp.Management\TypeProviders.Helper.fs">
+      <Link>TypeProvider.Helper.fs</Link>
+    </Compile>
+    <Compile Include="WmiProvider.DesignTime.fs" />
+    <None Include="paket.references" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="mscorlib" />
+    <Reference Include="FSharp.Core, Version=$(TargetFSharpCoreVersion), Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Management" />
+  </ItemGroup>
 </Project>
