@@ -14,6 +14,8 @@ The FSharp.Management project contains various type providers for the management
 <a href="http://fsprojects.github.io/FSharp.Management" target="_blank">Documentation available here.</a>
 
 ## Building
+[![AppVeyor Build status](https://ci.appveyor.com/api/projects/status/n94phug4pgecalte?svg=true)](https://ci.appveyor.com/project/sergey-tihon/fsharp-management-6aqlt)
+[![Travis build status](https://travis-ci.org/fsprojects/FSharp.Management.png)](https://travis-ci.org/fsprojects/FSharp.Management/)
 
 * Install PowerShell 3.0
 * Run build.cmd
