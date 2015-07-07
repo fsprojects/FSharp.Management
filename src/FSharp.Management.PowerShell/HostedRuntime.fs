@@ -137,7 +137,7 @@ type PSRuntimeHosted(snapIns:string[], modules:string[]) =
                     then typedCollection
                     else let ind = cmd.ResultObjectTypes |> Array.findIndex (fun x-> x = tyOfObj)
                          let funcName = sprintf "NewChoice%dOf%d" (ind+1) (cmd.ResultObjectTypes.Length)
-                         cmd.ResultType.GenericTypeArguments.[0]
+                         cmd.ResultType.GetGenericArguments().[0] // GenericTypeArguments in .NET 4.5
                             .GetMethod(funcName).Invoke(null, [|typedCollection|])
 
                 cmd.ResultType.GetMethod("Some").Invoke(null, [|choise|])
