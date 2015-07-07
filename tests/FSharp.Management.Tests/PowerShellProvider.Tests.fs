@@ -29,6 +29,18 @@ let ``Get list of registered snapins``() =
         snapins.IsEmpty |> should be False
     | _ -> failwith "Unexpected result"
 
+[<Test>]
+let ``Get random number from range`` () =
+    match PS.``Get-Random``(minimum = 0, maximum = 10) with
+    | Some(Choice1Of3 [value]) when value >=0 && value <= 10 -> ()
+    | _ -> failwith "Unexpected result"
+
+[<Test>]
+let ``Get events from event log`` () =
+    match PS.``Get-EventLog``(logName="Application", entryType=[|"Error"|], newest=2) with
+    | Some(Choice2Of3 entries) ->
+        entries |> should haveLength 2
+    | _ -> failwith "Unexpected result"
 
 type PS64 = PowerShellProvider< Modules, Is64BitRequired=true >
 
