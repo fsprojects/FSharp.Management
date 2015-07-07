@@ -3,34 +3,33 @@
 open System
 open System.Management.Automation
 
-type PSCommandLet =
+type PSCommandSignature =
     {
-        Name    : string
-        UniqueID: string
-
-        ResultObjectTypes : Type[]
-        ResultType        : Type
+        Name    : string // PowerShell command name
+        UniqueID: string // Unique command identifier
         ParametersInfo    : (string*bool*Type)[]
+        ResultType        : Type
+        ResultObjectTypes : Type[]
     }
 
-let private getOutputTypesBasic(command:CommandInfo) =
+let getOutputTypes (command:CommandInfo) =
     let types =
         command.OutputType
-        |> Seq.map (fun ty -> ty.Type)
-        |> Seq.filter (fun x-> x<>null) //TODO: verify this case
+        |> Seq.map (fun psTy ->
+            match psTy.Type with
+            | null -> typeof<obj>
+            | ty -> ty)
         |> Seq.toArray
     match types with
     | _ when 0 < types.Length && types.Length <= 7
-        -> types |> Some
-    | _ -> None
+        -> types
+    | _ -> Array.empty
 
-let getOutputTypes (command:CommandInfo) =
-    let resultType = getOutputTypesBasic command
-    defaultArg resultType Array.empty
-
-let buildResultType (possibleTypes:Type[]) =
-    let listOfTy ty = typedefof<list<_>>.MakeGenericType([|ty|])
-    let tys = possibleTypes |> Array.map listOfTy
+let buildResultType (resultObjectTypes:Type[]) =
+    let tys =
+        resultObjectTypes
+        |> Array.map (fun ty ->
+            typedefof<list<_>>.MakeGenericType([|ty|]))
     let choise =
         match tys.Length with
         | 1 -> tys.[0]
@@ -41,7 +40,6 @@ let buildResultType (possibleTypes:Type[]) =
         | 6 -> typedefof<Choice<_,_,_,_,_,_>>.MakeGenericType(tys)
         | 7 -> typedefof<Choice<_,_,_,_,_,_,_>>.MakeGenericType(tys)
         | _ -> typeof<PSObject> //TODO: test it
-               //failwithf "Unexpected number of result types '%d'" (tys.Length) //listOfTy typeof<PSObject>
     typedefof<Option<_>>.MakeGenericType(choise)
 
 let getParameterProperties (parameterSet: CommandParameterSetInfo) =
@@ -52,25 +50,8 @@ let getParameterProperties (parameterSet: CommandParameterSetInfo) =
         |> Seq.map (fun p-> p.Name, p.IsMandatory, p.ParameterType)
         |> Seq.toArray
 
-let toCamelCase s =
-    if (String.IsNullOrEmpty(s) || not <| Char.IsLetter(s.[0]) || Char.IsLower(s.[0]))
-        then s
-        else sprintf "%c%s" (Char.ToLower(s.[0])) (s.Substring(1))
-
-let getTypeOfObjects (types:Type[]) (collection:PSObject seq) =
-    let applicableTypes =
-        types |> Array.filter (fun ty ->
-            collection |> Seq.map(fun x->x.BaseObject) |> Seq.forall (ty.IsInstanceOfType))
-    match applicableTypes with
-    | [|ty|] -> Some(ty)
-    | _ -> None
-
-type CollectionConverter<'T> =
-    static member Convert (objSeq:obj seq) =
-        objSeq |> Seq.cast<'T> |> Seq.toList
-
-let createPSCommandLet (command:CommandInfo) (parameterSet:CommandParameterSetInfo) =
-    let resultObjectTypes = command |> getOutputTypes
+let getPSCommandSignature (command:CommandInfo) (parameterSet:CommandParameterSetInfo) =
+    let resultObjectTypes = getOutputTypes command
     {
         Name                = command.Name
         UniqueID            = command.Name + parameterSet.Name;
@@ -78,3 +59,22 @@ let createPSCommandLet (command:CommandInfo) (parameterSet:CommandParameterSetIn
         ResultType          = buildResultType resultObjectTypes
         ParametersInfo      = getParameterProperties parameterSet
     }
+
+
+
+let toCamelCase s =
+    if (String.IsNullOrEmpty(s) || not <| Char.IsLetter(s.[0]) || Char.IsLower(s.[0]))
+        then s
+        else sprintf "%c%s" (Char.ToLower(s.[0])) (s.Substring(1))
+
+type CollectionConverter<'T> =
+    static member Convert (objSeq:obj seq) =
+        objSeq |> Seq.cast<'T> |> Seq.toList
+
+let getTypeOfObjects (types:Type[]) (collection:PSObject seq) =
+    let typeCandidates =
+        types |> Array.filter (fun ty ->
+            collection |> Seq.map(fun x->x.BaseObject) |> Seq.forall (ty.IsInstanceOfType))
+    match typeCandidates with
+    | [|ty|] -> Some(ty)
+    | _ -> None

@@ -11,7 +11,6 @@ open HostedRuntime
 type PSCmdLetInfoDTO() =
     [<field : DataMember>]
     member val RawName = "" with get, set
-
     [<field : DataMember>]
     member val ResultObjectTypes   = Array.empty<string> with get, set
     [<field : DataMember>]
@@ -35,7 +34,7 @@ type PSRuntimeService(snapIns:string[], modules:string[]) =
     let serializeType = (fun (t:Type) -> t.AssemblyQualifiedName)
     interface IPSRuntimeService with
         member __.GetAllCmdlets() =
-            psRuntime.AllCmdlets()
+            psRuntime.AllCommands()
             |> Array.map (fun cmdlet ->
                 let paramNames, isMandaroty, paramTypes =
                     cmdlet.ParametersInfo |> Array.unzip3
@@ -87,7 +86,7 @@ type PSRuntimeExternal(snapIns: string[], modules: string[]) =
 
         let fullPath = System.Reflection.Assembly.GetAssembly(typeof<PSRuntimeExternal>).Location
         let directory = Path.GetDirectoryName( fullPath )
-        let externalRuntime = Path.Combine(directory, "FSharp.Management.PowerShell.ExternalRuntime.exe") // TODO: update it
+        let externalRuntime = Path.Combine(directory, "FSharp.Management.PowerShell.ExternalRuntime.exe")
 
         pr.StartInfo.FileName  <- externalRuntime
 
@@ -117,7 +116,7 @@ type PSRuntimeExternal(snapIns: string[], modules: string[]) =
                 psProcess.WaitForExit()
 
     interface IPSRuntime with
-        member __.AllCmdlets() =
+        member __.AllCommands() =
             clientService.GetAllCmdlets()
             |> Array.map (fun dto ->
                 let resultObjectTypes = (dto.ResultObjectTypes |> Array.map unSerializeType)

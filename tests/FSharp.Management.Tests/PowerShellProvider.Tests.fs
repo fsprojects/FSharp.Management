@@ -4,10 +4,9 @@ open FSharp.Management
 open NUnit.Framework
 open FsUnit
 
-let [<Literal>]PSSnapIns = "" 
 let [<Literal>]Modules = "Microsoft.PowerShell.Management;Microsoft.PowerShell.Core"
 
-type PS = PowerShellProvider< PSSnapIns=PSSnapIns, Modules=Modules, Is64BitRequired=false >
+type PS = PowerShellProvider< Modules >
 
 [<Test>]
 let ``Get system drive``() =
@@ -31,7 +30,7 @@ let ``Get list of registered snapins``() =
     | _ -> failwith "Unexpected result"
 
 
-type PS64 = PowerShellProvider< PSSnapIns=PSSnapIns, Modules=Modules, Is64BitRequired=true >
+type PS64 = PowerShellProvider< Modules, Is64BitRequired=true >
 
 [<Test>]
 let ``Get system drive x64``() =
