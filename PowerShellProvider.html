@@ -105,49 +105,49 @@
 <span class="k">open</span> <span onmouseout="hideTip(event, 'fs1', 1)" onmouseover="showTip(event, 'fs1', 1)" class="i">FSharp</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs2', 2)" onmouseover="showTip(event, 'fs2', 2)" class="i">Management</span>
 
 <span class="c">// Let the type provider infer the signatures of available cmdlets</span>
-<span class="k">type</span> <span onmouseout="hideTip(event, 'fs3', 3)" onmouseover="showTip(event, 'fs3', 3)" class="i">PS</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs4', 4)" onmouseover="showTip(event, 'fs4', 4)" class="i">PowerShellProvider</span><span class="o">&lt;</span> <span class="i">PSSnapIns</span><span class="o">=</span><span class="s">&quot;</span><span class="s">&quot;</span>, <span class="i">Is64BitRequired</span><span class="o">=</span><span class="k">false</span> <span class="o">&gt;</span>
+<span class="k">type</span> <span onmouseout="hideTip(event, 'fs3', 3)" onmouseover="showTip(event, 'fs3', 3)" class="i">PS</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs4', 4)" onmouseover="showTip(event, 'fs4', 4)" class="i">PowerShellProvider</span><span class="o">&lt;</span> <span class="s">&quot;</span><span class="s">Microsoft</span><span class="s">.</span><span class="s">PowerShell</span><span class="s">.</span><span class="s">Management</span><span class="s">;</span><span class="s">Microsoft</span><span class="s">.</span><span class="s">PowerShell</span><span class="s">.</span><span class="s">Core</span><span class="s">&quot;</span> <span class="o">&gt;</span>
 
 <span class="c">// now you have typed access to your PowerShell and you can browse it via Intellisense</span>
 <span onmouseout="hideTip(event, 'fs3', 5)" onmouseover="showTip(event, 'fs3', 5)" class="i">PS</span><span class="o">.</span><span class="i">``Get-EventLog``</span>(<span class="i">logName</span><span class="o">=</span><span class="s">&quot;</span><span class="s">Application</span><span class="s">&quot;</span>, <span class="i">entryType</span><span class="o">=</span>[|<span class="s">&quot;</span><span class="s">Error</span><span class="s">&quot;</span>|], <span class="i">newest</span><span class="o">=</span><span class="n">2</span>)
 <span class="fsi">val it :</span>
-<span class="fsi">  Choice&lt;List&lt;string&gt;,List&lt;System.Diagnostics.EventLogEntry&gt;,</span>
-<span class="fsi">         List&lt;System.Diagnostics.EventLog&gt;,</span>
-<span class="fsi">         List&lt;System.Management.Automation.PSObject&gt;&gt; =</span>
-<span class="fsi">  Choice2Of4</span>
-<span class="fsi">    [System.Diagnostics.EventLogEntry</span>
-<span class="fsi">       {Category = &quot;(0)&quot;;</span>
-<span class="fsi">        CategoryNumber = 0s;</span>
-<span class="fsi">        Container = null;</span>
-<span class="fsi">        Data = [|126uy; 0uy; 0uy; 0uy|];</span>
-<span class="fsi">        EntryType = Error;</span>
-<span class="fsi">        EventID = 1023;</span>
-<span class="fsi">        Index = 3861;</span>
-<span class="fsi">        InstanceId = 3221226495L;</span>
-<span class="fsi">        MachineName = &quot;xxxxxxxxx&quot;;</span>
-<span class="fsi">        Message = &quot;The description for Event ID &#39;-1073740801&#39; in Source &#39;Perflib&#39; cannot be found...&quot;;</span>
-<span class="fsi">        ReplacementStrings = [|&quot;rdyboost&quot;; &quot;4&quot;|];</span>
-<span class="fsi">        Site = null;</span>
-<span class="fsi">        Source = &quot;Perflib&quot;;</span>
-<span class="fsi">        TimeGenerated = 12/20/2013 11:08:02 PM;</span>
-<span class="fsi">        TimeWritten = 12/20/2013 11:08:02 PM;</span>
-<span class="fsi">        UserName = null;};</span>
-<span class="fsi">     System.Diagnostics.EventLogEntry</span>
-<span class="fsi">       {Category = &quot;Logging/Recovery&quot;;</span>
-<span class="fsi">        CategoryNumber = 3s;</span>
-<span class="fsi">        Container = null;</span>
-<span class="fsi">        Data = [||];</span>
-<span class="fsi">        EntryType = Error;</span>
-<span class="fsi">        EventID = 454;</span>
-<span class="fsi">        Index = 3521;</span>
-<span class="fsi">        InstanceId = 454L;</span>
-<span class="fsi">        MachineName = &quot;xxxxxxxxx&quot;;</span>
-<span class="fsi">        Message = &quot;taskhostex (2416) IndexedDb: Database recovery/restore failed with unexpected error -1216.&quot;;</span>
-<span class="fsi">        ReplacementStrings = [|&quot;taskhostex&quot;; &quot;2416&quot;; &quot;IndexedDb: &quot;; &quot;-1216&quot;|];</span>
-<span class="fsi">        Site = null;</span>
-<span class="fsi">        Source = &quot;ESENT&quot;;</span>
-<span class="fsi">        TimeGenerated = 12/20/2013 1:31:59 AM;</span>
-<span class="fsi">        TimeWritten = 12/20/2013 1:31:59 AM;</span>
-<span class="fsi">        UserName = null;}]</span></pre>
+<span class="fsi">  Option&lt;Choice&lt;List&lt;Diagnostics.EventLog&gt;,List&lt;Diagnostics.EventLogEntry&gt;,</span>
+<span class="fsi">                List&lt;string&gt;&gt;&gt; =</span>
+<span class="fsi">  Some</span>
+<span class="fsi">    (Choice2Of3</span>
+<span class="fsi">       [System.Diagnostics.EventLogEntry</span>
+<span class="fsi">          {Category = &quot;(0)&quot;;</span>
+<span class="fsi">           CategoryNumber = 0s;</span>
+<span class="fsi">           Container = null;</span>
+<span class="fsi">           Data = [|126uy; 0uy; 0uy; 0uy|];</span>
+<span class="fsi">           EntryType = Error;</span>
+<span class="fsi">           EventID = 1023;</span>
+<span class="fsi">           Index = 214869;</span>
+<span class="fsi">           InstanceId = 3221226495L;</span>
+<span class="fsi">           MachineName = &quot;xxx&quot;;</span>
+<span class="fsi">           Message = &quot;The description for Event ID &#39;-1073740801&#39; in Source &#39;Perflib&#39; cannot ...&quot;</span>
+<span class="fsi">           ReplacementStrings = [|&quot;rdyboost&quot;; &quot;4&quot;|];</span>
+<span class="fsi">           Site = null;</span>
+<span class="fsi">           Source = &quot;Perflib&quot;;</span>
+<span class="fsi">           TimeGenerated = 7/12/2015 12:14:55 AM;</span>
+<span class="fsi">           TimeWritten = 7/12/2015 12:14:55 AM;</span>
+<span class="fsi">           UserName = null;};</span>
+<span class="fsi">        System.Diagnostics.EventLogEntry</span>
+<span class="fsi">          {Category = &quot;(0)&quot;;</span>
+<span class="fsi">           CategoryNumber = 0s;</span>
+<span class="fsi">           Container = null;</span>
+<span class="fsi">           Data = [||];</span>
+<span class="fsi">           EntryType = Error;</span>
+<span class="fsi">           EventID = 513;</span>
+<span class="fsi">           Index = 214760;</span>
+<span class="fsi">           InstanceId = 513L;</span>
+<span class="fsi">           MachineName = &quot;xxx&quot;;</span>
+<span class="fsi">           Message = &quot;Cryptographic Services failed while ...&quot;;</span>
+<span class="fsi">           ReplacementStrings = [|&quot;&quot;|];</span>
+<span class="fsi">           Site = null;</span>
+<span class="fsi">           Source = &quot;Microsoft-Windows-CAPI2&quot;;</span>
+<span class="fsi">           TimeGenerated = 7/11/2015 11:50:42 AM;</span>
+<span class="fsi">           TimeWritten = 7/11/2015 11:50:42 AM;</span>
+<span class="fsi">           UserName = null;}])</span></pre>
 </td>
 </tr>
 </table>
@@ -181,16 +181,18 @@
 <span class="l">22: </span>
 <span class="l">23: </span>
 <span class="l">24: </span>
+<span class="l">25: </span>
 </pre>
 </td>
 <td class="snippet"><pre class="fssnip">
 <span class="prep">#r</span> <span class="s">&quot;</span><span class="s">System</span><span class="s">.</span><span class="s">ServiceProcess</span><span class="s">.</span><span class="s">dll</span><span class="s">&quot;</span>
-<span class="k">let</span> <span onmouseout="hideTip(event, 'fs5', 6)" onmouseover="showTip(event, 'fs5', 6)" class="i">service</span> <span class="o">=</span> 
+
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs5', 6)" onmouseover="showTip(event, 'fs5', 6)" class="i">service</span> <span class="o">=</span>
     <span class="k">match</span> <span onmouseout="hideTip(event, 'fs3', 7)" onmouseover="showTip(event, 'fs3', 7)" class="i">PS</span><span class="o">.</span><span class="i">``Get-Service``</span>(<span class="i">name</span><span class="o">=</span>[|<span class="s">&quot;</span><span class="s">Windows</span><span class="s"> </span><span class="s">Search</span><span class="s">&quot;</span>|]) <span class="k">with</span>
-    | <span onmouseout="hideTip(event, 'fs6', 8)" onmouseover="showTip(event, 'fs6', 8)" class="i">Choice1Of2</span>(<span onmouseout="hideTip(event, 'fs7', 9)" onmouseover="showTip(event, 'fs7', 9)" class="i">services</span>) <span class="k">when</span> <span onmouseout="hideTip(event, 'fs7', 10)" onmouseover="showTip(event, 'fs7', 10)" class="i">services</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs8', 11)" onmouseover="showTip(event, 'fs8', 11)" class="i">Length</span> <span class="o">=</span> <span class="n">1</span> <span class="k">-&gt;</span>
+    | <span onmouseout="hideTip(event, 'fs6', 8)" onmouseover="showTip(event, 'fs6', 8)" class="i">Some</span>(<span onmouseout="hideTip(event, 'fs7', 9)" onmouseover="showTip(event, 'fs7', 9)" class="i">services</span>) <span class="k">when</span> <span onmouseout="hideTip(event, 'fs7', 10)" onmouseover="showTip(event, 'fs7', 10)" class="i">services</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs8', 11)" onmouseover="showTip(event, 'fs8', 11)" class="i">Length</span> <span class="o">=</span> <span class="n">1</span> <span class="k">-&gt;</span>
         <span onmouseout="hideTip(event, 'fs7', 12)" onmouseover="showTip(event, 'fs7', 12)" class="i">services</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs9', 13)" onmouseover="showTip(event, 'fs9', 13)" class="i">Head</span>
     | _ <span class="k">-&gt;</span> <span onmouseout="hideTip(event, 'fs10', 14)" onmouseover="showTip(event, 'fs10', 14)" class="i">failwith</span> <span class="s">&quot;</span><span class="s">Choice</span><span class="s"> </span><span class="s">is</span><span class="s"> </span><span class="s">ambiguous</span><span class="s"> </span><span class="s">or</span><span class="s"> </span><span class="s">service</span><span class="s"> </span><span class="s">not</span><span class="s"> </span><span class="s">found</span><span class="s">&quot;</span>
-<span class="fsi">val service : System.ServiceProcess.ServiceController =</span>
+<span class="fsi">val service : ServiceProcess.ServiceController =</span>
 <span class="fsi">  System.ServiceProcess.ServiceController</span>
 <span class="fsi">    {CanPauseAndContinue = false;</span>
 <span class="fsi">     CanShutdown = true;</span>
@@ -200,13 +202,13 @@
 <span class="fsi">                           System.ServiceProcess.ServiceController|];</span>
 <span class="fsi">     DisplayName = &quot;Windows Search&quot;;</span>
 <span class="fsi">     MachineName = &quot;.&quot;;</span>
-<span class="fsi">     ServiceHandle = ?;</span>
+<span class="fsi">     ServiceHandle = SafeServiceHandle;</span>
 <span class="fsi">     ServiceName = &quot;WSearch&quot;;</span>
 <span class="fsi">     ServiceType = Win32OwnProcess;</span>
 <span class="fsi">     ServicesDependedOn = [|System.ServiceProcess.ServiceController|];</span>
 <span class="fsi">     Site = null;</span>
 <span class="fsi">     Status = Running;}</span>
-<span class="fsi">  System.ServiceProcess.ServiceController]</span>
+
 <span onmouseout="hideTip(event, 'fs3', 15)" onmouseover="showTip(event, 'fs3', 15)" class="i">PS</span><span class="o">.</span><span class="i">``Start-Service``</span>(<span class="i">inputObject</span><span class="o">=</span>[|<span onmouseout="hideTip(event, 'fs5', 16)" onmouseover="showTip(event, 'fs5', 16)" class="i">service</span>|])</pre>
 </td>
 </tr>
@@ -232,44 +234,14 @@
 <span class="l">15: </span>
 <span class="l">16: </span>
 <span class="l">17: </span>
-<span class="l">18: </span>
-<span class="l">19: </span>
-<span class="l">20: </span>
-<span class="l">21: </span>
-<span class="l">22: </span>
-<span class="l">23: </span>
-<span class="l">24: </span>
-<span class="l">25: </span>
-<span class="l">26: </span>
-<span class="l">27: </span>
-<span class="l">28: </span>
-<span class="l">29: </span>
-<span class="l">30: </span>
-<span class="l">31: </span>
-<span class="l">32: </span>
 </pre>
 </td>
 <td class="snippet"><pre class="fssnip">
 <span class="c">// get all registered PowerShell Snapins</span>
 <span onmouseout="hideTip(event, 'fs3', 17)" onmouseover="showTip(event, 'fs3', 17)" class="i">PS</span><span class="o">.</span><span class="i">``Get-PSSnapin``</span>(<span class="i">registered</span><span class="o">=</span><span class="k">true</span>)
-<span class="fsi">val it :</span>
-<span class="fsi">  Choice&lt;List&lt;System.Management.Automation.PSSnapInInfo&gt;,</span>
-<span class="fsi">         List&lt;System.Management.Automation.PSObject&gt;&gt; =</span>
-<span class="fsi">  Choice1Of2</span>
-<span class="fsi">    [MSDeploySnapin</span>
-<span class="fsi">       {ApplicationBase = &quot;C:\Program Files\IIS\Microsoft Web Deploy V3\&quot;;</span>
-<span class="fsi">        AssemblyName = &quot;Microsoft.Web.Deployment.PowerShell, Version=9.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35&quot;;</span>
-<span class="fsi">        Description = &quot;This is a PowerShell snap-in that contains cmdlets for managing Microsoft Web Deployment infrastructure.&quot;;</span>
-<span class="fsi">        Formats = seq [];</span>
-<span class="fsi">        IsDefault = false;</span>
-<span class="fsi">        LogPipelineExecutionDetails = false;</span>
-<span class="fsi">        ModuleName = &quot;Microsoft.Web.Deployment.PowerShell.dll&quot;;</span>
-<span class="fsi">        Name = &quot;MSDeploySnapin&quot;;</span>
-<span class="fsi">        PSVersion = 2.0;</span>
-<span class="fsi">        Types = seq [];</span>
-<span class="fsi">        Vendor = &quot;Microsoft&quot;;</span>
-<span class="fsi">        Version = 9.0.0.0;};</span>
-<span class="fsi">     WDeploySnapin3.0</span>
+<span class="fsi">val it : Option&lt;List&lt;PSSnapInInfo&gt;&gt; =</span>
+<span class="fsi">  Some</span>
+<span class="fsi">    [WDeploySnapin3.0</span>
 <span class="fsi">       {ApplicationBase = &quot;C:\Program Files\IIS\Microsoft Web Deploy V3\&quot;;</span>
 <span class="fsi">        AssemblyName = &quot;Microsoft.Web.Deployment.PowerShell, Version=9.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35&quot;;</span>
 <span class="fsi">        Description = &quot;This is a PowerShell snap-in that contains cmdlets for managing Microsoft Web Deployment infrastructure.&quot;;</span>
@@ -289,9 +261,9 @@
 <div class="tip" id="fs1">namespace FSharp</div>
 <div class="tip" id="fs2">namespace FSharp.Management</div>
 <div class="tip" id="fs3">type PS = PowerShellProvider&lt;...&gt;<br /><br />Full name: PowerShellProvider.PS</div>
-<div class="tip" id="fs4">Multiple items<br />namespace FSharp.Management.PowerShellProvider<br /><br />--------------------<br />type PowerShellProvider<br /><br />Full name: FSharp.Management.PowerShellProvider<br /><em><br /><br />&lt;summary&gt;Typed representation of a PowerShell runspace&lt;/summary&gt;<br />&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&lt;param name=&#39;PSSnapIns&#39;&gt;List of PSSnapIn that will be added at the start separated by semicolon.&lt;/param&gt;<br />&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&lt;param name=&#39;Is64BitRequired&#39;&gt;Mark that 64bit runtime should be used for PowerShell&lt;/param&gt;</em></div>
+<div class="tip" id="fs4">Multiple items<br />namespace FSharp.Management.PowerShellProvider<br /><br />--------------------<br />type PowerShellProvider<br /><br />Full name: FSharp.Management.PowerShellProvider<br /><em><br /><br />&lt;summary&gt;Typed representation of a PowerShell runspace&lt;/summary&gt;<br />&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&lt;param name=&#39;Modules&#39;&gt;List of Modules that will be loaded at the start (separated by semicolon).&lt;/param&gt;<br />&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&lt;param name=&#39;PSSnapIns&#39;&gt;List of PSSnapIn that will be added at the start (separated by semicolon).&lt;/param&gt;<br />&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&lt;param name=&#39;Is64BitRequired&#39;&gt;Mark that 64bit runtime should be used for PowerShell&lt;/param&gt;</em></div>
 <div class="tip" id="fs5">val service : System.ServiceProcess.ServiceController<br /><br />Full name: PowerShellProvider.service</div>
-<div class="tip" id="fs6">union case Choice.Choice1Of2: &#39;T1 -&gt; Choice&lt;&#39;T1,&#39;T2&gt;</div>
+<div class="tip" id="fs6">union case Option.Some: Value: &#39;T -&gt; Option&lt;&#39;T&gt;</div>
 <div class="tip" id="fs7">val services : List&lt;System.ServiceProcess.ServiceController&gt;</div>
 <div class="tip" id="fs8">property List.Length: int</div>
 <div class="tip" id="fs9">property List.Head: System.ServiceProcess.ServiceController</div>
