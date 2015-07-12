@@ -62,7 +62,9 @@ Target "Build" (fun _ ->
     !! (solutionFile + ".sln")
     |> MSBuildRelease "" "Rebuild"
     |> ignore
+)
 
+Target "BuildTests" (fun _ ->
     !! (solutionFile + ".Tests.sln")
     |> MSBuildRelease "" "Rebuild"
     |> ignore
@@ -156,6 +158,7 @@ Target "All" DoNothing
   ==> "Build"
 #if MONO
 #else
+  ==> "BuildTests"
   ==> "RunTests"
 #endif  
   ==> "All"
