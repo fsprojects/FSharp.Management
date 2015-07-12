@@ -154,7 +154,10 @@ Target "All" DoNothing
 "Clean"
   ==> "AssemblyInfo"
   ==> "Build"
+#if MONO
+#else
   ==> "RunTests"
+#endif  
   ==> "All"
 
 "All" 
