@@ -15,6 +15,7 @@ NUGET
     NUnit.Runners (2.6.4)
     RazorEngine (3.3.0)
       Microsoft.AspNet.Razor (>= 2.0.30506.0)
+    System.Management.Automation_PowerShell_3.0 (6.3.9600.17400)
 GITHUB
   remote: fsprojects/FSharp.TypeProviders.StarterPack
   specs:
