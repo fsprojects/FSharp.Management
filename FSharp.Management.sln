@@ -32,6 +32,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "content", "content", "{8E6D
 		docs\content\index.fsx = docs\content\index.fsx
 		docs\content\PowerShellProvider.fsx = docs\content\PowerShellProvider.fsx
 		docs\content\RegistryProvider.fsx = docs\content\RegistryProvider.fsx
+		docs\content\SystemTimeZonesProvider.fsx = docs\content\SystemTimeZonesProvider.fsx
 		docs\content\WMIProvider.fsx = docs\content\WMIProvider.fsx
 	EndProjectSection
 EndProject

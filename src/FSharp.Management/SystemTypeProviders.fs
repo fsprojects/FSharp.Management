@@ -30,8 +30,21 @@ type public RelativeFileSystemProvider(cfg : TypeProviderConfig) as this =
         this.Disposing.Add(fun _ -> (ctx :> IDisposable).Dispose())
         this.AddNamespace(rootNamespace, [FilesTypeProvider.createRelativePathSystem cfg.ResolutionFolder ctx])
 
-do ()
 
+[<TypeProvider>]
+/// [omit]
+type public SystemTimeZonesProvider(cfg : TypeProviderConfig) as this = 
+    inherit TypeProviderForNamespaces()
+        
+    do
+        let root = erasedType<obj> thisAssembly rootNamespace "SystemTimeZones"
+        root.AddMembersDelayed <| fun() -> 
+            [ 
+                for x in TimeZoneInfo.GetSystemTimeZones() ->
+                    let id = x.Id
+                    ProvidedProperty(x.DisplayName, typeof<TimeZoneInfo>, [], IsStatic = true, GetterCode = fun _ -> <@@ TimeZoneInfo.FindSystemTimeZoneById id @@>)
+            ]
+        this.AddNamespace(rootNamespace, [root])
 
 [<TypeProviderAssembly>]
 do()
