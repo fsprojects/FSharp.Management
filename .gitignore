@@ -167,6 +167,8 @@ docs/output/
 
 # Temp folder used for publishing docs
 temp/
+.fake
+.vs
 
 # Test results produced by build
 TestResults.xml
