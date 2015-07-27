@@ -65,6 +65,7 @@
     <Compile Include="RegistryProvider.Tests.fs" />
     <Compile Include="PowerShellProvider.Tests.fs" />
     <Compile Include="WMI.Tests.fs" />
+    <Compile Include="SystemTimeZonesProvider.Tests.fs" />
     <None Include="paket.references" />
   </ItemGroup>
   <ItemGroup>
