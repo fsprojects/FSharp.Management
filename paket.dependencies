@@ -6,6 +6,7 @@ nuget FsUnit
 nuget NUnit.Runners
 nuget NuGet.CommandLine
 nuget System.Management.Automation_PowerShell_3.0
+nuget SourceLink.Fake
 
 github fsprojects/FSharp.TypeProviders.StarterPack src/ProvidedTypes.fsi
 github fsprojects/FSharp.TypeProviders.StarterPack src/ProvidedTypes.fs

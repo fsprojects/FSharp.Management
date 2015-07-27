@@ -13,6 +13,7 @@ NUGET
     NuGet.CommandLine (2.8.6)
     NUnit (2.6.4)
     NUnit.Runners (2.6.4)
+    SourceLink.Fake (1.0.0)
     System.Management.Automation_PowerShell_3.0 (6.3.9600.17400)
 GITHUB
   remote: fsprojects/FSharp.TypeProviders.StarterPack

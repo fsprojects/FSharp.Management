@@ -133,10 +133,10 @@ let buildDocumentation () =
 
 // Generate
 copyFiles()
-//#if HELP
+#if HELP
 buildDocumentation()
-//#endif
-//#if REFERENCE
+#endif
+#if REFERENCE
 buildReference()
-//#endif
+#endif
 
