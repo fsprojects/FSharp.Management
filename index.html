@@ -42,6 +42,7 @@
 <li><a href="RegistryProvider.html">Registry</a></li>
 <li><a href="WMIProvider.html">WMI</a></li>
 <li><a href="PowerShellProvider.html">PowerShell</a></li>
+<li><a href="SystemTimeZonesProvider.html">SystemTimeZonesProvider</a></li>
 </ul>
 
 <p>In addition, a set of utilities for dealing with common paths on the system at runtime are provided.</p>
@@ -84,7 +85,7 @@
 <span class="k">type</span> <span onmouseout="hideTip(event, 'fs3', 3)" onmouseover="showTip(event, 'fs3', 3)" class="t">Users</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs4', 4)" onmouseover="showTip(event, 'fs4', 4)" class="t">FileSystem</span><span class="o">&lt;</span><span class="s">&quot;C:</span><span class="e">\\</span><span class="s">Users</span><span class="e">\\</span><span class="s">&quot;</span><span class="o">&gt;</span>
 
 <span class="c">// now you have typed access to your filesystem and you can browse it via Intellisense</span>
-<span onmouseout="hideTip(event, 'fs3', 5)" onmouseover="showTip(event, 'fs3', 5)" class="i">Users</span><span class="o">.</span><span class="i">AllUsers</span><span class="o">.</span><span class="i">Path</span> 
+<span onmouseout="hideTip(event, 'fs3', 5)" onmouseover="showTip(event, 'fs3', 5)" class="i">Users</span><span class="o">.</span><span class="i">AllUsers</span><span class="o">.</span><span class="i">Path</span>
 <span class="fsi">val it : string = &quot;C:\Users\All Users&quot;</span>
 </code></pre></td>
 </tr>
@@ -92,13 +93,13 @@
 
 <h2><a name="Contributing-and-copyright" class="anchor" href="#Contributing-and-copyright">Contributing and copyright</a></h2>
 
-<p>The project is hosted on <a href="https://github.com/fsprojects/FSharp.Management">GitHub</a> where you can <a href="https://github.com/fsprojects/FSharp.Management/issues">report issues</a>, fork 
-the project and submit pull requests. If you're adding new public API, please also 
+<p>The project is hosted on <a href="https://github.com/fsprojects/FSharp.Management">GitHub</a> where you can <a href="https://github.com/fsprojects/FSharp.Management/issues">report issues</a>, fork
+the project and submit pull requests. If you're adding new public API, please also
 consider adding <a href="https://github.com/fsprojects/FSharp.Management/tree/master/docs/content">samples</a> that can be turned into a documentation. You might
 also want to read <a href="https://github.com/fsprojects/FSharp.Management/blob/master/README.md">library design notes</a> to understand how it works.</p>
 
-<p>The library is available under Public Domain license, which allows modification and 
-redistribution for both commercial and non-commercial purposes. For more information see the 
+<p>The library is available under Public Domain license, which allows modification and
+redistribution for both commercial and non-commercial purposes. For more information see the
 <a href="https://github.com/fsprojects/FSharp.Management/blob/master/LICENSE.txt">License file</a> in the GitHub repository.</p>
 
 <div class="tip" id="fs1">namespace FSharp</div>
