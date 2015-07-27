@@ -33,7 +33,7 @@
       <div class="row">
         <div class="span9" id="main">
           
-<h1>The PowerShell type provider</h1>
+<h1><a name="The-PowerShell-type-provider" class="anchor" href="#The-PowerShell-type-provider">The PowerShell type provider</a></h1>
 
 <p>Requirements:</p>
 
@@ -44,8 +44,7 @@
 
 <p>This tutorial shows the use of the PowerShell type provider.</p>
 
-<table class="pre"><tr><td class="lines"><pre class="fssnip">
-<span class="l"> 1: </span>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l"> 1: </span>
 <span class="l"> 2: </span>
 <span class="l"> 3: </span>
 <span class="l"> 4: </span>
@@ -95,20 +94,18 @@
 <span class="l">48: </span>
 <span class="l">49: </span>
 <span class="l">50: </span>
-</pre>
-</td>
-<td class="snippet"><pre class="fssnip">
-<span class="c">// reference the type provider dll</span>
-<span class="prep">#r</span> <span class="s">&quot;</span><span class="s">System</span><span class="s">.</span><span class="s">Management</span><span class="s">.</span><span class="s">Automation</span><span class="s">.</span><span class="s">dll</span><span class="s">&quot;</span>
-<span class="prep">#r</span> <span class="s">&quot;</span><span class="s">FSharp</span><span class="s">.</span><span class="s">Management</span><span class="s">.</span><span class="s">PowerShell</span><span class="s">.</span><span class="s">dll</span><span class="s">&quot;</span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="c">// reference the type provider dll</span>
+<span class="prep">#r</span> <span class="s">&quot;System.Management.Automation.dll&quot;</span>
+<span class="prep">#r</span> <span class="s">&quot;FSharp.Management.PowerShell.dll&quot;</span>
 
 <span class="k">open</span> <span onmouseout="hideTip(event, 'fs1', 1)" onmouseover="showTip(event, 'fs1', 1)" class="i">FSharp</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs2', 2)" onmouseover="showTip(event, 'fs2', 2)" class="i">Management</span>
 
 <span class="c">// Let the type provider infer the signatures of available cmdlets</span>
-<span class="k">type</span> <span onmouseout="hideTip(event, 'fs3', 3)" onmouseover="showTip(event, 'fs3', 3)" class="i">PS</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs4', 4)" onmouseover="showTip(event, 'fs4', 4)" class="i">PowerShellProvider</span><span class="o">&lt;</span> <span class="s">&quot;</span><span class="s">Microsoft</span><span class="s">.</span><span class="s">PowerShell</span><span class="s">.</span><span class="s">Management</span><span class="s">;</span><span class="s">Microsoft</span><span class="s">.</span><span class="s">PowerShell</span><span class="s">.</span><span class="s">Core</span><span class="s">&quot;</span> <span class="o">&gt;</span>
+<span class="k">type</span> <span onmouseout="hideTip(event, 'fs3', 3)" onmouseover="showTip(event, 'fs3', 3)" class="t">PS</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs4', 4)" onmouseover="showTip(event, 'fs4', 4)" class="t">PowerShellProvider</span><span class="o">&lt;</span> <span class="s">&quot;Microsoft.PowerShell.Management;Microsoft.PowerShell.Core&quot;</span> <span class="o">&gt;</span>
 
 <span class="c">// now you have typed access to your PowerShell and you can browse it via Intellisense</span>
-<span onmouseout="hideTip(event, 'fs3', 5)" onmouseover="showTip(event, 'fs3', 5)" class="i">PS</span><span class="o">.</span><span class="i">``Get-EventLog``</span>(<span class="i">logName</span><span class="o">=</span><span class="s">&quot;</span><span class="s">Application</span><span class="s">&quot;</span>, <span class="i">entryType</span><span class="o">=</span>[|<span class="s">&quot;</span><span class="s">Error</span><span class="s">&quot;</span>|], <span class="i">newest</span><span class="o">=</span><span class="n">2</span>)
+<span onmouseout="hideTip(event, 'fs3', 5)" onmouseover="showTip(event, 'fs3', 5)" class="t">PS</span><span class="o">.</span><span class="f">``Get-EventLog``</span>(<span class="i">logName</span><span class="o">=</span><span class="s">&quot;Application&quot;</span>, <span class="i">entryType</span><span class="o">=</span>[|<span class="s">&quot;Error&quot;</span>|], <span class="i">newest</span><span class="o">=</span><span class="n">2</span>)
 <span class="fsi">val it :</span>
 <span class="fsi">  Option&lt;Choice&lt;List&lt;Diagnostics.EventLog&gt;,List&lt;Diagnostics.EventLogEntry&gt;,</span>
 <span class="fsi">                List&lt;string&gt;&gt;&gt; =</span>
@@ -147,17 +144,16 @@
 <span class="fsi">           Source = &quot;Microsoft-Windows-CAPI2&quot;;</span>
 <span class="fsi">           TimeGenerated = 7/11/2015 11:50:42 AM;</span>
 <span class="fsi">           TimeWritten = 7/11/2015 11:50:42 AM;</span>
-<span class="fsi">           UserName = null;}])</span></pre>
-</td>
+<span class="fsi">           UserName = null;}])</span>
+</code></pre></td>
 </tr>
 </table>
 
 <p><img src="img/PowerShellProvider.png" alt="alt text" title="Intellisense for the PowerShell" /></p>
 
-<h2>Manage Windows services</h2>
+<h2><a name="Manage-Windows-services" class="anchor" href="#Manage-Windows-services">Manage Windows services</a></h2>
 
-<table class="pre"><tr><td class="lines"><pre class="fssnip">
-<span class="l"> 1: </span>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l"> 1: </span>
 <span class="l"> 2: </span>
 <span class="l"> 3: </span>
 <span class="l"> 4: </span>
@@ -182,16 +178,14 @@
 <span class="l">23: </span>
 <span class="l">24: </span>
 <span class="l">25: </span>
-</pre>
-</td>
-<td class="snippet"><pre class="fssnip">
-<span class="prep">#r</span> <span class="s">&quot;</span><span class="s">System</span><span class="s">.</span><span class="s">ServiceProcess</span><span class="s">.</span><span class="s">dll</span><span class="s">&quot;</span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="prep">#r</span> <span class="s">&quot;System.ServiceProcess.dll&quot;</span>
 
 <span class="k">let</span> <span onmouseout="hideTip(event, 'fs5', 6)" onmouseover="showTip(event, 'fs5', 6)" class="i">service</span> <span class="o">=</span>
-    <span class="k">match</span> <span onmouseout="hideTip(event, 'fs3', 7)" onmouseover="showTip(event, 'fs3', 7)" class="i">PS</span><span class="o">.</span><span class="i">``Get-Service``</span>(<span class="i">name</span><span class="o">=</span>[|<span class="s">&quot;</span><span class="s">Windows</span><span class="s"> </span><span class="s">Search</span><span class="s">&quot;</span>|]) <span class="k">with</span>
-    | <span onmouseout="hideTip(event, 'fs6', 8)" onmouseover="showTip(event, 'fs6', 8)" class="i">Some</span>(<span onmouseout="hideTip(event, 'fs7', 9)" onmouseover="showTip(event, 'fs7', 9)" class="i">services</span>) <span class="k">when</span> <span onmouseout="hideTip(event, 'fs7', 10)" onmouseover="showTip(event, 'fs7', 10)" class="i">services</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs8', 11)" onmouseover="showTip(event, 'fs8', 11)" class="i">Length</span> <span class="o">=</span> <span class="n">1</span> <span class="k">-&gt;</span>
+    <span class="k">match</span> <span onmouseout="hideTip(event, 'fs3', 7)" onmouseover="showTip(event, 'fs3', 7)" class="t">PS</span><span class="o">.</span><span class="f">``Get-Service``</span>(<span class="i">name</span><span class="o">=</span>[|<span class="s">&quot;Windows Search&quot;</span>|]) <span class="k">with</span>
+    | <span onmouseout="hideTip(event, 'fs6', 8)" onmouseover="showTip(event, 'fs6', 8)" class="p">Some</span>(<span onmouseout="hideTip(event, 'fs7', 9)" onmouseover="showTip(event, 'fs7', 9)" class="i">services</span>) <span class="k">when</span> <span onmouseout="hideTip(event, 'fs7', 10)" onmouseover="showTip(event, 'fs7', 10)" class="i">services</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs8', 11)" onmouseover="showTip(event, 'fs8', 11)" class="i">Length</span> <span class="o">=</span> <span class="n">1</span> <span class="k">-&gt;</span>
         <span onmouseout="hideTip(event, 'fs7', 12)" onmouseover="showTip(event, 'fs7', 12)" class="i">services</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs9', 13)" onmouseover="showTip(event, 'fs9', 13)" class="i">Head</span>
-    | _ <span class="k">-&gt;</span> <span onmouseout="hideTip(event, 'fs10', 14)" onmouseover="showTip(event, 'fs10', 14)" class="i">failwith</span> <span class="s">&quot;</span><span class="s">Choice</span><span class="s"> </span><span class="s">is</span><span class="s"> </span><span class="s">ambiguous</span><span class="s"> </span><span class="s">or</span><span class="s"> </span><span class="s">service</span><span class="s"> </span><span class="s">not</span><span class="s"> </span><span class="s">found</span><span class="s">&quot;</span>
+    | _ <span class="k">-&gt;</span> <span onmouseout="hideTip(event, 'fs10', 14)" onmouseover="showTip(event, 'fs10', 14)" class="f">failwith</span> <span class="s">&quot;Choice is ambiguous or service not found&quot;</span>
 <span class="fsi">val service : ServiceProcess.ServiceController =</span>
 <span class="fsi">  System.ServiceProcess.ServiceController</span>
 <span class="fsi">    {CanPauseAndContinue = false;</span>
@@ -209,15 +203,14 @@
 <span class="fsi">     Site = null;</span>
 <span class="fsi">     Status = Running;}</span>
 
-<span onmouseout="hideTip(event, 'fs3', 15)" onmouseover="showTip(event, 'fs3', 15)" class="i">PS</span><span class="o">.</span><span class="i">``Start-Service``</span>(<span class="i">inputObject</span><span class="o">=</span>[|<span onmouseout="hideTip(event, 'fs5', 16)" onmouseover="showTip(event, 'fs5', 16)" class="i">service</span>|])</pre>
-</td>
+<span onmouseout="hideTip(event, 'fs3', 15)" onmouseover="showTip(event, 'fs3', 15)" class="t">PS</span><span class="o">.</span><span class="f">``Start-Service``</span>(<span class="i">inputObject</span><span class="o">=</span>[|<span onmouseout="hideTip(event, 'fs5', 16)" onmouseover="showTip(event, 'fs5', 16)" class="i">service</span>|])
+</code></pre></td>
 </tr>
 </table>
 
-<h2>Working with Snapins</h2>
+<h2><a name="Working-with-Snapins" class="anchor" href="#Working-with-Snapins">Working with Snapins</a></h2>
 
-<table class="pre"><tr><td class="lines"><pre class="fssnip">
-<span class="l"> 1: </span>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l"> 1: </span>
 <span class="l"> 2: </span>
 <span class="l"> 3: </span>
 <span class="l"> 4: </span>
@@ -234,11 +227,9 @@
 <span class="l">15: </span>
 <span class="l">16: </span>
 <span class="l">17: </span>
-</pre>
-</td>
-<td class="snippet"><pre class="fssnip">
-<span class="c">// get all registered PowerShell Snapins</span>
-<span onmouseout="hideTip(event, 'fs3', 17)" onmouseover="showTip(event, 'fs3', 17)" class="i">PS</span><span class="o">.</span><span class="i">``Get-PSSnapin``</span>(<span class="i">registered</span><span class="o">=</span><span class="k">true</span>)
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="c">// get all registered PowerShell Snapins</span>
+<span onmouseout="hideTip(event, 'fs3', 17)" onmouseover="showTip(event, 'fs3', 17)" class="t">PS</span><span class="o">.</span><span class="f">``Get-PSSnapin``</span>(<span class="i">registered</span><span class="o">=</span><span class="k">true</span>)
 <span class="fsi">val it : Option&lt;List&lt;PSSnapInInfo&gt;&gt; =</span>
 <span class="fsi">  Some</span>
 <span class="fsi">    [WDeploySnapin3.0</span>
@@ -253,8 +244,8 @@
 <span class="fsi">        PSVersion = 2.0;</span>
 <span class="fsi">        Types = seq [];</span>
 <span class="fsi">        Vendor = &quot;Microsoft&quot;;</span>
-<span class="fsi">        Version = 9.0.0.0;}]</span></pre>
-</td>
+<span class="fsi">        Version = 9.0.0.0;}]</span>
+</code></pre></td>
 </tr>
 </table>
 
@@ -286,6 +277,7 @@
               <li><a href="/FSharp.Management/RegistryProvider.html">RegistryProvider</a></li>
               <li><a href="/FSharp.Management/WMIProvider.html">WMIProvider</a></li>
               <li><a href="/FSharp.Management/PowerShellProvider.html">PowerShellProvider</a></li>
+              <li><a href="/FSharp.Management/SystemTimeZonesProvider.html">SystemTimeZonesProvider</a></li>
           </ul>
         </div>
       </div>

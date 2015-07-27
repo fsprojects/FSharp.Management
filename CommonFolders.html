@@ -33,7 +33,7 @@
       <div class="row">
         <div class="span9" id="main">
           
-<h1>The CommonFolders module</h1>
+<h1><a name="The-CommonFolders-module" class="anchor" href="#The-CommonFolders-module">The CommonFolders module</a></h1>
 
 <p>This tutorial shows the use of the CommonFolders module. 
 It simplifies runtime access to various common folder locations on the system, including 
@@ -44,8 +44,7 @@ folders specific to the currently executing process.</p>
 with project data and deployed.  For example, the following copies a file from the project's
 doc\contents to the user's roaming application data folder.</p>
 
-<table class="pre"><tr><td class="lines"><pre class="fssnip">
-<span class="l"> 1: </span>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l"> 1: </span>
 <span class="l"> 2: </span>
 <span class="l"> 3: </span>
 <span class="l"> 4: </span>
@@ -80,19 +79,17 @@ doc\contents to the user's roaming application data folder.</p>
 <span class="l">33: </span>
 <span class="l">34: </span>
 <span class="l">35: </span>
-</pre>
-</td>
-<td class="snippet"><pre class="fssnip">
-<span class="c">// Reference the type provider dll</span>
-<span class="prep">#r</span> <span class="s">&quot;</span><span class="s">FSharp</span><span class="s">.</span><span class="s">Management</span><span class="s">.</span><span class="s">dll</span><span class="s">&quot;</span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="c">// Reference the type provider dll</span>
+<span class="prep">#r</span> <span class="s">&quot;FSharp.Management.dll&quot;</span>
 <span class="k">open</span> <span onmouseout="hideTip(event, 'fs1', 1)" onmouseover="showTip(event, 'fs1', 1)" class="i">FSharp</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs2', 2)" onmouseover="showTip(event, 'fs2', 2)" class="i">Management</span>
 <span class="k">open</span> <span onmouseout="hideTip(event, 'fs3', 3)" onmouseover="showTip(event, 'fs3', 3)" class="i">System</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs4', 4)" onmouseover="showTip(event, 'fs4', 4)" class="i">IO</span>
 
 <span class="c">// Get the currently executing user&#39;s application data folder</span>
-<span class="k">let</span> <span onmouseout="hideTip(event, 'fs5', 5)" onmouseover="showTip(event, 'fs5', 5)" class="i">userAppData</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs6', 6)" onmouseover="showTip(event, 'fs6', 6)" class="i">CommonFolders</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs7', 7)" onmouseover="showTip(event, 'fs7', 7)" class="i">GetUser</span> <span onmouseout="hideTip(event, 'fs8', 8)" onmouseover="showTip(event, 'fs8', 8)" class="i">UserPath</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs9', 9)" onmouseover="showTip(event, 'fs9', 9)" class="i">RoamingApplicationData</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs5', 5)" onmouseover="showTip(event, 'fs5', 5)" class="i">userAppData</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs6', 6)" onmouseover="showTip(event, 'fs6', 6)" class="t">CommonFolders</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs7', 7)" onmouseover="showTip(event, 'fs7', 7)" class="f">GetUser</span> <span onmouseout="hideTip(event, 'fs8', 8)" onmouseover="showTip(event, 'fs8', 8)" class="t">UserPath</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs9', 9)" onmouseover="showTip(event, 'fs9', 9)" class="i">RoamingApplicationData</span>
 
 <span class="c">// Let the type provider do it&#39;s work - grab the docs subfolder</span>
-<span class="k">type</span> <span onmouseout="hideTip(event, 'fs10', 10)" onmouseover="showTip(event, 'fs10', 10)" class="i">Docs</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs11', 11)" onmouseover="showTip(event, 'fs11', 11)" class="i">RelativePath</span><span class="o">&lt;</span><span class="s">&quot;</span><span class="s">docs</span><span class="s">&quot;</span><span class="o">&gt;</span>
+<span class="k">type</span> <span onmouseout="hideTip(event, 'fs10', 10)" onmouseover="showTip(event, 'fs10', 10)" class="t">Docs</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs11', 11)" onmouseover="showTip(event, 'fs11', 11)" class="t">RelativePath</span><span class="o">&lt;</span><span class="s">&quot;docs&quot;</span><span class="o">&gt;</span>
 
 <span class="c">// now you have typed access to your filesystem</span>
 <span class="k">let</span> <span onmouseout="hideTip(event, 'fs12', 12)" onmouseover="showTip(event, 'fs12', 12)" class="i">currentFile</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs10', 13)" onmouseover="showTip(event, 'fs10', 13)" class="i">Docs</span><span class="o">.</span><span class="i">content</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs6', 14)" onmouseover="showTip(event, 'fs6', 14)" class="i">CommonFolders</span><span class="o">.</span><span class="i">fsx</span>
@@ -101,24 +98,24 @@ doc\contents to the user's roaming application data folder.</p>
 <span class="fsi">val it : string = &quot;content\CommonFolders.fsx&quot;</span>
 
 <span class="c">// Get the location of the installed executable</span>
-<span class="k">let</span> <span onmouseout="hideTip(event, 'fs13', 16)" onmouseover="showTip(event, 'fs13', 16)" class="i">exePath</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs6', 17)" onmouseover="showTip(event, 'fs6', 17)" class="i">CommonFolders</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs14', 18)" onmouseover="showTip(event, 'fs14', 18)" class="i">GetApplication</span> <span onmouseout="hideTip(event, 'fs15', 19)" onmouseover="showTip(event, 'fs15', 19)" class="i">ApplicationPath</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs16', 20)" onmouseover="showTip(event, 'fs16', 20)" class="i">EntryPointLocation</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs13', 16)" onmouseover="showTip(event, 'fs13', 16)" class="i">exePath</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs6', 17)" onmouseover="showTip(event, 'fs6', 17)" class="t">CommonFolders</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs14', 18)" onmouseover="showTip(event, 'fs14', 18)" class="f">GetApplication</span> <span onmouseout="hideTip(event, 'fs15', 19)" onmouseover="showTip(event, 'fs15', 19)" class="t">ApplicationPath</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs16', 20)" onmouseover="showTip(event, 'fs16', 20)" class="i">EntryPointLocation</span>
 
 <span class="c">// Build the source and target path - This assumes the exe is in bin\Release or similar</span>
-<span class="k">let</span> <span onmouseout="hideTip(event, 'fs17', 21)" onmouseover="showTip(event, 'fs17', 21)" class="i">sourcePath</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs18', 22)" onmouseover="showTip(event, 'fs18', 22)" class="i">Path</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs19', 23)" onmouseover="showTip(event, 'fs19', 23)" class="i">Combine</span>(<span onmouseout="hideTip(event, 'fs13', 24)" onmouseover="showTip(event, 'fs13', 24)" class="i">exePath</span>, <span class="s">&quot;</span><span class="s">.</span><span class="s">.</span><span class="s">\\</span><span class="s">.</span><span class="s">.</span><span class="s">&quot;</span>, <span onmouseout="hideTip(event, 'fs12', 25)" onmouseover="showTip(event, 'fs12', 25)" class="i">currentFile</span>)
-<span class="k">let</span> <span onmouseout="hideTip(event, 'fs20', 26)" onmouseover="showTip(event, 'fs20', 26)" class="i">targetPath</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs18', 27)" onmouseover="showTip(event, 'fs18', 27)" class="i">Path</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs19', 28)" onmouseover="showTip(event, 'fs19', 28)" class="i">Combine</span>(<span onmouseout="hideTip(event, 'fs5', 29)" onmouseover="showTip(event, 'fs5', 29)" class="i">userAppData</span>, <span class="s">&quot;</span><span class="s">SomeCompany</span><span class="s">\\</span><span class="s">SomeProgram</span><span class="s">&quot;</span>, <span onmouseout="hideTip(event, 'fs12', 30)" onmouseover="showTip(event, 'fs12', 30)" class="i">currentFile</span>)
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs17', 21)" onmouseover="showTip(event, 'fs17', 21)" class="i">sourcePath</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs18', 22)" onmouseover="showTip(event, 'fs18', 22)" class="t">Path</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs19', 23)" onmouseover="showTip(event, 'fs19', 23)" class="f">Combine</span>(<span onmouseout="hideTip(event, 'fs13', 24)" onmouseover="showTip(event, 'fs13', 24)" class="i">exePath</span>, <span class="s">&quot;..</span><span class="e">\\</span><span class="s">..&quot;</span>, <span onmouseout="hideTip(event, 'fs12', 25)" onmouseover="showTip(event, 'fs12', 25)" class="i">currentFile</span>)
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs20', 26)" onmouseover="showTip(event, 'fs20', 26)" class="i">targetPath</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs18', 27)" onmouseover="showTip(event, 'fs18', 27)" class="t">Path</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs19', 28)" onmouseover="showTip(event, 'fs19', 28)" class="f">Combine</span>(<span onmouseout="hideTip(event, 'fs5', 29)" onmouseover="showTip(event, 'fs5', 29)" class="i">userAppData</span>, <span class="s">&quot;SomeCompany</span><span class="e">\\</span><span class="s">SomeProgram&quot;</span>, <span onmouseout="hideTip(event, 'fs12', 30)" onmouseover="showTip(event, 'fs12', 30)" class="i">currentFile</span>)
 
 <span class="c">// Make sure it exists on the system</span>
-<span onmouseout="hideTip(event, 'fs21', 31)" onmouseover="showTip(event, 'fs21', 31)" class="i">Directory</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs22', 32)" onmouseover="showTip(event, 'fs22', 32)" class="i">CreateDirectory</span>(<span onmouseout="hideTip(event, 'fs18', 33)" onmouseover="showTip(event, 'fs18', 33)" class="i">Path</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs23', 34)" onmouseover="showTip(event, 'fs23', 34)" class="i">GetDirectoryName</span>(<span onmouseout="hideTip(event, 'fs20', 35)" onmouseover="showTip(event, 'fs20', 35)" class="i">targetPath</span>))
+<span onmouseout="hideTip(event, 'fs21', 31)" onmouseover="showTip(event, 'fs21', 31)" class="t">Directory</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs22', 32)" onmouseover="showTip(event, 'fs22', 32)" class="f">CreateDirectory</span>(<span onmouseout="hideTip(event, 'fs18', 33)" onmouseover="showTip(event, 'fs18', 33)" class="t">Path</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs23', 34)" onmouseover="showTip(event, 'fs23', 34)" class="f">GetDirectoryName</span>(<span onmouseout="hideTip(event, 'fs20', 35)" onmouseover="showTip(event, 'fs20', 35)" class="i">targetPath</span>))
 <span class="fsi">val it : System.IO.DirectoryInfo = </span>
 <span class="fsi">  content {Attributes = Directory; </span>
 <span class="fsi">  ... </span>
 
 <span class="c">// Copy the source to the target location</span>
-<span onmouseout="hideTip(event, 'fs24', 36)" onmouseover="showTip(event, 'fs24', 36)" class="i">File</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs25', 37)" onmouseover="showTip(event, 'fs25', 37)" class="i">Copy</span>(<span onmouseout="hideTip(event, 'fs17', 38)" onmouseover="showTip(event, 'fs17', 38)" class="i">sourcePath</span>, <span onmouseout="hideTip(event, 'fs20', 39)" onmouseover="showTip(event, 'fs20', 39)" class="i">targetPath</span>)
+<span onmouseout="hideTip(event, 'fs24', 36)" onmouseover="showTip(event, 'fs24', 36)" class="t">File</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs25', 37)" onmouseover="showTip(event, 'fs25', 37)" class="f">Copy</span>(<span onmouseout="hideTip(event, 'fs17', 38)" onmouseover="showTip(event, 'fs17', 38)" class="i">sourcePath</span>, <span onmouseout="hideTip(event, 'fs20', 39)" onmouseover="showTip(event, 'fs20', 39)" class="i">targetPath</span>)
 <span class="fsi">val it : unit = () </span>
 
-<span class="c">// File is now in the appropriate user&#39;s [Application data]\SomeCompany\SomeProgram\content\CommonFolders.fsx</span></pre>
-</td>
+<span class="c">// File is now in the appropriate user&#39;s [Application data]\SomeCompany\SomeProgram\content\CommonFolders.fsx</span>
+</code></pre></td>
 </tr>
 </table>
 
@@ -128,8 +125,7 @@ around Environment.GetFolderPath, though a few pull from other APIs.</p>
 
 <p>Some examples of getting common folders include:</p>
 
-<table class="pre"><tr><td class="lines"><pre class="fssnip">
-<span class="l"> 1: </span>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l"> 1: </span>
 <span class="l"> 2: </span>
 <span class="l"> 3: </span>
 <span class="l"> 4: </span>
@@ -147,28 +143,26 @@ around Environment.GetFolderPath, though a few pull from other APIs.</p>
 <span class="l">16: </span>
 <span class="l">17: </span>
 <span class="l">18: </span>
-</pre>
-</td>
-<td class="snippet"><pre class="fssnip">
-<span class="c">// Get the currently executing user&#39;s application data folder, both roaming and local profile</span>
-<span class="k">let</span> <span onmouseout="hideTip(event, 'fs5', 40)" onmouseover="showTip(event, 'fs5', 40)" class="i">userAppData</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs6', 41)" onmouseover="showTip(event, 'fs6', 41)" class="i">CommonFolders</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs7', 42)" onmouseover="showTip(event, 'fs7', 42)" class="i">GetUser</span> <span onmouseout="hideTip(event, 'fs8', 43)" onmouseover="showTip(event, 'fs8', 43)" class="i">UserPath</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs9', 44)" onmouseover="showTip(event, 'fs9', 44)" class="i">RoamingApplicationData</span>
-<span class="k">let</span> <span onmouseout="hideTip(event, 'fs26', 45)" onmouseover="showTip(event, 'fs26', 45)" class="i">userLocalAppData</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs6', 46)" onmouseover="showTip(event, 'fs6', 46)" class="i">CommonFolders</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs7', 47)" onmouseover="showTip(event, 'fs7', 47)" class="i">GetUser</span> <span onmouseout="hideTip(event, 'fs8', 48)" onmouseover="showTip(event, 'fs8', 48)" class="i">UserPath</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs27', 49)" onmouseover="showTip(event, 'fs27', 49)" class="i">LocalApplicationData</span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="c">// Get the currently executing user&#39;s application data folder, both roaming and local profile</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs5', 40)" onmouseover="showTip(event, 'fs5', 40)" class="i">userAppData</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs6', 41)" onmouseover="showTip(event, 'fs6', 41)" class="t">CommonFolders</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs7', 42)" onmouseover="showTip(event, 'fs7', 42)" class="f">GetUser</span> <span onmouseout="hideTip(event, 'fs8', 43)" onmouseover="showTip(event, 'fs8', 43)" class="t">UserPath</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs9', 44)" onmouseover="showTip(event, 'fs9', 44)" class="i">RoamingApplicationData</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs26', 45)" onmouseover="showTip(event, 'fs26', 45)" class="i">userLocalAppData</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs6', 46)" onmouseover="showTip(event, 'fs6', 46)" class="t">CommonFolders</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs7', 47)" onmouseover="showTip(event, 'fs7', 47)" class="f">GetUser</span> <span onmouseout="hideTip(event, 'fs8', 48)" onmouseover="showTip(event, 'fs8', 48)" class="t">UserPath</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs27', 49)" onmouseover="showTip(event, 'fs27', 49)" class="i">LocalApplicationData</span>
 
 <span class="c">// Get the user&#39;s Desktop</span>
-<span class="k">let</span> <span onmouseout="hideTip(event, 'fs28', 50)" onmouseover="showTip(event, 'fs28', 50)" class="i">userDesktop</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs6', 51)" onmouseover="showTip(event, 'fs6', 51)" class="i">CommonFolders</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs7', 52)" onmouseover="showTip(event, 'fs7', 52)" class="i">GetUser</span> <span onmouseout="hideTip(event, 'fs8', 53)" onmouseover="showTip(event, 'fs8', 53)" class="i">UserPath</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs29', 54)" onmouseover="showTip(event, 'fs29', 54)" class="i">Desktop</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs28', 50)" onmouseover="showTip(event, 'fs28', 50)" class="i">userDesktop</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs6', 51)" onmouseover="showTip(event, 'fs6', 51)" class="t">CommonFolders</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs7', 52)" onmouseover="showTip(event, 'fs7', 52)" class="f">GetUser</span> <span onmouseout="hideTip(event, 'fs8', 53)" onmouseover="showTip(event, 'fs8', 53)" class="t">UserPath</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs29', 54)" onmouseover="showTip(event, 'fs29', 54)" class="i">Desktop</span>
 
 <span class="c">// Get user&#39;s pictures</span>
-<span class="k">let</span> <span onmouseout="hideTip(event, 'fs28', 55)" onmouseover="showTip(event, 'fs28', 55)" class="i">userDesktop</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs6', 56)" onmouseover="showTip(event, 'fs6', 56)" class="i">CommonFolders</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs7', 57)" onmouseover="showTip(event, 'fs7', 57)" class="i">GetUser</span> <span onmouseout="hideTip(event, 'fs8', 58)" onmouseover="showTip(event, 'fs8', 58)" class="i">UserPath</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs30', 59)" onmouseover="showTip(event, 'fs30', 59)" class="i">Pictures</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs28', 55)" onmouseover="showTip(event, 'fs28', 55)" class="i">userDesktop</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs6', 56)" onmouseover="showTip(event, 'fs6', 56)" class="t">CommonFolders</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs7', 57)" onmouseover="showTip(event, 'fs7', 57)" class="f">GetUser</span> <span onmouseout="hideTip(event, 'fs8', 58)" onmouseover="showTip(event, 'fs8', 58)" class="t">UserPath</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs30', 59)" onmouseover="showTip(event, 'fs30', 59)" class="i">Pictures</span>
 
 <span class="c">// Get the Windows install folder:</span>
-<span class="k">let</span> <span onmouseout="hideTip(event, 'fs31', 60)" onmouseover="showTip(event, 'fs31', 60)" class="i">windows</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs6', 61)" onmouseover="showTip(event, 'fs6', 61)" class="i">CommonFolders</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs32', 62)" onmouseover="showTip(event, 'fs32', 62)" class="i">GetSystem</span> <span onmouseout="hideTip(event, 'fs33', 63)" onmouseover="showTip(event, 'fs33', 63)" class="i">SystemPath</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs34', 64)" onmouseover="showTip(event, 'fs34', 64)" class="i">Windows</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs31', 60)" onmouseover="showTip(event, 'fs31', 60)" class="i">windows</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs6', 61)" onmouseover="showTip(event, 'fs6', 61)" class="t">CommonFolders</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs32', 62)" onmouseover="showTip(event, 'fs32', 62)" class="f">GetSystem</span> <span onmouseout="hideTip(event, 'fs33', 63)" onmouseover="showTip(event, 'fs33', 63)" class="t">SystemPath</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs34', 64)" onmouseover="showTip(event, 'fs34', 64)" class="i">Windows</span>
 
 <span class="c">// Get the temp folder</span>
-<span class="k">let</span> <span onmouseout="hideTip(event, 'fs31', 65)" onmouseover="showTip(event, 'fs31', 65)" class="i">windows</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs6', 66)" onmouseover="showTip(event, 'fs6', 66)" class="i">CommonFolders</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs32', 67)" onmouseover="showTip(event, 'fs32', 67)" class="i">GetSystem</span> <span onmouseout="hideTip(event, 'fs33', 68)" onmouseover="showTip(event, 'fs33', 68)" class="i">SystemPath</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs35', 69)" onmouseover="showTip(event, 'fs35', 69)" class="i">Temp</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs31', 65)" onmouseover="showTip(event, 'fs31', 65)" class="i">windows</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs6', 66)" onmouseover="showTip(event, 'fs6', 66)" class="t">CommonFolders</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs32', 67)" onmouseover="showTip(event, 'fs32', 67)" class="f">GetSystem</span> <span onmouseout="hideTip(event, 'fs33', 68)" onmouseover="showTip(event, 'fs33', 68)" class="t">SystemPath</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs35', 69)" onmouseover="showTip(event, 'fs35', 69)" class="i">Temp</span>
 
 <span class="c">// Get the shared documents folder</span>
-<span class="k">let</span> <span onmouseout="hideTip(event, 'fs36', 70)" onmouseover="showTip(event, 'fs36', 70)" class="i">sharedAppData</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs6', 71)" onmouseover="showTip(event, 'fs6', 71)" class="i">CommonFolders</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs37', 72)" onmouseover="showTip(event, 'fs37', 72)" class="i">GetSharedUser</span> <span onmouseout="hideTip(event, 'fs38', 73)" onmouseover="showTip(event, 'fs38', 73)" class="i">SharedPath</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs39', 74)" onmouseover="showTip(event, 'fs39', 74)" class="i">Documents</span></pre>
-</td>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs36', 70)" onmouseover="showTip(event, 'fs36', 70)" class="i">sharedAppData</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs6', 71)" onmouseover="showTip(event, 'fs6', 71)" class="t">CommonFolders</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs37', 72)" onmouseover="showTip(event, 'fs37', 72)" class="f">GetSharedUser</span> <span onmouseout="hideTip(event, 'fs38', 73)" onmouseover="showTip(event, 'fs38', 73)" class="t">SharedPath</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs39', 74)" onmouseover="showTip(event, 'fs39', 74)" class="i">Documents</span>
+</code></pre></td>
 </tr>
 </table>
 
@@ -229,6 +223,7 @@ around Environment.GetFolderPath, though a few pull from other APIs.</p>
               <li><a href="/FSharp.Management/RegistryProvider.html">RegistryProvider</a></li>
               <li><a href="/FSharp.Management/WMIProvider.html">WMIProvider</a></li>
               <li><a href="/FSharp.Management/PowerShellProvider.html">PowerShellProvider</a></li>
+              <li><a href="/FSharp.Management/SystemTimeZonesProvider.html">SystemTimeZonesProvider</a></li>
           </ul>
         </div>
       </div>

@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>ProvidedTypeDefinition - FSharp.Management</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="Steffen Forkmann">
+
+    <script src="http://code.jquery.com/jquery-1.8.0.js"></script>
+    <script src="http://code.jquery.com/ui/1.8.23/jquery-ui.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js"></script>
+    <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css" rel="stylesheet">
+
+    <link type="text/css" rel="stylesheet" href="/FSharp.Management/content/style.css" />
+    <script type="text/javascript" src="/FSharp.Management/content/tips.js"></script>
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="container">
+      <div class="masthead">
+        <ul class="nav nav-pills pull-right">
+          <li><a href="http://fsharp.org">fsharp.org</a></li>
+          <li><a href="http://github.com/fsprojects/FSharp.Management">github page</a></li>
+        </ul>
+        <h3 class="muted"><a href="/FSharp.Management/index.html">FSharp.Management</a></h3>
+      </div>
+      <hr />
+      <div class="row">
+        <div class="span9" id="main">
+          
+
+
+
+<h1>ProvidedTypeDefinition</h1>
+<p>
+  <span>Namespace: ProviderImplementation.ProvidedTypes</span><br />
+</p>
+<div class="xmldoc">
+</div>
+  <h3>Constructors</h3>
+  <table class="table table-bordered member-list">
+    <thead>
+      <tr><td>Constructor</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '266', 266)" onmouseover="showTip(event, '266', 266)">
+            new(className, baseType)
+          </code>
+          <div class="tip" id="266">
+            <strong>Signature:</strong> (className:string * baseType:Type option) -&gt; ProvidedTypeDefinition<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/fsprojects/FSharp.Management/tree/master/paket-files/fsprojects/FSharp.TypeProviders.StarterPack/src/ProvidedTypes.fs#L1353-1353" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '267', 267)" onmouseover="showTip(event, '267', 267)">
+            new(...)
+          </code>
+          <div class="tip" id="267">
+            <strong>Signature:</strong> (assembly:Assembly * namespaceName:string * className:string * baseType:Type option) -&gt; ProvidedTypeDefinition<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/fsprojects/FSharp.Management/tree/master/paket-files/fsprojects/FSharp.TypeProviders.StarterPack/src/ProvidedTypes.fs#L1352-1352" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '268', 268)" onmouseover="showTip(event, '268', 268)">
+            new(container, className, baseType)
+          </code>
+          <div class="tip" id="268">
+            <strong>Signature:</strong> (container:TypeContainer * className:string * baseType:Type option) -&gt; ProvidedTypeDefinition<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/fsprojects/FSharp.Management/tree/master/paket-files/fsprojects/FSharp.TypeProviders.StarterPack/src/ProvidedTypes.fs#L1233-1233" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <h3>Instance members</h3>
+  <table class="table table-bordered member-list">
+    <thead>
+      <tr><td>Instance member</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '269', 269)" onmouseover="showTip(event, '269', 269)">
+            AddAssemblyTypesAsNestedTypesDelayed(...)
+          </code>
+          <div class="tip" id="269">
+            <strong>Signature:</strong> (assemblyf:(unit -&gt; Assembly)) -&gt; unit<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/fsprojects/FSharp.Management/tree/master/paket-files/fsprojects/FSharp.TypeProviders.StarterPack/src/ProvidedTypes.fs#L1371-1371" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '270', 270)" onmouseover="showTip(event, '270', 270)">
+            AddCustomAttribute(attribute)
+          </code>
+          <div class="tip" id="270">
+            <strong>Signature:</strong> attribute:CustomAttributeData -&gt; unit<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/fsprojects/FSharp.Management/tree/master/paket-files/fsprojects/FSharp.TypeProviders.StarterPack/src/ProvidedTypes.fs#L1344-1344" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '271', 271)" onmouseover="showTip(event, '271', 271)">
+            AddDefinitionLocation(...)
+          </code>
+          <div class="tip" id="271">
+            <strong>Signature:</strong> (line:int * column:int * filePath:string) -&gt; unit<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/fsprojects/FSharp.Management/tree/master/paket-files/fsprojects/FSharp.TypeProviders.StarterPack/src/ProvidedTypes.fs#L1340-1340" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '272', 272)" onmouseover="showTip(event, '272', 272)">
+            AddInterfaceImplementation(ityp)
+          </code>
+          <div class="tip" id="272">
+            <strong>Signature:</strong> ityp:Type -&gt; unit<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/fsprojects/FSharp.Management/tree/master/paket-files/fsprojects/FSharp.TypeProviders.StarterPack/src/ProvidedTypes.fs#L1480-1480" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '273', 273)" onmouseover="showTip(event, '273', 273)">
+            AddInterfaceImplementationsDelayed(...)
+          </code>
+          <div class="tip" id="273">
+            <strong>Signature:</strong> (itypf:(unit -&gt; Type list)) -&gt; unit<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/fsprojects/FSharp.Management/tree/master/paket-files/fsprojects/FSharp.TypeProviders.StarterPack/src/ProvidedTypes.fs#L1481-1481" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '274', 274)" onmouseover="showTip(event, '274', 274)">
+            AddMember(m)
+          </code>
+          <div class="tip" id="274">
+            <strong>Signature:</strong> m:MemberInfo -&gt; unit<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/fsprojects/FSharp.Management/tree/master/paket-files/fsprojects/FSharp.TypeProviders.StarterPack/src/ProvidedTypes.fs#L1368-1368" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '275', 275)" onmouseover="showTip(event, '275', 275)">
+            AddMemberDelayed(m)
+          </code>
+          <div class="tip" id="275">
+            <strong>Signature:</strong> (m:(unit -&gt; &#39;?7205)) -&gt; unit<br />
+                          <strong>Type parameters:</strong> '?7205          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/fsprojects/FSharp.Management/tree/master/paket-files/fsprojects/FSharp.TypeProviders.StarterPack/src/ProvidedTypes.fs#L1369-1369" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '276', 276)" onmouseover="showTip(event, '276', 276)">
+            AddMembers(ms)
+          </code>
+          <div class="tip" id="276">
+            <strong>Signature:</strong> (ms:&#39;?7202 list) -&gt; unit<br />
+                          <strong>Type parameters:</strong> '?7202          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/fsprojects/FSharp.Management/tree/master/paket-files/fsprojects/FSharp.TypeProviders.StarterPack/src/ProvidedTypes.fs#L1365-1365" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '277', 277)" onmouseover="showTip(event, '277', 277)">
+            AddMembersDelayed(makeMS)
+          </code>
+          <div class="tip" id="277">
+            <strong>Signature:</strong> (makeMS:(unit -&gt; &#39;?7200 list)) -&gt; unit<br />
+                          <strong>Type parameters:</strong> '?7200          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/fsprojects/FSharp.Management/tree/master/paket-files/fsprojects/FSharp.TypeProviders.StarterPack/src/ProvidedTypes.fs#L1363-1363" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '278', 278)" onmouseover="showTip(event, '278', 278)">
+            AddObsoleteAttribute(msg, isError)
+          </code>
+          <div class="tip" id="278">
+            <strong>Signature:</strong> (msg:string * isError:bool option) -&gt; unit<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/fsprojects/FSharp.Management/tree/master/paket-files/fsprojects/FSharp.TypeProviders.StarterPack/src/ProvidedTypes.fs#L1339-1339" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '279', 279)" onmouseover="showTip(event, '279', 279)">
+            AddXmlDoc(xmlDoc)
+          </code>
+          <div class="tip" id="279">
+            <strong>Signature:</strong> xmlDoc:string -&gt; unit<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/fsprojects/FSharp.Management/tree/master/paket-files/fsprojects/FSharp.TypeProviders.StarterPack/src/ProvidedTypes.fs#L1338-1338" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '280', 280)" onmouseover="showTip(event, '280', 280)">
+            AddXmlDocComputed(xmlDoc)
+          </code>
+          <div class="tip" id="280">
+            <strong>Signature:</strong> (xmlDoc:(unit -&gt; string)) -&gt; unit<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/fsprojects/FSharp.Management/tree/master/paket-files/fsprojects/FSharp.TypeProviders.StarterPack/src/ProvidedTypes.fs#L1336-1336" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '281', 281)" onmouseover="showTip(event, '281', 281)">
+            AddXmlDocDelayed(xmlDoc)
+          </code>
+          <div class="tip" id="281">
+            <strong>Signature:</strong> (xmlDoc:(unit -&gt; string)) -&gt; unit<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/fsprojects/FSharp.Management/tree/master/paket-files/fsprojects/FSharp.TypeProviders.StarterPack/src/ProvidedTypes.fs#L1337-1337" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '282', 282)" onmouseover="showTip(event, '282', 282)">
+            DeclaringTypeImpl()
+          </code>
+          <div class="tip" id="282">
+            <strong>Signature:</strong> unit -&gt; Type<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/fsprojects/FSharp.Management/tree/master/paket-files/fsprojects/FSharp.TypeProviders.StarterPack/src/ProvidedTypes.fs#L1429-1429" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '283', 283)" onmouseover="showTip(event, '283', 283)">
+            DeclaringTypeImpl()
+          </code>
+          <div class="tip" id="283">
+            <strong>Signature:</strong> unit -&gt; unit<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/fsprojects/FSharp.Management/tree/master/paket-files/fsprojects/FSharp.TypeProviders.StarterPack/src/ProvidedTypes.fs#L1429-1429" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '284', 284)" onmouseover="showTip(event, '284', 284)">
+            DefineMethodOverride(...)
+          </code>
+          <div class="tip" id="284">
+            <strong>Signature:</strong> (bodyMethInfo:ProvidedMethod * declMethInfo:MethodInfo) -&gt; unit<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/fsprojects/FSharp.Management/tree/master/paket-files/fsprojects/FSharp.TypeProviders.StarterPack/src/ProvidedTypes.fs#L1484-1484" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '285', 285)" onmouseover="showTip(event, '285', 285)">
+            DefineStaticParameters(...)
+          </code>
+          <div class="tip" id="285">
+            <strong>Signature:</strong> (staticParameters:ProvidedStaticParameter list * apply:(string -&gt; obj [] -&gt; ProvidedTypeDefinition)) -&gt; unit<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/fsprojects/FSharp.Management/tree/master/paket-files/fsprojects/FSharp.TypeProviders.StarterPack/src/ProvidedTypes.fs#L1409-1409" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Abstract a type to a parametric-type. Requires "formal parameters" and "instantiation function".</p>
+
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '286', 286)" onmouseover="showTip(event, '286', 286)">
+            GetCustomAttributesDataImpl()
+          </code>
+          <div class="tip" id="286">
+            <strong>Signature:</strong> unit -&gt; IList&lt;CustomAttributeData&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/fsprojects/FSharp.Management/tree/master/paket-files/fsprojects/FSharp.TypeProviders.StarterPack/src/ProvidedTypes.fs#L1343-1343" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '287', 287)" onmouseover="showTip(event, '287', 287)">
+            GetInterfaceImplementations()
+          </code>
+          <div class="tip" id="287">
+            <strong>Signature:</strong> unit -&gt; Type []<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/fsprojects/FSharp.Management/tree/master/paket-files/fsprojects/FSharp.TypeProviders.StarterPack/src/ProvidedTypes.fs#L1477-1477" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '288', 288)" onmouseover="showTip(event, '288', 288)">
+            GetMethodOverrides()
+          </code>
+          <div class="tip" id="288">
+            <strong>Signature:</strong> unit -&gt; (ProvidedMethod * MethodInfo) []<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/fsprojects/FSharp.Management/tree/master/paket-files/fsprojects/FSharp.TypeProviders.StarterPack/src/ProvidedTypes.fs#L1482-1482" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '289', 289)" onmouseover="showTip(event, '289', 289)">
+            GetStaticParameters()
+          </code>
+          <div class="tip" id="289">
+            <strong>Signature:</strong> unit -&gt; ParameterInfo []<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/fsprojects/FSharp.Management/tree/master/paket-files/fsprojects/FSharp.TypeProviders.StarterPack/src/ProvidedTypes.fs#L1414-1414" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Get ParameterInfo[] for the parametric type parameters (//s GetGenericParameters)</p>
+
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '290', 290)" onmouseover="showTip(event, '290', 290)">
+            HideObjectMethods()
+          </code>
+          <div class="tip" id="290">
+            <strong>Signature:</strong> unit -&gt; bool<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/fsprojects/FSharp.Management/tree/master/paket-files/fsprojects/FSharp.TypeProviders.StarterPack/src/ProvidedTypes.fs#L1341-1341" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '291', 291)" onmouseover="showTip(event, '291', 291)">
+            HideObjectMethods()
+          </code>
+          <div class="tip" id="291">
+            <strong>Signature:</strong> unit -&gt; unit<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/fsprojects/FSharp.Management/tree/master/paket-files/fsprojects/FSharp.TypeProviders.StarterPack/src/ProvidedTypes.fs#L1341-1341" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '292', 292)" onmouseover="showTip(event, '292', 292)">
+            IsErased()
+          </code>
+          <div class="tip" id="292">
+            <strong>Signature:</strong> unit -&gt; bool<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/fsprojects/FSharp.Management/tree/master/paket-files/fsprojects/FSharp.TypeProviders.StarterPack/src/ProvidedTypes.fs#L1637-1637" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '293', 293)" onmouseover="showTip(event, '293', 293)">
+            IsErased()
+          </code>
+          <div class="tip" id="293">
+            <strong>Signature:</strong> unit -&gt; unit<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/fsprojects/FSharp.Management/tree/master/paket-files/fsprojects/FSharp.TypeProviders.StarterPack/src/ProvidedTypes.fs#L1636-1636" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '294', 294)" onmouseover="showTip(event, '294', 294)">
+            MakeParametricType(name, args)
+          </code>
+          <div class="tip" id="294">
+            <strong>Signature:</strong> (name:string * args:obj []) -&gt; ProvidedTypeDefinition<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/fsprojects/FSharp.Management/tree/master/paket-files/fsprojects/FSharp.TypeProviders.StarterPack/src/ProvidedTypes.fs#L1417-1417" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Instantiate parametrics type</p>
+
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '295', 295)" onmouseover="showTip(event, '295', 295)">
+            NonNullable()
+          </code>
+          <div class="tip" id="295">
+            <strong>Signature:</strong> unit -&gt; bool<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/fsprojects/FSharp.Management/tree/master/paket-files/fsprojects/FSharp.TypeProviders.StarterPack/src/ProvidedTypes.fs#L1342-1342" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '296', 296)" onmouseover="showTip(event, '296', 296)">
+            NonNullable()
+          </code>
+          <div class="tip" id="296">
+            <strong>Signature:</strong> unit -&gt; unit<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/fsprojects/FSharp.Management/tree/master/paket-files/fsprojects/FSharp.TypeProviders.StarterPack/src/ProvidedTypes.fs#L1342-1342" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '297', 297)" onmouseover="showTip(event, '297', 297)">
+            ResetEnclosingType(ty)
+          </code>
+          <div class="tip" id="297">
+            <strong>Signature:</strong> ty:Type -&gt; unit<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/fsprojects/FSharp.Management/tree/master/paket-files/fsprojects/FSharp.TypeProviders.StarterPack/src/ProvidedTypes.fs#L1350-1350" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '298', 298)" onmouseover="showTip(event, '298', 298)">
+            SetAssembly(assembly)
+          </code>
+          <div class="tip" id="298">
+            <strong>Signature:</strong> assembly:Assembly -&gt; unit<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/fsprojects/FSharp.Management/tree/master/paket-files/fsprojects/FSharp.TypeProviders.StarterPack/src/ProvidedTypes.fs#L1435-1435" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '299', 299)" onmouseover="showTip(event, '299', 299)">
+            SetAssemblyLazy(assembly)
+          </code>
+          <div class="tip" id="299">
+            <strong>Signature:</strong> assembly:Lazy&lt;Assembly&gt; -&gt; unit<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/fsprojects/FSharp.Management/tree/master/paket-files/fsprojects/FSharp.TypeProviders.StarterPack/src/ProvidedTypes.fs#L1436-1436" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '300', 300)" onmouseover="showTip(event, '300', 300)">
+            SetAttributes(x)
+          </code>
+          <div class="tip" id="300">
+            <strong>Signature:</strong> x:TypeAttributes -&gt; unit<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/fsprojects/FSharp.Management/tree/master/paket-files/fsprojects/FSharp.TypeProviders.StarterPack/src/ProvidedTypes.fs#L1361-1361" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '301', 301)" onmouseover="showTip(event, '301', 301)">
+            SetBaseType(t)
+          </code>
+          <div class="tip" id="301">
+            <strong>Signature:</strong> t:Type -&gt; unit<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/fsprojects/FSharp.Management/tree/master/paket-files/fsprojects/FSharp.TypeProviders.StarterPack/src/ProvidedTypes.fs#L1359-1359" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '302', 302)" onmouseover="showTip(event, '302', 302)">
+            SetBaseTypeDelayed(t)
+          </code>
+          <div class="tip" id="302">
+            <strong>Signature:</strong> (t:Lazy&lt;Type option&gt;) -&gt; unit<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/fsprojects/FSharp.Management/tree/master/paket-files/fsprojects/FSharp.TypeProviders.StarterPack/src/ProvidedTypes.fs#L1360-1360" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '303', 303)" onmouseover="showTip(event, '303', 303)">
+            SetEnumUnderlyingType(ty)
+          </code>
+          <div class="tip" id="303">
+            <strong>Signature:</strong> ty:Type -&gt; unit<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/fsprojects/FSharp.Management/tree/master/paket-files/fsprojects/FSharp.TypeProviders.StarterPack/src/ProvidedTypes.fs#L1357-1357" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '304', 304)" onmouseover="showTip(event, '304', 304)">
+            SuppressRelocation()
+          </code>
+          <div class="tip" id="304">
+            <strong>Signature:</strong> unit -&gt; bool<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/fsprojects/FSharp.Management/tree/master/paket-files/fsprojects/FSharp.TypeProviders.StarterPack/src/ProvidedTypes.fs#L1643-1643" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '305', 305)" onmouseover="showTip(event, '305', 305)">
+            SuppressRelocation()
+          </code>
+          <div class="tip" id="305">
+            <strong>Signature:</strong> unit -&gt; unit<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/fsprojects/FSharp.Management/tree/master/paket-files/fsprojects/FSharp.TypeProviders.StarterPack/src/ProvidedTypes.fs#L1642-1642" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <h3>Static members</h3>
+  <table class="table table-bordered member-list">
+    <thead>
+      <tr><td>Static member</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '306', 306)" onmouseover="showTip(event, '306', 306)">
+            EraseType(t)
+          </code>
+          <div class="tip" id="306">
+            <strong>Signature:</strong> t:Type -&gt; Type<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/fsprojects/FSharp.Management/tree/master/paket-files/fsprojects/FSharp.TypeProviders.StarterPack/src/ProvidedTypes.fs#L1521-1521" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '307', 307)" onmouseover="showTip(event, '307', 307)">
+            Logger
+          </code>
+          <div class="tip" id="307">
+            <strong>Signature:</strong> (string -&gt; unit) option ref<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/fsprojects/FSharp.Management/tree/master/paket-files/fsprojects/FSharp.TypeProviders.StarterPack/src/ProvidedTypes.fs#L1547-1547" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+        </div>
+        <div class="span3">
+          <img src="/FSharp.Management/img/logo.png" alt="FSharp.Management" style="width:150px;margin:10px" />  
+          <ul class="nav nav-list" id="menu" style="margin-top: 20px;">
+            <li class="nav-header">FSharp.Management</li>
+            <li><a href="/FSharp.Management/index.html">Home page</a></li>
+            <li class="divider"></li>
+            <li><a href="https://www.nuget.org/packages/FSharp.Management">Get Library via NuGet</a></li>
+            <li><a href="http://github.com/fsprojects/FSharp.Management">Source Code on GitHub</a></li>
+            <li><a href="http://github.com/fsprojects/FSharp.Management/blob/master/LICENSE.txt">License</a></li>
+            <li><a href="http://github.com/fsprojects/FSharp.Management/blob/master/RELEASE_NOTES.md">Release Notes</a></li>
+            
+            <li class="nav-header">Getting started</li>
+              <li><a href="/FSharp.Management/FileSystemProvider.html">FileSystemProvider</a></li>
+              <li><a href="/FSharp.Management/RegistryProvider.html">RegistryProvider</a></li>
+              <li><a href="/FSharp.Management/WMIProvider.html">WMIProvider</a></li>
+              <li><a href="/FSharp.Management/PowerShellProvider.html">PowerShellProvider</a></li>
+              <li><a href="/FSharp.Management/SystemTimeZonesProvider.html">SystemTimeZonesProvider</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <a href="http://github.com/fsprojects/FSharp.Management"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub"></a>
+  </body>
+  </html>
