@@ -11,6 +11,7 @@ The FSharp.Management project contains various type providers for the management
 * [Registry](RegistryProvider.html)
 * [WMI](WMIProvider.html)
 * [PowerShell](PowerShellProvider.html)
+* [SystemTimeZonesProvider](SystemTimeZonesProvider.html)
 
 In addition, a set of utilities for dealing with common paths on the system at runtime are provided.
 
@@ -41,7 +42,7 @@ open FSharp.Management
 type Users = FileSystem<"C:\\Users\\">
 
 // now you have typed access to your filesystem and you can browse it via Intellisense
-Users.AllUsers.Path 
+Users.AllUsers.Path
 // [fsi:val it : string = "C:\Users\All Users"]
 
 (**
@@ -49,14 +50,14 @@ Users.AllUsers.Path
 Contributing and copyright
 --------------------------
 
-The project is hosted on [GitHub][gh] where you can [report issues][issues], fork 
-the project and submit pull requests. If you're adding new public API, please also 
+The project is hosted on [GitHub][gh] where you can [report issues][issues], fork
+the project and submit pull requests. If you're adding new public API, please also
 consider adding [samples][content] that can be turned into a documentation. You might
 also want to read [library design notes][readme] to understand how it works.
 
-The library is available under Public Domain license, which allows modification and 
-redistribution for both commercial and non-commercial purposes. For more information see the 
-[License file][license] in the GitHub repository. 
+The library is available under Public Domain license, which allows modification and
+redistribution for both commercial and non-commercial purposes. For more information see the
+[License file][license] in the GitHub repository.
 
   [content]: https://github.com/fsprojects/FSharp.Management/tree/master/docs/content
   [gh]: https://github.com/fsprojects/FSharp.Management

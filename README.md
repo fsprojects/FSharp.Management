@@ -10,6 +10,7 @@ The FSharp.Management project contains various type providers for the management
 * [Registry](http://fsprojects.github.io/FSharp.Management/RegistryProvider.html)
 * [WMI](http://fsprojects.github.io/FSharp.Management/WMIProvider.html)
 * [PowerShell](http://fsprojects.github.io/FSharp.Management/PowerShellProvider.html)
+* [SystemTimeZonesProvider](http://fsprojects.github.io/FSharp.Management/SystemTimeZonesProvider.html)
 
 <a href="http://fsprojects.github.io/FSharp.Management" target="_blank">Documentation available here.</a>
 

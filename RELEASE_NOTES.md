@@ -1,3 +1,6 @@
+#### 0.3.0 - 27.07.2015
+* Added SystemTimeZonesProvider
+
 #### 0.2.1  - 07.07.2015
 * Added support of loading modules in PowerShellProvider
 * Added ability to call Azure PowerShell cmdlets. https://github.com/fsprojects/FSharp.Management/issues/47
