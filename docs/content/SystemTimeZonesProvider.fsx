@@ -17,7 +17,7 @@ open System
 
 (**
 
-Answer to a (question from stackoverflow.com)[http:///q/2961848/1603572].
+Answer to a [question from stackoverflow.com](http://stackoverflow.com/questions/2961848/how-to-use-timezoneinfo-to-get-local-time-during-daylight-savings-time).
 
 *)
 

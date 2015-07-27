@@ -264,9 +264,9 @@ Target "All" DoNothing
 #else
   ==> "BuildTests"
   ==> "RunTests"
-#endif
   ==> "GenerateReferenceDocs"
   ==> "GenerateDocs"
+#endif
   ==> "All"
 
 "All"
@@ -284,7 +284,8 @@ Target "All" DoNothing
 "GenerateHelp"
   ==> "KeepRunning"
 
-"ReleaseDocs"
+"GenerateDocs"
+  ==> "ReleaseDocs"
   ==> "Release"
 
 "BuildPackage"
