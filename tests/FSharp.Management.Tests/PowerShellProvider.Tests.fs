@@ -41,8 +41,23 @@ let ``Get events from event log`` () =
     | Some(Choice2Of3 entries) ->
         entries |> should haveLength 2
     | _ -> failwith "Unexpected result"
+    
+let [<Literal>]ModuleFile = __SOURCE_DIRECTORY__ + @"\testModule.psm1" 
+type PSFileModule =  PowerShellProvider< ModuleFile >
 
+[<Test>]
+let ``Call a function defined in a module file`` () =
+    let testString = "testString"
+    match PSFileModule.doSomething(test=testString) with 
+    | Some stringList -> 
+        stringList |> should haveLength 1
+        stringList
+        |> Seq.head
+        |> shouldEqual testString
+    | None -> failwith "Unexpected result"
+    
 type PS64 = PowerShellProvider< Modules, Is64BitRequired=true >
+
 
 [<Test>]
 let ``Get system drive x64``() =
