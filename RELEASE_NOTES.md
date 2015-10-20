@@ -1,3 +1,6 @@
+#### 0.3.1 - 20.10.2015
+* PowerShell module script support https://github.com/fsprojects/FSharp.Management/pull/62
+
 #### 0.3.0 - 27.07.2015
 * Added SystemTimeZonesProvider
 

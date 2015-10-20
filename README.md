@@ -18,7 +18,7 @@ The FSharp.Management project contains various type providers for the management
 [![AppVeyor Build status](https://ci.appveyor.com/api/projects/status/n94phug4pgecalte?svg=true)](https://ci.appveyor.com/project/sergey-tihon/fsharp-management-6aqlt)
 [![Travis build status](https://travis-ci.org/fsprojects/FSharp.Management.png)](https://travis-ci.org/fsprojects/FSharp.Management/)
 
-* Install PowerShell 3.0
+* Install [PowerShell 3.0](http://www.microsoft.com/en-us/download/details.aspx?id=34595)
 * Run build.cmd
 
 ## Maintainer(s)
