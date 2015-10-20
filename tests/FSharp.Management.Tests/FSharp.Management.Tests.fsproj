@@ -67,6 +67,7 @@
     <Compile Include="WMI.Tests.fs" />
     <Compile Include="SystemTimeZonesProvider.Tests.fs" />
     <None Include="paket.references" />
+    <None Include="testModule.psm1" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="FSharp.Management">

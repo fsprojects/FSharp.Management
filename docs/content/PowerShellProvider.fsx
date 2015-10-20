@@ -120,3 +120,20 @@ PS.``Get-PSSnapin``(registered=true)
 // [fsi:        Types = seq [];]
 // [fsi:        Vendor = "Microsoft";]
 // [fsi:        Version = 9.0.0.0;}]]
+
+
+(**
+Working with Script Modules files 
+-------------------- 
+
+ - The powershell script execution should be enable on the system, make sure the execution policy is appropriately set
+ - The exported function in the module file needs to have the OutputType attribute if they return a value
+
+ This [module](..\..\tests\FSharp.Management.Tests\testModule.psm1) defition can be referenced like so 
+
+*)
+
+let [<Literal>]ModuleFile = __SOURCE_DIRECTORY__ + @"\..\..\tests\FSharp.Management.Tests\testModule.psm1" 
+type PSFileModule =  PowerShellProvider< ModuleFile >
+PSFileModule.doSomething(test="testString")
+// [fsi:val it : Option<List<string>> = Some ["testString"]]

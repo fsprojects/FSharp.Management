@@ -18,7 +18,8 @@ type PSRuntimeHosted(snapIns:string[], modules:string[]) =
     let runSpace =
         try
             let initState = InitialSessionState.CreateDefault()
-
+            initState.AuthorizationManager <- new Microsoft.PowerShell.PSAuthorizationManager("Microsoft.PowerShell")
+            
             // Import SnapIns
             for snapIn in snapIns do
                 if not <| String.IsNullOrEmpty(snapIn) then
