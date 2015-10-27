@@ -19,6 +19,7 @@ The FSharp.Management project contains various type providers for the management
 [![Travis build status](https://travis-ci.org/fsprojects/FSharp.Management.png)](https://travis-ci.org/fsprojects/FSharp.Management/)
 
 * Install [PowerShell 3.0](http://www.microsoft.com/en-us/download/details.aspx?id=34595)
+* Execute in PowerShell `x86` with admin rights `set-executionpolicy remotesigned`
 * Run build.cmd
 
 ## Maintainer(s)

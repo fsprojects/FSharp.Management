@@ -123,17 +123,37 @@ PS.``Get-PSSnapin``(registered=true)
 
 
 (**
-Working with Script Modules files 
--------------------- 
+Working with Script Module files
+--------------------
 
- - The powershell script execution should be enable on the system, make sure the execution policy is appropriately set
- - The exported function in the module file needs to have the OutputType attribute if they return a value
+ - The `PowerShell` script execution should be enable on the system, make sure the execution policy is appropriately set
+   (Example: `set-executionpolicy remotesigned` Note that `x86` and `x64` runtimes have different execution policy settings)
+ - The exported function in the module file needs to have the `OutputType` attribute
+   if they return a value
 
- This [module](..\..\tests\FSharp.Management.Tests\testModule.psm1) defition can be referenced like so 
+
+ This following module definition
+
+```PowerShell
+function doSomething {
+    [OutputType([string])]
+    param (
+        [string] $test
+    )
+    return $test
+}
+
+export-moduleMember -function doSomething
+```
+
+ can be referenced like so
 
 *)
 
-let [<Literal>]ModuleFile = __SOURCE_DIRECTORY__ + @"\..\..\tests\FSharp.Management.Tests\testModule.psm1" 
+let [<Literal>]ModuleFile =
+    __SOURCE_DIRECTORY__ + @"\..\..\tests\FSharp.Management.Tests\testModule.psm1"
+
 type PSFileModule =  PowerShellProvider< ModuleFile >
+
 PSFileModule.doSomething(test="testString")
 // [fsi:val it : Option<List<string>> = Some ["testString"]]
