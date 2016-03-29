@@ -64,7 +64,7 @@ type PSRuntimeHosted(snapIns:string[], modules:string[]) =
                                 yield cmdSignature.UniqueID, cmdSignature
                         }
                     else
-                        failwith "Command is not loaded: %A" cmd
+                        failwithf "Command is not loaded: %A" cmd
                 | _ -> failwithf "Unexpected type of command: %A" cmd
             )
             |> Seq.concat
@@ -120,7 +120,7 @@ type PSRuntimeHosted(snapIns:string[], modules:string[]) =
                     then ps.AddParameter(key, value) |> ignore
             )
             let result = ps.Invoke()
-
+            
             // Infer type of the result
             match getTypeOfObjects cmd.ResultObjectTypes result with
             | None -> box None  // Result of execution is empty collection
