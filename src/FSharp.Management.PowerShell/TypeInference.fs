@@ -2,6 +2,7 @@
 
 open System
 open System.Management.Automation
+open FSharp.Management.PowerShellProvider.Types
 
 type PSCommandSignature =
     {
@@ -40,7 +41,14 @@ let buildResultType (resultObjectTypes:Type[]) =
         | 6 -> typedefof<Choice<_,_,_,_,_,_>>.MakeGenericType(tys)
         | 7 -> typedefof<Choice<_,_,_,_,_,_,_>>.MakeGenericType(tys)
         | _ -> typeof<PSObject> //TODO: test it
-    typedefof<Option<_>>.MakeGenericType(choise)
+
+    let failType = 
+        typeof<list<ErrorRecord>>
+
+    let returnType = 
+        [|choise; failType|]
+
+    typedefof<PsCmdletResult<_,_>>.MakeGenericType(returnType)
 
 let getParameterProperties (parameterSet: CommandParameterSetInfo) =
     match parameterSet.Parameters with

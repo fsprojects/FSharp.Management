@@ -6,7 +6,7 @@ open System
 open System.Management.Automation
 open System.Management.Automation.Runspaces
 open System.Threading
-open System.Security.Principal
+open System.Security.Principal      
 
 type IPSRuntime =
     abstract member AllCommands  : unit -> PSCommandSignature[]
@@ -119,11 +119,18 @@ type PSRuntimeHosted(snapIns:string[], modules:string[]) =
                     if (value <> null)
                     then ps.AddParameter(key, value) |> ignore
             )
-            let result = ps.Invoke()
-            
+            let result = ps.Invoke()           
+
             // Infer type of the result
             match getTypeOfObjects cmd.ResultObjectTypes result with
-            | None -> box None  // Result of execution is empty collection
+            | None -> 
+                if ps.Streams.Error.Count > 0 then                       
+                    let errors = ps.Streams.Error |> Seq.map (fun x -> x) |> List.ofSeq   
+                    cmd.ResultType.GetMethod("NewFailure").Invoke(null, [|errors|])
+                else
+                    let empty = new PSObject()
+                    cmd.ResultType.GetMethod("NewSuccess").Invoke(null, [|empty|])    // Result of execution is empty object
+
             | Some(tyOfObj) ->
                 let collectionConverter =
                     typedefof<CollectionConverter<_>>.MakeGenericType(tyOfObj)
@@ -141,7 +148,7 @@ type PSRuntimeHosted(snapIns:string[], modules:string[]) =
                          cmd.ResultType.GetGenericArguments().[0] // GenericTypeArguments in .NET 4.5
                             .GetMethod(funcName).Invoke(null, [|typedCollection|])
 
-                cmd.ResultType.GetMethod("Some").Invoke(null, [|choise|])
+                cmd.ResultType.GetMethod("NewSuccess").Invoke(null, [|choise|])                
         member __.GetXmlDoc (cmdName:string) =
             if not <| xmlDocs.ContainsKey cmdName
                 then xmlDocs.Add(cmdName, getXmlDoc cmdName)
