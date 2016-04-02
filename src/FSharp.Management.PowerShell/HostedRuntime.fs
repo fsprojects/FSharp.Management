@@ -125,7 +125,7 @@ type PSRuntimeHosted(snapIns:string[], modules:string[]) =
             match getTypeOfObjects cmd.ResultObjectTypes result with
             | None -> 
                 if ps.Streams.Error.Count > 0 then                       
-                    let errors = ps.Streams.Error |> Seq.map (fun x -> x) |> List.ofSeq   
+                    let errors = ps.Streams.Error |> Seq.cast |> List.ofSeq   
                     cmd.ResultType.GetMethod("NewFailure").Invoke(null, [|errors|])
                 else
                     let empty = new PSObject()
