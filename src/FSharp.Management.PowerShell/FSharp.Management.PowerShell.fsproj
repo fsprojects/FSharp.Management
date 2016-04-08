@@ -74,6 +74,7 @@
     <Compile Include="..\FSharp.Management\TypeProviders.Helper.fs">
       <Link>TypeProviders.Helper.fs</Link>
     </Compile>
+    <Compile Include="Types.fs" />
     <Compile Include="TypeInference.fs" />
     <Compile Include="HostedRuntime.fs" />
     <Compile Include="ExternalRuntime.fs" />
