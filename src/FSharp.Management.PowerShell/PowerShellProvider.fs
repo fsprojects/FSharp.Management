@@ -24,8 +24,8 @@ type public PowerShellProvider(_cfg: TypeProviderConfig) as this =
             <param name='Is64BitRequired'>Mark that 64bit runtime should be used for PowerShell</param>"""
     do shell.AddXmlDoc helpText
     do shell.DefineStaticParameters(
-        staticParameters=staticParams,
-        apply=(fun typeName parameterValues ->
+        parameters=staticParams,
+        instantiationFunction=(fun typeName parameterValues ->
             let modules   = parameterValues.[0] :?> string
             let psSnapIns = parameterValues.[1] :?> string
             let is64bitRequired = parameterValues.[2] :?> bool

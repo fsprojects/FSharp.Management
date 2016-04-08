@@ -1,1 +1,3 @@
-FsUnit
+group Test
+  NUnit
+  File:FsUnitTyped.fs
