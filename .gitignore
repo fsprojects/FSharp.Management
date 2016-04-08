@@ -172,6 +172,7 @@ temp/
 
 # Test results produced by build
 TestResults.xml
+TestResult.xml
 release.cmd
 nuget/
 
