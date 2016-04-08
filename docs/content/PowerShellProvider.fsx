@@ -26,45 +26,46 @@ type PS = PowerShellProvider< "Microsoft.PowerShell.Management;Microsoft.PowerSh
 // now you have typed access to your PowerShell and you can browse it via Intellisense
 PS.``Get-EventLog``(logName="Application", entryType=[|"Error"|], newest=2)
 // [fsi:val it :]
-// [fsi:  Option<Choice<List<Diagnostics.EventLog>,List<Diagnostics.EventLogEntry>,]
-// [fsi:                List<string>>> =]
-// [fsi:  Some]
+// [fsi:  PowerShellProvider.Types.PsCmdletResult<Choice<List<System.Diagnostics.EventLog>,]
+// [fsi:                                                 List<System.Diagnostics.EventLogEntry>,]
+// [fsi:                                                 List<string>>,]
+// [fsi:                                          List<System.Management.Automation.ErrorRecord>>]
+// [fsi:= Success]
 // [fsi:    (Choice2Of3]
 // [fsi:       [System.Diagnostics.EventLogEntry]
 // [fsi:          {Category = "(0)";]
 // [fsi:           CategoryNumber = 0s;]
 // [fsi:           Container = null;]
-// [fsi:           Data = [|126uy; 0uy; 0uy; 0uy|];]
+// [fsi:           Data = [||];]
 // [fsi:           EntryType = Error;]
-// [fsi:           EventID = 1023;]
-// [fsi:           Index = 214869;]
-// [fsi:           InstanceId = 3221226495L;]
+// [fsi:           EventID = 1022;]
+// [fsi:           Index = 72795;]
+// [fsi:           InstanceId = 1022L;]
 // [fsi:           MachineName = "xxx";]
-// [fsi:           Message = "The description for Event ID '-1073740801' in Source 'Perflib' cannot ..."]
-// [fsi:           ReplacementStrings = [|"rdyboost"; "4"|];]
+// [fsi:           Message = ".NET Runtime version 4.0.30319.0 - Loading profiler failed during CoCreateInstance.  Profiler CLSID: '{DA7CFC47-3E35-4c4e-B495-534F93B28683}'.  HRESULT: 0x80040154.  Process ID (decimal): 15308.  Message ID: [0x2504].";]
+// [fsi:           ReplacementStrings = [|".NET Runtime version 4.0.30319.0 - Loading profiler failed during CoCreateInstance.  Profiler CLSID: '{DA7CFC47-3E35-4c4e-B495-534F93B28683}'.  HRESULT: 0x80040154.  Process ID (decimal): 15308.  Message ID: [0x2504]."|];]
 // [fsi:           Site = null;]
-// [fsi:           Source = "Perflib";]
-// [fsi:           TimeGenerated = 7/12/2015 12:14:55 AM;]
-// [fsi:           TimeWritten = 7/12/2015 12:14:55 AM;]
-// [fsi:           UserName = null;};]
+// [fsi:           Source = ".NET Runtime";]
+// [fsi:           TimeGenerated = 4/8/2016 7:46:57 PM;]
+// [fsi:           TimeWritten = 4/8/2016 7:46:57 PM;]
+// [fsi:           UserName = "xxx";};]
 // [fsi:        System.Diagnostics.EventLogEntry]
 // [fsi:          {Category = "(0)";]
 // [fsi:           CategoryNumber = 0s;]
 // [fsi:           Container = null;]
 // [fsi:           Data = [||];]
 // [fsi:           EntryType = Error;]
-// [fsi:           EventID = 513;]
-// [fsi:           Index = 214760;]
-// [fsi:           InstanceId = 513L;]
+// [fsi:           EventID = 1022;]
+// [fsi:           Index = 72794;]
+// [fsi:           InstanceId = 1022L;]
 // [fsi:           MachineName = "xxx";]
-// [fsi:           Message = "Cryptographic Services failed while ...";]
-// [fsi:           ReplacementStrings = [|""|];]
+// [fsi:           Message = ".NET Runtime version 4.0.30319.0 - Loading profiler failed during CoCreateInstance.  Profiler CLSID: '{DA7CFC47-3E35-4c4e-B495-534F93B28683}'.  HRESULT: 0x80040154.  Process ID (decimal): 25088.  Message ID: [0x2504].";]
+// [fsi:           ReplacementStrings = [|".NET Runtime version 4.0.30319.0 - Loading profiler failed during CoCreateInstance.  Profiler CLSID: '{DA7CFC47-3E35-4c4e-B495-534F93B28683}'.  HRESULT: 0x80040154.  Process ID (decimal): 25088.  Message ID: [0x2504]."|];]
 // [fsi:           Site = null;]
-// [fsi:           Source = "Microsoft-Windows-CAPI2";]
-// [fsi:           TimeGenerated = 7/11/2015 11:50:42 AM;]
-// [fsi:           TimeWritten = 7/11/2015 11:50:42 AM;]
-// [fsi:           UserName = null;}])]
-
+// [fsi:           Source = ".NET Runtime";]
+// [fsi:           TimeGenerated = 4/8/2016 7:46:25 PM;]
+// [fsi:           TimeWritten = 4/8/2016 7:46:25 PM;]
+// [fsi:           UserName = "xxx";}])]
 
 (**
 
@@ -77,7 +78,7 @@ Manage Windows services
 
 let service =
     match PS.``Get-Service``(name=[|"Windows Search"|]) with
-    | Some(services) when services.Length = 1 ->
+    | Success(services) when services.Length = 1 ->
         services.Head
     | _ -> failwith "Choice is ambiguous or service not found"
 // [fsi:val service : ServiceProcess.ServiceController =]
@@ -105,8 +106,10 @@ Working with Snapins
 *)
 // get all registered PowerShell Snapins
 PS.``Get-PSSnapin``(registered=true)
-// [fsi:val it : Option<List<PSSnapInInfo>> =]
-// [fsi:  Some]
+// [fsi:val it :]
+// [fsi:  PsCmdletResult<List<System.Management.Automation.PSSnapInInfo>,]
+// [fsi:                 List<System.Management.Automation.ErrorRecord>> =]
+// [fsi:  Success]
 // [fsi:    [WDeploySnapin3.0]
 // [fsi:       {ApplicationBase = "C:\Program Files\IIS\Microsoft Web Deploy V3\";]
 // [fsi:        AssemblyName = "Microsoft.Web.Deployment.PowerShell, Version=9.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35";]
@@ -120,7 +123,6 @@ PS.``Get-PSSnapin``(registered=true)
 // [fsi:        Types = seq [];]
 // [fsi:        Vendor = "Microsoft";]
 // [fsi:        Version = 9.0.0.0;}]]
-
 
 (**
 Working with Script Module files
@@ -156,4 +158,6 @@ let [<Literal>]ModuleFile =
 type PSFileModule =  PowerShellProvider< ModuleFile >
 
 PSFileModule.doSomething(test="testString")
-// [fsi:val it : Option<List<string>> = Some ["testString"]]
+// [fsi:val it : ]
+// [fsi:  PsCmdletResult<List<string>,List<System.Management.Automation.ErrorRecord>>]
+// [fsi:= Success ["testString"]]

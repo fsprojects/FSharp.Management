@@ -1,4 +1,5 @@
-﻿module FSharp.Management.PowerShellProvider.Types
+﻿[<AutoOpen>]
+module FSharp.Management.PowerShellProviderTypes
 
 type PsCmdletResult<'TSuccess,'TFailure> = 
     | Success of 'TSuccess

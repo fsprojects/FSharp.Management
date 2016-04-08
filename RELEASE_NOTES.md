@@ -1,3 +1,6 @@
+#### 0.4.0 - 08.04.2016
+* BREAKING CHANGE: Support of Powershell pipeline errors - https://github.com/fsprojects/FSharp.Management/pull/66
+
 #### 0.3.1 - 28.10.2015
 * PowerShell module script support https://github.com/fsprojects/FSharp.Management/pull/62
 * PowerShell TypeProviders compiled for .NET 4.5 due to bug in Win10 - https://connect.microsoft.com/VisualStudio/feedback/details/1817986/unable-to-use-system-management-automation-dll-assembly-in-a-net-4-0-application-on-windows-10

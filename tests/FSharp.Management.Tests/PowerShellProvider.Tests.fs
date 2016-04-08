@@ -3,7 +3,6 @@
 open FSharp.Management
 open NUnit.Framework
 open FsUnit
-open FSharp.Management.PowerShellProvider.Types
 
 let [<Literal>]Modules = "Microsoft.PowerShell.Management;Microsoft.PowerShell.Core"
 
@@ -42,21 +41,21 @@ let ``Get events from event log`` () =
     | Success(Choice2Of3 entries) ->
         entries |> should haveLength 2
     | _ -> failwith "Unexpected result"
-    
-let [<Literal>]ModuleFile = __SOURCE_DIRECTORY__ + @"\testModule.psm1" 
+
+let [<Literal>]ModuleFile = __SOURCE_DIRECTORY__ + @"\testModule.psm1"
 type PSFileModule =  PowerShellProvider< ModuleFile >
 
 [<Test>]
 let ``Call a function defined in a module file`` () =
     let testString = "testString"
-    match PSFileModule.doSomething(test=testString) with 
-    | Some stringList -> 
+    match PSFileModule.doSomething(test=testString) with
+    | Success(stringList) ->
         stringList |> should haveLength 1
         stringList
         |> Seq.head
         |> shouldEqual testString
-    | None -> failwith "Unexpected result"
-    
+    | _ -> failwith "Unexpected result"
+
 type PS64 = PowerShellProvider< Modules, Is64BitRequired=true >
 
 

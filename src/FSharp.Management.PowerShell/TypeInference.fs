@@ -2,7 +2,7 @@
 
 open System
 open System.Management.Automation
-open FSharp.Management.PowerShellProvider.Types
+open FSharp.Management
 
 type PSCommandSignature =
     {
