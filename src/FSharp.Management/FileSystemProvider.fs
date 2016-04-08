@@ -114,10 +114,10 @@ let createRelativePathSystem (resolutionFolder: string) ctx =
     let relativeFileSystem = erasedType<obj> thisAssembly rootNamespace "RelativePath"
 
     relativeFileSystem.DefineStaticParameters(
-        staticParameters =
+        parameters =
             [ ProvidedStaticParameter("relativeTo", typeof<string>)
               ProvidedStaticParameter("watch", typeof<bool>, false) ],
-        apply = (fun typeName parameterValues ->
+        instantiationFunction = (fun typeName parameterValues ->
             match parameterValues with
             | [| :? string as relativePath; :? bool as watch |] ->
                 let folder =
@@ -135,11 +135,11 @@ let createTypedFileSystem ctx =
     let typedFileSystem = erasedType<obj> thisAssembly rootNamespace "FileSystem"
 
     typedFileSystem.DefineStaticParameters(
-        staticParameters =
+        parameters =
             [ ProvidedStaticParameter("path", typeof<string>)
               ProvidedStaticParameter("relativeTo", typeof<string>, "")
               ProvidedStaticParameter("watch", typeof<bool>, false) ],
-        apply = (fun typeName parameterValues ->
+        instantiationFunction = (fun typeName parameterValues ->
             match parameterValues with
             | [| :? string as path; :? string as relativePath; :? bool as watch |] ->
                 let dir = new DirectoryInfo(path)

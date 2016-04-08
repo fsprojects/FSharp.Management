@@ -1,22 +1,43 @@
 NUGET
-  remote: https://nuget.org/api/v2
+  remote: https://www.nuget.org/api/v2
   specs:
-    FAKE (4.0.2)
-    FSharp.Compiler.Service (1.3.1.0)
-    FSharp.Formatting (2.10.0)
-      FSharp.Compiler.Service (>= 0.0.87)
-      FSharpVSPowerTools.Core (1.8.0)
-    FSharpVSPowerTools.Core (1.8.0)
-      FSharp.Compiler.Service (>= 0.0.87)
-    FsUnit (1.3.1.0)
-      NUnit (2.6.4)
-    NuGet.CommandLine (2.8.6)
-    NUnit (2.6.4)
-    NUnit.Runners (2.6.4)
-    SourceLink.Fake (1.0.0)
     System.Management.Automation_PowerShell_3.0 (6.3.9600.17400)
 GITHUB
   remote: fsprojects/FSharp.TypeProviders.StarterPack
   specs:
-    src/ProvidedTypes.fs (c098da43ef99c9f15f7ed7ec4726dace9b95ad06)
-    src/ProvidedTypes.fsi (c098da43ef99c9f15f7ed7ec4726dace9b95ad06)
+    src/ProvidedTypes.fs (ddfb906ecbac78dc9f0f5e172518a72cb5fdf651)
+    src/ProvidedTypes.fsi (ddfb906ecbac78dc9f0f5e172518a72cb5fdf651)
+GROUP Build
+NUGET
+  remote: https://www.nuget.org/api/v2
+  specs:
+    FAKE (4.23.5)
+    FSharp.Compiler.Service (1.3.1)
+    FSharp.Formatting (2.10)
+      FSharp.Compiler.Service (>= 0.0.87)
+      FSharpVSPowerTools.Core (1.8)
+    FSharpVSPowerTools.Core (1.8)
+      FSharp.Compiler.Service (>= 0.0.87)
+    NuGet.CommandLine (3.3)
+    SourceLink.Fake (1.1)
+
+GROUP Test
+NUGET
+  remote: https://www.nuget.org/api/v2
+  specs:
+    NUnit (3.2)
+    NUnit.Console (3.2.0.1)
+      NUnit.ConsoleRunner (3.2)
+      NUnit.Extension.NUnitProjectLoader (3.2)
+      NUnit.Extension.NUnitV2Driver (3.2)
+      NUnit.Extension.NUnitV2ResultWriter (3.2)
+      NUnit.Extension.VSProjectLoader (3.2)
+    NUnit.ConsoleRunner (3.2)
+    NUnit.Extension.NUnitProjectLoader (3.2)
+    NUnit.Extension.NUnitV2Driver (3.2)
+    NUnit.Extension.NUnitV2ResultWriter (3.2)
+    NUnit.Extension.VSProjectLoader (3.2)
+GITHUB
+  remote: fsprojects/FsUnit
+  specs:
+    src/FsUnit.NUnit/FsUnitTyped.fs (43086ca8981c7642c1067ad5e9de80caf73ba4ec)
