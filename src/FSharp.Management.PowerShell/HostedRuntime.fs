@@ -128,8 +128,8 @@ type PSRuntimeHosted(snapIns:string[], modules:string[]) =
                     let errors = ps.Streams.Error |> Seq.cast<ErrorRecord> |> List.ofSeq   
                     cmd.ResultType.GetMethod("NewFailure").Invoke(null, [|errors|])
                 else
-                    let empty = new PSObject()
-                    cmd.ResultType.GetMethod("NewSuccess").Invoke(null, [|empty|])    // Result of execution is empty object
+                    let boxedResult = new PSObject(result)
+                    cmd.ResultType.GetMethod("NewSuccess").Invoke(null, [|boxedResult|])    // Result of execution is empty object
 
             | Some(tyOfObj) ->
                 let collectionConverter =
