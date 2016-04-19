@@ -42,6 +42,14 @@ let ``Get events from event log`` () =
         entries |> shouldHaveLength 2
     | _ -> failwith "Unexpected result"
 
+// This Cmdlet has an empty OutputType
+[<Test>]
+let ``Get help message`` () =
+    match PS.``Get-Help``() with
+    | Success(resultObj) ->
+        resultObj.GetType() |> shouldEqual typeof<System.Management.Automation.PSObject>
+    | _ -> failwith "Unexpected result"
+
 let [<Literal>]ModuleFile = __SOURCE_DIRECTORY__ + @"\testModule.psm1"
 type PSFileModule =  PowerShellProvider< ModuleFile >
 
