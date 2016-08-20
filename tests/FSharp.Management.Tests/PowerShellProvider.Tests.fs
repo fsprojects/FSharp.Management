@@ -53,7 +53,7 @@ let ``Get help message`` () =
 //This Cmdlet has a typed OutputType, but doesn't actually return anything
 [<Test>]
 let ``Change location`` () =
-    match PS.``Set-Location``(path="""C:\Temp""") with
+    match PS.``Set-Location``(path="""""") with
     | Success (resultObj) ->
         match box resultObj with
         | null -> ignore()
