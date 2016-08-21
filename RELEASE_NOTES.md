@@ -1,3 +1,6 @@
+#### 0.4.2 - 21.08.2016
+* FIXED: PS Type provider type failed with Set-Location - https://github.com/fsprojects/FSharp.Management/issues/73
+
 #### 0.4.0 - 08.04.2016
 * BREAKING CHANGE: Support of Powershell pipeline errors - https://github.com/fsprojects/FSharp.Management/pull/66
 
