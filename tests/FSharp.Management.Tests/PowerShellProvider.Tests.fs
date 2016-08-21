@@ -50,6 +50,16 @@ let ``Get help message`` () =
         resultObj.GetType() |> shouldEqual typeof<System.Management.Automation.PSObject>
     | _ -> failwith "Unexpected result"
 
+//This Cmdlet has a typed OutputType, but doesn't actually return anything
+[<Test>]
+let ``Change location`` () =
+    match PS.``Set-Location``(path="""""") with
+    | Success (resultObj) ->
+        match box resultObj with
+        | null -> ignore()
+        | _ -> failwith "Unexpected result"
+    | _ -> failwith "Unexpected result"
+
 let [<Literal>]ModuleFile = __SOURCE_DIRECTORY__ + @"\testModule.psm1"
 type PSFileModule =  PowerShellProvider< ModuleFile >
 

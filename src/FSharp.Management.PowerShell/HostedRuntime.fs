@@ -127,8 +127,12 @@ type PSRuntimeHosted(snapIns:string[], modules:string[]) =
                 if ps.Streams.Error.Count > 0 then                       
                     let errors = ps.Streams.Error |> Seq.cast<ErrorRecord> |> List.ofSeq   
                     cmd.ResultType.GetMethod("NewFailure").Invoke(null, [|errors|])
-                else
-                    let boxedResult = new PSObject(result)
+                else                    
+                    let boxedResult = if result.Count > 0 then
+                                            box (new PSObject(result))
+                                        else
+                                            box None
+
                     cmd.ResultType.GetMethod("NewSuccess").Invoke(null, [|boxedResult|])    // Result of execution is empty object
 
             | Some(tyOfObj) ->
