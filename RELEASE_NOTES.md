@@ -1,3 +1,6 @@
+#### 0.4.3 - 07.11.2016
+* Updated Type Provider SDK
+
 #### 0.4.2 - 21.08.2016
 * FIXED: PS Type provider type failed with Set-Location - https://github.com/fsprojects/FSharp.Management/issues/73
 
