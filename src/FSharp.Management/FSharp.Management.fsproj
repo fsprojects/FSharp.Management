@@ -79,6 +79,7 @@
     <Compile Include="FileSystemProvider.fs" />
     <Compile Include="CommonFolders.fs" />
     <Compile Include="RegistryProvider.fs" />
+    <Compile Include="StringReaderProvider.fs" />
     <Compile Include="SystemTypeProviders.fs" />
     <None Include="paket.references" />
   </ItemGroup>

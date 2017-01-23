@@ -69,6 +69,7 @@
     <Compile Include="PowerShellProvider.Tests.fs" />
     <Compile Include="WMI.Tests.fs" />
     <Compile Include="SystemTimeZonesProvider.Tests.fs" />
+    <Compile Include="StringReaderProvider.Tests.fs" />
     <None Include="paket.references" />
     <None Include="testModule.psm1" />
   </ItemGroup>
