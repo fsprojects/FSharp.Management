@@ -28,9 +28,9 @@ let createTypedStringReader (resolutionFolder: string) =
                     match Path.IsPathRooted(path) with
                     | false -> Path.Combine(resolutionFolder, path)
                     | true -> path
-                match File.Exists(filePath) with
-                | false -> failwithf "Specified file [%s] could not be found" path
-                | true -> createType typeName filePath
+                if not <| File.Exists(filePath) then
+                    failwithf "Specified file [%s] could not be found" path
+                createType typeName filePath
             | _ -> failwith "Wrong static parameters to type provider"))
 
     typedStringReader
