@@ -29,7 +29,7 @@ let createTypedStringReader (resolutionFolder: string) =
                     | false -> Path.Combine(resolutionFolder, path)
                     | true -> path
                 match File.Exists(filePath) with
-                | false -> failwith (sprintf "Specified file [%s] could not be found" path)
+                | false -> failwithf "Specified file [%s] could not be found" path
                 | true -> createType typeName filePath
             | _ -> failwith "Wrong static parameters to type provider"))
 
