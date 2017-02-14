@@ -46,5 +46,11 @@ type public SystemTimeZonesProvider(cfg : TypeProviderConfig) as this =
             ]
         this.AddNamespace(rootNamespace, [root])
 
+[<TypeProvider>]
+/// [omit]
+type public StringReaderProvider(cfg : TypeProviderConfig) as this =
+    inherit TypeProviderForNamespaces()
+    do this.AddNamespace(rootNamespace, [ StringReaderProvider.createTypedStringReader cfg.ResolutionFolder ])
+
 [<TypeProviderAssembly>]
 do()
