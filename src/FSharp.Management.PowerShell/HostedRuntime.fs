@@ -157,3 +157,6 @@ type PSRuntimeHosted(snapIns:string[], modules:string[]) =
             if not <| xmlDocs.ContainsKey cmdName
                 then xmlDocs.Add(cmdName, getXmlDoc cmdName)
             xmlDocs.[cmdName]
+
+    interface IDisposable with
+        member __.Dispose () = runSpace.Dispose()
