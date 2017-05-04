@@ -12,6 +12,7 @@ type IPSRuntime =
     abstract member AllCommands  : unit -> PSCommandSignature[]
     abstract member Execute     : string * obj seq -> obj
     abstract member GetXmlDoc   : string -> string
+    abstract member Runspace   : System.Management.Automation.Runspaces.Runspace
 
 /// PowerShell runtime built into the current process
 type PSRuntimeHosted(snapIns:string[], modules:string[]) =
@@ -100,6 +101,7 @@ type PSRuntimeHosted(snapIns:string[], modules:string[]) =
     let xmlDocs = System.Collections.Generic.Dictionary<_,_>()
 
     interface IPSRuntime with
+        member __.Runspace = runSpace
         member __.AllCommands() = allCommands
         member __.Execute(uniqueId, parameters:obj seq) =
             let cmd = commands.[uniqueId]

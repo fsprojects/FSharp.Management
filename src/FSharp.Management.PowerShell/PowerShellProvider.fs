@@ -87,12 +87,17 @@ type public PowerShellProvider(_cfg: TypeProviderConfig) as this =
             let customRunspace = ProvidedTypeDefinition("CustomRunspace", Some(typeof<obj>))
             customRunspace.AddMember <| ProvidedConstructor([], InvokeCode = fun args -> <@@ new HostedRuntime.PSRuntimeHosted(psSnapIns.Split(';'), modules.Split(';')) :> HostedRuntime.IPSRuntime @@>)
             customRunspace.AddInterfaceImplementation <| typeof<System.IDisposable>
-            customRunspace.AddMember <| ProvidedMethod("Dispose", [], typeof<unit>, 
-                                                InvokeCode = 
-                                                    fun args -> 
-                                                        let runtime = args |> Seq.head
-                                                        <@@ (%%runtime : System.IDisposable).Dispose() @@>)
-            customRunspace.AddMembers <| createMembers false         
+            customRunspace.AddMemberDelayed <| fun _ -> ProvidedMethod("Dispose", [], typeof<unit>, 
+                                                            InvokeCode = 
+                                                                fun args -> 
+                                                                let runspace = Quotations.Expr.Coerce(args |> Seq.head, typeof<HostedRuntime.IPSRuntime>) 
+                                                                <@@ (%%runspace : System.IDisposable).Dispose() @@>)
+            customRunspace.AddMemberDelayed <| fun _ -> ProvidedProperty("Runspace", typeof<System.Management.Automation.Runspaces.Runspace>, 
+                                                            GetterCode = 
+                                                                fun args -> 
+                                                                let runspace = Quotations.Expr.Coerce(args |> Seq.head, typeof<HostedRuntime.IPSRuntime>) 
+                                                                <@@ (%%runspace : HostedRuntime.IPSRuntime).Runspace @@>)
+            customRunspace.AddMembersDelayed <| fun _ -> createMembers false         
             
             pty.AddMember(customRunspace)
 

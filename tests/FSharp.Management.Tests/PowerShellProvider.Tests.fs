@@ -50,14 +50,18 @@ let ``Get help message`` () =
         resultObj.GetType() |> shouldEqual typeof<System.Management.Automation.PSObject>
     | _ -> failwith "Unexpected result"
 
-// Verify that CustomRunspace type exists
+// Verify CustomRunspace existance and disposing
 [<Test>]
 let ``Get help message with custom runspace`` () =
-    use runspace = new PS.CustomRunspace()
-    match runspace.``Get-Help``() with
+    let psCustom = new PS.CustomRunspace()
+    match psCustom.``Get-Help``() with
     | Success(resultObj) ->
         resultObj.GetType() |> shouldEqual typeof<System.Management.Automation.PSObject>
     | _ -> failwith "Unexpected result"
+    
+    psCustom.Runspace.RunspaceStateInfo.State  |> shouldEqual System.Management.Automation.Runspaces.RunspaceState.Opened
+    (psCustom :> System.IDisposable).Dispose()
+    psCustom.Runspace.RunspaceStateInfo.State  |> shouldEqual System.Management.Automation.Runspaces.RunspaceState.Closed
 
 //This Cmdlet has a typed OutputType, but doesn't actually return anything
 [<Test>]

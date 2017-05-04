@@ -13,7 +13,7 @@ let main argv =
     let snapIns, _modules = argv |> Array.partition (fun x-> x.StartsWith("+") |> not)
     let modules = _modules |> Array.map (fun x->x.TrimStart([|'+'|]))
 
-    let psRuntimeService = PSRuntimeService(snapIns, modules)
+    use psRuntimeService = new PSRuntimeService(snapIns, modules)
     let serviceHost = new ServiceHost(psRuntimeService, [|Uri(ExternalPowerShellHost)|])
     serviceHost.AddServiceEndpoint(
         typeof<IPSRuntimeService>,
