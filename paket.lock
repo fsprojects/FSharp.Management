@@ -1,10 +1,11 @@
 NUGET
   remote: https://www.nuget.org/api/v2
+    FSharp.Core (3.1.2.5)
     System.Management.Automation_PowerShell_3.0 (6.3.9600.17400)
 GITHUB
   remote: fsprojects/FSharp.TypeProviders.StarterPack
-    src/ProvidedTypes.fs (c50ace31d335b7bcb83b102d2cfd0ce2007ed681)
-    src/ProvidedTypes.fsi (c50ace31d335b7bcb83b102d2cfd0ce2007ed681)
+    src/ProvidedTypes.fs (45f4d8780b3213ef61ba4fccc716cd495565c1a4)
+    src/ProvidedTypes.fsi (45f4d8780b3213ef61ba4fccc716cd495565c1a4)
 GROUP Build
 NUGET
   remote: https://www.nuget.org/api/v2
