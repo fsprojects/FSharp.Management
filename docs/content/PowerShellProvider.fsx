@@ -161,3 +161,29 @@ PSFileModule.doSomething(test="testString")
 // [fsi:val it : ]
 // [fsi:  PsCmdletResult<List<string>,List<System.Management.Automation.ErrorRecord>>]
 // [fsi:= Success ["testString"]]
+
+
+
+(**
+Parallel commands execution
+--------------------
+
+ - The "CustomRunspace" method will create a separate runspace where you can execute all provided commands. The runspace is closed on disposing
+*)
+
+use runspace = new PSFileModule.CustomRunspace()
+runspace.doSomething(test="testString")
+
+(**
+This can be used to execute commands in parallel
+*)
+
+["testString1"; "testString2"; "testString3"]
+    |> Seq.map (fun testString -> async {
+                    use runspace = new PSFileModule.CustomRunspace()
+                    runspace.doSomething(test=testString)
+               })
+    |> Async.Parallel
+    |> Async.RunSynchronously
+    |> ignore
+        

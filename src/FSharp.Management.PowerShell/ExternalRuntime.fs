@@ -30,7 +30,8 @@ type IPSRuntimeService =
 
 [<ServiceBehavior(InstanceContextMode = InstanceContextMode.Single)>]
 type PSRuntimeService(snapIns:string[], modules:string[]) =
-    let psRuntime = PSRuntimeHosted(snapIns, modules) :> IPSRuntime
+    let psRuntimeHosted = new PSRuntimeHosted(snapIns, modules)
+    let psRuntime = psRuntimeHosted :> IPSRuntime
     let serializeType = (fun (t:Type) -> t.AssemblyQualifiedName)
     interface IPSRuntimeService with
         member __.GetAllCmdlets() =
@@ -46,6 +47,9 @@ type PSRuntimeService(snapIns:string[], modules:string[]) =
                     ParametersTypes = (paramTypes |> Array.map serializeType)))
         member __.GetXmlDoc rawName =
             psRuntime.GetXmlDoc(rawName)
+    interface IDisposable with
+        member __.Dispose() =
+            (psRuntimeHosted :> IDisposable).Dispose()
 
 [<Literal>]
 let ExternalPowerShellHost          = "net.pipe://localhost/"
@@ -116,6 +120,7 @@ type PSRuntimeExternal(snapIns: string[], modules: string[]) =
                 psProcess.WaitForExit()
 
     interface IPSRuntime with
+        member __.Runspace = failwith "Not implemented"
         member __.AllCommands() =
             clientService.GetAllCmdlets()
             |> Array.map (fun dto ->

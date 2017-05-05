@@ -1,5 +1,6 @@
 source https://nuget.org/api/v2
 
+nuget FSharp.Core ~> 3
 nuget System.Management.Automation_PowerShell_3.0
 
 github fsprojects/FSharp.TypeProviders.StarterPack src/ProvidedTypes.fsi
@@ -7,15 +8,15 @@ github fsprojects/FSharp.TypeProviders.StarterPack src/ProvidedTypes.fs
 
 group Test
   source https://nuget.org/api/v2
-  
+
   nuget NUnit
   nuget NUnit.Console
-  
+
   github fsprojects/FsUnit src/FsUnit.NUnit/FsUnitTyped.fs
 
 group Build
   source https://nuget.org/api/v2
-  
+
   nuget SourceLink.Fake
   nuget FAKE
   nuget FSharp.Formatting

@@ -16,7 +16,7 @@ let Current(snapIns, modules, is64bitRequired, isDesignTime) =
                 then new PSRuntimeExternal(snapIns, modules) :> IPSRuntime
                 else failwith "You should compile your code as x64 application"
             else
-                PSRuntimeHosted(snapIns, modules) :> IPSRuntime
+                new PSRuntimeHosted(snapIns, modules) :> IPSRuntime
         runtimes := (!runtimes |> Map.add key value)
     (!runtimes).[key]
 
