@@ -259,8 +259,6 @@ Target "All" DoNothing
 #else
   ==> "BuildTests"
   ==> "RunTests"
-  ==> "GenerateReferenceDocs"
-  ==> "GenerateDocs"
 #endif
   ==> "All"
 
