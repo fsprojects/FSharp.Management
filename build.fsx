@@ -7,7 +7,7 @@ open Fake
 open Fake.Git
 open Fake.AssemblyInfoFile
 open Fake.ReleaseNotesHelper
-open Fake.Testing
+open Fake.Testing.Expecto
 open System
 open System.IO
 #if MONO
@@ -30,7 +30,7 @@ let tags = "F# fsharp typeproviders Management PowerShell"
 
 let solutionFile  = "FSharp.Management"
 
-let testAssemblies = "tests/**/bin/Release/*.Tests*.dll"
+let testAssemblies = "tests/**/bin/Release/*.Tests*.exe"
 let gitHome = "https://github.com/fsprojects"
 let gitName = "FSharp.Management"
 let cloneUrl = "https://github.com/fsprojects/FSharp.Management.git"
@@ -79,21 +79,16 @@ Target "BuildTests" (fun _ ->
 )
 
 // --------------------------------------------------------------------------------------
-// Run the unit tests using test runner & kill test runner when complete
+// Run the unit tests
 
 Target "RunTests" (fun _ ->
-    ActivateFinalTarget "CloseTestRunner"
-
     !! testAssemblies
-    |> NUnit3 (fun p ->
+    |> Expecto (fun p ->
         { p with
-            TimeOut = TimeSpan.FromMinutes 20. 
-            Labels = LabelsLevel.All})
+            Parallel = false} )
+    |> ignore
 )
 
-FinalTarget "CloseTestRunner" (fun _ ->
-    ProcessHelper.killProcess "nunit-agent.exe"
-)
 
 // --------------------------------------------------------------------------------------
 // Build a NuGet package

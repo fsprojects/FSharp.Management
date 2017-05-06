@@ -7,35 +7,29 @@ GITHUB
     src/ProvidedTypes.fs (45f4d8780b3213ef61ba4fccc716cd495565c1a4)
     src/ProvidedTypes.fsi (45f4d8780b3213ef61ba4fccc716cd495565c1a4)
 GROUP Build
+FRAMEWORK: NET461
 NUGET
   remote: https://www.nuget.org/api/v2
-    FAKE (4.46)
-    FSharp.Compiler.Service (1.3.1)
-    FSharp.Formatting (2.10)
-      FSharp.Compiler.Service (>= 0.0.87)
-      FSharpVSPowerTools.Core (1.8)
-    FSharpVSPowerTools.Core (1.8)
-      FSharp.Compiler.Service (>= 0.0.87)
-    NuGet.CommandLine (3.4.3)
+    FAKE (4.61.1)
+    FSharp.Compiler.Service (2.0.0.6)
+    FSharp.Formatting (2.14.4)
+      FSharp.Compiler.Service (2.0.0.6)
+      FSharpVSPowerTools.Core (>= 2.3 < 2.4)
+    FSharpVSPowerTools.Core (2.3)
+      FSharp.Compiler.Service (>= 2.0.0.3)
+    NuGet.CommandLine (3.5)
     SourceLink.Fake (1.1)
 
 GROUP Test
+FRAMEWORK: NET461
 NUGET
   remote: https://www.nuget.org/api/v2
-    NUnit (3.5)
-    NUnit.Console (3.5)
-      NUnit.ConsoleRunner (>= 3.5)
-      NUnit.Extension.NUnitProjectLoader (>= 3.5)
-      NUnit.Extension.NUnitV2Driver (>= 3.5)
-      NUnit.Extension.NUnitV2ResultWriter (>= 3.5)
-      NUnit.Extension.TeamCityEventListener (>= 1.0.2)
-      NUnit.Extension.VSProjectLoader (>= 3.5)
-    NUnit.ConsoleRunner (3.5)
-    NUnit.Extension.NUnitProjectLoader (3.5)
-    NUnit.Extension.NUnitV2Driver (3.5)
-    NUnit.Extension.NUnitV2ResultWriter (3.5)
-    NUnit.Extension.TeamCityEventListener (1.0.2)
-    NUnit.Extension.VSProjectLoader (3.5)
-GITHUB
-  remote: fsprojects/FsUnit
-    src/FsUnit.NUnit/FsUnitTyped.fs (0f3e39157b43efc71ca7ad6516e7a1f4e9ee0285)
+    Argu (3.7) - redirects: force
+    Expecto (4.2.1) - redirects: force
+      Argu (>= 3.7)
+      FSharp.Core (>= 4.1.12)
+      Mono.Cecil (>= 0.9.6.4)
+    FSharp.Core (4.1.17) - redirects: force
+      System.ValueTuple (>= 4.3)
+    Mono.Cecil (0.9.6.4) - redirects: force
+    System.ValueTuple (4.3) - redirects: force

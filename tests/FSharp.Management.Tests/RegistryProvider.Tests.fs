@@ -1,15 +1,16 @@
 ﻿module FSharp.Management.Tests.RegistryProviderTests
 
 open FSharp.Management
-open NUnit.Framework
-open FsUnitTyped
+open Expecto
 
-[<Test>]
-let ``Can create type for HKEY_CURRENT_USER``() =
-    Registry.HKEY_CURRENT_USER.Path
-    |> shouldEqual "HKEY_CURRENT_USER"
-
-[<Test>]
-let ``Can create subtype for HKEY_LOCAL_MACHINE``() =
-    Registry.HKEY_LOCAL_MACHINE.SOFTWARE.Path
-    |> shouldEqual @"HKEY_LOCAL_MACHINE\SOFTWARE"
+let [<Tests>] registryProviderTests =
+    testList "RegistryProvider Tests" [
+        test "Can create type for HKEY_CURRENT_USER" {
+            Expect.equal Registry.HKEY_CURRENT_USER.Path
+                         "HKEY_CURRENT_USER" ""
+        }
+        test "Can create subtype for HKEY_LOCAL_MACHINE" {
+            Expect.equal Registry.HKEY_LOCAL_MACHINE.SOFTWARE.Path
+                         @"HKEY_LOCAL_MACHINE\SOFTWARE" ""
+        }
+    ]

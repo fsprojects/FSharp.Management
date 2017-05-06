@@ -1,4 +1,2 @@
-FSharp.Core
 group Test
-  NUnit
-  File:FsUnitTyped.fs
+  Expecto

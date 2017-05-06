@@ -8,14 +8,13 @@ github fsprojects/FSharp.TypeProviders.StarterPack src/ProvidedTypes.fs
 
 group Test
   source https://nuget.org/api/v2
+  framework: net461
 
-  nuget NUnit
-  nuget NUnit.Console
-
-  github fsprojects/FsUnit src/FsUnit.NUnit/FsUnitTyped.fs
+  nuget Expecto redirects:force
 
 group Build
   source https://nuget.org/api/v2
+  framework: net461
 
   nuget SourceLink.Fake
   nuget FAKE

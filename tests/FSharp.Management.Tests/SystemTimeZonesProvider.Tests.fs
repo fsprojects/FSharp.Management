@@ -1,13 +1,13 @@
 ﻿module FSharp.Management.Tests.SystemTimeZonesProviderTests
 
 open FSharp.Management
-open NUnit.Framework
-open FsUnitTyped
+open Expecto
 open System
 
-[<Test>]
-let ``SystemTimeZones provider has correct UTC zone``() =
-    SystemTimeZones.``(UTC) Coordinated Universal Time``
-    |> shouldEqual <| TimeZoneInfo.FindSystemTimeZoneById "UTC"
+let [<Tests>] timezonesTest =
+    testCase "SystemTimeZones provider has correct UTC zone" <| fun _ ->
+        let expect = TimeZoneInfo.FindSystemTimeZoneById "UTC"
+        let actual = SystemTimeZones.``(UTC) Coordinated Universal Time``
+        Expect.equal actual expect ""
 
 
