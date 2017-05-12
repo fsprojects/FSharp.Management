@@ -4,13 +4,13 @@ NUGET
     System.Management.Automation_PowerShell_3.0 (6.3.9600.17400)
 GITHUB
   remote: fsprojects/FSharp.TypeProviders.StarterPack
-    src/ProvidedTypes.fs (45f4d8780b3213ef61ba4fccc716cd495565c1a4)
-    src/ProvidedTypes.fsi (45f4d8780b3213ef61ba4fccc716cd495565c1a4)
+    src/ProvidedTypes.fs (1dab4f94411500794342f61f877feab772e5a754)
+    src/ProvidedTypes.fsi (1dab4f94411500794342f61f877feab772e5a754)
 GROUP Build
 FRAMEWORK: NET461
 NUGET
   remote: https://www.nuget.org/api/v2
-    FAKE (4.61.1)
+    FAKE (4.61.2)
     FSharp.Compiler.Service (2.0.0.6)
     FSharp.Formatting (2.14.4)
       FSharp.Compiler.Service (2.0.0.6)
@@ -32,4 +32,4 @@ NUGET
     FSharp.Core (4.1.17) - redirects: force
       System.ValueTuple (>= 4.3)
     Mono.Cecil (0.9.6.4) - redirects: force
-    System.ValueTuple (4.3) - redirects: force
+    System.ValueTuple (4.3.1) - redirects: force
