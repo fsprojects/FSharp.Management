@@ -1,3 +1,6 @@
+#### 0.4.5 - 12.05.2017
+* Added Mono 5 support - https://github.com/fsprojects/FSharp.Management/issues/82
+
 #### 0.4.4 - 05.05.2017
 * Added support for custom runspaces (PS TP) - https://github.com/fsprojects/FSharp.Management/pull/80
 
