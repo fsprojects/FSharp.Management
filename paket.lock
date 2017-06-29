@@ -7,29 +7,27 @@ GITHUB
     src/ProvidedTypes.fs (1dab4f94411500794342f61f877feab772e5a754)
     src/ProvidedTypes.fsi (1dab4f94411500794342f61f877feab772e5a754)
 GROUP Build
-FRAMEWORK: NET461
+RESTRICTION: == net461
 NUGET
   remote: https://www.nuget.org/api/v2
-    FAKE (4.61.2)
+    FAKE (4.61.3)
     FSharp.Compiler.Service (2.0.0.6)
     FSharp.Formatting (2.14.4)
       FSharp.Compiler.Service (2.0.0.6)
       FSharpVSPowerTools.Core (>= 2.3 < 2.4)
     FSharpVSPowerTools.Core (2.3)
       FSharp.Compiler.Service (>= 2.0.0.3)
-    NuGet.CommandLine (3.5)
+    NuGet.CommandLine (4.1)
     SourceLink.Fake (1.1)
 
 GROUP Test
-FRAMEWORK: NET461
+RESTRICTION: == net461
 NUGET
   remote: https://www.nuget.org/api/v2
     Argu (3.7) - redirects: force
-    Expecto (4.2.1) - redirects: force
+    Expecto (5.0) - redirects: force
       Argu (>= 3.7)
       FSharp.Core (>= 4.1.12)
-      Mono.Cecil (>= 0.9.6.4)
-    FSharp.Core (4.1.17) - redirects: force
-      System.ValueTuple (>= 4.3)
-    Mono.Cecil (0.9.6.4) - redirects: force
-    System.ValueTuple (4.3.1) - redirects: force
+      Mono.Cecil (>= 0.10.0-beta5)
+    FSharp.Core (4.2.1) - redirects: force
+    Mono.Cecil (0.10.0-beta6) - redirects: force
