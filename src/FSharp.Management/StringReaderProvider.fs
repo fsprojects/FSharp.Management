@@ -3,13 +3,16 @@ module internal FSharp.Management.StringReaderProvider
 open ProviderImplementation.ProvidedTypes
 open FSharp.Management.Helper
 open System.IO
+open System.Reflection
 
 let createType typeName filePath =
     let typedStringReader = erasedType<obj> thisAssembly rootNamespace typeName
 
     let content = File.ReadAllText(filePath)
 
-    let contentField = ProvidedLiteralField("Content", typeof<string>, content)
+    let contentField = ProvidedField("Content", typeof<string>)
+    contentField.SetFieldAttributes(FieldAttributes.Literal)
+    contentField.SetValue(contentField, content)
     contentField.AddXmlDoc(sprintf "Content of '%s'" filePath)
     typedStringReader.AddMember contentField
 

@@ -6,8 +6,8 @@ open Microsoft.FSharp.Core.CompilerServices
 open FSharp.Management.Helper
 
 [<TypeProvider>]
-type public PowerShellProvider(_cfg: TypeProviderConfig) as this =
-    inherit TypeProviderForNamespaces()
+type public PowerShellProvider(cfg: TypeProviderConfig) as this =
+    inherit TypeProviderForNamespaces(cfg)
 
     // Get the assembly and namespace used to host the provided types
     let baseTy = typeof<obj>
@@ -50,8 +50,8 @@ type public PowerShellProvider(_cfg: TypeProviderConfig) as this =
                             methodName = cmdlet.Name,
                             parameters = paramList,
                             returnType = cmdlet.ResultType,
-                            IsStaticMethod = areStatic,
-                            InvokeCode =
+                            isStatic = areStatic,
+                            invokeCode =
                                 fun args ->
                                     let mapToParameters (args:Quotations.Expr list) = 
                                         if args.Length <> paramList.Length then
@@ -85,15 +85,15 @@ type public PowerShellProvider(_cfg: TypeProviderConfig) as this =
             pty.AddMembersDelayed(fun() -> createMembers true)
 
             let customRunspace = ProvidedTypeDefinition("CustomRunspace", Some(typeof<obj>))
-            customRunspace.AddMember <| ProvidedConstructor([], InvokeCode = fun args -> <@@ new HostedRuntime.PSRuntimeHosted(psSnapIns.Split(';'), modules.Split(';')) :> HostedRuntime.IPSRuntime @@>)
+            customRunspace.AddMember <| ProvidedConstructor([], invokeCode = fun args -> <@@ new HostedRuntime.PSRuntimeHosted(psSnapIns.Split(';'), modules.Split(';')) :> HostedRuntime.IPSRuntime @@>)
             customRunspace.AddInterfaceImplementation <| typeof<System.IDisposable>
             customRunspace.AddMemberDelayed <| fun _ -> ProvidedMethod("Dispose", [], typeof<unit>, 
-                                                            InvokeCode = 
+                                                            invokeCode = 
                                                                 fun args -> 
                                                                 let runspace = Quotations.Expr.Coerce(args |> Seq.head, typeof<HostedRuntime.IPSRuntime>) 
                                                                 <@@ (%%runspace : System.IDisposable).Dispose() @@>)
             customRunspace.AddMemberDelayed <| fun _ -> ProvidedProperty("Runspace", typeof<System.Management.Automation.Runspaces.Runspace>, 
-                                                            GetterCode = 
+                                                            getterCode = 
                                                                 fun args -> 
                                                                 let runspace = Quotations.Expr.Coerce(args |> Seq.head, typeof<HostedRuntime.IPSRuntime>) 
                                                                 <@@ (%%runspace : HostedRuntime.IPSRuntime).Runspace @@>)

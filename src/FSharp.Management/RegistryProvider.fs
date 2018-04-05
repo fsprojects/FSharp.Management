@@ -3,6 +3,7 @@
 open ProviderImplementation.ProvidedTypes
 open FSharp.Management.Helper
 open Microsoft.Win32
+open System.Reflection
 
 let getAccessibleSubkeys (registryKey:RegistryKey) =
     registryKey.GetSubKeyNames()            
@@ -23,15 +24,16 @@ let registryProperty<'a> key valueName =
     ProvidedProperty(
         propertyName = valueName,
         propertyType = typeof<'a>,
-        IsStatic = true,
-        GetterCode = (fun _ -> <@@ Registry.GetValue(key, valueName,"") :?> 'a @@>),
-        SetterCode = (fun args -> <@@ Registry.SetValue(key, valueName, (%%args.[0] : 'a)) @@>))
+        isStatic = true,
+        getterCode = (fun _ -> <@@ Registry.GetValue(key, valueName,"") :?> 'a @@>),
+        setterCode = (fun args -> <@@ Registry.SetValue(key, valueName, (%%args.[0] : 'a)) @@>))
 
 let rec createRegistryNode (registryKey:RegistryKey,subkeyName) () =   
     let registryNodeType = runtimeType<obj> subkeyName
-    registryNodeType.HideObjectMethods <- true
     registryNodeType.AddXmlDoc(sprintf "A strongly typed interface to '%s'" registryKey.Name)
-    let pathField = ProvidedLiteralField("Path",typeof<string>,registryKey.Name)
+    let pathField = ProvidedField("Path",typeof<string>)
+    pathField.SetFieldAttributes(FieldAttributes.Literal)
+    pathField.SetValue(pathField, registryKey.Name)
     pathField.AddXmlDoc(sprintf "Full path to '%s'" registryKey.Name)
     registryNodeType.AddMember pathField
 

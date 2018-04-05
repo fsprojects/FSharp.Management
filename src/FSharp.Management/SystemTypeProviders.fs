@@ -7,14 +7,14 @@ open FSharp.Management.Helper
 
 [<TypeProvider>]
 /// [omit]
-type public RegistrySystemProvider(_cfg : TypeProviderConfig) as this = 
-    inherit TypeProviderForNamespaces()
+type public RegistrySystemProvider(cfg : TypeProviderConfig) as this = 
+    inherit TypeProviderForNamespaces(cfg)
     do this.AddNamespace(rootNamespace, [ RegistryProvider.createTypedRegistry() ])
 
 [<TypeProvider>]
 /// [omit]
-type public FileSystemProvider(_cfg : TypeProviderConfig) as this = 
-    inherit TypeProviderForNamespaces()
+type public FileSystemProvider(cfg : TypeProviderConfig) as this = 
+    inherit TypeProviderForNamespaces(cfg)
     let ctx = new Context(this.Invalidate)
     do
         this.Disposing.Add(fun _ -> (ctx :> IDisposable).Dispose())
@@ -23,7 +23,7 @@ type public FileSystemProvider(_cfg : TypeProviderConfig) as this =
 [<TypeProvider>]
 /// [omit]
 type public RelativeFileSystemProvider(cfg : TypeProviderConfig) as this = 
-    inherit TypeProviderForNamespaces()
+    inherit TypeProviderForNamespaces(cfg)
     let ctx = new Context(this.Invalidate)
         
     do
@@ -34,7 +34,7 @@ type public RelativeFileSystemProvider(cfg : TypeProviderConfig) as this =
 [<TypeProvider>]
 /// [omit]
 type public SystemTimeZonesProvider(cfg : TypeProviderConfig) as this = 
-    inherit TypeProviderForNamespaces()
+    inherit TypeProviderForNamespaces(cfg)
         
     do
         let root = erasedType<obj> thisAssembly rootNamespace "SystemTimeZones"
@@ -42,14 +42,14 @@ type public SystemTimeZonesProvider(cfg : TypeProviderConfig) as this =
             [ 
                 for x in TimeZoneInfo.GetSystemTimeZones() ->
                     let id = x.Id
-                    ProvidedProperty(x.DisplayName, typeof<TimeZoneInfo>, [], IsStatic = true, GetterCode = fun _ -> <@@ TimeZoneInfo.FindSystemTimeZoneById id @@>)
+                    ProvidedProperty(x.DisplayName, typeof<TimeZoneInfo>, isStatic = true, getterCode = fun _ -> <@@ TimeZoneInfo.FindSystemTimeZoneById id @@>)
             ]
         this.AddNamespace(rootNamespace, [root])
 
 [<TypeProvider>]
 /// [omit]
 type public StringReaderProvider(cfg : TypeProviderConfig) as this =
-    inherit TypeProviderForNamespaces()
+    inherit TypeProviderForNamespaces(cfg)
     do this.AddNamespace(rootNamespace, [ StringReaderProvider.createTypedStringReader cfg.ResolutionFolder ])
 
 [<TypeProviderAssembly>]
