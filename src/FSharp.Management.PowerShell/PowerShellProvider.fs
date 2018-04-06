@@ -106,5 +106,5 @@ type public PowerShellProvider(cfg: TypeProviderConfig) as this =
     do this.AddNamespace(rootNamespace, [ shell ])
     do this.Disposing.Add(fun _ -> Runtime.disposeAll())
 
-[<TypeProviderAssembly>]
+[<TypeProviderAssembly()>]
 do()

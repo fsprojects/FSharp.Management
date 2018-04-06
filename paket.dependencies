@@ -3,7 +3,8 @@ source https://nuget.org/api/v2
 nuget FSharp.Core
 nuget System.ServiceModel.Primitives
 nuget System.Management.Automation_PowerShell_3.0
-nuget Microsoft.Win32.Registry
+nuget Microsoft.Win32.Registry prerelease
+nuget System.Management 4.5.0-preview1-26216-02 
 
 github fsprojects/FSharp.TypeProviders.SDK src/ProvidedTypes.fsi
 github fsprojects/FSharp.TypeProviders.SDK src/ProvidedTypes.fs
