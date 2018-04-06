@@ -5,6 +5,21 @@
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <OutputType>Exe</OutputType>
   </PropertyGroup>
+
+  <PropertyGroup>
+    <IsWindows Condition="'$(OS)' == 'Windows_NT'">true</IsWindows>
+    <IsOSX Condition="'$([System.Runtime.InteropServices.RuntimeInformation]::IsOSPlatform($([System.Runtime.InteropServices.OSPlatform]::OSX)))' == 'true'">true</IsOSX>
+    <IsLinux Condition="'$([System.Runtime.InteropServices.RuntimeInformation]::IsOSPlatform($([System.Runtime.InteropServices.OSPlatform]::Linux)))' == 'true'">true</IsLinux>
+  </PropertyGroup>
+  
+  <PropertyGroup Condition="'$(IsWindows)' == 'true'">
+    <DefineConstants>$(DefineConstants);WINDOWS</DefineConstants>
+  </PropertyGroup>
+  
+  <PropertyGroup Condition="'$(IsWindows)' != 'true'">
+    <DefineConstants>$(DefineConstants);UNIX</DefineConstants>
+  </PropertyGroup>
+
   <ItemGroup>
     <Compile Include="FileSystemProvider.Tests.fs" />
     <Compile Include="CommonFolders.Tests.fs" />
@@ -20,9 +35,9 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="../../src/FSharp.Management/FSharp.Management.fsproj"/>
-    <ProjectReference Include="../../src/FSharp.Management.PowerShell/FSharp.Management.PowerShell.fsproj" Condition="$(TargetFramework)=='net462'"/>
-    <ProjectReference Include="../../src/FSharp.Management.WMI.DesignTime/FSharp.Management.WMI.DesignTime.fsproj"/>
-    <ProjectReference Include="../../src/FSharp.Management.WMI/FSharp.Management.WMI.fsproj"/>
+    <!-- <ProjectReference Include="../../src/FSharp.Management.PowerShell/FSharp.Management.PowerShell.fsproj" Condition="$(TargetFramework)=='net462'"/> -->
+    <!-- <ProjectReference Include="../../src/FSharp.Management.WMI.DesignTime/FSharp.Management.WMI.DesignTime.fsproj"/>
+    <ProjectReference Include="../../src/FSharp.Management.WMI/FSharp.Management.WMI.fsproj"/> -->
   </ItemGroup>
   <Import Project="..\..\.paket\Paket.Restore.targets" />
 </Project>

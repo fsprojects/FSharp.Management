@@ -831,5 +831,5 @@ NUGET
     Expecto (7.0) - redirects: force
       Argu (>= 5.1)
       Mono.Cecil (>= 0.10.0-beta7)
-    FSharp.Core (4.2.1) - redirects: force
+    FSharp.Core (4.3.4)
     Mono.Cecil (0.10) - redirects: force

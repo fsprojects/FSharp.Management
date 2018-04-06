@@ -5,7 +5,6 @@ open ProviderImplementation.ProvidedTypes
 open FSharp.Management.Helper
 open System
 open System.IO
-open System.Reflection
 
 type PathType =
     | Directory
@@ -68,9 +67,7 @@ let createFileProperties (dir:DirectoryInfo,dirNodeType:ProvidedTypeDefinition,r
                     | Some sourcePath -> GetRelativePath sourcePath file.FullName
                     | None -> file.FullName
 
-                let pathField = ProvidedField(file.Name, typeof<string>)
-                pathField.SetFieldAttributes(FieldAttributes.Literal)
-                pathField.SetValue(pathField, path)
+                let pathField = ProvidedField.Literal(file.Name, typeof<string>, path)
                 pathField.AddXmlDoc(sprintf "Path to '%s'" path)
                 dirNodeType.AddMember pathField
             with _ -> ()
@@ -87,8 +84,7 @@ let rec annotateDirectoryNode (ownerType: ProvidedTypeDefinition) (dir: Director
         | Some sourcePath -> fixDirectoryPath <| GetRelativePath sourcePath dir.FullName
         | None -> fixDirectoryPath dir.FullName
 
-    let pathField = ProvidedField("Path",typeof<string>)
-    pathField.SetFieldAttributes(FieldAttributes.Literal)
+    let pathField = ProvidedField.Literal("Path",typeof<string>, path)
     pathField.AddXmlDoc(sprintf "Path to '%s'" path)
     ownerType.AddMember pathField
     createFileProperties(dir,ownerType,relative)

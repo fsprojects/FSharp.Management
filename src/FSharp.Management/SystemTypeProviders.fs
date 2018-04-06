@@ -5,11 +5,13 @@ open Microsoft.FSharp.Core.CompilerServices
 open ProviderImplementation.ProvidedTypes
 open FSharp.Management.Helper
 
+#if false
 [<TypeProvider>]
 /// [omit]
 type public RegistrySystemProvider(cfg : TypeProviderConfig) as this = 
     inherit TypeProviderForNamespaces(cfg)
     do this.AddNamespace(rootNamespace, [ RegistryProvider.createTypedRegistry() ])
+#endif
 
 [<TypeProvider>]
 /// [omit]
@@ -40,9 +42,9 @@ type public SystemTimeZonesProvider(cfg : TypeProviderConfig) as this =
         let root = erasedType<obj> thisAssembly rootNamespace "SystemTimeZones"
         root.AddMembersDelayed <| fun() -> 
             [ 
-                for x in TimeZoneInfo.GetSystemTimeZones() ->
+                for x in TimeZoneInfo.GetSystemTimeZones() |> Seq.distinctBy (fun tz -> tz.StandardName) ->
                     let id = x.Id
-                    ProvidedProperty(x.DisplayName, typeof<TimeZoneInfo>, isStatic = true, getterCode = fun _ -> <@@ TimeZoneInfo.FindSystemTimeZoneById id @@>)
+                    ProvidedProperty(x.DisplayName, typeof<TimeZoneInfo>, isStatic = true, getterCode = fun _ -> <@ TimeZoneInfo.FindSystemTimeZoneById(id) @>.Raw)
             ]
         this.AddNamespace(rootNamespace, [root])
 

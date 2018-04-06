@@ -1,6 +1,6 @@
-﻿#if !NETCOREAPP2_0
-module FSharp.Management.Tests.PowerShellProvider
+﻿module FSharp.Management.Tests.PowerShellProvider
 
+#if false
 open FSharp.Management
 open Expecto
 

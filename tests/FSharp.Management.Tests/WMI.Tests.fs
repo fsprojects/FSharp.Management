@@ -1,4 +1,5 @@
 ﻿module FSharp.Management.Tests.WMIProvider
+#if false
 
 open System
 open System.Management
@@ -16,3 +17,4 @@ let data1 = [ for b in data.Win32_DiskDrive -> b.Name, b.Description]
 let data2 =
     [for dd in data.CIM_DiskDrive ->
         [for c in dd.Capabilities -> c.Is_SMART_Notification]]
+#endif
