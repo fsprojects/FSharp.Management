@@ -826,10 +826,10 @@ GROUP Test
 RESTRICTION: == net461
 NUGET
   remote: https://www.nuget.org/api/v2
-    Argu (3.7) - redirects: force
-    Expecto (5.0) - redirects: force
-      Argu (>= 3.7)
-      FSharp.Core (>= 4.1.12)
-      Mono.Cecil (>= 0.10.0-beta5)
+    Argu (5.1) - redirects: force
+      FSharp.Core (>= 4.0.0.1)
+    Expecto (7.0) - redirects: force
+      Argu (>= 5.1)
+      Mono.Cecil (>= 0.10.0-beta7)
     FSharp.Core (4.2.1) - redirects: force
-    Mono.Cecil (0.10.0-beta6) - redirects: force
+    Mono.Cecil (0.10) - redirects: force

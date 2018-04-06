@@ -1,4 +1,5 @@
-﻿module FSharp.Management.Tests.PowerShellProvider
+﻿#if !NETCOREAPP2_0
+module FSharp.Management.Tests.PowerShellProvider
 
 open FSharp.Management
 open Expecto
@@ -105,3 +106,4 @@ let [<Tests>] ps64tests =
     ]
 
 //let modules = "ActiveDirectory;AppBackgroundTask;AppLocker;Appx;AssignedAccess;Azure;BestPractices;BitLocker;BranchCache;CimCmdlets;ClusterAwareUpdating;DFSN;DFSR;Defender;DhcpServer;DirectAccessClientComponents;Dism;DnsClient;DnsServer;FailoverClusters;GroupPolicy;Hyper-V;ISE;International;IpamServer;IscsiTarget;Kds;MMAgent;Microsoft.PowerShell.Core;Microsoft.PowerShell.Diagnostics;Microsoft.PowerShell.Host;Microsoft.PowerShell.Management;Microsoft.PowerShell.Security;Microsoft.PowerShell.Utility;Microsoft.WSMan.Management;MsDtc;NFS;NetAdapter;NetConnection;NetEventPacketCapture;NetLbfo;NetNat;NetQos;NetSecurity;NetSwitchTeam;NetTCPIP;NetWNV;NetworkConnectivityStatus;NetworkLoadBalancingClusters;NetworkTransition;PKI;PSDesiredStateConfiguration;PSDiagnostics;PSScheduledJob;PSWorkflow;PcsvDevice;PrintManagement;RemoteAccess;RemoteDesktop;ScheduledTasks;SecureBoot;ServerManager;ServerManagerTasks;SmbShare;SmbWitness;StartScreen;Storage;TLS;TroubleshootingPack;TrustedPlatformModule;UpdateServices;VpnClient;Wdac;WebAdministration;WindowsDeveloperLicense;WindowsErrorReporting;WindowsSearch;iSCSI".Split([|';'|])
+#endif
