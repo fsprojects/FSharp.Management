@@ -1,5 +1,5 @@
 ﻿module FSharp.Management.Tests.RegistryProviderTests
-#if WINDOWS
+#if false
 
 open FSharp.Management
 open Expecto
