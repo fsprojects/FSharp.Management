@@ -14,6 +14,26 @@
     <copyright>Copyright 2016</copyright>
     <tags>@tags@</tags>
     <iconUrl>https://raw.githubusercontent.com/fsprojects/FSharp.Management/master/docs/files/img/logo.png</iconUrl>
-    <dependencies />
+    <dependencies>
+      <group targetFramework="net45">
+        <dependency id="FSharp.Core" version="4.0.0.1"/>
+      </group>
+      <group targetFramework="netstandard2.0">
+        <dependency id="FSharp.Core" version="4.3.4" />
+      </group>
+    </dependencies>
+    <references>
+      <reference file="FSharp.Management.dll" />
+    </references>
   </metadata>
+  <files>
+    <!-- Place the TPRTCs in the usual locations -->
+    <file src="..\nuget\lib\net45\FSharp.Management.dll" target="lib/net45" />
+    <file src="..\nuget\lib\net45\FSharp.Management.pdb" target="lib/net45" />
+    <file src="..\nuget\lib\net45\FSharp.Management.xml" target="lib/net45" />
+    <file src="..\nuget\lib\netstandard2.0\FSharp.Management.dll" target="lib/netstandard2.0" />
+    <file src="..\nuget\lib\netstandard2.0\FSharp.Management.pdb" target="lib/netstandard2.0" />
+    <file src="..\nuget\lib\netstandard2.0\FSharp.Management.xml" target="lib/netstandard2.0" />
+    <file src="..\nuget\docs\*.*" target="docs" />
+</files>
 </package>

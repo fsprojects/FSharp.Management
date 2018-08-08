@@ -99,13 +99,14 @@ Target "NuGet" (fun _ ->
     let project = projects.[0]
 
     let nugetDocsDir = nugetDir @@ "docs"
-    let nugetlibDir = nugetDir @@ "lib/net40"
+    let nugetlib45Dir = nugetDir @@ "lib/net45"
+    let nugetlibns20Dir = nugetDir @@ "lib/netstandard2.0"
 
-    CleanDir nugetDocsDir
-    CleanDir nugetlibDir
+    CleanDirs [nugetDocsDir; nugetlib45Dir; nugetlibns20Dir]
 
-    CopyDir nugetlibDir "bin" (fun file -> file.Contains "FSharp.Core." |> not)
-    CopyDir nugetDocsDir "./docs/output" allFiles
+    CopyDir nugetlib45Dir "src/FSharp.Management/bin/Release/net462" (fun _ -> true)
+    CopyDir nugetlibns20Dir "src/FSharp.Management/bin/Release/netstandard2.0" (fun _ -> true)
+    //CopyDir nugetDocsDir "./docs/output" allFiles
 
     NuGet (fun p ->
         { p with
