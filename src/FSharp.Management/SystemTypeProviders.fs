@@ -6,6 +6,7 @@ open ProviderImplementation.ProvidedTypes
 open FSharp.Management.Helper
 
 #if false
+/// this TP is not included because it currently throws on non-windows systems with an exception I haven't been able to track down
 [<TypeProvider>]
 /// [omit]
 type public RegistrySystemProvider(cfg : TypeProviderConfig) as this = 

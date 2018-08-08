@@ -1,5 +1,4 @@
 ﻿module internal FSharp.Management.RegistryProvider
-#if false
 
 open ProviderImplementation.ProvidedTypes
 open FSharp.Management.Helper
@@ -64,4 +63,3 @@ let createTypedRegistry() =
         registryType.AddMemberDelayed (createRegistryNode(subkey,name))
 
     registryType
-#endif
