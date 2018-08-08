@@ -1,21 +1,30 @@
 source https://nuget.org/api/v2
+storage: none
+framework: net462, netstandard2.0
 
-nuget FSharp.Core ~> 3
+nuget FSharp.Core ~> 4.3.0
+nuget System.ServiceModel.Primitives
 nuget System.Management.Automation_PowerShell_3.0
+nuget Microsoft.Win32.Registry prerelease
+nuget System.Management ~> 4.5
 
-github fsprojects/FSharp.TypeProviders.StarterPack src/ProvidedTypes.fsi
-github fsprojects/FSharp.TypeProviders.StarterPack src/ProvidedTypes.fs
+github fsprojects/FSharp.TypeProviders.SDK src/ProvidedTypes.fsi
+github fsprojects/FSharp.TypeProviders.SDK src/ProvidedTypes.fs
 
 group Test
+  storage: none
   source https://nuget.org/api/v2
-  framework: net461
+  framework: net462, netcoreapp2.0
 
-  nuget Expecto redirects:force
+  nuget FSharp.Core ~> 4.3.0
+  nuget Expecto
+  nuget System.Management ~> 4.5
 
 group Build
   source https://nuget.org/api/v2
   framework: net461
 
+  nuget FSharp.Core ~> 4.3.0
   nuget SourceLink.Fake
   nuget FAKE
   nuget FSharp.Formatting

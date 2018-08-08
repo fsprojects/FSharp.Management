@@ -5,6 +5,7 @@
 #r @"packages/build/FAKE/tools/FakeLib.dll"
 open Fake
 open Fake.Git
+open Fake.DotNet
 open Fake.AssemblyInfoFile
 open Fake.ReleaseNotesHelper
 open Fake.Testing.Expecto
@@ -30,7 +31,7 @@ let tags = "F# fsharp typeproviders Management PowerShell"
 
 let solutionFile  = "FSharp.Management"
 
-let testAssemblies = "tests/**/bin/Release/*.Tests*.exe"
+let testAssemblies = "tests/**/bin/Release/**/*.Tests*.exe"
 let gitHome = "https://github.com/fsprojects"
 let gitName = "FSharp.Management"
 let cloneUrl = "https://github.com/fsprojects/FSharp.Management.git"
@@ -66,16 +67,14 @@ Target "CleanDocs" (fun _ ->
 // --------------------------------------------------------------------------------------
 // Build library & test project
 
+let withConfiguration config (bp: DotNet.BuildOptions) = { bp with Configuration = config } 
+
 Target "Build" (fun _ ->
-    !! (solutionFile + ".sln")
-    |> MSBuildRelease "" "Rebuild"
-    |> ignore
+    DotNet.build (withConfiguration DotNet.BuildConfiguration.Release) (solutionFile + ".sln")
 )
 
 Target "BuildTests" (fun _ ->
-    !! (solutionFile + ".Tests.sln")
-    |> MSBuildRelease "" "Rebuild"
-    |> ignore
+    DotNet.build (withConfiguration DotNet.BuildConfiguration.Release) (solutionFile + ".Tests.sln")
 )
 
 // --------------------------------------------------------------------------------------
@@ -89,7 +88,6 @@ Target "RunTests" (fun _ ->
     |> ignore
 )
 
-
 // --------------------------------------------------------------------------------------
 // Build a NuGet package
 
@@ -101,13 +99,14 @@ Target "NuGet" (fun _ ->
     let project = projects.[0]
 
     let nugetDocsDir = nugetDir @@ "docs"
-    let nugetlibDir = nugetDir @@ "lib/net40"
+    let nugetlib45Dir = nugetDir @@ "lib/net45"
+    let nugetlibns20Dir = nugetDir @@ "lib/netstandard2.0"
 
-    CleanDir nugetDocsDir
-    CleanDir nugetlibDir
+    CleanDirs [nugetDocsDir; nugetlib45Dir; nugetlibns20Dir]
 
-    CopyDir nugetlibDir "bin" (fun file -> file.Contains "FSharp.Core." |> not)
-    CopyDir nugetDocsDir "./docs/output" allFiles
+    CopyDir nugetlib45Dir "src/FSharp.Management/bin/Release/net462" (fun _ -> true)
+    CopyDir nugetlibns20Dir "src/FSharp.Management/bin/Release/netstandard2.0" (fun _ -> true)
+    //CopyDir nugetDocsDir "./docs/output" allFiles
 
     NuGet (fun p ->
         { p with
@@ -255,11 +254,8 @@ Target "All" DoNothing
 "Clean"
   ==> "AssemblyInfo"
   ==> "Build"
-#if MONO
-#else
   ==> "BuildTests"
   ==> "RunTests"
-#endif
   ==> "All"
 
 "All"

@@ -11,7 +11,6 @@ open System.Management
 open System.Reflection
 open Microsoft.FSharp.Core.CompilerServices
 open ProviderImplementation.ProvidedTypes
-open ProviderImplementation.ProvidedTypes
 open Microsoft.FSharp.Quotations
 
 #nowarn "40"
@@ -124,7 +123,7 @@ module private Cache =
 [<TypeProvider>]
 type public WmiExtender(config : TypeProviderConfig) as this =
 
-    inherit TypeProviderForNamespaces()
+    inherit TypeProviderForNamespaces(config)
 
     let runtimeInfo = RuntimeInfo(config)
     let thisAssembly = runtimeInfo.RuntimeAssembly
@@ -171,7 +170,7 @@ type public WmiExtender(config : TypeProviderConfig) as this =
         let reprTy,converter = CimTypeHelpers.outputInfo(wmiProp, runtimeInfo, d, false)
 
         let baseTy = if wmiProp.IsArray then reprTy.GetElementType() else typeof<obj>
-        let enumTy = ProvidedTypeDefinition(propName + "Values", baseType = Some baseTy, HideObjectMethods=true)
+        let enumTy = ProvidedTypeDefinition(propName + "Values", baseType = Some baseTy, hideObjectMethods=true)
 
         let getValValueReprExpr (valValue : string) =
             let elementRepr = if wmiProp.IsArray then reprTy.GetElementType() else reprTy
@@ -208,11 +207,13 @@ type public WmiExtender(config : TypeProviderConfig) as this =
         try
             for valName, valValue in namesAndVals do
                 let valValueRepr = getValValueReprExpr valValue
-                let isProp = ProvidedProperty("Is_"+valName.Replace(" ","_"),typeof<bool>,GetterCode=(fun args -> <@@ (%%(Expr.Coerce(args.[0], typeof<obj>))) = (%% valValueRepr : obj) @@>))
+                let isProp = ProvidedProperty("Is_" + valName.Replace(" ","_"), 
+                                              typeof<bool>, 
+                                              getterCode= (fun (this::_) -> <@@ (%%(Expr.Coerce(this, typeof<obj>))) = (%% valValueRepr : obj) @@>))
                 isProp.AddXmlDocDelayed (fun () -> sprintf "Check if the property '%s' of class '%s' is value '%s', of underlying value '%s'" propName className valName valValue)
                 enumTy.AddMember isProp
 
-                let valProp = ProvidedProperty(valName, enumTy, GetterCode=(fun _args -> valValueRepr), IsStatic=true)
+                let valProp = ProvidedProperty(valName, enumTy, getterCode= (fun _args -> valValueRepr), isStatic=true)
                 valProp.AddXmlDocDelayed (fun () -> sprintf "The value '%s', with underlying value '%s'" valName valValue)
                 enumTy.AddMember valProp
         with _ -> () //there are some oddities which break this logic...
@@ -225,7 +226,7 @@ type public WmiExtender(config : TypeProviderConfig) as this =
                 match wmiClass.Derivation |> Seq.cast<string> |> Seq.toList with
                 | h::_ -> d.[h]
                 | _ -> typeof<obj>
-        let t = ProvidedTypeDefinition(className,Some typeof<obj>, HideObjectMethods=true)
+        let t = ProvidedTypeDefinition(className, Some typeof<obj>, hideObjectMethods=true)
         t.SetBaseTypeDelayed(fun () -> baseTy.Value)
 
         d.[className] <- t :> Type
@@ -257,8 +258,8 @@ type public WmiExtender(config : TypeProviderConfig) as this =
                     | Some e -> yield (e:>MemberInfo)
                     | None -> ()
 
-                    let p = ProvidedProperty(propName,reprTy,IsStatic=false,
-                                            GetterCode = (fun args -> converter (Expr.Call(runtimeInfo.GetManagementProp, [ Expr.Coerce(args.[0], typeof<ManagementBaseObject>); Expr.Value propName ]))) )
+                    let p = ProvidedProperty(propName, reprTy, isStatic=false,
+                                             getterCode = (fun (this::_) -> converter (Expr.Call(runtimeInfo.GetManagementProp, [ Expr.Coerce(this, typeof<ManagementBaseObject>); Expr.Value propName ]))) )
                     p.AddXmlDocDelayed(fun () -> getPropXmlDoc wmiProp)
                     yield (p :> MemberInfo)
 
@@ -282,7 +283,7 @@ type public WmiExtender(config : TypeProviderConfig) as this =
                     let inParamNamesExpr = Expr.NewArray(typeof<string>, [ for (p,_) in parameters -> Expr.Value p.Name ])
 
                     let outParameters =
-                        if wmiMeth.OutParameters = null then []
+                        if isNull wmiMeth.OutParameters then []
                         else
                             [ for p in wmiMeth.OutParameters.Properties do
                                 if p.Name <> "ReturnValue" then
@@ -291,33 +292,36 @@ type public WmiExtender(config : TypeProviderConfig) as this =
 
                     // TODO: apply retConv to return value?
                     let retTy, _retConv =
-                        if wmiMeth.OutParameters = null then typeof<System.Void>, id
+                        if isNull wmiMeth.OutParameters then typeof<System.Void>, id
                         else
                             let p = wmiMeth.OutParameters.Properties.["ReturnValue"]
                             CimTypeHelpers.outputInfo(p,runtimeInfo,d,false)
-                    let p = ProvidedMethod(methName,parameters @ outParameters |> List.map fst,retTy,
-                                            InvokeCode = (fun args ->
-                                                let argsWithoutObj = args |> Seq.skip 1
+                    let allParameters = (parameters @ outParameters) |> List.map fst
+                    let p = ProvidedMethod(methName, allParameters, retTy,
+                                            invokeCode = (fun (this::rest) ->
+                                                let argsWithoutObj = rest
                                                 let inArgs = argsWithoutObj |> Seq.take (parameters.Length)
                                                 let outArgs = argsWithoutObj |> Seq.skip (parameters.Length)
                                                 let inParamValuesExpr = Expr.NewArray(typeof<obj>, [ for a in inArgs -> Expr.Coerce(a, typeof<obj>) ])
                                                 let call =
                                                     if isStatic then
-                                                        let ctx = Expr.PropertyGet(args.[0], args.[0].Type.GetProperty("Context"))
+                                                        let ctx = Expr.PropertyGet(this, this.Type.GetProperty("Context"))
                                                         let scope = Expr.PropertyGet(ctx, ctx.Type.GetProperty("Scope"))
                                                         Expr.Call(runtimeInfo.InvokeStaticManagementMethod, [scope; Expr.Value wmiClass.ClassPath.Path; Expr.Value methName; inParamNamesExpr; inParamValuesExpr])
                                                     else
-                                                        Expr.Call(runtimeInfo.InvokeInstanceManagementMethod, [ Expr.Coerce(args.[0], typeof<ManagementBaseObject>); Expr.Value methName; inParamNamesExpr; inParamValuesExpr])
+                                                        Expr.Call(runtimeInfo.InvokeInstanceManagementMethod, [ Expr.Coerce(this, typeof<ManagementBaseObject>); Expr.Value methName; inParamNamesExpr; inParamValuesExpr])
                                                 let callVar = Var("call", typeof<obj*ManagementBaseObject>)
                                                 let outVars = <@ snd (%%Expr.Var(callVar) : obj*ManagementBaseObject) @>
                                                 let body =
-                                                    outArgs
-                                                    |> Seq.zip outParameters
+                                                    Seq.zip outParameters outArgs
                                                     // TODO: apply conv to output values?
-                                                    |> Seq.fold (fun e ((p,_conv), v) ->
+                                                    |> Seq.fold (fun (e: Expr) (((p: ProvidedParameter),_conv), (v: Expr)) ->
                                                         let ty = v.Type.GetElementType()
                                                         let name = p.Name
-                                                        Expr.Sequential(Expr.Call(runtimeInfo.Set.MakeGenericMethod(ty), [v; Expr.Coerce(<@@ (%outVars).[name] @@>, ty)]), e))
+                                                        Expr.Sequential(
+                                                            Expr.Call(runtimeInfo.Set.MakeGenericMethod(ty), [v; Expr.Coerce(<@@ (%outVars).[name] @@>, ty)]),
+                                                            e)
+                                                        )
                                                         (if retTy = typeof<System.Void> then <@@ () @@>
                                                             else Expr.Coerce(<@@ fst (%%Expr.Var( callVar) : obj*ManagementBaseObject) @@>, retTy))
                                                 Expr.Let(callVar, call, body)))
@@ -373,7 +377,7 @@ type public WmiExtender(config : TypeProviderConfig) as this =
                         let meth = runtimeInfo.ExtrinsicEventMethod.MakeGenericMethod(typeof<obj>)
                         let delTy = meth.GetParameters().[2].ParameterType
                         let arg = Var("arg", delTy.GetGenericArguments().[0])
-                        let p = ProvidedProperty(allInstancesPropName, extrEventTy, GetterCode = (fun args -> Expr.Call (meth, [Expr.Coerce(args.[0], runtimeInfo.DataContextClass); Expr.Value wmiClass.ClassPath.ClassName; Expr.NewDelegate(delTy, [arg], Expr.Coerce(Expr.Var arg, typeof<obj>))])))
+                        let p = ProvidedProperty(allInstancesPropName, extrEventTy, getterCode = (fun (this::_) -> Expr.Call (meth, [Expr.Coerce(this, runtimeInfo.DataContextClass); Expr.Value wmiClass.ClassPath.ClassName; Expr.NewDelegate(delTy, [arg], Expr.Coerce(Expr.Var arg, typeof<obj>))])))
 
                         p.AddXmlDocDelayed(fun () ->
                             try wmiClass.Qualifiers.["Description"].Value :?> string
@@ -404,23 +408,23 @@ type public WmiExtender(config : TypeProviderConfig) as this =
                             let ctor = ty.MakeGenericType(typeof<obj>).GetConstructors().[0]
                             let funcTy = typedefof<System.Func<_,_>>.MakeGenericType(typeof<ManagementBaseObject>, ty.MakeGenericType(typeof<obj>))
                             let var = Quotations.Var("arg", typeof<ManagementBaseObject>)
-                            collTy.AddMember(ProvidedProperty(evName.Substring(2)+"Event", fullTy, GetterCode = fun args ->
-                                Quotations.Expr.Call(meth, [Quotations.Expr.PropertyGet(args.[0], collGetCtx); Quotations.Expr.Value (evName+"Event"); Quotations.Expr.Value className; Quotations.Expr.NewDelegate(funcTy, [var], Quotations.Expr.NewObject(ctor, [Quotations.Expr.Var var]))])))
+                            collTy.AddMember(ProvidedProperty(evName.Substring(2)+"Event", fullTy, getterCode = fun (this::_) ->
+                                Quotations.Expr.Call(meth, [Quotations.Expr.PropertyGet(this, collGetCtx); Quotations.Expr.Value (evName+"Event"); Quotations.Expr.Value className; Quotations.Expr.NewDelegate(funcTy, [var], Quotations.Expr.NewObject(ctor, [Quotations.Expr.Var var]))])))
 
 
-                        let p = ProvidedProperty(allInstancesPropName, collTy, GetterCode = (fun args -> Expr.Call (meth, [ Expr.Coerce(args.[0], runtimeInfo.DataContextClass); Expr.Value allInstancesPropName; Expr.NewDelegate(delTy, [arg], Expr.Coerce(Expr.Var arg, typeof<obj>))] )))
+                        let p = ProvidedProperty(allInstancesPropName, collTy, getterCode = (fun (this::_) -> Expr.Call (meth, [ Expr.Coerce(this, runtimeInfo.DataContextClass); Expr.Value allInstancesPropName; Expr.NewDelegate(delTy, [arg], Expr.Coerce(Expr.Var arg, typeof<obj>))] )))
                         p.AddXmlDocDelayed(fun () ->
                             try wmiClass.Qualifiers.["Description"].Value :?> string
                             with _ -> sprintf "All objects of the management class '%s'" wmiClass.ClassPath.ClassName)
 
                         yield  p :> MemberInfo
 
-              let m1 = ProvidedMethod("GetDataContext",[ ], t, IsStaticMethod=true,
-                                      InvokeCode = (fun _args ->
+              let m1 = ProvidedMethod("GetDataContext",[ ], t, isStatic = true,
+                                      invokeCode = (fun _args ->
                                                         let fullMachineName = sprintf @"\\%s\%s" machineName nmspace
                                                         Expr.NewObject(runtimeInfo.DataContextClass.GetConstructors().[0], [ <@@ new ManagementScope(fullMachineName) @@> ])))
-              let m2 = ProvidedMethod("GetDataContext",[ ProvidedParameter("machineName",typeof<string>) ], t, IsStaticMethod=true,
-                                    InvokeCode = (fun args -> Expr.NewObject(runtimeInfo.DataContextClass.GetConstructors().[0], [ <@@ new ManagementScope(sprintf @"\\%s\%s" ((%%args.[0]) : string) nmspace) @@> ])))
+              let m2 = ProvidedMethod("GetDataContext",[ ProvidedParameter("machineName",typeof<string>) ], t, isStatic = true,
+                                      invokeCode = (fun (this::_) -> Expr.NewObject(runtimeInfo.DataContextClass.GetConstructors().[0], [ <@@ new ManagementScope(sprintf @"\\%s\%s" ((%%this) : string) nmspace) @@> ])))
               yield m1 :> MemberInfo
               yield m2 :> MemberInfo
               yield theClassesType :> MemberInfo

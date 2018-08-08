@@ -54,9 +54,10 @@ type PSRuntimeHosted(snapIns:string[], modules:string[]) =
     let commands =
         try
             commandInfos
-            |> Seq.map (fun cmd ->
+            |> Seq.collect (fun cmd ->
                 match cmd with
-                | :? CmdletInfo | :? FunctionInfo->
+                | :? CmdletInfo 
+                | :? FunctionInfo ->
                     if cmd.ParameterSets.Count > 0 then
                         seq {
                             // Generate function for each command's parameter set
@@ -68,7 +69,6 @@ type PSRuntimeHosted(snapIns:string[], modules:string[]) =
                         failwithf "Command is not loaded: %A" cmd
                 | _ -> failwithf "Unexpected type of command: %A" cmd
             )
-            |> Seq.concat
             |> Map.ofSeq
         with
         | e -> failwithf "Could not load command: %s\n%s" e.Message e.StackTrace

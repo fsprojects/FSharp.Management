@@ -9,7 +9,7 @@ let createType typeName filePath =
 
     let content = File.ReadAllText(filePath)
 
-    let contentField = ProvidedLiteralField("Content", typeof<string>, content)
+    let contentField = ProvidedField.Literal("Content", typeof<string>, content)
     contentField.AddXmlDoc(sprintf "Content of '%s'" filePath)
     typedStringReader.AddMember contentField
 

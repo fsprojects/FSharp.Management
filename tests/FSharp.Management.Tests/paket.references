@@ -1,2 +1,4 @@
 group Test
+  FSharp.Core
   Expecto
+  System.Management

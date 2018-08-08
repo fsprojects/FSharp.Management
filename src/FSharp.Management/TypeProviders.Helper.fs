@@ -98,11 +98,11 @@ let findConfigFile resolutionFolder configFileName =
         Path.Combine(resolutionFolder, configFileName)
 
 let erasedType<'T> assemblyName rootNamespace typeName =
-    ProvidedTypeDefinition(assemblyName, rootNamespace, typeName, Some(typeof<'T>))
+    ProvidedTypeDefinition(assemblyName, rootNamespace, typeName, Some(typeof<'T>), hideObjectMethods = true)
 
 let generalTypeSet = System.Collections.Generic.HashSet()
 
-let runtimeType<'T> typeName = ProvidedTypeDefinition(niceName generalTypeSet typeName, Some typeof<'T>)
+let runtimeType<'T> typeName = ProvidedTypeDefinition(niceName generalTypeSet typeName, Some typeof<'T>, hideObjectMethods = true)
 
 let seqType ty = typedefof<seq<_>>.MakeGenericType[| ty |]
 let listType ty = typedefof<list<_>>.MakeGenericType[| ty |]

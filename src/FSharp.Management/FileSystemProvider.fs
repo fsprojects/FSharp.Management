@@ -67,7 +67,7 @@ let createFileProperties (dir:DirectoryInfo,dirNodeType:ProvidedTypeDefinition,r
                     | Some sourcePath -> GetRelativePath sourcePath file.FullName
                     | None -> file.FullName
 
-                let pathField = ProvidedLiteralField(file.Name,typeof<string>,path)
+                let pathField = ProvidedField.Literal(file.Name, typeof<string>, path)
                 pathField.AddXmlDoc(sprintf "Path to '%s'" path)
                 dirNodeType.AddMember pathField
             with _ -> ()
@@ -77,7 +77,6 @@ let rec annotateDirectoryNode (ownerType: ProvidedTypeDefinition) (dir: Director
     if watch then
         watchDir dir.FullName ctx
 
-    ownerType.HideObjectMethods <- true
     ownerType.AddXmlDoc(sprintf "A strongly typed interface to '%s'" dir.FullName)
 
     let path =
@@ -85,7 +84,7 @@ let rec annotateDirectoryNode (ownerType: ProvidedTypeDefinition) (dir: Director
         | Some sourcePath -> fixDirectoryPath <| GetRelativePath sourcePath dir.FullName
         | None -> fixDirectoryPath dir.FullName
 
-    let pathField = ProvidedLiteralField("Path",typeof<string>,path)
+    let pathField = ProvidedField.Literal("Path",typeof<string>, path)
     pathField.AddXmlDoc(sprintf "Path to '%s'" path)
     ownerType.AddMember pathField
     createFileProperties(dir,ownerType,relative)
@@ -105,7 +104,7 @@ let rec annotateDirectoryNode (ownerType: ProvidedTypeDefinition) (dir: Director
     ownerType
 
 and createDirectoryNode (dir: DirectoryInfo) propertyName withParent relative watch ctx =
-    annotateDirectoryNode (ProvidedTypeDefinition(propertyName, Some typeof<obj>)) dir withParent relative watch ctx
+    annotateDirectoryNode (ProvidedTypeDefinition(propertyName, Some typeof<obj>, hideObjectMethods = true)) dir withParent relative watch ctx
 
 let createRootType typeName (dir: DirectoryInfo) withParent relative watch ctx =
     annotateDirectoryNode (erasedType<obj> thisAssembly rootNamespace typeName) dir withParent relative watch ctx ()
