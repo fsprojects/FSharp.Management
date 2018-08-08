@@ -1,4 +1,6 @@
 source https://nuget.org/api/v2
+storage: none
+framework: net462, netstandard2.0
 
 nuget FSharp.Core ~> 4.3.0
 nuget System.ServiceModel.Primitives
@@ -10,10 +12,12 @@ github fsprojects/FSharp.TypeProviders.SDK src/ProvidedTypes.fsi
 github fsprojects/FSharp.TypeProviders.SDK src/ProvidedTypes.fs
 
 group Test
+  storage: none
   source https://nuget.org/api/v2
-  framework: net461
+  framework: net462, netcoreapp2.0
+
   nuget FSharp.Core ~> 4.3.0
-  nuget Expecto redirects:force
+  nuget Expecto
 
 group Build
   source https://nuget.org/api/v2

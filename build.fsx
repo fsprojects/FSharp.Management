@@ -5,6 +5,7 @@
 #r @"packages/build/FAKE/tools/FakeLib.dll"
 open Fake
 open Fake.Git
+open Fake.DotNet
 open Fake.AssemblyInfoFile
 open Fake.ReleaseNotesHelper
 open Fake.Testing.Expecto
@@ -30,7 +31,7 @@ let tags = "F# fsharp typeproviders Management PowerShell"
 
 let solutionFile  = "FSharp.Management"
 
-let testAssemblies = "tests/**/bin/Release/*.Tests*.exe"
+let testAssemblies = "tests/**/bin/Release/**/*.Tests*.exe"
 let gitHome = "https://github.com/fsprojects"
 let gitName = "FSharp.Management"
 let cloneUrl = "https://github.com/fsprojects/FSharp.Management.git"
@@ -66,16 +67,14 @@ Target "CleanDocs" (fun _ ->
 // --------------------------------------------------------------------------------------
 // Build library & test project
 
+let withConfiguration config (bp: DotNet.BuildOptions) = { bp with Configuration = config } 
+
 Target "Build" (fun _ ->
-    !! (solutionFile + ".sln")
-    |> MSBuildRelease "" "Rebuild"
-    |> ignore
+    DotNet.build (withConfiguration DotNet.BuildConfiguration.Release) (solutionFile + ".sln")
 )
 
 Target "BuildTests" (fun _ ->
-    !! (solutionFile + ".Tests.sln")
-    |> MSBuildRelease "" "Rebuild"
-    |> ignore
+    DotNet.build (withConfiguration DotNet.BuildConfiguration.Release) (solutionFile + ".Tests.sln")
 )
 
 // --------------------------------------------------------------------------------------
@@ -88,7 +87,6 @@ Target "RunTests" (fun _ ->
             Parallel = false} )
     |> ignore
 )
-
 
 // --------------------------------------------------------------------------------------
 // Build a NuGet package
@@ -255,11 +253,8 @@ Target "All" DoNothing
 "Clean"
   ==> "AssemblyInfo"
   ==> "Build"
-#if MONO
-#else
   ==> "BuildTests"
   ==> "RunTests"
-#endif
   ==> "All"
 
 "All"

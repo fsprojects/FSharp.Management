@@ -37,22 +37,26 @@ let [<Tests>] systemTests =
             let pathFolder = System.IO.Path.GetTempPath()
             Expect.equal (CommonFolders.GetSystem SystemPath.Temp) pathFolder ""
         }
+#if WINDOWS
         test "Windows system folder should contain kernel32.dll" {
             let sysFolder = CommonFolders.GetSystem SystemPath.System
             let file = System.IO.Path.Combine(sysFolder, "kernel32.dll")
             Expect.equal (System.IO.File.Exists file) true ""
         }
+#endif        
     ]
+
+let (</>) a b = System.IO.Path.Combine(a, b)
 
 let [<Tests>] applicationTests =
     testList "Application Tests" [
         test "FSharpManangement path should contain tests\\FSharp.Manangement.Tests\\bin" {
             let path = CommonFolders.GetApplication ApplicationPath.FSharpManagementLocation
-            Expect.stringContains path "tests\\FSharp.Management.Tests\\bin" ""
+            Expect.stringContains path ("tests" </> "FSharp.Management.Tests" </> "bin") (sprintf "from path %s" path)
         }
         test "FSharpManangement shadow copied path should contain FSharp.Manangement.Tests" {
             let path = CommonFolders.GetApplication ApplicationPath.FSharpManagementShadowCopiedLocation
-            Expect.stringContains path "FSharp.Management.Tests" ""
+            Expect.stringContains path "FSharp.Management.Tests" (sprintf "from path %s" path)
         }
     ]
 
