@@ -1,10 +1,10 @@
 source https://nuget.org/api/v2
 
-nuget FSharp.Core
+nuget FSharp.Core ~> 4.3.0
 nuget System.ServiceModel.Primitives
 nuget System.Management.Automation_PowerShell_3.0
 nuget Microsoft.Win32.Registry prerelease
-nuget System.Management 4.5.0-preview1-26216-02 
+nuget System.Management
 
 github fsprojects/FSharp.TypeProviders.SDK src/ProvidedTypes.fsi
 github fsprojects/FSharp.TypeProviders.SDK src/ProvidedTypes.fs
@@ -12,13 +12,14 @@ github fsprojects/FSharp.TypeProviders.SDK src/ProvidedTypes.fs
 group Test
   source https://nuget.org/api/v2
   framework: net461
-  nuget FSharp.Core
+  nuget FSharp.Core ~> 4.3.0
   nuget Expecto redirects:force
 
 group Build
   source https://nuget.org/api/v2
   framework: net461
 
+  nuget FSharp.Core ~> 4.3.0
   nuget SourceLink.Fake
   nuget FAKE
   nuget FSharp.Formatting
