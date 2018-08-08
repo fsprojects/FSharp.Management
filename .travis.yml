@@ -1,5 +1,11 @@
 language: csharp
 
+matrix:
+  include:
+  - dotnet: 2.1.300
+    mono: 5.12.0
+
+
 sudo: false  # use the new container-based Travis infrastructure
 
 script:
