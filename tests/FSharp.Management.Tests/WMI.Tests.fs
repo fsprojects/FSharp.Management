@@ -1,6 +1,6 @@
 ﻿module FSharp.Management.Tests.WMIProvider
-#if false
 
+#if false
 open System
 open System.Management
 open FSharp.Management

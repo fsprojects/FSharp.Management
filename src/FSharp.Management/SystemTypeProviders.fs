@@ -41,11 +41,10 @@ type public SystemTimeZonesProvider(cfg : TypeProviderConfig) as this =
     do
         let root = erasedType<obj> thisAssembly rootNamespace "SystemTimeZones"
         root.AddMembersDelayed <| fun() -> 
-            [ 
+            [   
                 for x in TimeZoneInfo.GetSystemTimeZones() |> Seq.distinctBy (fun tz -> tz.StandardName) ->
                     let id = x.Id
                     ProvidedProperty(x.DisplayName, typeof<TimeZoneInfo>, isStatic = true, getterCode = fun _ -> <@ TimeZoneInfo.FindSystemTimeZoneById(id) @>.Raw)
-                yield ProvidedProperty("(UTC) Coordinated Universal Time", typeof<TimeZoneInfo>, isStatic = true, getterCode = fun _ -> <@ TimeZoneInfo.Utc @>.Raw)
             ]
         this.AddNamespace(rootNamespace, [root])
 
