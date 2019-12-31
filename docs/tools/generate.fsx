@@ -8,7 +8,7 @@ let referenceBinaries = [ "FSharp.Management.dll" ]
 // Web site location for the generated documentation
 let website = "/FSharp.Management"
 
-let githubLink = "http://github.com/fsprojects/FSharp.Management"
+let githubLink = "https://github.com/fsprojects/FSharp.Management"
 
 // Specify more information about your project
 let info =
